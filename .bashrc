@@ -85,6 +85,7 @@ fi
 alias ll='ls -lh'
 alias la='ls -A'
 alias l='ls -CF'
+alias us="ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
 alias nano='nano -w -c'
 
 # enable programmable completion features (you don't need to enable

@@ -87,7 +87,6 @@ alias la='ls -A'
 alias l='ls -CF'
 alias us="ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
 alias nano='nano -wc'
-alias large="find . -type f -size +10000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

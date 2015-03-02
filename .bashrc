@@ -85,6 +85,7 @@ fi
 alias ll='ls -lh'
 alias la='ls -A'
 alias l='ls -CF'
+alias lh="ls -lh | awk '{print $5 "\t" $9}'"
 alias us="ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
 alias nano='nano -wc'
 alias large="find . -type f -size +10000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'"

@@ -70,6 +70,8 @@ alias us="ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
 alias nano='nano -wc'
 alias ..="cd .."
 alias cd..="cd .."
+alias more='less'
+alias ping5='ping -c 5'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

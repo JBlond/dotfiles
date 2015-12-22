@@ -8,6 +8,7 @@
 	who = shortlog -s --
 	undo = reset --hard
 	changes = diff --name-status -r
+	new-branch = checkout -b
 
 [push]
 	default = simple

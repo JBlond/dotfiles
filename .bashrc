@@ -66,7 +66,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 #debian
-alias upgrade='aptitude update && aptitude dist-upgrade'
+alias upgrade='sudo aptitude update && sudo aptitude dist-upgrade'
 
 # some more ls aliases
 alias ll='ls -lh'

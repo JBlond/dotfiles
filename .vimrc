@@ -1,5 +1,5 @@
 if has('win32') || has('win64')
-	source $VIMRUNTIME/mswin.vim
+        source $VIMRUNTIME/mswin.vim
 endif
 
 :set hidden
@@ -24,4 +24,4 @@ set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,.sass-cache,
 set showmatch   " Show matching brackets.
 set matchtime=2 " How many tenths of a second to blink
 set list        " show tab and trail
-set listchars=tab:▸\ ,trail:¬
+set listchars=tab:»»,trail:.,extends:>,precedes:<

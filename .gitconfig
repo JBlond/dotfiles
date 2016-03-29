@@ -18,4 +18,4 @@
 	lineNumber = true
 
 [user]
-	useconfigonly = true
+	useConfigOnly = true

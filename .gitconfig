@@ -16,3 +16,6 @@
 
 [grep]
 	lineNumber = true
+
+[user]
+	useconfigonly = true

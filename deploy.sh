@@ -1,7 +1,7 @@
 #!/bin/bash
 cp ./.bash_logout ../
 cp ./.bashrc ../
-cp ./.config ../
+cp -r ./.config ../
 cp ./.gitconfig ../
 cp ./.git-prompt.sh ../
 cp ./.nanorc ../

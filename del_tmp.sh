@@ -1,0 +1,2 @@
+cd $TMP
+rm -rf *

@@ -15,6 +15,14 @@
 	name = config user.name
 	github = !git config user.name "JBlond" && git config user.email "leet31337@web.de"
 	rollback = checkout @~1
+	last = log -1 --stat
+	cp = cherry-pick
+	cl = clone
+	unstage = reset HEAD --
+	dc = diff --cached
+	rm-symlink = "!__git_rm_symlink(){\n\tgit checkout -- \"$1\"\n\tlink=$(echo \"$1\")\n\tPOS=$'/'\n\tDOS=$'\\\\\\\\'\n\tdoslink=${link//$POS/$DOS}\n\tdest=$(dirname \"$link\")/$(cat \"$link\")\n\tdosdest=${dest//$POS/$DOS}\n\tif [ -f \"$dest\" ]; then\n\t\trm -f \"$link\"\n\t\tcmd //C mklink //H \"$doslink\" \"$dosdest\"\n\telif [ -d \"$dest\" ]; then\n\t\trm -f \"$link\"\n\t\tcmd //C mklink //J \"$doslink\" \"$dosdest\"\n\telse\n\t\techo \"ERROR: Something went wrong when processing $1 . . .\"\n\t\techo \"\t   $dest may not actually exist as a valid target.\"\n\tfi\n}; __git_rm_symlink \"$1\""
+	rm-symlinks = "!__git_rm_symlinks(){\n\tfor symlink in $(git ls-files -s | egrep \"^120000\" | cut -f2); do\n\t\tgit rm-symlink \"$symlink\"\n\t\tgit update-index --assume-unchanged \"$symlink\"\n\tdone\n}; __git_rm_symlinks"
+	add-symlink = "!__git_add_symlink(){\n    argv=($@)\n    argc=${#argv[@]}\n\n    # Look for options\n    options=(\" -h\")\n    o_help=\"false\"\n    case \"${argv[@]}\" in *\" -h\"*) o_help=\"true\" ;; esac\n    if [ \"$o_help\" == \"true\" -o \"$argc\" -lt \"2\" ]; then\n        echo \"\\\nUsage: git add-symlink <src> <dst>\n\n* <src> is a RELATIVE PATH, respective to <dst>.\n* <dst> is a RELATIVE PATH, respective to the repository's root dir.\n* Command must be run from the repository's root dir.\"\n        return 0\n    fi\n\n    src_arg=${argv[0]}\n    dst_arg=${argv[1]}\n\n    if [ ! -e \"$dst_arg\" ]; then\n        echo \"ERROR: Target $dst_arg does not exist; not creating invalid symlink.\"\n        return 1\n    fi\n\n    hash=$(echo -n \"$src_arg\" | git hash-object -w --stdin)\n    git update-index --add --cacheinfo 120000 \"$hash\" \"$dst_arg\"\n    git checkout -- \"$dst_arg\"\n\n}; __git_add_symlink \"$@\""
 
 [push]
 	default = simple
@@ -24,3 +32,20 @@
 
 [user]
 	useConfigOnly = true
+
+[core]
+	trustctime = false
+	editor = vim
+	filemode = false
+
+[color]
+	ui = true
+
+[merge]
+	tool = vimdiff
+
+[mergetool]
+	keeptemporaries = false
+	keepbackups = false
+	prompt = false
+	trustexitcode = false

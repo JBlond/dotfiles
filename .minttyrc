@@ -2,5 +2,5 @@ BoldAsFont=no
 FontHeight=14
 Locale=de_DE
 Charset=UTF-8
-Scrollbar=none
+Scrollbar=right
 CursorType=underscore

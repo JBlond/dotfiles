@@ -109,3 +109,9 @@ _complete_ssh_hosts ()
     return 0
 }
 complete -F _complete_ssh_hosts ssh
+
+function wgets()
+{
+  local H='--header'
+  wget $H='Accept-Language: en-us,en;q=0.5' $H='Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' $H='Connection: keep-alive' -U ' Mozilla/5.0 (Windows NT 10.0; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0' --referer=/ "$@";
+}

@@ -54,9 +54,9 @@ eval "`dircolors -b`"
 alias ls='ls --color=auto --group-directories-first'
 alias dir='ls --color=auto --format=vertical'
 
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+alias grep='grep --color=auto --exclude-dir="\node_modules"'
+alias fgrep='fgrep --color=auto --exclude-dir="\node_modules"'
+alias egrep='egrep --color=auto --exclude-dir="\node_modules"'
 
 #debian
 alias upgrade='sudo aptitude update && sudo aptitude dist-upgrade'

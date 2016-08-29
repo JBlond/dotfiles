@@ -26,9 +26,25 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 source ~/.git-prompt.sh
+
+find_git_dirty () {
+  if [[ ! -z $(__git_ps1) && -n $(git status --porcelain) ]]; then echo "*"; fi
+}
+
+find_git_commit_diff () {
+  if [[ ! -z $(__git_ps1) ]]; then
+    commit_diff=$(git for-each-ref --format="%(push:track)" refs/heads)
+    commit_diff=${commit_diff//ahead\ /\+}
+    commit_diff=${commit_diff//behind\ /\-}
+    echo $commit_diff
+  fi
+}
+
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
 PS1="$PS1"'\[\033[36m\]'
 PS1="$PS1"'`__git_ps1`'
+PS1="$PS1"'`find_git_commit_diff`'
+PS1="$PS1"'\[\033[31m\]`find_git_dirty`'
 PS1="$PS1"'\[\033[0m\]\$ '
 
 

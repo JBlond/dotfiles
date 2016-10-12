@@ -1,4 +1,5 @@
 #!/bin/bash
+rm -rf $HOME/.babunrc
 rm -rf $HOME/.config
 rm -f $HOME/.bash_logout
 rm -f $HOME/.bashrc
@@ -11,6 +12,7 @@ rm -f $HOME/.profile
 rm -rf $HOME/.vimrc
 rm -rf $HOME/.zshrc
 cp -r ./.config ../
+ln $HOME/dotfiles/.babunrc $HOME/.babunrc
 ln $HOME/dotfiles/.bash_logout $HOME/.bash_logout
 ln $HOME/dotfiles/.bashrc $HOME/.bashrc
 ln $HOME/dotfiles/.gitconfig $HOME/.gitconfig

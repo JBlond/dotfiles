@@ -11,6 +11,7 @@
 	wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
 	changes = diff --name-status -r
 	new-branch = checkout -b
+	list-branches = show-branch -a --topics
 	email = config user.email
 	name = config user.name
 	github = !git config user.name "JBlond" && git config user.email "leet31337@web.de"

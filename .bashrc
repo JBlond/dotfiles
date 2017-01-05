@@ -45,7 +45,7 @@ PS1="$PS1"'\[\033[36m\]'
 PS1="$PS1"'`__git_ps1`'
 PS1="$PS1"'`find_git_commit_diff`'
 PS1="$PS1"'\[\033[31m\]`find_git_dirty`'
-PS1="$PS1"'\[\033[0m\]\$ '
+PS1="$PS1"'\[\033[0m\]\nλ '
 
 
 # If this is an xterm set the title to user@host:dir

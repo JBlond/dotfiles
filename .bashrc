@@ -40,12 +40,12 @@ find_git_commit_diff () {
   fi
 }
 
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
+PS1='${debian_chroot:+($debian_chroot)}\[\033[1;36m\]\u\[\033[01;32m\]@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
 PS1="$PS1"'\[\033[36m\]'
 PS1="$PS1"'`__git_ps1`'
 PS1="$PS1"'`find_git_commit_diff`'
 PS1="$PS1"'\[\033[31m\]`find_git_dirty`'
-PS1="$PS1"'\[\033[0m\]\nλ '
+PS1="$PS1"'\[\033[0;31m\]\nλ\[\033[0m\] '
 
 
 # If this is an xterm set the title to user@host:dir

@@ -1,3 +1,4 @@
+#add sbin's to prompt
 PATH="/sbin/:/usr/local/sbin:$PATH"
 
 # If not running interactively, don't do anything
@@ -105,6 +106,7 @@ alias ..="cd .."
 alias cd..="cd .."
 alias more='less'
 alias ping5='ping -c 5'
+alias dush='du . -sh'
 
 alias lll="stat --format='%a %U %G %s %y %N' *"
 
@@ -127,8 +129,7 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-_complete_ssh_hosts ()
-{
+_complete_ssh_hosts () {
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     comp_ssh_hosts=`cat ~/.ssh/known_hosts | \
@@ -146,8 +147,7 @@ _complete_ssh_hosts ()
 }
 complete -F _complete_ssh_hosts ssh
 
-function wgets()
-{
+function wgets() {
   local H='--header'
   wget $H='Accept-Language: en-us,en;q=0.5' $H='Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' $H='Connection: keep-alive' -U ' Mozilla/5.0 (Windows NT 10.0; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0' --referer=/ "$@";
 }

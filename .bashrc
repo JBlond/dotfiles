@@ -1,5 +1,5 @@
 #add sbin's to prompt
-PATH="/sbin/:/usr/local/sbin:$PATH"
+PATH="/sbin/:/usr/local/sbin:/usr/local/bin:$PATH"
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return

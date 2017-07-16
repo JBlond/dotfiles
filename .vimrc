@@ -13,12 +13,15 @@ set nobackup " no *~ backup files
 set tabstop=4
 set shiftwidth=4
 set autoindent
+set showmode  " Display the mode you're in.
+set wildmenu  " Enhanced command line completion.
+set wildmode=list:longest " Complete files like a shell.
 
 set ignorecase
 set smartcase
 set infercase
-set incsearch
-set hlsearch
+set incsearch " Highlight matches as you type.
+set hlsearch " Highlight matches.
 set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,.sass-cache,*.class
 
 set showmatch   " Show matching brackets.

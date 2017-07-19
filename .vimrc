@@ -15,6 +15,7 @@ set nobackup " no *~ backup files
 set tabstop=4
 set shiftwidth=4
 set autoindent
+set copyindent
 set showmode  " Display the mode you're in.
 set wildmenu  " Enhanced command line completion.
 set wildmode=list:longest " Complete files like a shell.

@@ -12,6 +12,7 @@
 	changes = diff --name-status -r
 	new-branch = checkout -b
 	list-branches = show-branch -a --topics
+	branches = show-branch -a --topics
 	email = config user.email
 	name = config user.name
 	github = !git config user.name "JBlond" && git config user.email "leet31337@web.de"

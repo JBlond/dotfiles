@@ -527,7 +527,11 @@ __git_ps1 ()
 		fi
 		PS1="$ps1pc_start$gitstring$ps1pc_end"
 	else
-		printf -- "$printf_format" "$gitstring"
+		if [[ $gitstring = "master" ]]; then
+			printf -- "$printf_format" "$gitstring"
+		else
+			printf -- "$printf_format" "♆ $gitstring"
+		fi
 	fi
 
 	return $exit

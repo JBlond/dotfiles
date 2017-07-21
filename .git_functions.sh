@@ -1,5 +1,5 @@
 find_git_dirty () {
-  if [[ ! -z $(__git_ps1) && -n $(git status --porcelain) ]]; then echo "*"; fi
+  if [[ ! -z $(__git_ps1) && -n $(git status --porcelain) ]]; then echo "✗"; fi
 }
 
 find_git_commit_diff () {

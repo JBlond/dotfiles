@@ -25,7 +25,7 @@ fi
 
 source ~/dotfiles/lscolors.sh
 source ~/dotfiles/.git-prompt.sh
-source ~/dotfiles/.gitfunctions.sh
+source ~/dotfiles/.git_functions.sh
 
 PS1='${debian_chroot:+($debian_chroot)}\[\033[1;36m\]\u\[\033[01;32m\]@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
 PS1="$PS1"'\[\033[36m\]'

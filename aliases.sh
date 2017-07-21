@@ -26,3 +26,5 @@ alias dush='du . -sh'
 
 alias lll="stat --format='%a %U %G %s %y %N' *"
 
+alias :D="echo ツ"
+

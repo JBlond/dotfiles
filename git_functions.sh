@@ -56,8 +56,26 @@ find_git_dirty () {
 find_git_commit_diff () {
 	if [[ ! -z $(__git_ps1) ]]; then
 		commit_diff=$(git for-each-ref --format="%(push:track)" refs/heads)
-		commit_diff=${commit_diff//ahead\ /\+}
-		commit_diff=${commit_diff//behind\ /\-}
+		commit_diff=${commit_diff//ahead\ /\▲}
+		commit_diff=${commit_diff//behind\ /\▼}
 		echo $commit_diff
 	fi
+}
+
+# next function are from https://github.com/arialdomartini/git-dashboard
+
+diff-next() {
+	git status --short --branch | grep '^.[DM\?]' | head -1 | awk '$1 ~ /[MD]/ {print $2} $1 ~ /\?/ {print "/dev/null " $2}' | xargs git diff --
+}
+
+dn() {
+	diff-next
+}
+
+add-next() {
+	git status --short --branch | grep '^.[DM\?]' | head -1 | awk '$1 ~ /[M?]/ {print "add " $2} $1 ~ /D/ {print "rm " $2}' | xargs git
+}
+
+an() {
+	add-next
 }

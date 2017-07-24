@@ -2,6 +2,11 @@ find_git_dirty () {
 	if [[ -z $(__git_ps1) ]]; then
 		exit
 	fi
+	local symbol_added="\e[33mΞ"
+	local symbol_clean="\e[32m✓"
+	local symbol_deleted="x\e[41m✗\033[0m"
+	local symbol_modified="\e[36m●\033[0m"
+	local symbol_untracked="🙈"
 	local clean="clean"
 
 	gitstatus=$(git status --porcelain | sed s/^.// | cut -d' ' -f1)
@@ -17,10 +22,10 @@ find_git_dirty () {
 		fi
 	done
 	if [ $deletedfiles_number -gt 0 ]; then
-		printf " $deletedfiles_number""x\e[41m✗\033[0m"
+		printf " $deletedfiles_number$symbol_deleted"
 	fi
 	if [ $modifiedfiles_number -gt 0 ]; then
-		printf " \033[0m$modifiedfiles_number""x\e[36m●\033[0m"
+		printf " \033[0m$modifiedfiles_number""x$symbol_modified"
 	fi
 
 	addedfiles_number=0
@@ -30,7 +35,7 @@ find_git_dirty () {
 		clean="dirty"
 	done
 	if [ $addedfiles_number -gt 0 ]; then
-		printf " $addedfiles_number""xΞ"
+		printf " $addedfiles_number""x$symbol_added"
 	fi
 
 	untracked_number=0
@@ -40,11 +45,11 @@ find_git_dirty () {
 		clean="dirty";
 	done
 	if [ $untracked_number -gt 0 ]; then
-		printf " $untracked_number""x🙈"
+		printf " $untracked_number""x$symbol_untracked"
 	fi
 	
 	if [[ -z "$gitstatus" && "$clean" == "clean" ]]; then
-		printf " \e[32m✓"
+		printf " $symbol_clean"
 	fi
 }
 

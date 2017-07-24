@@ -3,33 +3,46 @@ find_git_dirty () {
 		exit
 	fi
 	local clean="clean"
+
 	gitstatus=$(git status --porcelain | sed s/^.// | cut -d' ' -f1)
+	deletedfiles_number=0
+	modifiedfiles_number=0
 	for line in $gitstatus; do
 		if [ "$line" = "D" ]; then
-			printf " ✗"
+			let "deletedfiles_number++"
 			clean="dirty"
 		elif [ "$line" = "M" ]; then
-			printf " \e[41m✗\033[0m";
+			let "modifiedfiles_number++"
 			clean="dirty"
 		fi
 	done
+	if [ $deletedfiles_number -gt 0 ]; then
+		printf " $deletedfiles_number""x✗\033[0m"
+	fi
+	if [ $modifiedfiles_number -gt 0 ]; then
+		printf " \033[0m$modifiedfiles_number""x\e[41m✗\033[0m"
+	fi
 
-	modifiedfiles=$(git status --porcelain | grep "^M" | cut -c 4-)
-	for line1 in $modifiedfiles; do
-		printf " \e[41m✗";
-		clean="dirty"
-	done
+	addedfiles_number=0
 	addedfiles=$(git status --porcelain | grep "^A" | cut -c 4-)
 	for line2 in $addedfiles; do
-		printf " Ξ"
+		let "addedfiles_number++"
 		clean="dirty"
 	done
+	if [ $addedfiles_number -gt 0 ]; then
+		printf " $addedfiles_number""xΞ"
+	fi
+
+	untracked_number=0
 	untracked=$(git ls-files --others --exclude-standard)
 	for line3 in $untracked; do
-		printf " 🙈"
+		let "untracked_number++"
 		clean="dirty";
 	done
-
+	if [ $untracked_number -gt 0 ]; then
+		printf " $untracked_number""x🙈"
+	fi
+	
 	if [[ -z "$gitstatus" && "$clean" == "clean" ]]; then
 		printf " \e[32m✓"
 	fi

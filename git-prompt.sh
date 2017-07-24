@@ -434,3 +434,12 @@ __git_ps1 ()
 
 	return $exit
 }
+
+# next function are from https://github.com/arialdomartini/git-dashboard
+diff-next() {
+	git status --short --branch | grep '^.[DM\?]' | head -1 | awk '$1 ~ /[MD]/ {print $2} $1 ~ /\?/ {print "/dev/null " $2}' | xargs git diff --
+}
+
+add-next() {
+	git status --short --branch | grep '^.[DM\?]' | head -1 | awk '$1 ~ /[M?]/ {print "add " $2} $1 ~ /D/ {print "rm " $2}' | xargs git
+}

@@ -3,8 +3,6 @@ rm -rf $HOME/.config
 rm -f $HOME/.bash_logout
 rm -f $HOME/.bashrc
 rm -f $HOME/.gitconfig
-rm -f $HOME/.gitconfig
-rm -f $HOME/.git-prompt.sh
 rm -f $HOME/.minttyrc
 rm -f $HOME/.nanorc
 rm -f $HOME/.profile

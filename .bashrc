@@ -24,8 +24,8 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 source ~/dotfiles/lscolors.sh
-source ~/dotfiles/.git-prompt.sh
-source ~/dotfiles/.git_functions.sh
+source ~/dotfiles/git-prompt.sh
+source ~/dotfiles/git_functions.sh
 
 bold=$(tput bold)
 
@@ -37,9 +37,9 @@ PS1="$PS1"'`find_git_commit_diff`'
 PS1="$PS1"'\[\033[1m\033[33m\]`find_git_dirty`'
 PS1="$PS1"'\[\033[0;31m\]\nλ\[\033[0m\] '
 
-source ~/dotfiles/xterm
+source ~/dotfiles/xterm.sh
 source ~/dotfiles/aliases.sh
-source ~/dotfiles/bash_completion
+source ~/dotfiles/bash_completion.sh
 source ~/dotfiles/less.sh
 source ~/dotfiles/complete_ssh_hosts.sh
 source ~/dotfiles/functions.sh

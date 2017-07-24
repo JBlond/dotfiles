@@ -22,6 +22,7 @@
 	cl = clone
 	unstage = reset HEAD --
 	dc = diff --cached
+	master = checkout master
 
 [push]
 	default = simple

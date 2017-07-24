@@ -54,10 +54,10 @@ find_git_dirty () {
 }
 
 find_git_commit_diff () {
-  if [[ ! -z $(__git_ps1) ]]; then
-    commit_diff=$(git for-each-ref --format="%(push:track)" refs/heads)
-    commit_diff=${commit_diff//ahead\ /\+}
-    commit_diff=${commit_diff//behind\ /\-}
-    echo $commit_diff
-  fi
+	if [[ ! -z $(__git_ps1) ]]; then
+		commit_diff=$(git for-each-ref --format="%(push:track)" refs/heads)
+		commit_diff=${commit_diff//ahead\ /\+}
+		commit_diff=${commit_diff//behind\ /\-}
+		echo $commit_diff
+	fi
 }

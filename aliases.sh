@@ -10,7 +10,7 @@ alias egrep='egrep --color=auto --exclude-dir="node_modules"'
 #debian
 #alias upgrade='sudo aptitude update && sudo aptitude dist-upgrade'
 #updates are fetched via cron-apt
-alias upgrade='sudo aptitude dist-upgrade'
+alias upgrade='sudo apt dist-upgrade'
 
 # some more ls aliases
 alias ll='ls -lh'

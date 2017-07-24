@@ -63,10 +63,6 @@
 #     tag           relative to any older tag (v1.6.3.1-13-gdd42c2f)
 #     default       exactly matching tag
 #
-# If you would like a colored hint about the current dirty state, set
-# GIT_PS1_SHOWCOLORHINTS to a nonempty value. The colors are based on
-# the colored output of "git status -sb" and are available only when
-# using __git_ps1 for PROMPT_COMMAND or precmd.
 #
 # If you would like __git_ps1 to do nothing in the case when the current
 # directory is set up to be ignored by git, then set
@@ -210,47 +206,6 @@ __git_ps1_show_upstream ()
 
 }
 
-# Helper function that is meant to be called from __git_ps1.  It
-# injects color codes into the appropriate gitstring variables used
-# to build a gitstring.
-__git_ps1_colorize_gitstring ()
-{
-
-	# Using \[ and \] around colors is necessary to prevent
-	# issues with command line editing/browsing/completion!
-	local c_red='\[\e[31m\]'
-	local c_green='\[\e[32m\]'
-	local c_lblue='\[\e[1;34m\]'
-	local c_clear='\[\e[0m\]'
-
-	local bad_color=$c_red
-	local ok_color=$c_green
-	local flags_color="$c_lblue"
-
-	local branch_color=""
-	if [ $detached = no ]; then
-		branch_color="$ok_color"
-	else
-		branch_color="$bad_color"
-	fi
-	c="$branch_color$c"
-
-	z="$c_clear$z"
-	if [ "$w" = "*" ]; then
-		w="$bad_color$w"
-	fi
-	if [ -n "$i" ]; then
-		i="$ok_color$i"
-	fi
-	if [ -n "$s" ]; then
-		s="$flags_color$s"
-	fi
-	if [ -n "$u" ]; then
-		u="$bad_color$u"
-	fi
-	r="$c_clear$r"
-}
-
 __git_eread ()
 {
 	local f="$1"
@@ -268,7 +223,6 @@ __git_eread ()
 # to the state string when assigned to PS1.
 # The optional third parameter will be used as printf format string to further
 # customize the output of the git-status string.
-# In this mode you can request colored hints using GIT_PS1_SHOWCOLORHINTS=true
 __git_ps1 ()
 {
 	# preserve exit status
@@ -452,11 +406,6 @@ __git_ps1 ()
 	fi
 
 	local z="${GIT_PS1_STATESEPARATOR-" "}"
-
-	# NO color option unless in PROMPT_COMMAND mode
-	if [ $pcmode = yes ] && [ -n "${GIT_PS1_SHOWCOLORHINTS-}" ]; then
-		__git_ps1_colorize_gitstring
-	fi
 
 	b=${b##refs/heads/}
 	if [ $pcmode = yes ] && [ $ps1_expanded = yes ]; then

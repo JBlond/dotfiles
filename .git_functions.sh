@@ -17,10 +17,10 @@ find_git_dirty () {
 		fi
 	done
 	if [ $deletedfiles_number -gt 0 ]; then
-		printf " $deletedfiles_number""x✗\033[0m"
+		printf " $deletedfiles_number""x\e[41m✗\033[0m"
 	fi
 	if [ $modifiedfiles_number -gt 0 ]; then
-		printf " \033[0m$modifiedfiles_number""x\e[41m✗\033[0m"
+		printf " \033[0m$modifiedfiles_number""x\e[36m●\033[0m"
 	fi
 
 	addedfiles_number=0

@@ -6,6 +6,7 @@ find_git_dirty () {
 	local symbol_clean="\e[32m✓"
 	local symbol_deleted="x\e[41m✗\033[0m"
 	local symbol_modified="\e[36m●\033[0m"
+	local symbol_renamed="\e[0;45mᏪ\033[0m"
 	local symbol_untracked="🙈"
 	local clean="clean"
 
@@ -36,6 +37,16 @@ find_git_dirty () {
 	done
 	if [ $addedfiles_number -gt 0 ]; then
 		printf " $addedfiles_number""x$symbol_added"
+	fi
+
+	renamedfiles_number=0
+	renamedfiles=$(git status --porcelain | grep "^R" | cut -c 1)
+	for renamed in $renamedfiles; do
+		let "renamedfiles_number++"
+		clean="dirty"
+	done
+	if [ $renamedfiles_number -gt 0 ]; then
+		printf " $renamedfiles_number""x$symbol_renamed"
 	fi
 
 	untracked_number=0

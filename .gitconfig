@@ -24,6 +24,7 @@
 	unstage = reset HEAD --
 	dc = diff --cached
 	master = checkout master
+	rename = mv
 
 [push]
 	default = simple

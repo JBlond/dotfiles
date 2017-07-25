@@ -4,29 +4,32 @@ find_git_dirty () {
 	fi
 	local symbol_added="\e[33mΞ"
 	local symbol_clean="\e[32m✓"
-	local symbol_deleted="x\e[41m✗\033[0m"
+	local symbol_deleted="\e[41m✗\033[0m"
 	local symbol_modified="\e[36m●\033[0m"
 	local symbol_renamed="\e[0;45mᏪ\033[0m"
 	local symbol_untracked="🙈"
 	local clean="clean"
 
 	gitstatus=$(git status --porcelain | sed s/^.// | cut -d' ' -f1)
-	deletedfiles_number=0
 	modifiedfiles_number=0
 	for line in $gitstatus; do
-		if [ "$line" = "D" ]; then
-			let "deletedfiles_number++"
-			clean="dirty"
-		elif [ "$line" = "M" ]; then
+		if [ "$line" = "M" ]; then
 			let "modifiedfiles_number++"
 			clean="dirty"
 		fi
 	done
-	if [ $deletedfiles_number -gt 0 ]; then
-		printf " $deletedfiles_number$symbol_deleted"
-	fi
 	if [ $modifiedfiles_number -gt 0 ]; then
 		printf " \033[0m$modifiedfiles_number""x$symbol_modified"
+	fi
+
+	deletedfiles_number=0
+	deletedfiles=$(git status --porcelain | grep "^D" | cut -c 4-)
+	for line2 in $deletedfiles; do
+		let "deletedfiles_number++"
+		clean="dirty"
+	done
+	if [ $deletedfiles_number -gt 0 ]; then
+		printf " $deletedfiles_number""x$symbol_deleted"
 	fi
 
 	addedfiles_number=0

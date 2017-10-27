@@ -43,3 +43,5 @@ source ~/dotfiles/bash_completion.sh
 source ~/dotfiles/less.sh
 source ~/dotfiles/complete_ssh_hosts.sh
 source ~/dotfiles/functions.sh
+source ~/dotfiles/git-prompt.sh
+

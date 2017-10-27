@@ -28,6 +28,8 @@ alias lll="stat --format='%a %U %G %s %y %N' *"
 
 alias :D="echo ツ"
 
+alias fuck='sudo $(history -p \!\!)'
+
 dcomposer () {
     tty=
     tty -s && tty=--tty

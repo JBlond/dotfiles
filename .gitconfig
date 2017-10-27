@@ -39,9 +39,23 @@
 	trustctime = false
 	editor = vim
 	filemode = false
+	pager = ~/dotfiles/diff-so-fancy | less --tabs=4 -RFX
 
 [color]
 	ui = true
+
+[color "diff-highlight"]
+        oldNormal = red bold
+        oldHighlight = red bold 52
+        newNormal = green bold
+        newHighlight = green bold 22
+[color "diff"]
+        meta = 227
+        frag = magenta bold
+        commit = 227 bold
+        old = red bold
+        new = green bold
+        whitespace = red reverse
 
 [merge]
 	tool = vimdiff
@@ -51,3 +65,4 @@
 	keepbackups = false
 	prompt = false
 	trustexitcode = false
+

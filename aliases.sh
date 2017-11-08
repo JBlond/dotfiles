@@ -30,6 +30,8 @@ alias :D="echo ツ"
 
 alias fuck='sudo $(history -p \!\!)'
 
+# docker stuff
+alias docker='sudo docker'
 dcomposer () {
     tty=
     tty -s && tty=--tty

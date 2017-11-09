@@ -31,9 +31,11 @@ alias :D="echo ツ"
 alias fuck='sudo $(history -p \!\!)'
 
 # docker stuff
-alias docker='sudo docker'
-alias docker-compose='sudo docker-compose'
-alias docker-decompose="sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) && sudo docker rmi $(sudo docker images -a -q)"
+if [ -x "/usr/bin/docker" ]; then
+    alias docker='sudo docker'
+    alias docker-compose='sudo docker-compose'
+    alias docker-decompose="sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) && sudo docker rmi $(sudo docker images -a -q)"
+fi
 
 dcomposer () {
     tty=

@@ -12,6 +12,15 @@ export HISTCONTROL=ignoreboth
 # When the shell exits, append to the history file instead of overwriting it
 shopt -s histappend
 
+# Update window size after every command
+shopt -s checkwinsize
+
+# Perform file completion in a case insensitive fashion
+bind "set completion-ignore-case on"
+
+# Immediately add a trailing slash when autocompleting symlinks to directories
+bind "set mark-symlinked-directories on"
+
 # After each command, append to the history file and reread it
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 

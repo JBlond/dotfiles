@@ -33,6 +33,6 @@ jblond@linux:~/dotfiles
 - nx● = n modified files
 - nxᏪ = n renamed files
 - nx✗ = n deleted files
-- n ▲ = n steps ahead of remote
-- n ▼ = n steps behind remote
+- ▲n = n steps ahead of remote
+- ▼n = n steps behind remote
  

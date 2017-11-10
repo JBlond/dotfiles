@@ -29,24 +29,3 @@ alias lll="stat --format='%a %U %G %s %y %N' *"
 alias :D="echo ツ"
 
 alias fuck='sudo $(history -p \!\!)'
-
-# docker stuff
-if [ -x "/usr/bin/docker" ]; then
-    alias docker='sudo docker'
-    alias docker-compose='sudo docker-compose'
-    alias docker-decompose="sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) && sudo docker rmi $(sudo docker images -a -q)"
-fi
-
-dcomposer () {
-    tty=
-    tty -s && tty=--tty
-    docker run \
-        $tty \
-        --interactive \
-        --rm \
-        --user $(id -u):$(id -g) \
-        --volume /etc/passwd:/etc/passwd:ro \
-        --volume /etc/group:/etc/group:ro \
-        --volume $(pwd):/app \
-        composer "$@"
-}

@@ -37,6 +37,7 @@ fi
 source ~/dotfiles/lscolors.sh
 source ~/dotfiles/git-prompt.sh
 source ~/dotfiles/git_functions.sh
+source ~/dotfiles/_docker.sh
 
 bold=$(tput bold)
 

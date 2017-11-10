@@ -12,8 +12,14 @@ find_git_dirty () {
 
 	gitstatus=$(git status --porcelain | sed s/^.// | cut -d' ' -f1)
 	modifiedfiles_number=0
+	deletedfiles_number=0
+	
 	for line in $gitstatus; do
-		if [ "$line" = "M" ]; then
+		# linux
+		if [ "$line" = "D" ]; then 
+            let "deletedfiles_number++" 
+            clean="dirty" 
+        elif [ "$line" = "M" ]; then 
 			let "modifiedfiles_number++"
 			clean="dirty"
 		fi
@@ -22,7 +28,7 @@ find_git_dirty () {
 		printf " \033[0m$modifiedfiles_number""x$symbol_modified"
 	fi
 
-	deletedfiles_number=0
+	# git for windows
 	deletedfiles=$(git status --porcelain | grep "^D" | cut -c 4-)
 	for line2 in $deletedfiles; do
 		let "deletedfiles_number++"

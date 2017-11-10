@@ -1,5 +1,22 @@
 # dotfiles
-just my dot files
+
+# bash
+```
+jblond@linux:~/dotfiles
+(master) ✓
+λ git commit -a -m "my commit" 
+```
+
+- ✓ = repo is clean
+- nx🙈  = n untracked files
+- nxΞ = n added files
+- nx● = n modified files
+- nxᏪ = n renamed files
+- nx✗ = n deleted files
+- ▲n = n steps ahead of remote
+- ▼n = n steps behind remote
+ 
+# install
 
 ```bash
 git clone https://github.com/JBlond/dotfiles.git
@@ -21,18 +38,4 @@ cd dotfiles
 - git_functions.sh part for simplify git.  an = add next git file dn = diff next file
 - git-prompt.sh have a nice prompt inside git repos
 
-```
-jblond@linux:~/dotfiles
-(master) ✓
-λ git commit -a -m "my commit" 
-```
 
-- ✓ = repo is clean
-- nx🙈  = n untracked files
-- nxΞ = n added files
-- nx● = n modified files
-- nxᏪ = n renamed files
-- nx✗ = n deleted files
-- ▲n = n steps ahead of remote
-- ▼n = n steps behind remote
- 

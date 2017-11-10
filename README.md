@@ -27,4 +27,12 @@ jblond@linux:~/dotfiles
 λ git commit -a -m "my commit" 
 ```
 
-
+- ✓ = repo is clean
+- nx🙈  = n untracked files
+- nxΞ = n added files
+- nx● = n modified files
+- nxᏪ = n renamed files
+- nx✗ = n deleted files
+- n ▲ = n steps ahead of remote
+- n ▼ = n steps behind remote
+ 

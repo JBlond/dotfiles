@@ -22,9 +22,9 @@ cd dotfiles
 - git-prompt.sh have a nice prompt inside git repos
 
 ```
-	jblond@linux:~/dotfiles
-		(master) ✓
-	λ git commit -a -m "my commit" 
+jblond@linux:~/dotfiles
+(master) ✓
+λ git commit -a -m "my commit" 
 ```
 
 

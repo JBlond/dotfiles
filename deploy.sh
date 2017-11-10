@@ -1,5 +1,4 @@
 #!/bin/bash
-rm -rf $HOME/.config
 rm -f $HOME/.bash_logout
 rm -f $HOME/.bashrc
 rm -f $HOME/.gitconfig
@@ -16,3 +15,4 @@ ln $HOME/dotfiles/.nanorc $HOME/.nanorc
 ln $HOME/dotfiles/.profile $HOME/.profile
 ln $HOME/dotfiles/.vimrc $HOME/.vimrc
 source ~/.bashrc
+

@@ -1,6 +1,11 @@
 #add sbin's to prompt
 PATH="/sbin/:/usr/local/sbin:/usr/local/bin:$PATH"
 
+# add composer bins to path if installed
+if [ -d "$HOME/.composer/vendor/bin" ]; then
+	PATH="$HOME/.composer/vendor/bin:$PATH"
+fi
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 

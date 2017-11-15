@@ -11,6 +11,7 @@ alias egrep='egrep --color=auto --exclude-dir="node_modules"'
 #alias upgrade='sudo aptitude update && sudo aptitude dist-upgrade'
 #updates are fetched via cron-apt
 alias upgrade='sudo apt dist-upgrade'
+alias update='sudo apt update'
 
 # some more ls aliases
 alias ll='ls -lh'
@@ -27,5 +28,6 @@ alias dush='du . -sh'
 alias lll="stat --format='%a %U %G %s %y %N' *"
 
 alias :D="echo ツ"
+alias dontcare='echo ¯\_\(ツ\)_/¯'
 
-alias fuck='sudo $(history -p \!\!)'
+alias fuck='sudo $(history -p \!\!) && echo "( ︶︿︶)_╭∩╮"'

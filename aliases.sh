@@ -31,7 +31,7 @@ alias flushdns="sudo /etc/init.d/dns-clean restart && echo DNS cache flushed"
 alias dush='du . -sh'
 
 alias :D="echo ツ"
-alias dontcare='echo ¯\_\(ツ\)_/¯'
+alias dontcare='echo ¯\\_\(ツ\)_/¯'
 alias busy='cat /dev/urandom | hexdump -C | grep "ca fe"'
 
 alias fuck='sudo $(history -p \!\!) && echo "( ︶︿︶)_╭∩╮"'

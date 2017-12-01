@@ -6,6 +6,10 @@ if [ -d "$HOME/.composer/vendor/bin" ]; then
 	PATH="$HOME/.composer/vendor/bin:$PATH"
 fi
 
+if [ -f "$HOME/ansible/hosts" ]; then
+    export ANSIBLE_HOSTS=~/ansible/hosts
+fi
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 

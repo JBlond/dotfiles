@@ -22,6 +22,8 @@ alias egrep='egrep --color=auto --exclude-dir="node_modules"'
 alias update='sudo apt update'
 alias upgrade='sudo apt dist-upgrade'
 
+alias bashrc='source ~/.bashrc'
+
 alias nano='nano -wc'
 alias more='less'
 

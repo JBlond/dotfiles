@@ -38,4 +38,5 @@ alias :D="echo ツ"
 alias dontcare='echo ¯\\_\(ツ\)_/¯'
 alias busy='cat /dev/urandom | hexdump -C | grep "ca fe"'
 
+alias own='sudo chown ${USER:=$(/usr/bin/id -run)}:$USER'
 alias fuck='sudo $(history -p \!\!) && echo "( ︶︿︶)_╭∩╮"'

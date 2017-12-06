@@ -1,5 +1,3 @@
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
-
 # Alias definitions.
 eval "`dircolors -b`"
 alias ls='ls --color=auto --group-directories-first'

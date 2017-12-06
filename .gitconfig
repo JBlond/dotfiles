@@ -6,6 +6,7 @@
 	last-commit = "!git lc"
 	ci = commit
 	cm = commit
+	cma = commit -a -m
 	st = status -sb
 	br = branch
 	co = checkout

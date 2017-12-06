@@ -3,7 +3,7 @@
 	lg = !"git lg1"
 	wlog = log --stat --since='1 Week Ago' --graph --pretty=oneline --abbrev-commit --date=relative
 	lc = diff @~..@
-	last-commit !"git lc"
+	last-commit = "!git lc"
 	ci = commit
 	cm = commit
 	st = status -sb
@@ -16,7 +16,7 @@
 	changes = diff --name-status -r
 	new-branch = checkout -b
 	list-branches = show-branch -a --topics
-	branches = !"git list-branches"
+	branches = "!git list-branches"
 	email = config user.email
 	name = config user.name
 	github = !git config user.name "JBlond" && git config user.email "leet31337@web.de"

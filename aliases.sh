@@ -31,7 +31,7 @@ alias rmf='rm -rf'
 
 alias ping5='ping -c 5'
 alias flushdns="sudo /etc/init.d/dns-clean restart && echo DNS cache flushed"
-lias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 alias dush='du . -sh'
 

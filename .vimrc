@@ -29,6 +29,7 @@ set pastetoggle=<F11>  " Use <F11> to toggle between 'paste' and 'nopaste'
 nnoremap <C-L> :nohl<CR><C-L>  " Map <C-L> (redraw screen) to also turn off search highlighting until the next search
 
 syntax on
+colorscheme monokai
 set ignorecase
 set smartcase
 set infercase

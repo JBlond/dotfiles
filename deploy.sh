@@ -13,6 +13,7 @@ ln $HOME/dotfiles/.gitconfig $HOME/.gitconfig
 ln $HOME/dotfiles/.minttyrc $HOME/.minttyrc
 ln $HOME/dotfiles/.nanorc $HOME/.nanorc
 ln $HOME/dotfiles/.profile $HOME/.profile
+ln -s $HOME/dotfiles/vim $HOME/.vim
 ln $HOME/dotfiles/.vimrc $HOME/.vimrc
 source ~/.bashrc
 

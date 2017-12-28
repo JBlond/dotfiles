@@ -9,6 +9,8 @@ alias l='ls -CF'
 alias us="ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
 alias lll="stat --format='%a %U %G %s %y %N' *"
 
+alias dfh='df -kTh'
+
 alias ..='cd ..'
 alias cd..='cd ..'
 

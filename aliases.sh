@@ -5,6 +5,7 @@ alias dir='ls --color=auto --format=vertical'
 
 alias ll='ls -lh'
 alias la='ls -A'
+alias lart='ls -lhart'
 alias l='ls -CF'
 alias us="ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
 alias lll="stat --format='%a %U %G %s %y %N' *"

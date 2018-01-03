@@ -31,6 +31,7 @@
 	# Delete all local branches but master and the current one.
 	br-delete-useless-force = "!f(){ git branch | grep -v "master" | grep -v ^* | xargs git branch -D; }; f"
 	last-tag = describe --tags --abbrev=0
+	untracked = ls-files --others --exclude-standard
 
 [push]
 	default = simple

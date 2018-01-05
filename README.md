@@ -3,18 +3,32 @@
 # bash
 ```
 jblond@linux:~/dotfiles
+(master)[▼2] ✓
+⽕ 
+jblond@linux:~/dotfiles
+(master)[▼2] ✓
+⽕ git pull
+jblond@linux:~/dotfiles
 (master) ✓
-λ git commit -a -m "my commit" 
+jblond@linux:~/dotfiles
+(master) 1⬤ 4Ξ 1✗ 1⚡⚡
+⽕ git commit -a -m "my commit" 
+jblond@linux:~/dotfiles
+(master)[▲1] ✓
+⽕ git push
+jblond@linux:~/dotfiles
+(master) ✓
+⽕
 ```
 
 - ✓ = repo is clean
-- n🙈  = n untracked files
+- n⚡⚡  = n untracked files
 - nΞ = n added files
-- n● = n modified files
+- n⬤ = n modified files
 - nᏪ = n renamed files
 - n✗ = n deleted files
-- ▲n = n steps ahead of remote
-- ▼n = n steps behind remote
+- [▲n] = n steps ahead of remote
+- [▼n] = n steps behind remote
  
 # install
 

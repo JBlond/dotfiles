@@ -5,7 +5,7 @@ find_git_dirty () {
 	local symbol_added="\e[33mΞ"
 	local symbol_clean="\e[32m✓"
 	local symbol_deleted="\e[41m✗\033[0m"
-	local symbol_modified="\e[36m●\033[0m"
+	local symbol_modified="\e[36m⬤\033[0m"
 	local symbol_renamed="\e[0;45mᏪ\033[0m"
 	local symbol_untracked="⚡⚡"
 	local clean="clean"

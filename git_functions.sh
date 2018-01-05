@@ -7,7 +7,7 @@ find_git_dirty () {
 	local symbol_deleted="\e[41m✗\033[0m"
 	local symbol_modified="\e[36m●\033[0m"
 	local symbol_renamed="\e[0;45mᏪ\033[0m"
-	local symbol_untracked="🙈"
+	local symbol_untracked="⚡⚡"
 	local clean="clean"
 
 	gitstatus=$(git status --porcelain | sed s/^.// | cut -d' ' -f1)

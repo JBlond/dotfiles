@@ -19,6 +19,12 @@ jblond@linux:~/dotfiles
 jblond@linux:~/dotfiles
 (master) ✓
 ⽕
+jblond@linux:~/dotfiles
+(master) ✓
+⽕ ..
+jblond@linux:~
+⽕ 
+
 ```
 
 - ✓ = repo is clean

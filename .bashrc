@@ -54,7 +54,12 @@ source ~/dotfiles/_docker.sh
 
 bold=$(tput bold)
 
-PS1='${debian_chroot:+($debian_chroot)}\[\033[1;36m\]\u\[\033[01;32m\]@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
+if [ $(id -u) -eq 0 ];
+then
+	PS1='${debian_chroot:+($debian_chroot)}\[\033[1;31m\]\u\[\033[01;32m\]⚡⚡\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
+else
+	PS1='${debian_chroot:+($debian_chroot)}\[\033[1;36m\]\u\[\033[01;32m\]@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
+fi
 PS1="$PS1"'\[\033[36m\]'
 PS1="$PS1"'`__git_ps1`'
 # commenting out the next two lines will increase the speed inside a repo alot
@@ -69,4 +74,3 @@ source ~/dotfiles/less.sh
 source ~/dotfiles/complete_ssh_hosts.sh
 source ~/dotfiles/functions.sh
 source ~/dotfiles/git-prompt.sh
-

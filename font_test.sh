@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "⚡"
+echo "🎶"
+echo "シ"
+echo "㋱"
+echo "λ"
+echo "⽕"
+echo "⼮"
+echo "🍙"
+echo "🍡"

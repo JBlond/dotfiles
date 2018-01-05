@@ -56,7 +56,7 @@ bold=$(tput bold)
 
 if [ $(id -u) -eq 0 ];
 then
-	PS1='${debian_chroot:+($debian_chroot)}\[\033[1;31m\]\u\[\033[1;33m\]⚡⚡[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
+	PS1='${debian_chroot:+($debian_chroot)}\[\033[1;31m\]\u\[\033[1;33m\]⚡⚡\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
 else
 	PS1='${debian_chroot:+($debian_chroot)}\[\033[1;36m\]\u\[\033[01;32m\]@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
 fi

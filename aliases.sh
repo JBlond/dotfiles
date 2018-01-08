@@ -26,6 +26,7 @@ alias update='sudo apt update'
 alias upgrade='sudo apt dist-upgrade'
 
 alias bashrc='source ~/.bashrc'
+alias dotfiles='cd ~/dotfiles'
 
 alias nano='nano -wc'
 alias more='less'

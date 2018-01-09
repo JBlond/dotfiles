@@ -2,6 +2,12 @@ find_git_dirty () {
 	if [[ -z $(__git_ps1) ]]; then
 		exit
 	fi
+	
+	#do not run in a bare repo
+	if [[ $(git rev-parse --is-bare-repository ) = "true" ]]; then
+        	exit
+    	fi
+
 	local symbol_added="\e[33mΞ"
 	local symbol_clean="\e[32m✓"
 	local symbol_deleted="\e[41m✗\033[0m"

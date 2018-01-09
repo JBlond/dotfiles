@@ -424,7 +424,7 @@ __git_ps1 ()
 		fi
 		PS1="$ps1pc_start$gitstring$ps1pc_end"
 	else
-		if [[ $gitstring = "master" ]]; then
+		if [[ $gitstring = "master" ]] || [[ $gitstring = "BARE:master"  ]]; then
 			printf -- "$printf_format" "$gitstring"
 		else
 			#branch name with ♆

@@ -5,11 +5,11 @@ find_git_dirty () {
 	
 	#do not run in a bare repo
 	if [[ $(git rev-parse --is-bare-repository ) = "true" ]]; then
-        exit
-    fi
+		exit
+	fi
 	
 	#dot not run in git dir
-	if [ -d .git ]; then
+	if [[ $(git rev-parse --is-inside-git-dir) = "true" ]]; then
 		exit
 	fi
 

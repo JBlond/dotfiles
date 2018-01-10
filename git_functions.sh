@@ -7,6 +7,11 @@ find_git_dirty () {
 	if [[ $(git rev-parse --is-bare-repository ) = "true" ]]; then
         exit
     fi
+	
+	#dot not run in git dir
+	if [ -d .git ]; then
+		exit
+	fi
 
 	local symbol_added="\e[33mΞ"
 	local symbol_clean="\e[32m✓"

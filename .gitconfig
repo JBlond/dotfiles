@@ -10,7 +10,6 @@
 	st = status -sb
 	br = branch
 	co = checkout
-	revert = checkout
 	who = shortlog -s --
 	undo = reset --hard
 	wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard

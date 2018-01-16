@@ -4,6 +4,7 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 bold=$(tput bold)
+normal=$(tput sgr0)
 
 if [ $(id -u) -eq 0 ];
 then
@@ -16,4 +17,4 @@ PS1="$PS1"'`__git_ps1`'
 # commenting out the next two lines will increase the speed inside a repo alot
 PS1="$PS1"'`find_git_commit_diff`'
 PS1="$PS1"'\[\033[1m\033[33m\]`find_git_dirty`'
-PS1="$PS1"'\[\033[0;31m\]\n⽕\[\033[0m\] '
+PS1="$PS1""\[\033[0;31m\]\n${bold}⽕${normal}\[\033[0m\] "

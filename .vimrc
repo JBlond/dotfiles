@@ -16,7 +16,8 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 set copyindent
-set showmode  " Display the mode you're in.
+"set showmode  " Display the mode you're in.
+set noshowmode " done by plugin https://github.com/itchyny/lightline.vim
 set wildmenu  " Enhanced command line completion.
 set wildmode=list:longest " Complete files like a shell.
 set showcmd  " Show partial commands in the last line of the screen
@@ -55,4 +56,3 @@ let g:lightline = {
 
 execute pathogen#infect()
 filetype plugin indent on
-

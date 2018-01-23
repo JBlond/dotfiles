@@ -42,3 +42,6 @@ set showmatch   " Show matching brackets.
 set matchtime=2 " How many tenths of a second to blink
 set list        " show tab and trail
 set listchars=tab:»»,trail:.,extends:>,precedes:<
+
+execute pathogen#infect()
+filetype plugin indent on

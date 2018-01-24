@@ -17,6 +17,7 @@ set shiftwidth=4
 set autoindent
 set copyindent
 "set showmode  " Display the mode you're in.
+set shortmess=atI " Don't show the intro message when starting vim
 set noshowmode " done by plugin https://github.com/itchyny/lightline.vim
 set wildmenu  " Enhanced command line completion.
 set wildmode=list:longest " Complete files like a shell.

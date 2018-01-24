@@ -38,3 +38,8 @@ matrix () {
 function port() {
 	lsof -iTCP:$1 -sTCP:LISTEN
 }
+
+# find shorthand
+function f() {
+	find . -name "$1" 2>&1 | grep -v 'Permission denied'
+}

@@ -16,4 +16,5 @@ ln $HOME/dotfiles/.nanorc $HOME/.nanorc
 ln $HOME/dotfiles/.profile $HOME/.profile
 ln -s $HOME/dotfiles/vim $HOME/.vim
 ln $HOME/dotfiles/.vimrc $HOME/.vimrc
+ln $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
 source ~/.bashrc

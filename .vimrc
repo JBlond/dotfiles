@@ -45,6 +45,9 @@ set matchtime=2 " How many tenths of a second to blink
 set list        " show tab and trail
 set listchars=tab:»»,trail:.,extends:>,precedes:<
 
+" move among buffers with CTRL
+map <C-M> :bnext<CR>
+
 let g:lightline = {
 			\ 'active': {
 			\   'left': [ [ 'mode', 'paste' ],

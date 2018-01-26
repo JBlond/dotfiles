@@ -55,5 +55,21 @@ let g:lightline = {
 			\ },
 \ }
 
+
 execute pathogen#infect()
 filetype plugin indent on
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "⬤ ",
+    \ "Staged"    : "Ξ",
+    \ "Untracked" : "⚡⚡",
+    \ "Renamed"   : "Ꮺ",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+:nnoremap <C-n> :NERDTree<CR>

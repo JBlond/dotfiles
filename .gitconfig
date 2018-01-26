@@ -7,6 +7,7 @@
 	ci = commit
 	cm = commit
 	cma = commit -a -m
+	cmap = "!f() { git commit -a -m \"$@\" && git push; }; f"
 	st = status -sb
 	br = branch
 	co = checkout

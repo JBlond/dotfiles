@@ -7,7 +7,6 @@ source ~/dotfiles/history.sh
 source ~/dotfiles/terminal_options.sh
 source ~/dotfiles/less.sh
 source ~/dotfiles/lscolors.sh
-source ~/dotfiles/git-prompt.sh
 source ~/dotfiles/git_functions.sh
 source ~/dotfiles/ps1.sh
 source ~/dotfiles/_docker.sh

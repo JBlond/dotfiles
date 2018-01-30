@@ -33,6 +33,7 @@
 	last-tag = describe --tags --abbrev=0
 	untracked = ls-files --others --exclude-standard
 	remove-ignored = clean -fX
+	m
 
 [push]
 	default = simple
@@ -67,6 +68,7 @@
 
 [merge]
 	tool = vimdiff
+	ff = false
 
 [mergetool]
 	keeptemporaries = false

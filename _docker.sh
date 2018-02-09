@@ -1,5 +1,6 @@
 # docker stuff
 if [ -x "/usr/bin/docker" ]; then
+	alias docker-restart='sudo /etc/init.d/docker restart'
     alias docker-socket='sudo chmod 777 /var/run/docker.sock'
     alias docker='sudo docker'
     alias docker-compose='sudo docker-compose'
@@ -24,4 +25,3 @@ _docker_ssh() {
 }
 
 complete -F _docker_ssh dssh
-

@@ -86,6 +86,12 @@ find_git_dirty () {
 
 find_git_commit_diff () {
 	if [[ ! -z $(__git_ps1) ]]; then
+		# this requires at least git 2.5.0
+		currentver=$(git --version | sed -e "s/git version //")
+		requiredver="2.5.0"
+		if [ "$(printf "$requiredver\n$currentver" | sort -V | head -n1)" == "$currentver" ] && [ "$currentver" != "$requiredver" ]; then
+			return
+		fi
 		commit_diff=$(git for-each-ref --format="%(push:track)" refs/heads)
 		commit_diff=${commit_diff//ahead\ /\▲}
 		commit_diff=${commit_diff//behind\ /\▼}

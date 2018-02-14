@@ -1,13 +1,14 @@
 # docker stuff
 if [ -x "/usr/bin/docker" ]; then
-    alias docker-socket='sudo chmod 777 /var/run/docker.sock'
-    alias docker='sudo docker'
-    alias docker-compose='sudo docker-compose'
-    alias docker-decompose="sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) && sudo docker rmi $(sudo docker images -a -q)"
+	alias docker-restart='sudo /etc/init.d/docker restart'
+	alias docker-socket='sudo chmod 777 /var/run/docker.sock'
+	alias docker='sudo docker'
+	alias docker-compose='sudo docker-compose'
+	alias docker-decompose="sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) && sudo docker rmi $(sudo docker images -a -q)"
 fi
 
 dssh() {
-    sudo docker exec -it $1 bash
+	sudo docker exec -it $1 bash
 }
 
 #compdef docker-ssh
@@ -24,4 +25,3 @@ _docker_ssh() {
 }
 
 complete -F _docker_ssh dssh
-

@@ -14,7 +14,9 @@ else
 fi
 PS1="$PS1"'\[\033[36m\]'
 PS1="$PS1"'`__git_ps1`'
-# commenting out the next two lines will increase the speed inside a repo alot
-PS1="$PS1"'`find_git_commit_diff`'
-PS1="$PS1"'\[\033[1m\033[33m\]`find_git_dirty`'
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	# very slow on cygwin and msys
+	PS1="$PS1"'`find_git_commit_diff`'
+	PS1="$PS1"'\[\033[1m\033[33m\]`find_git_dirty`'
+fi
 PS1="$PS1""\[\033[0;31m\]\n${bold}⽕${normal}\[\033[0m\] "

@@ -4,6 +4,7 @@ alias ls='ls --color=auto --group-directories-first'
 alias dir='ls --color=auto --format=vertical'
 
 alias ll='ls -lh'
+alias lla='ls -lAh'
 alias la='ls -A'
 alias lart='ls -lhart'
 alias l='ls -CF'

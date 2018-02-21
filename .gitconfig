@@ -12,6 +12,7 @@
 	cma = commit -a -m
 	cmap = "!f() { git commit -a -m \"$@\" && git push; }; f"
 	co = checkout
+	development = checkout development
 	email = config user.email
 	github = !git config user.name "JBlond" && git config user.email "leet31337@web.de"
 	last = log -1 --stat
@@ -24,10 +25,10 @@
 	master = checkout master
 	name = config user.name
 	new-branch = checkout -b
-	st = status -sb
 	remove-ignored = clean -fX
 	rename = mv
 	rollback = checkout @~1
+	st = status -sb
 	untracked = ls-files --others --exclude-standard
 	undo = reset --hard
 	who = shortlog -s --

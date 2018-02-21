@@ -8,7 +8,6 @@ source ~/dotfiles/terminal_options.sh
 source ~/dotfiles/less.sh
 source ~/dotfiles/lscolors.sh
 source ~/dotfiles/_docker.sh
-source ~/dotfiles/xterm.sh
 source ~/dotfiles/aliases.sh
 source ~/dotfiles/bash_completion.sh
 source ~/dotfiles/less.sh

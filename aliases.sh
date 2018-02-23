@@ -12,6 +12,8 @@ alias us="ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
 alias lll="stat --format='%a %U %G %s %y %N' *"
 
 alias dfh='df -kTh'
+alias dus='du -hs * | sort -h'
+alias dush='du . -sh'
 
 alias ..='cd ..'
 alias cd..='cd ..'
@@ -37,8 +39,6 @@ alias rmf='rm -rf'
 alias ping5='ping -c 5'
 alias flushdns="sudo /etc/init.d/dns-clean restart && echo DNS cache flushed"
 alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
-
-alias dush='du . -sh'
 
 alias wttr='curl -L wttr.in/?lang=de'
 alias :D="echo ツ"

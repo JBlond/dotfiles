@@ -35,21 +35,6 @@
 	wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
 	wlog = log --stat --since='1 Week Ago' --graph --pretty=oneline --abbrev-commit --date=relative
 
-[push]
-	default = simple
-
-[grep]
-	lineNumber = true
-
-[user]
-	useConfigOnly = true
-
-[core]
-	editor = vim
-	filemode = false
-	pager = ~/dotfiles/diff-so-fancy | less --tabs=4 -RFX
-	trustctime = false
-	
 [color]
 	ui = true
 
@@ -67,6 +52,15 @@
 	old = red bold
 	whitespace = red reverse
 
+[core]
+	editor = vim
+	filemode = false
+	pager = ~/dotfiles/diff-so-fancy | less --tabs=4 -RFX
+	trustctime = false
+
+[grep]
+	lineNumber = true
+
 [merge]
 	tool = vimdiff
 
@@ -75,3 +69,9 @@
 	keepbackups = false
 	prompt = false
 	trustexitcode = false
+
+[push]
+	default = simple
+
+[user]
+	useConfigOnly = true

@@ -20,7 +20,9 @@ set_prompt () {
 	where=$PWD
 	home=$HOME
 	work="$home/work"
+	dotfiles="$HOME/dotfiles"
 	where="${where/$work/🏢}"
+	where="${where/$dotfiles/🏠/⬤}"
 	where="${where/$home/🏠}"
 
 	if [ $(id -u) -eq 0 ];

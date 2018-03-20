@@ -43,3 +43,7 @@ function port() {
 function f() {
 	find . -name "$1" 2>&1 | grep -v 'Permission denied'
 }
+
+function rns() {
+  grep -Rins $1 *
+}

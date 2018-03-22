@@ -7,6 +7,7 @@ rm -f $HOME/.nanorc
 rm -f $HOME/.profile
 rm -rf $HOME/.vimrc
 rm -rf $HOME/.vim
+rm -f $HOME/.tmux.conf
 cp -r ./.config ../
 ln $HOME/dotfiles/.bash_logout $HOME/.bash_logout
 ln $HOME/dotfiles/.bashrc $HOME/.bashrc

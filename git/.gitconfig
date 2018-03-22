@@ -52,10 +52,13 @@
 	old = red bold
 	whitespace = red reverse
 
+[commit]
+	template = ~/dotfiles/git/.gitmessage
+
 [core]
 	editor = vim
 	filemode = false
-	pager = ~/dotfiles/diff-so-fancy | less --tabs=4 -RFX
+	pager = ~/dotfiles/git/diff-so-fancy | less --tabs=4 -RFX
 	trustctime = false
 
 [grep]

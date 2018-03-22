@@ -53,7 +53,7 @@
 	whitespace = red reverse
 
 [commit]
-	template = ~/dotfiles/git/.gitmessage
+	template = ~/dotfiles/git/gitmessage.txt
 
 [core]
 	editor = vim

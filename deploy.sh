@@ -11,7 +11,7 @@ rm -f $HOME/.tmux.conf
 cp -r ./.config ../
 ln $HOME/dotfiles/home/bash_logout $HOME/.bash_logout
 ln $HOME/dotfiles/home/bashrc $HOME/.bashrc
-ln $HOME/dotfiles/git/.gitconfig $HOME/.gitconfig
+ln $HOME/dotfiles/git/gitconfig $HOME/.gitconfig
 ln $HOME/dotfiles/home/minttyrc $HOME/.minttyrc
 ln $HOME/dotfiles/home/nanorc $HOME/.nanorc
 ln $HOME/dotfiles/home/profile $HOME/.profile

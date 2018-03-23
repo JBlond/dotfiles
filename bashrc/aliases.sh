@@ -50,5 +50,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias own='sudo chown -R ${USER:=$(/usr/bin/id -run)}:$USER'
 alias fuck='sudo $(history -p \!\!) && echo "( ︶︿︶)_╭∩╮"'
 
-alias apache='sudo /opt/apache2/bin/httpd'
-
+if [[ "$OSTYPE" == "msys" ]]; then
+	alias apache='~/Apache24/bin/httpd.exe'
+else
+	alias apache='sudo /opt/apache2/bin/httpd'
+fi

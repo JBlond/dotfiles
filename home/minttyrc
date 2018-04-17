@@ -4,3 +4,4 @@ Locale=de_DE
 Charset=UTF-8
 Scrollbar=right
 CursorType=underscore
+BellType=0

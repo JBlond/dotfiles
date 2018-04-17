@@ -42,6 +42,7 @@ alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 alias wttr='curl -L wttr.in/?lang=de'
 alias :D="echo ツ"
+alias shangdi="echo 上帝就是愛"
 alias dontcare='echo ¯\\_\(ツ\)_/¯'
 alias busy='cat /dev/urandom | hexdump -C | grep "ca fe"'
 

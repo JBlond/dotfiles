@@ -11,5 +11,5 @@ if [ -d "$HOME/.yarn/" ]; then
 fi
 	
 if [ -f "$HOME/ansible/hosts" ]; then
-    export ANSIBLE_INVENTORY=~/ansible/hosts
+	export ANSIBLE_INVENTORY=~/ansible/hosts
 fi

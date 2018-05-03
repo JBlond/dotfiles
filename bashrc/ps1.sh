@@ -37,13 +37,13 @@ set_prompt () {
 		PS1+='\[\033[01;32m\]@\h\[\033[00m\]'
 	fi
 	PS1+=':\[\033[01;34m\]$where\[\033[00m\]'
-	PS1="$PS1"'\[\033[36m\]'
-	PS1="$PS1"'`__git_ps1`'
+	PS1+='\[\033[36m\]'
+	PS1+='`__git_ps1`'
 	if [[ "$OSTYPE" == "linux-gnu" ]]; then
 		# very slow on cygwin and msys
-		PS1="$PS1"'`find_git_commit_diff`'
-		PS1="$PS1"'\[\033[1m\033[33m\]`find_git_dirty`'
+		PS1+='`find_git_commit_diff`'
+		PS1+='\[\033[1m\033[33m\]`find_git_dirty`'
 	fi
-	PS1="$PS1""\[\033[0;31m\]\n${bold}⽕${normal}\[\033[0m\] "
+	PS1+="\[\033[0;31m\]\n${bold}⽕${normal}\[\033[0m\] "
 }
 PROMPT_COMMAND='set_prompt'

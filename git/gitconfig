@@ -12,6 +12,10 @@
 	cma = commit -a -m
 	cmap = "!f() { git commit -a -m \"$@\" && git push; }; f"
 	co = checkout
+	# Show the diff between the latest commit and the current state
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
+	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 	development = checkout development
 	email = config user.email
 	github = !git config user.name "JBlond" && git config user.email "leet31337@web.de"
@@ -25,6 +29,7 @@
 	master = checkout master
 	name = config user.name
 	new-branch = checkout -b
+	remotes = remote -v
 	remove-ignored = clean -fX
 	rename = mv
 	rollback = checkout @~1
@@ -34,6 +39,8 @@
 	who = shortlog -s --
 	wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
 	wlog = log --stat --since='1 Week Ago' --graph --pretty=oneline --abbrev-commit --date=relative
+	# show detail view with a structure in log
+	wow = "log --all --graph --decorate --oneline --simplify-by-decoration "
 
 [color]
 	ui = true

@@ -37,6 +37,9 @@ set_prompt () {
 		PS1+='\[\033[01;32m\]@\h\[\033[00m\]'
 	fi
 	PS1+=':\[\033[01;34m\]$where\[\033[00m\]'
+	if [ ! -w "$PWD" ]; then
+		PS1+='\[\033[1;31m\]⊘'
+	fi	
 	PS1+='\[\033[36m\]'
 	PS1+='`__git_ps1`'
 	if [[ "$OSTYPE" == "linux-gnu" ]]; then

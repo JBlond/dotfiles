@@ -40,7 +40,7 @@
 	wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
 	wlog = log --stat --since='1 Week Ago' --graph --pretty=oneline --abbrev-commit --date=relative
 	# show detail view with a structure in log
-	wow = "log --all --graph --decorate --oneline --simplify-by-decoration "
+	wow = "log --all --graph --decorate --oneline --simplify-by-decoration"
 
 [color]
 	ui = true

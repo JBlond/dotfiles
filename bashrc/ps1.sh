@@ -25,12 +25,18 @@ set_prompt () {
 	where="${where/$dotfiles/🏠/⬤}"
 	where="${where/$home/🏠}"
 
-	if [ $(id -u) -eq 0 ];
-	then
-		PS1+='${debian_chroot:+($debian_chroot)}\[\033[1;31m\]\u\[\033[1;33m\]⚡⚡\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]$where\[\033[00m\]'
+	# display root user in red
+	if [ $(id -u) -eq 0 ]; then
+		PS1+='${debian_chroot:+($debian_chroot)}\[\033[1;31m\]\u\[\033[1;33m\]⚡⚡'
 	else
-		PS1+='${debian_chroot:+($debian_chroot)}\[\033[1;36m\]\u\[\033[01;32m\]@\h\[\033[00m\]:\[\033[01;34m\]$where\[\033[00m\]'
+		PS1+='${debian_chroot:+($debian_chroot)}\[\033[1;36m\]\u'
 	fi
+
+	# show host name only on remote connection
+	if [[ "$3" = true || "${SSH_CLIENT}" || "${SSH_TTY}" || ${EUID} = 0 ]]; then
+		PS1+='\[\033[01;32m\]\h\[\033[00m\]'
+	fi
+	PS1+=':\[\033[01;34m\]$where\[\033[00m\]'
 	PS1="$PS1"'\[\033[36m\]'
 	PS1="$PS1"'`__git_ps1`'
 	if [[ "$OSTYPE" == "linux-gnu" ]]; then

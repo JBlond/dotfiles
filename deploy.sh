@@ -16,7 +16,7 @@ ln $HOME/dotfiles/git/gitconfig $HOME/.gitconfig
 ln $HOME/dotfiles/home/minttyrc $HOME/.minttyrc
 ln $HOME/dotfiles/home/nanorc $HOME/.nanorc
 ln $HOME/dotfiles/home/profile $HOME/.profile
-ln $HOME/dotfiles/home/hyper.js $HOME/..hyper.js
+ln $HOME/dotfiles/home/hyper.js $HOME/.hyper.js
 ln -s $HOME/dotfiles/vim $HOME/.vim
 ln $HOME/dotfiles/home/vimrc $HOME/.vimrc
 ln $HOME/dotfiles/home/tmux.conf $HOME/.tmux.conf

@@ -47,3 +47,15 @@ function f() {
 function rns() {
 	grep -Rins $1 *
 }
+
+
+logbook() {
+	echo "" >>  ~/logbook
+	printf '%s' "--------------------------------------------------------------------------------" >> ~/logbook
+	echo "" >>  ~/logbook
+	date >> ~/logbook
+	printf '%s' "--------------------------------------------------------------------------------" >> ~/logbook
+	echo "" >>  ~/logbook
+	printf '%s' "$1" >> ~/logbook
+	echo "" >>  ~/logbook
+}

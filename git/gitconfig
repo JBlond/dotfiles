@@ -23,8 +23,8 @@
 	lc = diff @~..@
 	last-commit = "!git lc"
 	last-tag = describe --tags --abbrev=0
-	lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %C(bold blue)<%an>%C(reset)%C(bold yellow)%d%C(reset)' --all
-	lg = !"git lg1"
+	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %C(bold blue)<%an>%C(reset)%C(bold yellow)%d%C(reset)' --all
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold yellow)%d ⟹ %C(white)%s %C(bold blue)%an%C(reset) %C(bold green)%cD%C(reset)'
 	list-branches = show-branch -a --topics
 	master = checkout master
 	name = config user.name

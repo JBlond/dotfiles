@@ -1,11 +1,12 @@
 help:
-	@echo "  make backup		take a backup of the original .bashrc"
-	@echo "                        (it is saved as .bashrc.ORIGINAL)"
-	@echo "                        you should run this once in the begining"
-	@echo "                        otherwise you may overwrite the backup"
-	@echo " make install		run the deploy script"
+	@echo " make backup        take a backup of the original .bashrc"
+	@echo "                    (it is saved as .bashrc.ORIGINAL)"
+	@echo "                    you should run this once in the begining"
+	@echo "                    otherwise you may overwrite the backup"
 	@echo ""
-	@echo " make update			update source with the last version from github"
+	@echo " make install       run the deploy script"
+	@echo ""
+	@echo " make update        update source with the last version from github"
 	@echo ""
 
 backup:

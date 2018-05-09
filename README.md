@@ -44,13 +44,15 @@ cd dotfiles
 ./deploy.sh
 ```
 
+## Linux
+
+On Linux you can also use *make* to install it. Run *make* without any parameter to see all options.
+
 # scripts
 
-- agent.sh start ssh agent with keys
 - aliases.sh a bunch from my favorite bash aliases including fuck command if I forgot to type *sudo* infront of a command
 - bash_completion.sh execute all bash completion available default from the system
 - complete_ssh_hosts.sh ssh example *TAB* reads the ~/.ssh/config file for host completion
-- debug.sh run a bash script in debug mode
 - deploy.sh deploy these files
 - diff-so-fancy fancy diff for git ( and others)
 - _docker.sh docker aliases + ssh into docker / docker exec completion. e.g. dssh example *TAB*

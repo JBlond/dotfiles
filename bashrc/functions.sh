@@ -59,3 +59,14 @@ logbook() {
 	printf '%s' "$1" >> ~/logbook
 	echo "" >>  ~/logbook
 }
+
+foodbook() {
+	echo "" >>  ~/foodbook
+	printf '%s' "--------------------------------------------------------------------------------" >> ~/foodbook
+	echo "" >>  ~/foodbook
+	date >> ~/foodbook
+	printf '%s' "--------------------------------------------------------------------------------" >> ~/foodbook
+	echo "" >>  ~/foodbook
+	printf '%s' "$1" >> ~/foodbook
+	echo "" >>  ~/foodbook
+}

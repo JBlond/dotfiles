@@ -7,8 +7,8 @@ endif
 :set hidden
 
 set encoding=utf-8              " always use utf-8
-set ruler
-set nu
+set ruler                       " Always show cursor position.
+set nu                          " Show line numbers on the sidebar.
 set nowrap
 set nobackup                    " no *~ backup files
 
@@ -16,7 +16,6 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 set copyindent
-"set showmode                   " Display the mode you're in.
 set shortmess=atI               " Don't show the intro message when starting vim
 set noshowmode                  " done by plugin https://github.com/itchyny/lightline.vim
 set wildmenu                    " Enhanced command line completion.
@@ -33,7 +32,7 @@ nnoremap <C-L> :nohl<CR><C-L>   " Map <C-L> (redraw screen) to also turn off sea
 syntax on
 colorscheme monokai
 set ignorecase
-set smartcase
+set smartcase                   " Automatically switch search to case-sensitive when search query contains an uppercase letter.
 set infercase
 set incsearch                   " Highlight matches as you type.
 set hlsearch                    " Highlight matches.

@@ -9,7 +9,9 @@ rm -rf $HOME/.vimrc
 rm -rf $HOME/.vim
 rm -f $HOME/.tmux.conf
 rm -f $HOME/.hyper.js
-cp -r ./.config ../
+if [[ "$OSTYPE" != "msys" ]]; then
+	cp -r ./.config ../
+fi	
 ln $HOME/dotfiles/home/bash_logout $HOME/.bash_logout
 ln $HOME/dotfiles/home/bashrc $HOME/.bashrc
 ln $HOME/dotfiles/git/gitconfig $HOME/.gitconfig

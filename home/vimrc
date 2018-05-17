@@ -6,6 +6,8 @@ endif
 
 :set hidden
 
+set viminfo^=%                  " remember my buffers
+
 set encoding=utf-8              " always use utf-8
 set ruler                       " Always show cursor position.
 set nu                          " Show line numbers on the sidebar.
@@ -76,3 +78,4 @@ let g:NERDTreeIndicatorMapCustom = {
 
 :nnoremap <C-n> :NERDTree<CR>
                                 " CTRL + n open NerdTree
+

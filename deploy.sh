@@ -5,10 +5,12 @@ rm -f $HOME/.gitconfig
 rm -f $HOME/.nanorc
 rm -f $HOME/.profile
 rm -rf $HOME/.vim
-rm -f $HOME/.tmux.conf
+
 rm -f $HOME/.hyper.js
 if [[ "$OSTYPE" != "msys" ]]; then
+	rm -f $HOME/.tmux.conf
 	cp -r ./.config ../
+	ln $HOME/dotfiles/home/tmux.conf $HOME/.tmux.conf
 fi	
 ln $HOME/dotfiles/home/bash_logout $HOME/.bash_logout
 ln $HOME/dotfiles/home/bashrc $HOME/.bashrc
@@ -17,7 +19,6 @@ ln $HOME/dotfiles/home/nanorc $HOME/.nanorc
 ln $HOME/dotfiles/home/profile $HOME/.profile
 ln $HOME/dotfiles/home/hyper.js $HOME/.hyper.js
 ln -s $HOME/dotfiles/vim $HOME/.vim
-ln $HOME/dotfiles/home/tmux.conf $HOME/.tmux.conf
 if [[ "$OSTYPE" == "msys" ]]; then
 	rm -f $HOME/.minttyrc
 	ln $HOME/dotfiles/home/minttyrc $HOME/.minttyrc

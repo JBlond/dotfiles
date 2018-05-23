@@ -26,6 +26,7 @@ alias egrep='egrep --color=auto --exclude-dir="node_modules"'
 #alias upgrade='sudo aptitude update && sudo aptitude dist-upgrade'
 #updates are fetched via cron-apt
 alias update='sudo apt update'
+alias list='sudo apt list --upgradable'
 alias upgrade='sudo apt dist-upgrade'
 
 alias bashrc='source ~/.bashrc'

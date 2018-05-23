@@ -15,6 +15,8 @@ backup:
 
 install:
 	@./deploy.sh
+	@git submodule update --init --recursive
 
 update:
 	@git pull origin master
+	@git pull --recurse-submodules

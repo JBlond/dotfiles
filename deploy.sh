@@ -7,7 +7,7 @@ rm -f $HOME/.profile
 rm -rf $HOME/.vim
 if [[ "$OSTYPE" != "msys" ]]; then
 	rm -f $HOME/.tmux.conf
-	cp -r ./.config ../
+	cp -r ./config ../.config
 	ln $HOME/dotfiles/home/tmux.conf $HOME/.tmux.conf
 fi	
 ln $HOME/dotfiles/home/bash_logout $HOME/.bash_logout

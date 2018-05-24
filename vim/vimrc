@@ -4,38 +4,39 @@ if has('win32') || has('win64')
         source $VIMRUNTIME/mswin.vim
 endif
 
-:set hidden
+:set hidden                     " allow buffer
 
-" set viminfo^=%                  " remember my buffers
+" set viminfo^=%                " remember my buffers
 
 set encoding=utf-8              " always use utf-8
 set ruler                       " Always show cursor position.
 set nu                          " Show line numbers on the sidebar.
-set nowrap
+set nowrap                      " no wrapping
 set nobackup                    " no *~ backup files
+set cursorline                  " Highlight current line
 
-set tabstop=4
-set shiftwidth=4
-set autoindent
-set copyindent
+set tabstop=4                   " tabstop length 4
+set shiftwidth=4                "
+set autoindent                  " enable autoindent
+set copyindent                  " 
 set shortmess=atI               " Don't show the intro message when starting vim
 set noshowmode                  " done by plugin https://github.com/itchyny/lightline.vim
 set wildmenu                    " Enhanced command line completion.
 set wildmode=list:longest       " Complete files like a shell.
 set showcmd                     " Show partial commands in the last line of the screen
 set laststatus=2                " Always display the status line, even if only one window is displayed
-set confirm
+set confirm                     " nicer dialog when closing with unsaved changes
 set visualbell                  " Use visual bell instead of beeping when doing something wrong
 set t_vb=                       " reset the terminal code for the visual bell.
 set mouse=a                     " Enable use of the mouse for all modes
 set pastetoggle=<F11>           " Use <F11> to toggle between 'paste' and 'nopaste'
 nnoremap <C-L> :nohl<CR><C-L>   " Map <C-L> (redraw screen) to also turn off search highlighting until the next search
 
-syntax on
-colorscheme monokai
-set ignorecase
+syntax on                       " syntax highlighting on
+colorscheme monokai             " my colorscheme
+set ignorecase                  " search case-insensitive
 set smartcase                   " Automatically switch search to case-sensitive when search query contains an uppercase letter.
-set infercase
+set infercase                   "
 set incsearch                   " Highlight matches as you type.
 set hlsearch                    " Highlight matches.
 set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,.sass-cache,*.class
@@ -46,8 +47,11 @@ set matchtime=2                 " How many tenths of a second to blink
 set list                        " show tab and trail
 set listchars=tab:»»,trail:.,extends:>,precedes:<
 
-" move among buffers with CTRL
-map <C-M> :bnext<CR>
+
+set directory=~/.vim/swaps      " Local dirs (centralize everything)
+
+
+map <C-M> :bnext<CR>            " move among buffers with CTRL
 
 let g:lightline = {
 			\ 'active': {
@@ -76,6 +80,4 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-:nnoremap <C-n> :NERDTree<CR>
-                                " CTRL + n open NerdTree
-
+:nnoremap <C-n> :NERDTree<CR>   " CTRL + n open NerdTree

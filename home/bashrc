@@ -13,5 +13,5 @@ source ~/dotfiles/bashrc/bash_completion.sh
 source ~/dotfiles/bashrc/complete_ssh_hosts.sh
 source ~/dotfiles/bashrc/functions.sh
 source ~/dotfiles/bashrc/git_functions.sh
-source ~/dotfiles/bashrc/git-prompt.sh
+source ~/dotfiles/bashrc/git_prompt.sh
 source ~/dotfiles/bashrc/ps1.sh

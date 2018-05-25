@@ -37,6 +37,8 @@ alias more='less'
 
 alias rmf='rm -rf'
 
+alias path='echo $PATH | tr ":" "\n"'
+
 alias ping5='ping -c 5'
 alias flushdns="sudo /etc/init.d/dns-clean restart && echo DNS cache flushed"
 alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"

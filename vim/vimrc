@@ -81,3 +81,5 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 
 :nnoremap <C-n> :NERDTree<CR>   " CTRL + n open NerdTree
+
+let g:vim_markdown_folding_disabled = 1

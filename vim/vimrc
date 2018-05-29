@@ -51,7 +51,7 @@ set listchars=tab:»»,trail:.,extends:>,precedes:<
 set directory=~/.vim/swaps      " Local dirs (centralize everything)
 
 
-map <C-M> :bnext<CR>            " move among buffers with CTRL
+map <C-n> :bnext<CR>            " move among buffers with CTRL + n
 
 let g:lightline = {
 			\ 'active': {
@@ -66,20 +66,3 @@ let g:lightline = {
 
 execute pathogen#infect()
 filetype plugin indent on
-
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "⬤ ",
-    \ "Staged"    : "Ξ",
-    \ "Untracked" : "⚡⚡",
-    \ "Renamed"   : "Ꮺ",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-
-:nnoremap <C-n> :NERDTree<CR>   " CTRL + n open NerdTree
-
-let g:vim_markdown_folding_disabled = 1

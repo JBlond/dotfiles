@@ -5,3 +5,5 @@ Charset=UTF-8
 Scrollbar=right
 CursorType=underscore
 BellType=0
+ThemeFile=mintty
+BackgroundColour=0,0,0

@@ -21,9 +21,9 @@ if [[ "$OSTYPE" == "msys" ]]; then
 	ln $HOME/dotfiles/home/minttyrc $HOME/.minttyrc
 fi	
 source ~/.bashrc
-read -r -p "Install babun files? [Y/n]" response
+read -r -p "Install babun files? [N/y]" response
 response=${response,,} # tolower
- if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
+ if [[ $response =~ ^(yes|y) ]] || [[ -z $response ]]; then
 	rm -f $HOME/.zshrc
 	rm -f $HOME/.babunrc
 	ln $HOME/dotfiles/babun/zshrc $HOME/.zshrc

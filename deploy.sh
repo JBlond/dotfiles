@@ -24,7 +24,7 @@ source ~/.bashrc
 
 while true;
 do
-	read -r -p "Yes or no? " response   
+	read -r -p "Install babun files? [N/y]" response   
 	if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 		rm -f $HOME/.zshrc
 		rm -f $HOME/.babunrc

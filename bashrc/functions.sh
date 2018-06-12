@@ -52,12 +52,12 @@ function rns() {
 logbook() {
 	echo "" >>  ~/logs/logbook
 	printf '%s' "--------------------------------------------------------------------------------" >> ~/logs/logbook
-	echo "" >>  ~/logbook
-	date >> ~/logbook
+	echo "" >>  ~/logs/logbook
+	date >> ~/logs/logbook
 	printf '%s' "--------------------------------------------------------------------------------" >> ~/logs/logbook
-	echo "" >>  ~/logbook
-	printf '%s' "$1" >> ~/logbook
-	echo "" >>  ~/logbook
+	echo "" >>  ~/logs/logbook
+	printf '%s' "$1" >> ~/logs/logbook
+	echo "" >>  ~/logs/logbook
 	cd ~/logs/
 	git commit -a -m "logbook" && git push;
 }

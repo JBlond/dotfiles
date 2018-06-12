@@ -70,7 +70,7 @@ foodbook() {
 	printf '%s' "--------------------------------------------------------------------------------" >> ~/logs/foodbook
 	echo "" >>  ~/logs/foodbook
 	printf '%s' "$1" >> ~/logs/foodbook
-	echo "" >>  ~/flogs/foodbook
+	echo "" >>  ~/logs/foodbook
 	cd ~/logs/
 	git commit -a -m "foodbook" && git push;
 }

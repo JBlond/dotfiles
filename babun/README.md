@@ -19,3 +19,9 @@ You need to add the environment variable HOME into your windows account.
     Restart babun
 
 Your babun home directory should now be your windows user profile directory, usually c:\user\USERNAME
+
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+
+add to .zshrc
+
+    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

@@ -47,11 +47,7 @@ set_prompt () {
 		PS1+='`find_git_commit_diff`'
 		PS1+='\[\033[1m\033[33m\]`find_git_dirty`'
 	fi
-	
-	if [[ ! -z $(__git_ps1) ]]; then
-		PS1+="\[\033[0;31m\]\n${bold}λ${normal}\[\033[0m\] "
-	else
-		PS1+="\[\033[0;31m\]\n${bold}⽕${normal}\[\033[0m\] "
-	fi	
+
+	PS1+="\[\033[0;31m\]\n${bold}λ${normal}\[\033[0m\] "
 }
 PROMPT_COMMAND='set_prompt'

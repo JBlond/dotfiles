@@ -50,23 +50,27 @@ function rns() {
 
 
 logbook() {
-	echo "" >>  ~/logbook
-	printf '%s' "--------------------------------------------------------------------------------" >> ~/logbook
+	echo "" >>  ~/logs/logbook
+	printf '%s' "--------------------------------------------------------------------------------" >> ~/logs/logbook
 	echo "" >>  ~/logbook
 	date >> ~/logbook
-	printf '%s' "--------------------------------------------------------------------------------" >> ~/logbook
+	printf '%s' "--------------------------------------------------------------------------------" >> ~/logs/logbook
 	echo "" >>  ~/logbook
 	printf '%s' "$1" >> ~/logbook
 	echo "" >>  ~/logbook
+	cd ~/logs/
+	git commit -a -m "logbook" && git push;
 }
 
 foodbook() {
-	echo "" >>  ~/foodbook
-	printf '%s' "--------------------------------------------------------------------------------" >> ~/foodbook
-	echo "" >>  ~/foodbook
-	date >> ~/foodbook
-	printf '%s' "--------------------------------------------------------------------------------" >> ~/foodbook
-	echo "" >>  ~/foodbook
-	printf '%s' "$1" >> ~/foodbook
-	echo "" >>  ~/foodbook
+	echo "" >>  ~/logs/foodbook
+	printf '%s' "--------------------------------------------------------------------------------" >> ~/logs/foodbook
+	echo "" >>  ~/logs/foodbook
+	date >> ~/logs/foodbook
+	printf '%s' "--------------------------------------------------------------------------------" >> ~/logs/foodbook
+	echo "" >>  ~/logs/foodbook
+	printf '%s' "$1" >> ~/logs/foodbook
+	echo "" >>  ~/flogs/foodbook
+	cd ~/logs/
+	git commit -a -m "foodbook" && git push;
 }

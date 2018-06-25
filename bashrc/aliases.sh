@@ -57,6 +57,7 @@ alias fuck='sudo $(history -p \!\!) && echo "( ︶︿︶)_╭∩╮"'
 
 if [[ "$OSTYPE" == "msys" ]]; then
 	alias apache='~/Apache24/bin/httpd.exe'
+	alias ifconfig="ipconfig -all"
 else
 	alias apache='sudo /opt/apache2/bin/httpd'
 fi

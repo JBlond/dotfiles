@@ -70,7 +70,6 @@
 	preloadindex = true
 	trustctime = false
 
-
 [gc]
 	auto = 256
 
@@ -78,6 +77,7 @@
 	lineNumber = true
 
 [merge]
+	ff = false
 	tool = vimdiff
 
 [mergetool]

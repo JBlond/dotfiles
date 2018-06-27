@@ -73,11 +73,19 @@
 	preloadindex = true
 	trustctime = false
 
+[diff]
+	# tells Git to detect renames. If set to any boolean value, it will enable basic rename detection. 
+	# If set to "copies" or "copy", it will detect copies, as well.
+	renames = copies
+
 [gc]
 	auto = 256
 
 [grep]
 	lineNumber = true
+
+[help]
+	autocorrect = true
 
 [merge]
 	ff = false
@@ -91,6 +99,8 @@
 
 [push]
 	default = simple
+	# whenever pushing, also push local tags
+	followTags = true
 
 [user]
 	useConfigOnly = true

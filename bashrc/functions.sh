@@ -74,3 +74,11 @@ foodbook() {
 	cd ~/logs/
 	git commit -a -m "foodbook" && git push;
 }
+
+function install-phpmyadmin() {
+	git clone --depth 1 -b STABLE https://github.com/phpmyadmin/phpmyadmin.git
+	cd phpmyadmin
+	composer install
+	mkdir -p locale/de/LC_MESSAGES
+	msgfmt po/de.po -o locale/de/LC_MESSAGES/phpmyadmin.mo
+}

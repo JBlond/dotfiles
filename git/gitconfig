@@ -97,6 +97,9 @@
 	prompt = false
 	trustexitcode = false
 
+[pull]
+	ff = only
+
 [push]
 	default = simple
 	# whenever pushing, also push local tags

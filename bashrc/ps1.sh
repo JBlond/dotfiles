@@ -49,5 +49,14 @@ set_prompt () {
 	fi
 
 	PS1+="\[\033[0;31m\]\n${bold}λ${normal}\[\033[0m\] "
+	
+	# have pwd in the title on term
+	case $TERM in
+    	xterm*)
+			echo -en "\033]0;${PWD}\007"
+			;;
+		*)
+	esac		
+			
 }
 PROMPT_COMMAND='set_prompt'

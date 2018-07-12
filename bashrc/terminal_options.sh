@@ -9,3 +9,6 @@ bind "set completion-ignore-case on"
 
 # Immediately add a trailing slash when autocompleting symlinks to directories
 bind "set mark-symlinked-directories on"
+
+#for vim in tmux
+export TERM=screen-256color

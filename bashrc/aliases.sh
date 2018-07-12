@@ -56,6 +56,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias own='sudo chown -R ${USER:=$(/usr/bin/id -run)}:$USER'
 alias fuck='sudo $(history -p \!\!) && echo "( ︶︿︶)_╭∩╮"'
 
+# use vim alias to exit shell
+alias :q="exit"
+
 if [[ "$OSTYPE" == "msys" ]]; then
 	alias apache='~/Apache24/bin/httpd.exe'
 	alias ifconfig="ipconfig -all"

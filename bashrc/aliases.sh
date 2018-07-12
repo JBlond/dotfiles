@@ -46,15 +46,18 @@ alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias mssh="mosh"
 
 alias wttr='curl -L wttr.in/?lang=de'
-alias :D="echo ツ"
-alias shangdi="echo 上帝就是愛"
-alias dontcare='echo ¯\\_\(ツ\)_/¯'
-alias busy='cat /dev/urandom | hexdump -C | grep "ca fe"'
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+alias download="curl -LO "
+
 alias own='sudo chown -R ${USER:=$(/usr/bin/id -run)}:$USER'
 alias fuck='sudo $(history -p \!\!) && echo "( ︶︿︶)_╭∩╮"'
+alias shit="echo 💩"
+alias :D="echo ツ"
+alias dontcare='echo ¯\\_\(ツ\)_/¯'
+alias busy='cat /dev/urandom | hexdump -C | grep "ca fe"'
+alias shangdi="echo 上帝就是愛"
 
 # use vim alias to exit shell
 alias :q="exit"

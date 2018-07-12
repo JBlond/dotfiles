@@ -69,6 +69,7 @@
 	template = ~/dotfiles/git/gitmessage.txt
 
 [core]
+	autocrlf = input
 	editor = vim
 	filemode = false
 	fscache = true

@@ -39,6 +39,7 @@
 	shallow = clone --depth 1
 	shallow-branch = clone --depth 1 -b
 	st = status -sb
+	su = submodule update --recursive --remote
 	untracked = ls-files --others --exclude-standard
 	undo = reset --hard
 	who = shortlog -s --

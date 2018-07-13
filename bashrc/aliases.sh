@@ -76,6 +76,7 @@ alias gcmap="git cmap"
 alias gd="git diff"
 alias gdiff="git diff"
 alias ggc="git gc"
+alias gh='cd "$(git rev-parse --show-toplevel)"'
 alias glc="git diff @~..@"
 alias glg="git lg"
 alias gst="git status -sb"

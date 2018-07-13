@@ -13,5 +13,7 @@ mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31
 *.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:\
 *.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:\
 *.opus=00;36:*.spx=00;36:*.xspf=00;36:"
-LS_COLORS="$LS_COLORS:*.ps1=01;32:*.exe=01;32:*.bat=01;32:*.cmd=01;32:"
+if [[ "$OSTYPE" == "msys" ]]; then
+	LS_COLORS="$LS_COLORS:*.ps1=01;32:*.exe=01;32:*.bat=01;32:*.cmd=01;32:"
+fi
 export LS_COLORS

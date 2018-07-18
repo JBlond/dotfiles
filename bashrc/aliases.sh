@@ -71,9 +71,10 @@ else
 fi
 
 # git aliases
-alias gco="git checkout"
+alias g="git"
 alias gcma="git cma"
 alias gcmap="git cmap"
+alias gco="git checkout"
 alias gd="git diff"
 alias gdiff="git diff"
 alias ggc="git gc"

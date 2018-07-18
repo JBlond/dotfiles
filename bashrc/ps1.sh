@@ -25,6 +25,11 @@ set_prompt () {
 	where="${where/$dotfiles/🏠/⬤}"
 	where="${where/$home/🏠}"
 
+	# show that this is a ssh session
+	if [[ "$3" = true || "${SSH_CLIENT}" || "${SSH_TTY}" || ${EUID} = 0 ]]; then
+		PS1+='\[\033[1;31m\]ssh://'
+	fi
+
 	# display root user in red
 	if [ $(id -u) -eq 0 ]; then
 		PS1+='${debian_chroot:+($debian_chroot)}\[\033[1;31m\]\u\[\033[1;33m\]⚡⚡'

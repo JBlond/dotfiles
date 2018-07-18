@@ -38,7 +38,7 @@ set_prompt () {
 	fi
 
 	# show host name only on remote connection
-	if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+	if [[ "$3" = true || "${SSH_CLIENT}" || "${SSH_TTY}" || ${EUID} = 0 ]]; then
 		PS1+='\[\033[01;32m\]@\h\[\033[00m\]'
 	fi
 	PS1+=':\[\033[01;34m\]$where\[\033[00m\]'

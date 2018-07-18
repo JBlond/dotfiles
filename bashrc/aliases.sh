@@ -70,8 +70,13 @@ else
 	alias apache='sudo /opt/apache2/bin/httpd'
 fi
 
+#############
 # git aliases
 alias g="git"
+
+source /usr/share/bash-completion/completions/git
+complete -o default -o nospace -F _git g
+
 alias gcma="git cma"
 alias gcmap="git cmap"
 alias gco="git checkout"

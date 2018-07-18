@@ -77,6 +77,7 @@ alias g="git"
 source /usr/share/bash-completion/completions/git
 complete -o default -o nospace -F _git g
 
+alias gcl="git clone"
 alias gcma="git cma"
 alias gcmap="git cmap"
 alias gco="git checkout"

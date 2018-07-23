@@ -39,7 +39,7 @@ set smartcase                                " Automatically switch search to ca
 set infercase                                "
 set incsearch                                " Highlight matches as you type.
 set hlsearch                                 " Highlight matches.
-set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,.sass-cache,*.class
+set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,.sass-cache,*.class,node_modules
 set path+=**                                 " search down into subfolders
 
 set nostartofline

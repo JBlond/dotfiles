@@ -40,6 +40,7 @@ set infercase                                "
 set incsearch                                " Highlight matches as you type.
 set hlsearch                                 " Highlight matches.
 set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,.sass-cache,*.class
+set path+=**                                 " search down into subfolders
 
 set nostartofline
 set showmatch                                " Show matching brackets.
@@ -54,10 +55,10 @@ set directory=~/.vim/swaps                   " Local dirs (centralize everything
 map <C-n> :bnext<CR>                         " move among buffers with CTRL + n
 
 let g:lightline = {
-			\ 'active': {
-			\   'left': [ [ 'mode', 'paste' ],
-			\             [ 'readonly', 'filename', 'modified' ] ]
-			\ },
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'readonly', 'filename', 'modified' ] ]
+    \ },
 \ }
 
 execute pathogen#infect()

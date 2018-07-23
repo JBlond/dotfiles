@@ -56,13 +56,9 @@ map <C-n> :bnext<CR>                         " move among buffers with CTRL + n
 let g:lightline = {
 			\ 'active': {
 			\   'left': [ [ 'mode', 'paste' ],
-			\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-			\ },
-			\ 'component_function': {
-			\   'gitbranch': 'fugitive#head'
+			\             [ 'readonly', 'filename', 'modified' ] ]
 			\ },
 \ }
-
 
 execute pathogen#infect()
 filetype plugin indent on

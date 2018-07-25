@@ -57,7 +57,8 @@ map <C-n> :bnext<CR>                         " move among buffers with CTRL + n
 let g:lightline = {
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'filename', 'modified' ] ]
+    \             [ 'readonly', 'filename', 'modified' ] 
+    \           ]
     \ },
 \ }
 

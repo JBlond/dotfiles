@@ -6,11 +6,11 @@ rm -f $HOME/.nanorc
 rm -f $HOME/.profile
 rm -f $HOME/.inputrc
 rm -rf $HOME/.vim
+rm -f $HOME/.tmux.conf
 if [[ "$OSTYPE" != "msys" ]]; then
-	rm -f $HOME/.tmux.conf
 	cp -r ./config ~/.config
-	ln $HOME/dotfiles/home/tmux.conf $HOME/.tmux.conf
-fi	
+fi
+ln $HOME/dotfiles/home/tmux.conf $HOME/.tmux.conf
 ln $HOME/dotfiles/home/bash_logout $HOME/.bash_logout
 ln $HOME/dotfiles/home/bashrc $HOME/.bashrc
 ln $HOME/dotfiles/git/gitconfig $HOME/.gitconfig
@@ -21,5 +21,5 @@ ln -s $HOME/dotfiles/vim $HOME/.vim
 if [[ "$OSTYPE" == "msys" ]]; then
 	rm -f $HOME/.minttyrc
 	ln $HOME/dotfiles/home/minttyrc $HOME/.minttyrc
-fi	
+fi
 source ~/.bashrc

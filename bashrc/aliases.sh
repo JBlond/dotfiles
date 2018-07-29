@@ -73,10 +73,8 @@ fi
 
 #############
 # git aliases
-alias g="git"
-
-source /usr/share/bash-completion/completions/git
-complete -o default -o nospace -F _git g
+source ~/dotfiles/git/complete
+complete -o default -o nospace -F _git git
 
 alias gcl="git clone"
 alias gcma="git cma"

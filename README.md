@@ -1,5 +1,7 @@
 # dotfiles
 
+I use my dotfiles on bash from git for windows, debian bash, ubuntu bash.
+
 ## bash
 ```
 jblond@linux:~/dotfiles
@@ -35,6 +37,9 @@ jblond@linux:~
 - n✗ = n deleted files
 - [▲n] = n steps ahead of remote
 - [▼n] = n steps behind remote
+
+### ssh / remote session
+<span style="color:red">ssh://</span><span style="color:blue">proapp</span><span style="color:green">@seminapp</span>:🏠
  
 ## install
 

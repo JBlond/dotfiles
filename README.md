@@ -61,5 +61,17 @@ On Linux you can also use *make* to install it. Run *make* without any parameter
 - git-prompt.sh have a nice prompt inside git repos
 
 ## tmux
-- You can use nested tmux. Turn off/on the parent tmux with F12 key.
-- CRTL + B + m = toogle mouse on and off
+With this tmux config you can use nested sessions.
+
+### keys
+- `F1` new window
+- `F2` next window
+- `F3` previous window
+- `F11` toogle mouse on and off
+- `F12` Turn off/on the parent tmux in nested tmux. 
+- `CTRL + B` `|` split window vertical
+- `CTRL + B` `-` split window horizontal
+- `CTRL + B` `S` Toggle pane synchronization
+- `CTRL + B` `R` Reload condig
+- `CTRL + B` `$` rename session
+- `CTRL + B` `,` rename window

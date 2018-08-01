@@ -39,7 +39,7 @@ jblond@linux:~
 - [▼n] = n steps behind remote
 
 ### ssh / remote session
-![#f03c15]ssh://</span><span style="color:blue">proapp</span><span style="color:green">@seminapp</span>:🏠
+ssh://user@host:🏠
  
 ## install
 

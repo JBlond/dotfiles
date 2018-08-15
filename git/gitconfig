@@ -32,6 +32,7 @@
 	master = checkout master
 	name = config user.name
 	new-branch = checkout -b
+	patch = !git --no-pager diff --no-color
 	remotes = remote -v
 	remove-ignored = clean -fX
 	rename = mv

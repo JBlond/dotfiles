@@ -72,11 +72,18 @@ With this tmux config you can use nested sessions.
 - `F1` new window
 - `F2` next window
 - `F3` previous window
-- `F11` toogle mouse on and off
+- `F4` Close window and its panes. The last window closes tmux, too.
+- `F11` Toogle mouse on and off
 - `F12` Turn off/on the parent tmux in nested tmux. 
-- `CTRL + B` `|` split window vertical
-- `CTRL + B` `-` split window horizontal
+- `CTRL + B` `|` Split window vertical
+- `CTRL + B` `-` Split window horizontal
 - `CTRL + B` `S` Toggle pane synchronization
-- `CTRL + B` `R` Reload condig
-- `CTRL + B` `$` rename session
-- `CTRL + B` `,` rename window
+- `CTRL + B` `Spacebar` Toggle between pane layouts
+- `CTRL + B` `r` Reload config
+- `CTRL + B` `$` Rename session
+- `CTRL + B` `,` Rename window
+- `CTRL + B` `z` Zoom into pane or window / zoom out
+- `CTRL + B` `w` List sessions and windows
+- `CTRL + B` `d` Detach from session
+- `CTRL + B` `&` Close current window
+- `CTRL + B` `q` Number all windows and panes

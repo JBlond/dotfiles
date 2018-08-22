@@ -73,6 +73,8 @@ With this tmux config you can use nested sessions.
 - `F2` next window
 - `F3` previous window
 - `F4` Close window and its panes. The last window closes tmux, too.
+- `F5` Reload config
+- `F6` Toogle status bar on and off
 - `F11` Toogle mouse on and off
 - `F12` Turn off/on the parent tmux in nested tmux. 
 - `CTRL + B` `|` Split window vertical

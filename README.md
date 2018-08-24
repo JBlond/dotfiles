@@ -89,3 +89,4 @@ With this tmux config you can use nested sessions.
 - `CTRL + B` `d` Detach from session
 - `CTRL + B` `&` Close current window
 - `CTRL + B` `q` Number all windows and panes
+- `CTRL + B` `Crtl + v` paste

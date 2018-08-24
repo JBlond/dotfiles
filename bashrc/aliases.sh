@@ -88,3 +88,7 @@ alias glc="git diff @~..@"
 alias glg="git lg"
 alias gst="git status -sb"
 alias gsu="git submodule update --recursive --remote"
+
+# tmux
+alias tvo="tmux new vim"
+alias tov="tmux new vim"

@@ -17,6 +17,8 @@ alias dfh='df -kTh'
 alias dus='du -hs * | sort -h'
 alias dush='du . -sh'
 
+alias mkdir='mkdir -p'
+
 alias ..='cd ..'
 alias cd..='cd ..'
 

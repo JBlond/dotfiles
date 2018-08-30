@@ -6,26 +6,26 @@ I use my dotfiles on bash from git for windows, debian bash, ubuntu bash.
 ```
 jblond@linux:~/dotfiles
 (master)[▼2] ✓
-⽕ 
+λ
 jblond@linux:~/dotfiles
 (master)[▼2] ✓
-⽕ git pull
+λ git pull
 jblond@linux:~/dotfiles
 (master) ✓
 jblond@linux:~/dotfiles
 (master) 1⬤ 4Ξ 1✗ 1⚡⚡
-⽕ git commit -a -m "my commit" 
+λ git commit -a -m "my commit"
 jblond@linux:~/dotfiles
 (master)[▲1] ✓
-⽕ git push
+λ git push
 jblond@linux:~/dotfiles
 (master) ✓
-⽕
+λ
 jblond@linux:~/dotfiles
 (master) ✓
-⽕ ..
+λ ..
 jblond@linux:~
-⽕ 
+λ
 
 ```
 
@@ -40,7 +40,7 @@ jblond@linux:~
 
 ### ssh / remote session
 ssh://user@host:🏠
- 
+
 ## install
 
 ```bash
@@ -76,7 +76,7 @@ With this tmux config you can use nested sessions.
 - `F5` Reload config
 - `F6` Toogle status bar on and off
 - `F11` Toogle mouse on and off
-- `F12` Turn off/on the parent tmux in nested tmux. 
+- `F12` Turn off/on the parent tmux in nested tmux.
 - `CTRL + B` `|` Split window vertical
 - `CTRL + B` `-` Split window horizontal
 - `CTRL + B` `S` Toggle pane synchronization

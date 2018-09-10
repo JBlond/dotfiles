@@ -20,3 +20,4 @@ install:
 update:
 	@git pull origin master
 	@git pull --recurse-submodules
+	@make install

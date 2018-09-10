@@ -76,7 +76,7 @@ With this tmux config you can use nested sessions.
 - `F5` Reload config
 - `F6` Toogle status bar on and off
 - `F11` Toogle mouse on and off
-- `F12` Turn off/on the parent tmux in nested tmux.
+- `F12` Turn off/on the parent tmux in nested tmux or for the use of a program like midnight commander (mc) that uses the F keys itself
 - `CTRL + B` `|` Split window vertical
 - `CTRL + B` `-` Split window horizontal
 - `CTRL + B` `S` Toggle pane synchronization
@@ -90,3 +90,11 @@ With this tmux config you can use nested sessions.
 - `CTRL + B` `&` Close current window
 - `CTRL + B` `q` Number all windows and panes
 - `CTRL + B` `Crtl + v` paste
+
+Included is
+- Tmux Plugin Manager
+- Tmux resurrect
+
+Running Tmux for the first time press CTRL + B` `I` to install the plugins.
+- `CTRL + B` `CTRL + s` saves the current environment
+- `CTRL + B` `CTRL + r` restores the previous saved environment

@@ -95,6 +95,6 @@ Included is
 - Tmux Plugin Manager
 - Tmux resurrect
 
-Running Tmux for the first time press CTRL + B` `I` to install the plugins.
+Running Tmux for the first time press `CTRL + B` `I` to install the plugins.
 - `CTRL + B` `CTRL + s` saves the current environment
 - `CTRL + B` `CTRL + r` restores the previous saved environment

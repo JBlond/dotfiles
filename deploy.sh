@@ -23,6 +23,8 @@ if [[ "$OSTYPE" == "msys" ]]; then
 	ln $HOME/dotfiles/home/minttyrc $HOME/.minttyrc
 fi
 
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+if [[ ! -d ~/.tmux/plugins/tpm ]]; then
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 source ~/.bashrc

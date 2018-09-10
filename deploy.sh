@@ -22,4 +22,7 @@ if [[ "$OSTYPE" == "msys" ]]; then
 	rm -f $HOME/.minttyrc
 	ln $HOME/dotfiles/home/minttyrc $HOME/.minttyrc
 fi
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 source ~/.bashrc

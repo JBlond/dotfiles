@@ -18,6 +18,7 @@ set cursorline                               " Highlight current line
 set tabstop=4                                " tabstop length 4
 set shiftwidth=4                             "
 set autoindent                               " enable autoindent
+set smartindent                              " enable smart indent
 set copyindent                               "
 set shortmess=atI                            " Don't show the intro message when starting vim
 set noshowmode                               " done by plugin https://github.com/itchyny/lightline.vim

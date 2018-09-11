@@ -98,3 +98,15 @@ Included is
 Running Tmux for the first time press `CTRL + B` `I` to install the plugins.
 - `CTRL + B` `CTRL + s` saves the current environment
 - `CTRL + B` `CTRL + r` restores the previous saved environment
+
+### Sharing Terminal Sessions Between Two Different Accounts
+In the first terminal, start tmux where shared is the session name and shareds is the name of the socket:
+
+`tmux -S /tmp/shareds new -s shared`
+
+In the second terminal attach using that socket and session.
+
+`tmux -S /tmp/shareds attach -t shared`
+
+The decision to work read-only is made when the second user attaches to the session.
+`tmux -S /tmp/shareds attach -t shared -r`

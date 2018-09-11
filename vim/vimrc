@@ -18,7 +18,7 @@ set cursorline                               " Highlight current line
 set tabstop=4                                " tabstop length 4
 set shiftwidth=4                             "
 set autoindent                               " enable autoindent
-set copyindent                               " 
+set copyindent                               "
 set shortmess=atI                            " Don't show the intro message when starting vim
 set noshowmode                               " done by plugin https://github.com/itchyny/lightline.vim
 set wildmenu                                 " Enhanced command line completion.
@@ -46,8 +46,7 @@ set nostartofline
 set showmatch                                " Show matching brackets.
 set matchtime=2                              " How many tenths of a second to blink
 set list                                     " show tab and trail
-set listchars=tab:»»,trail:.,extends:>,precedes:<
-
+set listchars=tab:»»,trail:·,extends:>,precedes:<,eol:↲
 
 set directory=~/.vim/swaps                   " Local dirs (centralize everything)
 
@@ -57,16 +56,13 @@ map <C-n> :bnext<CR>                         " move among buffers with CTRL + n
 let g:lightline = {
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'filename', 'modified' ] 
+    \             [ 'readonly', 'filename', 'modified' ]
     \           ]
     \ },
 \ }
 
 execute pathogen#infect()
 filetype plugin indent on
-
-let g:calendar_google_calendar = 1
-let g:calendar_google_task = 0
 
 let g:netrw_liststyle=3                      " tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()

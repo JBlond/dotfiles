@@ -10,6 +10,7 @@
 	cm = commit
 	cma = commit -a -m
 	cmap = "!f() { git commit -a -m \"$@\" && git push; }; f"
+	cmapu = "!f() { git commit -a -m \"update\" && git push; }; f"
 	co = checkout
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"

@@ -1,4 +1,27 @@
 set tabsize 4
+
+set autoindent
+
+# Allow inserting files into their own buffers.
+set multibuffer
+
+# Don’t wrap text at all.
+set nowrap
+
+# When justifying text, trailing whitespace will automatically be removed.
+set justifytrim
+
+# Display line numbers to the left of the text area.
+# if that doesn't work use ALT+#
+set linenumbers
+
+set whitespace "»·"
+
+# Text will scroll line-by-line, instead of the usual chunk-by-chunk behavior.
+set smooth
+
+set morespace
+
 syntax "php" "\.php[2345s~]?$"
 color brightblue start="<\?(php)?" end="\?>"
 color blue start="<[^\?]" end="[^\?]>"

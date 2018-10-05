@@ -95,3 +95,6 @@ alias gsu="git submodule update --recursive --remote"
 alias tvo="tmux new vim"
 alias tov="tmux new vim"
 alias tm="tmux a -t main || tmux new -s main"
+
+#vagrant
+alias vagrant="vagrant --color"

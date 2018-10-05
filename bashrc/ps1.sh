@@ -1,3 +1,25 @@
+__has_parent_dir () {
+	# Utility function so we can test for things like .git/.hg without firing up a
+	# separate process
+	test -d "$1" && return 0;
+
+	current="."
+	while [ ! "$current" -ef "$current/.." ]; do
+		if [ -d "$current/$1" ]; then
+			return 0;
+		fi
+		current="$current/..";
+	done
+
+	return 1;
+}
+
+__vcs_name() {
+	if __has_parent_dir ".git"; then
+		echo "$(__git_ps1 '\n(%s)')";
+	fi
+}
+
 set_prompt () {
 	local last_command=$?  # Must come first!
 	PS1=""
@@ -46,7 +68,7 @@ set_prompt () {
 		PS1+='\[\033[1;31m\]⊘'
 	fi	
 	PS1+='\[\033[36m\]'
-	PS1+='`__git_ps1`'
+	PS1+='`__vcs_name`'
 	if [[ "$OSTYPE" == "linux-gnu" ]]; then
 		# very slow on cygwin and msys
 		PS1+='`find_git_commit_diff`'
@@ -57,7 +79,7 @@ set_prompt () {
 	
 	# have pwd in the title on term
 	case $TERM in
-    	xterm*)
+		xterm*)
 			echo -en "\033]0;${PWD}\007"
 			;;
 		*)

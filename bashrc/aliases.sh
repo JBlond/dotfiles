@@ -2,7 +2,7 @@
 eval "`dircolors -b`"
 alias ls='ls --color=auto --group-directories-first'
 if [[ "$OSTYPE" == "FreeBSD" ]]; then
-	alias ls='ls -G --group-directories-first'
+	alias ls='ls -G'
 fi
 alias dir='ls --color=auto --format=vertical'
 

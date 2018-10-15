@@ -1,3 +1,7 @@
+function sst()  {
+	ssh -t $@ "tmux attach || tmux";
+}
+
 _complete_ssh_hosts () {
 	COMPREPLY=()
 	cur="${COMP_WORDS[COMP_CWORD]}"
@@ -15,3 +19,4 @@ _complete_ssh_hosts () {
 	return 0
 }
 complete -F _complete_ssh_hosts ssh
+complete -F _complete_ssh_hosts sst

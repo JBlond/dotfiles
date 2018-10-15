@@ -85,6 +85,7 @@ With this tmux config you can use nested sessions.
 - `CTRL + B` `$` Rename session
 - `CTRL + B` `,` Rename window
 - `CTRL + B` `z` Zoom into pane or window / zoom out
+- `CTRL + B` `PageUp` or `PageDown` Scrolling
 - `CTRL + B` `w` List sessions and windows
 - `CTRL + B` `d` Detach from session
 - `CTRL + B` `&` Close current window

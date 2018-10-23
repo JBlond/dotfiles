@@ -111,3 +111,15 @@ In the second terminal attach using that socket and session.
 
 The decision to work read-only is made when the second user attaches to the session.
 `tmux -S /tmp/shareds attach -t shared -r`
+
+### Split in three equal panes
+
+`CTRL + B` `|`
+`CTRL + B` `|`
+`CTRL + B` `:` `select-layout even-horizontal`
+
+#### or 
+
+`CTRL + B` `-`
+`CTRL + B` `-`
+`CTRL + B` `:` `select-layout even-vertical`

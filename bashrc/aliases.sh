@@ -39,7 +39,7 @@ alias upgrade='sudo apt dist-upgrade'
 alias bashrc='source ~/.bashrc'
 alias dotfiles='cd ~/dotfiles'
 
-alias nano='nano -wc'
+alias nano='nano -wcz'
 alias more='less'
 
 alias rmf='rm -rf'

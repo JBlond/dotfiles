@@ -123,3 +123,7 @@ The decision to work read-only is made when the second user attaches to the sess
 `CTRL + B` `-`
 `CTRL + B` `-`
 `CTRL + B` `:` `select-layout even-vertical`
+
+###
+
+`CTRL + B` `:` `tmux select-layout tiled`

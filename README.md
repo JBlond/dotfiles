@@ -93,6 +93,9 @@ With this tmux config you can use nested sessions.
 - `CTRL + B` `q` Number all windows and panes
 - `CTRL + B` `Crtl + v` paste
 
+
+Switch panes using Alt-arrow without prefix
+
 Included is
 - Tmux Plugin Manager
 - Tmux resurrect

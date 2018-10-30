@@ -80,6 +80,7 @@ With this tmux config you can use nested sessions.
 - `CTRL + B` `|` Split window vertical
 - `CTRL + B` `-` Split window horizontal
 - `CTRL + B` `S` Toggle pane synchronization
+- `CTRL + B` `!` Pane to window
 - `CTRL + B` `Spacebar` Toggle between pane layouts
 - `CTRL + B` `r` Reload config
 - `CTRL + B` `$` Rename session

@@ -104,4 +104,4 @@ alias tm="tmux a -t main || tmux new -s main"
 #vagrant
 alias vagrant="vagrant --color"
 
-alias cls='tput reset'
+alias cls='clear && tput reset'

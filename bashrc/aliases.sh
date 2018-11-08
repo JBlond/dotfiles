@@ -76,6 +76,24 @@ if [[ "$OSTYPE" == "msys" ]]; then
 	alias lock="rundll32.exe user32.dll,LockWorkStation"
 else
 	alias apache='sudo /opt/apache2/bin/httpd'
+	
+	# A less excessive, yet still very, very useful current-user-focused ps command.
+	if [ -x /bin/ps ]; then
+		alias pss='/bin/ps -faxc -U $UID -o pid,uid,gid,pcpu,pmem,stat,comm'
+	fi
+fi
+
+# Get and display the distribution type. (original base first)
+if [ -f /etc/os-release -a -r /etc/os-release ]; then
+	alias distro='\
+		while read -a X; do
+			if [[ "${X[0]}" == ID_LIKE=* ]]; then
+				echo "${X[0]/*=}"; break
+			elif [[ "${X[0]}" == ID=* ]]; then
+				echo "${X[0]/*=}"; break
+			fi
+		done < /etc/os-release
+	'
 fi
 
 #############

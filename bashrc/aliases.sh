@@ -101,7 +101,7 @@ fi
 source ~/dotfiles/git/complete
 complete -o default -o nospace -F _git git
 
-aĺias gbr="git branch"
+alias gbr="git branch"
 alias gcl="git clone"
 alias gcma="git cma"
 alias gcmap="git cmap"

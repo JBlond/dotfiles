@@ -101,6 +101,7 @@ fi
 source ~/dotfiles/git/complete
 complete -o default -o nospace -F _git git
 
+aĺias gbr="git branch"
 alias gcl="git clone"
 alias gcma="git cma"
 alias gcmap="git cmap"
@@ -109,8 +110,11 @@ alias gd="git diff"
 alias gdiff="git diff"
 alias ggc="git gc"
 alias gh='cd "$(git rev-parse --show-toplevel)"'
+alias gl="git lg"
 alias glc="git diff @~..@"
-alias glg="git lg"
+alias gm="git checkout master"
+alias gp="git pull"
+alias gr="git remote -v"
 alias gst="git status -sb"
 alias gsu="git submodule update --recursive --remote"
 

@@ -102,7 +102,8 @@ source ~/dotfiles/git/complete
 complete -o default -o nospace -F _git git
 
 alias gbr="git branch"
-alias gcl="git clone"
+alias gcfg="git config --list"
+alias gcl="git clone --recurse-submodules"
 alias gcma="git cma"
 alias gcmap="git cmap"
 alias gco="git checkout"
@@ -114,6 +115,7 @@ alias gl="git lg"
 alias glc="git diff @~..@"
 alias gm="git checkout master"
 alias gp="git pull"
+alias gpo="git push origin"
 alias gr="git remote -v"
 alias gst="git status -sb"
 alias gsu="git submodule update --recursive --remote"

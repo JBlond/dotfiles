@@ -41,6 +41,7 @@ alias dotfiles='cd ~/dotfiles'
 
 alias nano='nano -wcz'
 alias more='less'
+alias svim='sudo vim'
 
 alias rmf='rm -rf'
 

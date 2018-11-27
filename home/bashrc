@@ -1,17 +1,17 @@
-source ~/dotfiles/bashrc/path.sh
+source ~/dotfiles/bashrc/00_path.sh
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-source ~/dotfiles/bashrc/history.sh
-source ~/dotfiles/bashrc/terminal_options.sh
-source ~/dotfiles/bashrc/less.sh
-source ~/dotfiles/bashrc/_docker.sh
-source ~/dotfiles/bashrc/aliases.sh
-source ~/dotfiles/bashrc/bash_completion.sh
-source ~/dotfiles/bashrc/complete_ssh_hosts.sh
-source ~/dotfiles/bashrc/functions.sh
-source ~/dotfiles/bashrc/git_functions.sh
-source ~/dotfiles/bashrc/git_prompt.sh
-source ~/dotfiles/bashrc/ps1.sh
-source ~/dotfiles/bashrc/lscolors.sh
+source ~/dotfiles/bashrc/01_history.sh
+source ~/dotfiles/bashrc/02_terminal_options.sh
+source ~/dotfiles/bashrc/03_less.sh
+source ~/dotfiles/bashrc/04_docker.sh
+source ~/dotfiles/bashrc/05_aliases.sh
+source ~/dotfiles/bashrc/06_bash_completion.sh
+source ~/dotfiles/bashrc/07_complete_ssh_hosts.sh
+source ~/dotfiles/bashrc/08_functions.sh
+source ~/dotfiles/bashrc/09_git_functions.sh
+source ~/dotfiles/bashrc/10_git_prompt.sh
+source ~/dotfiles/bashrc/11_ps1.sh
+source ~/dotfiles/bashrc/12_lscolors.sh

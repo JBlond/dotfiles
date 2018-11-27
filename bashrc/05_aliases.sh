@@ -102,6 +102,7 @@ fi
 source ~/dotfiles/git/complete
 complete -o default -o nospace -F _git git
 
+alias ga="git add"
 alias gbr="git branch"
 alias gcfg="git config --list"
 alias gcl="git clone --recurse-submodules"

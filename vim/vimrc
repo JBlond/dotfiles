@@ -5,7 +5,6 @@ if has('win32') || has('win64')
 endif
 
 :set hidden                                  " allow buffer
-
 " set viminfo^=%                             " remember my buffers
 
 set encoding=utf-8                           " always use utf-8
@@ -52,15 +51,40 @@ set listchars=tab:»»,trail:·,extends:>,precedes:<,eol:↲
 set directory=~/.vim/swaps                   " Local dirs (centralize everything)
 
 
-map <C-n> :bnext<CR>                         " move among buffers with CTRL + n
+map <C-p> :bprevious<CR>                     " move among buffers with CTRL + p (previous)
+map <C-n> :bnext<CR>                         " move among buffers with CTRL + n (next)
+
+let g:bufferline_echo = 0
 
 let g:lightline = {
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'filename', 'modified' ]
+    \             [ 'readonly', 'modified' ], ['bufferline']
     \           ]
     \ },
+    \ 'component_function': {
+        \   'bufferline': 'MyBufferline'
+    \ }
 \ }
+
+function! MyBufferline()
+    call bufferline#refresh_status()
+    let b = g:bufferline_status_info.before
+    let c = g:bufferline_status_info.current
+    let a = g:bufferline_status_info.after
+    let alen = strlen(a)
+    let blen = strlen(b)
+    let clen = strlen(c)
+    let w = winwidth(0) * 4 / 11
+    if w < alen+blen+clen
+        let whalf = (w - strlen(c)) / 2
+        let aa = alen > whalf && blen > whalf ? a[:whalf] : alen + blen < w - clen || alen < whalf ? a : a[:(w - clen - blen)]
+        let bb = alen > whalf && blen > whalf ? b[-(whalf):] : alen + blen < w - clen || blen < whalf ? b : b[-(w - clen - alen):]
+        return (strlen(bb) < strlen(b) ? '...' : '') . bb . c . aa . (strlen(aa) < strlen(a) ? '...' : '')
+    else
+        return b . c . a
+endif
+endfunction
 
 execute pathogen#infect()
 filetype plugin indent on

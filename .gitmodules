@@ -4,3 +4,6 @@
 [submodule "vim/bundle/vim-bufferline"]
 	path = vim/bundle/vim-bufferline
 	url = https://github.com/bling/vim-bufferline.git
+[submodule "vim/bundle/vim-gitbranch"]
+	path = vim/bundle/vim-gitbranch
+	url = https://github.com/itchyny/vim-gitbranch.git

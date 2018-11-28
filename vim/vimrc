@@ -59,11 +59,12 @@ let g:bufferline_echo = 0
 let g:lightline = {
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'modified' ], [ 'bufferline' ]
+    \             [ 'readonly', 'modified', 'gitbranch' ], [ 'bufferline' ]
     \           ]
     \ },
     \ 'component_function': {
-        \   'bufferline': 'MyBufferline'
+        \   'bufferline': 'MyBufferline',
+        \	'gitbranch': 'gitbranch#name'
     \ }
 \ }
 

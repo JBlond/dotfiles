@@ -8,6 +8,7 @@ With this tmux config you can use nested sessions.
 - `F4` Close window and its panes. The last window closes tmux, too.
 - `F5` Reload config
 - `F6` Toogle status bar on and off
+- `F7` New Session
 - `F8` Prefix instead of `CTRL + B`
 - `F11` Toogle mouse on and off
 - `F12` Turn off/on the parent tmux in nested tmux or for the use of a program like midnight commander (mc) that uses the F keys itself

@@ -59,7 +59,7 @@ let g:bufferline_echo = 0
 let g:lightline = {
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'modified' ], ['bufferline']
+    \             [ 'readonly', 'modified' ], [ 'bufferline' ]
     \           ]
     \ },
     \ 'component_function': {

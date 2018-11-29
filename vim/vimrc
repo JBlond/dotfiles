@@ -34,6 +34,7 @@ nnoremap <C-L> :nohl<CR><C-L>                " Map <C-L> (redraw screen) to also
 
 syntax on                                    " syntax highlighting on
 colorscheme monokai                          " my colorscheme
+
 set ignorecase                               " search case-insensitive
 set smartcase                                " Automatically switch search to case-sensitive when search query contains an uppercase letter.
 set infercase                                "
@@ -47,6 +48,9 @@ set showmatch                                " Show matching brackets.
 set matchtime=2                              " How many tenths of a second to blink
 set list                                     " show tab and trail
 set listchars=tab:»»,trail:·,extends:>,precedes:<,eol:↲
+
+" highlight ColorColumn ctermbg=yellow         " Show a line after 80 characters
+" call matchadd('ColorColumn', '\%81v', 100)
 
 set directory=~/.vim/swaps                   " Local dirs (centralize everything)
 

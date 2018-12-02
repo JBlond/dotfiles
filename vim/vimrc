@@ -58,6 +58,12 @@ set directory=~/.vim/swaps                   " Local dirs (centralize everything
 map <C-p> :bprevious<CR>                     " move among buffers with CTRL + p (previous)
 map <C-n> :bnext<CR>                         " move among buffers with CTRL + n (next)
 
+" short resize with + and -
+if bufwinnr(1)
+    map + <C-W>+
+    map - <C-W>-
+endif
+
 let g:bufferline_echo = 0
 
 let g:lightline = {

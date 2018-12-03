@@ -33,6 +33,7 @@ set pastetoggle=<F11>                        " Use <F11> to toggle between 'past
 nnoremap <C-L> :nohl<CR><C-L>                " Map <C-L> (redraw screen) to also turn off search highlighting until the next search
 
 syntax on                                    " syntax highlighting on
+set bg=dark                                  " Dark Background
 colorscheme monokai                          " my colorscheme
 
 set ignorecase                               " search case-insensitive

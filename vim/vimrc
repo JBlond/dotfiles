@@ -1,7 +1,7 @@
 set nocompatible
 
 if has('win32') || has('win64')
-        source $VIMRUNTIME/mswin.vim
+    source $VIMRUNTIME/mswin.vim
 endif
 
 :set hidden                                  " allow buffer

@@ -30,6 +30,10 @@ With this tmux config you can use nested sessions.
 
 
 Switch panes using Alt-arrow without prefix
+- `ALT + ➡️ ⬇️ ⬅️ ⬆️`
+
+Use SHIFT plus arrows to navigate between windows
+`SHIFT + ⬅️ ➡️`
 
 Included is
 - Tmux Plugin Manager

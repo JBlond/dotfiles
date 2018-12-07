@@ -83,7 +83,8 @@ set_prompt () {
 			echo -en "\033]0;${PWD}\007"
 			;;
 		*)
-	esac		
-			
+	esac
+
+	PS2="→"
 }
 PROMPT_COMMAND='set_prompt'

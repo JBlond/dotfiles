@@ -88,5 +88,5 @@ function bash_stats() {
 }
 
 function mk() {
-  mkdir -p "$@" && cd "$@"
+	mkdir -p "$@" && cd "$@"
 }

@@ -6,6 +6,9 @@ else
 	alias ls='ls --color=auto --group-directories-first'
 fi
 
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
 alias dir='ls --color=auto --format=vertical'
 
 alias ös='ls'
@@ -77,7 +80,7 @@ if [[ "$OSTYPE" == "msys" ]]; then
 	alias lock="rundll32.exe user32.dll,LockWorkStation"
 else
 	alias apache='sudo /opt/apache2/bin/httpd'
-	
+
 	# A less excessive, yet still very, very useful current-user-focused ps command.
 	if [ -x /bin/ps ]; then
 		alias pss='/bin/ps -faxc -U $UID -o pid,uid,gid,pcpu,pmem,stat,comm'

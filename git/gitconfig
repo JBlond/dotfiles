@@ -63,6 +63,7 @@
 	oldNormal = red bold
 
 [color "diff"]
+	colorMoved = zebra
 	commit = 227 bold
 	frag = magenta bold
 	meta = 227
@@ -83,7 +84,7 @@
 	trustctime = false
 
 [diff]
-	# tells Git to detect renames. If set to any boolean value, it will enable basic rename detection. 
+	# tells Git to detect renames. If set to any boolean value, it will enable basic rename detection.
 	# If set to "copies" or "copy", it will detect copies, as well.
 	renames = copies
 

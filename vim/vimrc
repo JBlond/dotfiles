@@ -106,3 +106,5 @@ let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 command W w !sudo tee % > /dev/null          " :W sudo saves the file (useful for handling the permission-denied error)
+
+autocmd BufNewFile,BufRead *.conf set syntax=apache

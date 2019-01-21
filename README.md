@@ -3,7 +3,8 @@
 I use my dotfiles on bash from git for windows, debian bash, ubuntu bash.
 
 ## bash
-```
+
+```BASH
 jblond@linux:~/dotfiles
 (master)[▼2] ✓
 λ
@@ -38,24 +39,31 @@ jblond@linux:~
 - [▲n] = n steps ahead of remote
 - [▼n] = n steps behind remote
 
+![shell1](assets/shell01.png)
+
+![shell2](assets/shell02.png)
+
+![shell3](assets/shell03.png)
+
 ### ssh / remote session
+
 ssh://user@host:🏠
 
 ## install
 
 [install](install.md)
 
-## scripts
+## Functions
 
-- aliases.sh a bunch from my favorite bash aliases including fuck command if I forgot to type *sudo* infront of a command
-- bash_completion.sh execute all bash completion available default from the system
-- complete_ssh_hosts.sh ssh example *TAB* reads the ~/.ssh/config file for host completion
-- deploy.sh deploy these files
-- diff-so-fancy fancy diff for git ( and others)
-- _docker.sh docker aliases + ssh into docker / docker exec completion. e.g. dssh example *TAB*
-- functions.sh wgets wget with Firefox header. extract for many archive formats
-- git_functions.sh part for simplify git.  an = add next git file dn = diff next file
-- git-prompt.sh have a nice prompt inside git repos
+- [goto](https://github.com/iridakos/goto)
+- bash completion
+- ssh completion  ssh example *TAB* reads the ~/.ssh/config file for host completion
+- [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) fancy diff for git ( and others)
+- docker aliases + ssh into docker / docker exec completion. e.g. dssh example *TAB*
+- git_functionspart for simplify git.  an = add next git file dn = diff next file
+- git-prompt have a nice prompt inside git repos
+- git aliases
 
 ## Tmux
+
 [tmux](tmux.md)

@@ -67,3 +67,5 @@ ssh://user@host:🏠
 ## Tmux
 
 [tmux](tmux.md)
+
+![shell4](assets/shell04.png)

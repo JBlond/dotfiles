@@ -1,5 +1,7 @@
 # tmux
 
+![shell4](assets/shell04.png)
+
 With this tmux config you can use nested sessions.
 
 ## Status line indicators

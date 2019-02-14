@@ -73,3 +73,4 @@ ssh://user@host:🏠
 [tmux](tmux.md)
 
 ![shell4](assets/shell04.png)
+![shell5](assets/vim-in-tmux.png)

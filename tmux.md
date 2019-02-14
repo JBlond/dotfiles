@@ -2,49 +2,56 @@
 With this tmux config you can use nested sessions.
 
 ## keys
-- `F1` new window
-- `F2` next window
-- `F3` previous window
-- `F4` Close window and its panes. The last window closes tmux, too.
-- `F5` Reload config
-- `F6` Toogle status bar on and off
-- `F7` New Session
-- `F8` detach
-- `F9` Rotate through different pre set layouts
-- `F11` Toogle mouse on and off
-- `F12` Turn off/on the parent tmux in nested tmux or for the use of a program like midnight commander (mc) that uses the F keys itself
-- `CTRL + B` `|` Split window vertical
-- `CTRL + B` `-` Split window horizontal
-- `CTRL + B` `S` Toggle pane synchronization
-- `CTRL + B` `!` Pane to window
-- `CTRL + B` `Spacebar` Toggle between pane layouts
-- `CTRL + B` `r` Reload config
-- `CTRL + B` `$` Rename session
-- `CTRL + B` `,` Rename window
-- `CTRL + B` `z` Zoom into pane or window / zoom out
-- `CTRL + B` `PageUp` or `PageDown` Scrolling
-- `CTRL + B` `w` List sessions and windows
-- `CTRL + B` `d` Detach from session
-- `CTRL + B` `&` Close current window
-- `CTRL + B` `q` Number all windows and panes
-- `CTRL + B` `Crtl + v` paste
 
+| tmux key  | Description |
+| ------------- | ------------- |
+| `F1`| new window |
+| `F2` | next window |
+| `F3` | previous window |
+| `F4` | Close window and its panes. The last window closes tmux, too. |
+| `F5` | Reload config |
+| `F6` | Toogle status bar on and off |
+| `F7` | New Session |
+| `F8` | detach |
+| `F9` | Rotate through different pre set layouts |
+| `F11` | Toogle mouse on and off |
+| `F12` | Turn off/on the parent tmux in nested tmux or for the use of a program like midnight commander (mc) that uses the F keys itself |
+| `CTRL + B` `|` | Split window vertical |
+| `CTRL + B` `-` | Split window horizontal |
+| `CTRL + B` `S` | Toggle pane synchronization |
+| `CTRL + B` `!` | Pane to window |
+| `CTRL + B` `Spacebar` | Toggle between pane layouts |
+| `CTRL + B` `r` | Reload config |
+| `CTRL + B` `$` | Rename session |
+| `CTRL + B` `,` | Rename window |
+| `CTRL + B` `z` | Zoom into pane or window / zoom out |
+| `CTRL + B` `PageUp` or `PageDown` | Scrolling |
+| `CTRL + B` `w` | List sessions and windows |
+| `CTRL + B` `d` | Detach from session |
+| `CTRL + B` `&` | Close current window |
+| `CTRL + B` `q` | Number all windows and panes |
+| `CTRL + B` `Crtl + v` | paste |
 
-Switch panes using Alt-arrow without prefix
+### Switch panes using Alt-arrow without prefix
+
 - `ALT + ➡️ ⬇️ ⬅️ ⬆️`
 
-Use SHIFT plus arrows to navigate between windows
+### Use SHIFT plus arrows to navigate between windows
+
 `SHIFT + ⬅️ ➡️`
 
 Included is
+
 - Tmux Plugin Manager
 - Tmux resurrect
 
 Running Tmux for the first time press `CTRL + B` `I` to install the plugins.
+
 - `CTRL + B` `CTRL + s` saves the current environment
 - `CTRL + B` `CTRL + r` restores the previous saved environment
 
 ## Sharing Terminal Sessions Between Two Different Accounts
+
 In the first terminal, start tmux where shared is the session name and shareds is the name of the socket:
 
 `tmux -S /tmp/shareds new -s shared`
@@ -62,7 +69,7 @@ The decision to work read-only is made when the second user attaches to the sess
 `CTRL + B` `|`
 `CTRL + B` `:` `select-layout even-horizontal`
 
-### or 
+### or
 
 `CTRL + B` `-`
 `CTRL + B` `-`

@@ -74,6 +74,7 @@ In the second terminal attach using that socket and session.
 `tmux -S /tmp/shareds attach -t shared`
 
 The decision to work read-only is made when the second user attaches to the session.
+
 `tmux -S /tmp/shareds attach -t shared -r`
 
 ## Split in three equal panes

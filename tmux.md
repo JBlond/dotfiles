@@ -7,7 +7,7 @@ With this tmux config you can use nested sessions.
 | tmux key  | Description |
 | ------------- | ------------- |
 | 🖰 | external mouse input enabled |
-| [OFF] | orefix and all F-Keys are disabled for tmux |
+| [OFF] | prefix and all F-Keys are disabled for tmux |
 | ⌨ | Prefix entered |
 | 🔔 | Bell |
 | 🔍 | Zoom in current pane |

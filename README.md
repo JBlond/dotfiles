@@ -4,6 +4,8 @@ I use my dotfiles on bash from git for windows, debian bash, ubuntu bash.
 
 ## bash
 
+[bash functions](bash.md)
+
 ```BASH
 jblond@linux:~/dotfiles
 (master)[▼2] ✓
@@ -38,6 +40,8 @@ jblond@linux:~
 - n✗ = n deleted files
 - [▲n] = n steps ahead of remote
 - [▼n] = n steps behind remote
+
+[git alias](git.md)
 
 ![shell1](assets/shell01.png)
 

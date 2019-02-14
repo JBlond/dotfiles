@@ -1,5 +1,16 @@
 # tmux
+
 With this tmux config you can use nested sessions.
+
+## Status line indicators
+
+| tmux key  | Description |
+| ------------- | ------------- |
+| 🖰 | external mouse input enabled |
+| [OFF] | orefix and all F-Keys are disabled for tmux |
+| ⌨ | Prefix entered |
+| 🔔 | Bell |
+| 🔍 | Zoom in current pane |
 
 ## keys
 
@@ -15,7 +26,7 @@ With this tmux config you can use nested sessions.
 | `F8` | detach |
 | `F9` | Rotate through different pre set layouts |
 | `F11` | Toogle mouse on and off |
-| `F12` | Turn off/on the parent tmux in nested tmux or for the use of a program like midnight commander (mc) that uses the F keys itself |
+| `F12` | Turn off/on the parent **tmux in nested tmux** or for the use of a program like midnight commander (mc) that uses the F keys itself |
 | `CTRL + B` `|` | Split window vertical |
 | `CTRL + B` `-` | Split window horizontal |
 | `CTRL + B` `S` | Toggle pane synchronization |

@@ -376,7 +376,7 @@ __git_ps1 ()
 		if [[ $gitstring = "master" ]] || [[ $gitstring = "BARE:master"  ]]; then
 			printf -- "$printf_format" "♆ $gitstring"
 		else
-			#branch name with ♆ 🌿
+			#branch name with ♆ 🌿 ☈
 			printf -- "$printf_format" "♆ $gitstring"
 		fi
 	fi

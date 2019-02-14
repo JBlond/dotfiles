@@ -65,8 +65,9 @@ set_prompt () {
 	fi
 	PS1+=':\[\033[01;34m\]$where\[\033[00m\]'
 	if [ ! -w "$PWD" ]; then
-		PS1+='\[\033[1;31m\]⊘'
-	fi	
+		# ⛔ ⊘
+		PS1+='\[\033[1;31m\]⛔'
+	fi
 	PS1+='\[\033[36m\]'
 	PS1+='`__vcs_name`'
 	if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -76,7 +77,7 @@ set_prompt () {
 	fi
 
 	PS1+="\[\033[0;31m\]\n${bold}λ${normal}\[\033[0m\] "
-	
+
 	# have pwd in the title on term
 	case $TERM in
 		xterm*)

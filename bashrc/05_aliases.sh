@@ -100,6 +100,11 @@ if [ -f /etc/os-release -a -r /etc/os-release ]; then
 	'
 fi
 
+alias cls='clear && tput reset'
+
+# php
+alias composer='composer --ansi'
+
 #############
 # git aliases
 source ~/dotfiles/git/complete
@@ -135,5 +140,3 @@ alias tm="tmux a -t main || tmux new -s main"
 
 #vagrant
 alias vagrant="vagrant --color"
-
-alias cls='clear && tput reset'

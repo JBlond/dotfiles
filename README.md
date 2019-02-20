@@ -40,7 +40,6 @@ jblond@linux:~
 - n✗ = n deleted files
 - [▲n] = n steps ahead of remote
 - [▼n] = n steps behind remote
-
 [git alias](git.md)
 
 ![shell1](assets/shell01.png)
@@ -66,7 +65,7 @@ ssh://user@host:🏠
 - docker aliases + ssh into docker / docker exec completion. e.g. dssh example *TAB*
 - git_functionspart for simplify git.  an = add next git file dn = diff next file
 - git-prompt have a nice prompt inside git repos
-- [git aliases](git/gitconfig#L1-L56)
+- [git alias](git.md)
 
 ## Tmux
 

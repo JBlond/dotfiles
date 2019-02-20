@@ -66,7 +66,7 @@ ssh://user@host:🏠
 - docker aliases + ssh into docker / docker exec completion. e.g. dssh example *TAB*
 - git_functionspart for simplify git.  an = add next git file dn = diff next file
 - git-prompt have a nice prompt inside git repos
-- git aliases
+- [git aliases](git/gitconfig#L1-L56)
 
 ## Tmux
 

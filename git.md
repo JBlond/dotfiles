@@ -26,3 +26,7 @@
 | `gr` | `git remote -v` |
 | `gst` | `git status -sb` |
 | `gsu` | `git submodule update --recursive --remote` |
+
+## native aliases
+
+See [git aliases](git/gitconfig#L1-L56)

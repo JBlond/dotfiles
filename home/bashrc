@@ -16,3 +16,4 @@ source ~/dotfiles/bashrc/10_git_prompt.sh
 source ~/dotfiles/bashrc/11_ps1.sh
 source ~/dotfiles/bashrc/12_lscolors.sh
 source ~/dotfiles/bashrc/13_goto.sh
+# source ~/dotfiles/bashrc/14_tmux_at_login.sh

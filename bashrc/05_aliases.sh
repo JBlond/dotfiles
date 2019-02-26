@@ -64,6 +64,8 @@ alias download="curl -LO "
 
 alias own='sudo chown -R ${USER:=$(/usr/bin/id -run)}:$USER'
 alias fuck='sudo $(history -p \!\!) && echo "( ︶︿︶)_╭∩╮"'
+alias systemctl="sudo systemctl"
+
 alias shit="echo 💩"
 alias :D="echo ツ"
 alias dontcare='echo ¯\\_\(ツ\)_/¯'

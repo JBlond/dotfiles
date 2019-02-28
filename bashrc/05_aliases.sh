@@ -38,6 +38,12 @@ alias egrep='egrep --color=auto --exclude-dir="node_modules"'
 alias update='sudo apt update'
 alias list='sudo apt list --upgradable'
 alias upgrade='sudo apt dist-upgrade'
+alias journalctl='sudo journalctl'
+alias systemctl='sudo systemctl'
+alias sc='sudo systemctl'
+
+alias own='sudo chown -R ${USER:=$(/usr/bin/id -run)}:$USER'
+alias fuck='sudo $(history -p \!\!) && echo "( ︶︿︶)_╭∩╮"'
 
 alias bashrc='source ~/.bashrc'
 alias dotfiles='cd ~/dotfiles'
@@ -61,11 +67,6 @@ alias wttr='curl -L wttr.in/?lang=de'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 alias download="curl -LO "
-
-alias own='sudo chown -R ${USER:=$(/usr/bin/id -run)}:$USER'
-alias fuck='sudo $(history -p \!\!) && echo "( ︶︿︶)_╭∩╮"'
-alias journalctl='sudo journalctl'
-alias systemctl='sudo systemctl'
 
 alias shit="echo 💩"
 alias :D="echo ツ"

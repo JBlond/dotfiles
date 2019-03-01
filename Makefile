@@ -4,6 +4,8 @@ help:
 	@echo "                    you should run this once in the begining"
 	@echo "                    otherwise you may overwrite the backup"
 	@echo ""
+	@echo " make continuum     install tmux continuum plugin"
+	@echo ""
 	@echo " make install       run the deploy script"
 	@echo ""
 	@echo " make update        update source with the last version from github"
@@ -12,6 +14,9 @@ help:
 backup:
 	@test -f $(HOME)/.bashrc.ORIGINAL && echo "Backup already exists!" || echo -n ""
 	@test ! -f $(HOME)/.bashrc || cp $(HOME)/.bashrc $(HOME)/.bashrc.ORIGINAL
+
+continuum:
+	@git clone https://github.com/tmux-plugins/tmux-continuum.git ~/.tmux/plugins/tmux-continuum
 
 install:
 	@./deploy.sh

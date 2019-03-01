@@ -1,3 +1,4 @@
+#/bin/bash
 if [[ "$OSTYPE" == "msys" ]]; then
 	cd $TMP
 	rm -rf *

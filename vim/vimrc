@@ -8,6 +8,7 @@ endif
 " set viminfo^=%                             " remember my buffers
 
 set encoding=utf-8                           " always use utf-8
+set ambiwidth=double                         " Use twice the width of ASCII characters.
 set ruler                                    " Always show cursor position.
 set nu                                       " Show line numbers on the sidebar.
 set nowrap                                   " no wrapping

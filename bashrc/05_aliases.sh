@@ -127,6 +127,7 @@ alias ggc="git gc"
 alias gh='cd "$(git rev-parse --show-toplevel)"'
 alias gi="git init"
 alias gib="git init --bare"
+alias gitu="git cmapu"
 alias gl="git lg"
 alias glc="git diff @~..@"
 alias gm="git checkout master"

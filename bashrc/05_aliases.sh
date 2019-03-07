@@ -21,6 +21,11 @@ alias us="ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
 alias lll="stat --format='%a %U %G %s %y %N' *"
 alias lal="ls -a | awk '{print $NF}'"
 
+if [ -d "$HOME/ranger" ]; then
+	alias ranger="$HOME/ranger/ranger.py"
+fi
+
+
 alias dfh='df -kTh'
 alias dus='du -hs * | sort -h'
 alias dush='du . -sh'

@@ -19,6 +19,7 @@
 	development = checkout development
 	email = config user.email
 	github = !git config user.name "JBlond" && git config user.email "leet31337@web.de"
+	in = !git remote update -p; git log ..@{u}
 	incoming = !git remote update -p; git log ..@{u}
 	judas = blame
 	last = log -1 --stat

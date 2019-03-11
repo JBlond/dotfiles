@@ -25,6 +25,7 @@ if [ -d "$HOME/ranger" ]; then
 	alias ranger="$HOME/ranger/ranger.py"
 fi
 
+alias ?='man' #haha
 
 alias dfh='df -kTh'
 alias dus='du -hs * | sort -h'

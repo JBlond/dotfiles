@@ -30,6 +30,7 @@
 	lg3 = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
 	lg4 = log --graph --abbrev-commit --decorate --format=format:'%C(bold yellow) ⟹ %C(white)%s %C(bold blue)%an%C(reset) %C(reset)'
 	list-branches = show-branch -a --topics
+	ls = ls-files
 	master = checkout master
 	name = config user.name
 	new-branch = checkout -b

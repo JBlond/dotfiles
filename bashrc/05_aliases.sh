@@ -1,25 +1,8 @@
 # Alias definitions.
-if [[ "$OSTYPE" == "FreeBSD" ]]; then
-	alias ls='ls -G'
-else
-	eval "`dircolors -b`"
-	alias ls='ls --color=auto --group-directories-first'
-fi
 
-# Enable aliases to be sudo’ed
-alias sudo='sudo '
-
-alias dir='ls --color=auto --format=vertical'
-
-alias ös='ls'
-alias ll='ls -lh'
-alias lla='ls -lAh'
-alias la='ls -A'
-alias lart='ls -lhart'
-alias l='ls -CF'
-alias us="ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
-alias lll="stat --format='%a %U %G %s %y %N' *"
-alias lal="ls -a | awk '{print $NF}'"
+source ~/dotfiles/bashrc/alias.d/00_sudo.sh
+source ~/dotfiles/bashrc/alias.d/01_ls.sh
+source ~/dotfiles/bashrc/alias.d/02_git.sh
 
 if [ -d "$HOME/ranger" ]; then
 	alias ranger="$HOME/ranger/ranger.py"
@@ -49,7 +32,6 @@ alias systemctl='sudo systemctl'
 alias sc='systemctl'
 
 alias own='sudo chown -R ${USER:=$(/usr/bin/id -run)}:$USER'
-alias fuck='sudo $(history -p \!\!) && echo "( ︶︿︶)_╭∩╮"'
 
 alias bashrc='source ~/.bashrc'
 alias dotfiles='cd ~/dotfiles'
@@ -117,35 +99,6 @@ alias cls='clear && tput reset'
 
 # php
 alias composer='composer --ansi'
-
-#############
-# git aliases
-source ~/dotfiles/git/complete
-complete -o default -o nospace -F _git git
-
-alias ga="git add"
-alias gbr="git branch"
-alias gcfg="git config --list"
-alias gcl="git clone --recurse-submodules"
-alias gcma="git cma"
-alias gcmap="git cmap"
-alias gco="git checkout"
-alias gd="git diff"
-alias gdiff="git diff"
-alias ggc="git gc"
-alias gh='cd "$(git rev-parse --show-toplevel)"'
-alias gi="git init"
-alias gib="git init --bare"
-alias gitu="git cmapu"
-alias gl="git lg"
-alias glc="git diff @~..@"
-alias gm="git checkout master"
-alias gp="git pull"
-alias gpn="git pull --no-ff"
-alias gpo="git push origin"
-alias gr="git remote -v"
-alias gst="git status -sb"
-alias gsu="git submodule update --recursive --remote"
 
 # tmux
 alias tvo="tmux new vim"

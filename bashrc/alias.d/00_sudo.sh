@@ -2,3 +2,4 @@
 alias sudo='sudo '
 
 alias fuck='sudo $(history -p \!\!) && echo "( ︶︿︶)_╭∩╮"'
+alias own='sudo chown -R ${USER:=$(/usr/bin/id -run)}:$USER'

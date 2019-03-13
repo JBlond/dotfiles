@@ -3,21 +3,13 @@
 source ~/dotfiles/bashrc/alias.d/00_sudo.sh
 source ~/dotfiles/bashrc/alias.d/01_ls.sh
 source ~/dotfiles/bashrc/alias.d/02_git.sh
+source ~/dotfiles/bashrc/alias.d/03_apache.sh
+source ~/dotfiles/bashrc/alias.d/04_custom_ranger.sh
 
-if [ -d "$HOME/ranger" ]; then
-	alias ranger="$HOME/ranger/ranger.py"
-fi
 
 alias ?='man' #haha
 
-alias dfh='df -kTh'
-alias dus='du -hs * | sort -h'
-alias dush='du . -sh'
 
-alias mkdir='mkdir -p'
-
-alias ..='cd ..'
-alias cd..='cd ..'
 
 alias grep='grep --color=auto --exclude-dir="node_modules"'
 alias fgrep='fgrep --color=auto --exclude-dir="node_modules"'
@@ -40,9 +32,9 @@ alias nano='nano -wcz'
 alias more='less'
 alias svim='sudo vim'
 
-alias rmf='rm -rf'
 
-alias path='echo $PATH | tr ":" "\n"'
+
+
 
 alias ping5='ping -c 5'
 alias flushdns="sudo /etc/init.d/dns-clean restart && echo DNS cache flushed"
@@ -68,19 +60,7 @@ alias genpasswd='echo `env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | 
 # use vim alias to exit shell
 alias :q="exit"
 
-if [[ "$OSTYPE" == "msys" ]]; then
-	alias apache='~/Apache24/bin/httpd.exe'
-	alias hibernate="rundll32.exe powrprof.dll,SetSuspendState"
-	alias ifconfig="ipconfig -all"
-	alias lock="rundll32.exe user32.dll,LockWorkStation"
-else
-	alias apache='sudo /opt/apache2/bin/httpd'
 
-	# A less excessive, yet still very, very useful current-user-focused ps command.
-	if [ -x /bin/ps ]; then
-		alias pss='/bin/ps -faxc -U $UID -o pid,uid,gid,pcpu,pmem,stat,comm'
-	fi
-fi
 
 # Get and display the distribution type. (original base first)
 if [ -f /etc/os-release -a -r /etc/os-release ]; then
@@ -95,7 +75,7 @@ if [ -f /etc/os-release -a -r /etc/os-release ]; then
 	'
 fi
 
-alias cls='clear && tput reset'
+
 
 # php
 alias composer='composer --ansi'

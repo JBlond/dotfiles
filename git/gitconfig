@@ -5,7 +5,6 @@
 	br-delete-useless-force = "!f(){ git branch | grep -v "master" | grep -v "development" |grep -v ^* | xargs git branch -D; }; f"
 	branches = "!git list-branches"
 	changes = diff --name-status -r
-	ci = commit
 	cl = clone
 	cm = commit
 	cma = commit -a -m
@@ -50,10 +49,6 @@
 	undo = reset --hard
 	week = log --stat --since='1 Week Ago' --graph --pretty=oneline --abbrev-commit --date=relative
 	who = shortlog -s --
-	wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
-	wlog = log --stat --since='1 Week Ago' --graph --pretty=oneline --abbrev-commit --date=relative
-	# show detail view with a structure in log
-	wow = "log --all --graph --decorate --oneline --simplify-by-decoration"
 
 [color]
 	ui = true

@@ -61,7 +61,7 @@ set_prompt () {
 
 	# show host name only on remote connection
 	if [[ "$3" = true || "${SSH_CLIENT}" || "${SSH_TTY}" || ${EUID} = 0 ]]; then
-		PS1+='\[\033[01;32m\]@\h\[\033[00m\]'
+		PS1+='\[\033[01;32m\]@\h:\l\[\033[00m\]'
 	fi
 	PS1+=':\[\033[01;34m\]$where\[\033[00m\]'
 	if [ ! -w "$PWD" ]; then

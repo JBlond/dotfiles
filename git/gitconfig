@@ -36,8 +36,6 @@
 	name = config user.name
 	new-branch = checkout -b
 	open = "!f() { REPO_URL=$(git config remote.origin.url); explorer ${REPO_URL%%.git}; }; f"
-	# open 2 for linux
-	# open2  = "!f() { URL=$(git config remote.${1-origin}.url | sed -e 's#^.*@#https://#' -e 's#.git$##' -e 's#:#/#2'); git web--browse $URL; }; f"
 	out = log --graph --abbrev-commit --date=relative origin/master..master
 	patch = !git --no-pager diff --no-color
 	remotes = remote -v

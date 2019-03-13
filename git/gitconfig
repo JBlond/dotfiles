@@ -12,6 +12,7 @@
 	cmap = "!f() { git commit -a -m \"$@\" && git push; }; f"
 	cmapu = "!f() { git commit -a -m \"update\" && git push; }; f"
 	co = checkout
+	conflicts = diff --name-only --diff-filter=U
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 	# `git di $number` shows the diff between the state `$number` revisions ago and the current state

@@ -12,6 +12,7 @@ alias gcmap="git cmap"
 alias gco="git checkout"
 alias gd="git diff"
 alias gdiff="git diff"
+alias gg="git branch -vv"
 alias ggc="git gc"
 alias gh='cd "$(git rev-parse --show-toplevel)"'
 alias gi="git init"

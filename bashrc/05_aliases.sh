@@ -14,6 +14,7 @@ source ~/dotfiles/bashrc/alias.d/10_network.sh
 source ~/dotfiles/bashrc/alias.d/11_desktop.sh
 source ~/dotfiles/bashrc/alias.d/12_echo.sh
 source ~/dotfiles/bashrc/alias.d/13_editor.sh
+source ~/dotfiles/bashrc/alias.d/14_npm.sh
 
 alias ?='man' #haha
 

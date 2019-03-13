@@ -5,6 +5,9 @@ source ~/dotfiles/bashrc/alias.d/01_ls.sh
 source ~/dotfiles/bashrc/alias.d/02_git.sh
 source ~/dotfiles/bashrc/alias.d/03_apache.sh
 source ~/dotfiles/bashrc/alias.d/04_custom_ranger.sh
+source ~/dotfiles/bashrc/alias.d/05_tmux.sh
+source ~/dotfiles/bashrc/alias.d/06_vagrant.sh
+source ~/dotfiles/bashrc/alias.d/07_php.sh
 
 
 alias ?='man' #haha
@@ -32,10 +35,6 @@ alias nano='nano -wcz'
 alias more='less'
 alias svim='sudo vim'
 
-
-
-
-
 alias ping5='ping -c 5'
 alias flushdns="sudo /etc/init.d/dns-clean restart && echo DNS cache flushed"
 alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -61,7 +60,6 @@ alias genpasswd='echo `env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | 
 alias :q="exit"
 
 
-
 # Get and display the distribution type. (original base first)
 if [ -f /etc/os-release -a -r /etc/os-release ]; then
 	alias distro='\
@@ -74,16 +72,3 @@ if [ -f /etc/os-release -a -r /etc/os-release ]; then
 		done < /etc/os-release
 	'
 fi
-
-
-
-# php
-alias composer='composer --ansi'
-
-# tmux
-alias tvo="tmux new vim"
-alias tov="tmux new vim"
-alias tm="tmux a -t main || tmux new -s main"
-
-#vagrant
-alias vagrant="vagrant --color"

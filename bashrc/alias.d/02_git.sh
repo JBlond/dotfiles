@@ -27,11 +27,3 @@ alias gpo="git push origin"
 alias gr="git remote -v"
 alias gst="git status -sb"
 alias gsu="git submodule update --recursive --remote"
-
-# 'git pull --ff-only' with a short log of the latest changes
-ff () {
-    local HEADHASH=`git describe --always --abbrev=40`;
-    git pull --ff-only $*;
-    echo;
-    PAGER='cat -B' git log --format="%C(yellow)%h %C(green)%an%C(reset): %s" $HEADHASH.. | sed -nr 's/([^:]+)\:/\1\t/;p';
-}

@@ -3,12 +3,12 @@ find_git_dirty () {
 	if [[ -z $(__git_ps1) ]]; then
 		exit
 	fi
-	
+
 	#do not run in a bare repo
 	if [[ $(git rev-parse --is-bare-repository ) = "true" ]]; then
 		exit
 	fi
-	
+
 	#dot not run in git dir
 	if [[ $(git rev-parse --is-inside-git-dir) = "true" ]]; then
 		exit
@@ -28,24 +28,24 @@ find_git_dirty () {
 	modifiedfiles_number=0
 	renamedfiles_number=0
 	untracked_number=0
-	
+
 	for line in $gitstatus; do
 		# linux
-		if [[ $line =~ ^D ]]; then 
-			let "deletedfiles_number++" 
-			clean="dirty" 
-		elif  [[ $line =~ ^M ]]; then 
+		if [[ $line =~ ^D ]]; then
+			let "deletedfiles_number++"
+			clean="dirty"
+		elif  [[ $line =~ ^M ]]; then
 			let "modifiedfiles_number++"
 			clean="dirty"
-		elif [[ $line =~ ^A ]]; then 
+		elif [[ $line =~ ^A ]]; then
 			let "addedfiles_number++"
-			clean="dirty"		
-		elif [[ $line =~ ^R ]]; then 
+			clean="dirty"
+		elif [[ $line =~ ^R ]]; then
 			let "renamedfiles_number++"
 			clean="dirty"
-		elif [[ $line =~ ^\?\? ]]; then 
+		elif [[ $line =~ ^\?\? ]]; then
 			let "untracked_number++"
-			clean="dirty"		
+			clean="dirty"
 		fi
 	done
 
@@ -68,7 +68,7 @@ find_git_dirty () {
 	if [ $untracked_number -gt 0 ]; then
 		printf " $untracked_number""$symbol_untracked"
 	fi
-	
+
 	if [[ -z "$gitstatus" && "$clean" == "clean" ]]; then
 		printf " $symbol_clean"
 	fi
@@ -88,6 +88,16 @@ find_git_commit_diff () {
 		echo $commit_diff
 	fi
 }
+
+
+# 'git pull --ff-only' with a short log of the latest changes
+ff () {
+	local HEADHASH=`git describe --always --abbrev=40`;
+	git pull --ff-only $*;
+	echo;
+	PAGER='cat -B' git log --format="%C(yellow)%h %C(green)%an%C(reset): %s" $HEADHASH.. | sed -nr 's/([^:]+)\:/\1\t/;p';
+}
+
 
 # next function are from https://github.com/arialdomartini/git-dashboard
 

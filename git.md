@@ -30,4 +30,4 @@
 
 ## native aliases
 
-See [git aliases](git/gitconfig#L1-L56)
+See [git aliases](git/gitconfig#L1-L52)

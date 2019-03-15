@@ -6,6 +6,7 @@
 	branches = "!git list-branches"
 	changes = diff --name-status -r
 	cl = clone
+	clog = "!git lg -p"
 	cm = commit
 	cma = commit -a -m
 	cmap = "!f() { git commit -a -m \"$@\" && git push; }; f"

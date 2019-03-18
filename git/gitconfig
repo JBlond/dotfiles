@@ -3,7 +3,7 @@
 	br = branch
 	# Delete all local branches but master and the current one.
 	br-delete-useless-force = "!f(){ git branch | grep -v "master" | grep -v "development" |grep -v ^* | xargs git branch -D; }; f"
-	branches = "!git list-branches"
+	branches = "!git branch -vv"
 	changes = diff --name-status -r
 	cl = clone
 	clog = "!git lg -p"
@@ -30,7 +30,7 @@
 	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold yellow)%d ⟹ %C(white)%s %C(bold blue)%an%C(reset) %C(bold green)%cD%C(reset)'
 	lg3 = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
 	lg4 = log --graph --abbrev-commit --decorate --format=format:'%C(bold yellow) ⟹ %C(white)%s %C(bold blue)%an%C(reset) %C(reset)'
-	list-branches = show-branch -a --topics
+	list-branches = branch -vv
 	ls = ls-files
 	master = checkout master
 	name = config user.name

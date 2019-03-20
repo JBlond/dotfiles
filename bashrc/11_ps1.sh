@@ -86,6 +86,6 @@ set_prompt () {
 		*)
 	esac
 
-	PS2="\[\e[33m\]→ \e[0m"
+	PS2="\[\e[33m\]➦ \e[0m"
 }
 PROMPT_COMMAND='set_prompt'

@@ -2,7 +2,6 @@
 
 | short cut  | Description |
 | ------------- | ------------- |
-| `extract` | extract any archive file |
 | `matrix` | show the "matrix" on the shell |
 | `port` | check what is listen on port e.g. `port 80` |
 | `f` | find a file by name `f some.txt` |

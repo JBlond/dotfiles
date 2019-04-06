@@ -1,6 +1,13 @@
 # dotfiles
 
-I use my dotfiles on bash from git for windows, debian bash, ubuntu bash.
+I use my dotfiles on bash from git for windows, debian bash, ubuntu bash. Works on OSX bash, too.
+
+Using tmux on git for windows download the [Git for Windows SDK](https://github.com/git-for-windows/build-extra/releases/latest) 
+and run pacman.
+
+```bash
+pacman -S tmux
+```
 
 ## bash
 
@@ -54,7 +61,7 @@ ssh://user@host:🏠
 
 ## install
 
-[install](install.md)
+[install README](install.md)
 
 ## Functions
 

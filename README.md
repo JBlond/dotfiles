@@ -69,7 +69,7 @@ ssh://user@host:🏠
 
 ## Tmux
 
-[tmux](tmux.md)
+[tmux README](tmux.md) custom shortcuts and other good stuff
 
 ![shell4](assets/shell04.png)
 ![shell5](assets/vim-in-tmux.png)

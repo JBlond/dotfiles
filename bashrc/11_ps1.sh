@@ -36,8 +36,13 @@ set_prompt () {
 		debian_chroot=$(cat /etc/debian_chroot)
 	fi
 
-	bold=$(tput bold)
-	normal=$(tput sgr0)
+	if [[ "$OSTYPE" != "cygwin" ]]; then
+		bold=$(tput bold)
+		normal=$(tput sgr0)
+	else
+		bold=""
+		normal=""
+	fi
 
 	where=$PWD
 	home=$HOME

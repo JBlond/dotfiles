@@ -17,7 +17,9 @@ alias us="ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
 alias lll="stat --format='%a %U %G %s %y %N' *"
 alias lal="ls -a | awk '{print $NF}'"
 
-alias cls='clear && tput reset'
+if [[ "$OSTYPE" != "cygwin" ]]; then
+	alias cls='clear && tput reset'
+fi	
 
 alias dfh='df -kTh'
 alias dus='du -hs * | sort -h'

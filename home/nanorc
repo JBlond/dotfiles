@@ -9,7 +9,8 @@ set multibuffer
 set nowrap
 
 # When justifying text, trailing whitespace will automatically be removed.
-set justifytrim
+# set justifytrim
+
 
 # Display line numbers to the left of the text area.
 # if that doesn't work use ALT+#

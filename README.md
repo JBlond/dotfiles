@@ -1,5 +1,7 @@
 # dotfiles
 
+![shell2](assets/shell02.png)
+
 I use my dotfiles on bash from git for windows, debian bash, ubuntu bash. Works on OSX bash, too.
 
 Using tmux on git for windows download the [Git for Windows SDK](https://github.com/git-for-windows/build-extra/releases/latest) 
@@ -50,8 +52,6 @@ jblond@linux:~
 [git alias](git.md)
 
 ![shell1](assets/shell01.png)
-
-![shell2](assets/shell02.png)
 
 ![shell3](assets/shell03.png)
 

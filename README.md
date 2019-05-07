@@ -49,6 +49,7 @@ jblond@linux:~
 - n✗ = n deleted files
 - [▲n] = n steps ahead of remote
 - [▼n] = n steps behind remote
+
 [git alias](git.md)
 
 ![shell1](assets/shell01.png)

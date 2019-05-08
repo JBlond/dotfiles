@@ -46,3 +46,10 @@ function install-phpmyadmin() {
 function mk() {
 	mkdir -p "$@" && cd "$@"
 }
+
+if [[ "$OSTYPE" != "msys" ]]; then
+	# A less excessive, yet still very, very useful current-user-focused ps command.
+	if [ -x /bin/ps ]; then
+		alias pss='/bin/ps -faxc -U $UID -o pid,uid,gid,pcpu,pmem,stat,comm'
+	fi
+fi

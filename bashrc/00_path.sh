@@ -17,3 +17,5 @@ fi
 if [ -d "$HOME/notes/bin" ]; then
 	PATH="$HOME/notes/bin:$PATH"
 fi
+
+complete -d cd

@@ -1,23 +1,6 @@
 [include]
 	path = ~/dotfiles/git/aliases.ini
-
-[color]
-	ui = true
-
-[color "diff-highlight"]
-	newHighlight = green bold 22
-	newNormal = green bold
-	oldHighlight = red bold 52
-	oldNormal = red bold
-
-[color "diff"]
-	colorMoved = zebra
-	commit = 227 bold
-	frag = magenta bold
-	meta = 227
-	new = green bold
-	old = red bold
-	whitespace = red reverse
+	path = ~/dotfiles/git/color.ini
 
 [commit]
 	template = ~/dotfiles/git/gitmessage.txt

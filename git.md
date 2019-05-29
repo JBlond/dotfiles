@@ -2,8 +2,6 @@
 
 | short cut  | Description |
 | ------------- | ------------- |
-| `diff-next`  alias `dn` | diff next item |
-| `add-next` alias `an` | add next item |
 | `ff` | `git pull --ff-only $*` |
 | `ga` | `git add`|
 | `gbr` | `git branch` |

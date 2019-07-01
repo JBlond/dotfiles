@@ -7,8 +7,10 @@ rm -f $HOME/.profile
 rm -f $HOME/.inputrc
 rm -rf $HOME/.vim
 rm -f $HOME/.tmux.conf
+cp -r ./config/fish ~/.config/
 if [[ "$OSTYPE" != "msys" ]]; then
-	cp -r ./config ~/.config
+	cp -r ./config/htop ~/.config/
+	cp -r ./config/mc ~/.config/
 fi
 ln $HOME/dotfiles/home/tmux.conf $HOME/.tmux.conf
 ln $HOME/dotfiles/home/bash_logout $HOME/.bash_logout

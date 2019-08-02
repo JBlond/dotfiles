@@ -1,5 +1,8 @@
 set -g fish_prompt_pwd_dir_length 30
 
+# path
+set PATH /sbin /usr/local/sbin $HOME/dotfiles/git/bin $PATH
+
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 

@@ -125,10 +125,10 @@ alias iptuseage='sudo iptables -L -nvx | grep -v " 0 DROP"'
 alias firewall=iptlist
 
 
-set -x LESS_TERMCAP_mb (printf "33[01;31m")
-set -x LESS_TERMCAP_md (printf "33[01;31m")
-set -x LESS_TERMCAP_me (printf "33[0m")
-set -x LESS_TERMCAP_se (printf "33[0m")
-set -x LESS_TERMCAP_so (printf "33[01;44;33m")
-set -x LESS_TERMCAP_ue (printf "33[0m")
-set -x LESS_TERMCAP_us (printf "33[01;32m")
+set -x LESS_TERMCAP_mb (printf "\u001b[01;31m")
+set -x LESS_TERMCAP_md (printf "\u001b[01;31m")
+set -x LESS_TERMCAP_me (printf "\u001b[0m")
+set -x LESS_TERMCAP_se (printf "\u001b[0m")
+set -x LESS_TERMCAP_so (printf "\u001b[01;44;33m")
+set -x LESS_TERMCAP_ue (printf "\u001b[0m")
+set -x LESS_TERMCAP_us (printf "\u001b[01;32m")

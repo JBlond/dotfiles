@@ -3,6 +3,23 @@ set -g fish_prompt_pwd_dir_length 30
 # path
 set PATH /sbin /usr/local/sbin $HOME/dotfiles/git/bin $PATH
 
+# add composer bins to path if installed
+if test -d $HOME/.composer/vendor/bin
+	set PATH $HOME/.composer/vendor/bin $PATH
+end
+
+if test -d $HOME/.yarn/
+	set PATH $HOME/.yarn/bin $PATH
+end
+
+if test -d $HOME/notes/bin/
+	set PATH $HOME/notes/bin $PATH
+end
+
+if test -d $HOME/ranger
+	alias ranger="$HOME/ranger/ranger.py"
+end
+
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 

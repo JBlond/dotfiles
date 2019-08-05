@@ -123,3 +123,12 @@ alias iptlistout='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
 alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
 alias iptuseage='sudo iptables -L -nvx | grep -v " 0 DROP"'
 alias firewall=iptlist
+
+
+set -x LESS_TERMCAP_mb=$'\E[01;31m'
+set -x LESS_TERMCAP_md=$'\E[01;31m'
+set -x LESS_TERMCAP_me=$'\E[0m'
+set -x LESS_TERMCAP_se=$'\E[0m'
+set -x LESS_TERMCAP_so=$'\E[01;44;33m'
+set -x LESS_TERMCAP_ue=$'\E[0m'
+set -x LESS_TERMCAP_us=$'\E[01;32m'

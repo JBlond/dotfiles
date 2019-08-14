@@ -50,11 +50,6 @@ function fish_prompt
     end
   end
 
-  # Notify if a command took more than 1 minutes
-  if [ "$CMD_DURATION" -gt 60000 ]
-    echo The last command took (math "$CMD_DURATION/1000") seconds.
-  end
-
   echo -n -s $status_indicator
   if set -q SSH_TTY
     echo $red'ssh://'$cyan(whoami)$green'@'(hostname) $cwd $git_info $normal ' '

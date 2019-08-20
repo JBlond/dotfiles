@@ -23,6 +23,8 @@ end
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
+alias pleace="sudo"
+
 
 alias ls='ls --color=auto --group-directories-first'
 alias dir='ls --color=auto --format=vertical'

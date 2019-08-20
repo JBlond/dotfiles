@@ -8,3 +8,4 @@ BellType=0
 ThemeFile=mintty
 BackgroundColour=0,0,0
 Font=Lucida Console for Powerline
+Term=xterm

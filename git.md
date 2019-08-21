@@ -41,4 +41,4 @@
 
 ## native aliases
 
-See [git aliases](git/gitconfig#L1-L52)
+See [git aliases](git/aliases.ini#L2-L53)

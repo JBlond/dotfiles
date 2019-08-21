@@ -1,5 +1,18 @@
 # git
 
+## bin's
+
+| command  | Description |
+| ------------- | ------------- |
+| branch | checkout a branchm. If it doesn't exist, it will be created  |
+| git-branch-status | show the current branch status including the remote |
+| new | creates a new folder and does git init in it |
+| pull | stashes not committed or saves changes, the the pull and applies the stash |
+| recent | shows recent activities |
+| stash | stash |
+
+## shortcuts
+
 | short cut  | Description |
 | ------------- | ------------- |
 | `ff` | `git pull --ff-only $*` |

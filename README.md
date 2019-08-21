@@ -53,6 +53,7 @@ jblond@linux:~
 ## git aliases and commands
 
 [git](git.md)
+
 [git aliases](git/aliases.ini#L2-L53)
 
 ![shell1](assets/shell01.png)

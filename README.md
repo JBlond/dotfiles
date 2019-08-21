@@ -50,7 +50,9 @@ jblond@linux:~
 - [▲n] = n steps ahead of remote
 - [▼n] = n steps behind remote
 
-[git alias](git.md)
+## git aliases and commands
+
+[git](git.md)
 
 ![shell1](assets/shell01.png)
 

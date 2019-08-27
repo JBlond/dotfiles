@@ -21,8 +21,9 @@ ln $HOME/dotfiles/home/profile $HOME/.profile
 ln $HOME/dotfiles/home/inputrc $HOME/.inputrc
 ln -s $HOME/dotfiles/vim $HOME/.vim
 if [[ "$OSTYPE" == "msys" ]]; then
-	$HOME/config/minttyrc/config
-	ln $HOME/dotfiles/home/minttyrc $HOME/.config/minttyrc/config
+	rm -rf $HOME/config/minttyrc/config
+	mkdir -p $HOME/.config/mintty/
+	ln $HOME/dotfiles/config/mintty/config $HOME/.config/mintty/config
 fi
 
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then

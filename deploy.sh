@@ -21,7 +21,7 @@ ln $HOME/dotfiles/home/profile $HOME/.profile
 ln $HOME/dotfiles/home/inputrc $HOME/.inputrc
 ln -s $HOME/dotfiles/vim $HOME/.vim
 if [[ "$OSTYPE" == "msys" ]]; then
-	rm -rf $HOME/config/minttyrc/config
+	rm -rf $HOME/.config/mintty/config
 	mkdir -p $HOME/.config/mintty/
 	ln $HOME/dotfiles/config/mintty/config $HOME/.config/mintty/config
 fi

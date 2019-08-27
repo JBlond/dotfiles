@@ -22,6 +22,7 @@ set copyindent                               "
 set shortmess=atI                            " Don't show the intro message when starting vim
 set noshowmode                               " done by plugin https://github.com/itchyny/lightline.vim
 set wildmenu                                 " Enhanced command line completion.
+set ttyfast                                  " more characters will be sent to the screen for redrawing
 set wildmode=list:longest,longest:full       " Complete files like a shell.
 set showcmd                                  " Show partial commands in the last line of the screen
 set laststatus=2                             " Always display the status line, even if only one window is displayed
@@ -31,6 +32,8 @@ set t_vb=                                    " reset the terminal code for the v
 set mouse=a                                  " Enable use of the mouse for all modes
 set pastetoggle=<F11>                        " Use <F11> to toggle between 'paste' and 'nopaste'
 nnoremap <C-L> :nohl<CR><C-L>                " Map <C-L> (redraw screen) to also turn off search highlighting until the next search
+
+set backspace=indent,eol,start               " make backspace behave properly in insert mode
 
 syntax on                                    " syntax highlighting on
 set bg=dark                                  " Dark Background

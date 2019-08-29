@@ -29,6 +29,8 @@ alias pleace="sudo"
 alias ls='ls --color=auto --group-directories-first'
 alias dir='ls --color=auto --format=vertical'
 
+alias cls='clear'
+
 alias ös='ls'
 alias ll='ls -lh'
 alias lla='ls -lAh'

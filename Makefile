@@ -4,6 +4,8 @@ help:
 	@echo "                    you should run this once in the begining"
 	@echo "                    otherwise you may overwrite the backup"
 	@echo ""
+	@echo " make cert          stop apache and updte let's encrypt
+	@echo ""
 	@echo " make continuum     install tmux continuum plugin"
 	@echo ""
 	@echo " make install       run the deploy script"
@@ -14,6 +16,9 @@ help:
 backup:
 	@test -f $(HOME)/.bashrc.ORIGINAL && echo "Backup already exists!" || echo -n ""
 	@test ! -f $(HOME)/.bashrc || cp $(HOME)/.bashrc $(HOME)/.bashrc.ORIGINAL
+
+cert:
+	@./update_cert.sh
 
 continuum:
 	@git clone https://github.com/tmux-plugins/tmux-continuum.git ~/.tmux/plugins/tmux-continuum

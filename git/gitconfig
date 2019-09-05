@@ -2,9 +2,6 @@
 	path = ~/dotfiles/git/aliases.ini
 	path = ~/dotfiles/git/color.ini
 
-[commit]
-	template = ~/dotfiles/git/gitmessage.txt
-
 [core]
 	autocrlf = input
 	editor = vim

@@ -24,6 +24,7 @@ end
 alias sudo='sudo '
 
 alias pleace="sudo"
+alias please="sudo"
 
 
 alias ls='ls --color=auto --group-directories-first'

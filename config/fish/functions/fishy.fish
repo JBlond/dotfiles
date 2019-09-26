@@ -2,8 +2,8 @@ function fishy
     echo '                 '(set_color F00)'___
   ___======____='(set_color FF7F00)'-'(set_color FF0)'-'(set_color FF7F00)'-='(set_color F00)')
 /T            \_'(set_color FF0)'--='(set_color FF7F00)'=='(set_color F00)')
-[ \ '(set_color FF7F00)'('(set_color FF0)'0'(set_color FF7F00)')   '(set_color F00)'\~    \_'(set_color FF0)'-='(set_color FF7F00)'='(set_color F00)')   SUP
- \      / )J'(set_color FF7F00)'~~    \\'(set_color FF0)'-='(set_color F00)')   DUDE
+[ \ '(set_color FF7F00)'('(set_color FF0)'0'(set_color FF7F00)')   '(set_color F00)'\~    \_'(set_color FF0)'-='(set_color FF7F00)'='(set_color F00)')
+ \      / )J'(set_color FF7F00)'~~    \\'(set_color FF0)'-='(set_color F00)')
   \\\\___/  )JJ'(set_color FF7F00)'~'(set_color FF0)'~~   '(set_color F00)'\)
    \_____/JJJ'(set_color FF7F00)'~~'(set_color FF0)'~~    '(set_color F00)'\\
    '(set_color FF7F00)'/ '(set_color FF0)'\  '(set_color FF0)', \\'(set_color F00)'J'(set_color FF7F00)'~~~'(set_color FF0)'~~     '(set_color FF7F00)'\\

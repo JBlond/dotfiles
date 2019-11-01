@@ -26,6 +26,8 @@ alias sudo='sudo '
 alias pleace="sudo"
 alias please="sudo"
 
+alias own='sudo chown -R $USER:$USER'
+
 
 alias ls='ls --color=auto --group-directories-first'
 alias dir='ls --color=auto --format=vertical'

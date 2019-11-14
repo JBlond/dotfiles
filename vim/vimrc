@@ -78,7 +78,7 @@ let g:lightline = {
     \ },
     \ 'component_function': {
         \   'bufferline': 'MyBufferline',
-        \	'gitbranch': 'gitbranch#name'
+        \    'gitbranch': 'gitbranch#name'
     \ }
 \ }
 
@@ -100,6 +100,37 @@ function! MyBufferline()
         return b . c . a
 endif
 endfunction
+
+let g:duo_themes = [{'name': 'monokai', 'bg': 'dark'}, {'name': 'hybrid_reverse', 'bg': 'dark'}]
+
+func! s:set_colorscheme(color)
+    if has_key(a:color, 'bg')
+        let &bg = a:color['bg']
+    endif
+    if has_key(a:color, 'name')
+        exe "colorscheme ".a:color['name']
+    endif
+endfunc
+func! ToggleColorscheme()
+    if !exists('g:colors_name')
+        let g:colors_name = 'default'
+    endif
+    let color = filter(copy(g:duo_themes), {k, v -> v['name'] != g:colors_name})[0]
+    call s:set_colorscheme(color)
+endfunc
+
+" Mimic toggling behavior of Tim Popes unimpaired plugin
+nnoremap yot :call ToggleColorscheme()<CR>
+
+let s:force_dark = 0
+" Well, if it happens you run vim late, use dark colorscheme
+if strftime("%H") >= 20 || strftime("%H") < 7 || s:force_dark
+    call s:set_colorscheme(g:duo_themes[1])
+else
+" Light colors otherwise
+    call s:set_colorscheme(g:duo_themes[0])
+endif
+
 
 execute pathogen#infect()
 filetype plugin indent on

@@ -4,7 +4,7 @@ help:
 	@echo "                    you should run this once in the begining"
 	@echo "                    otherwise you may overwrite the backup"
 	@echo ""
-	@echo " make cert          stop apache and updte let's encrypt
+	@echo " make cert          stop apache and updte let's encrypt"
 	@echo ""
 	@echo " make continuum     install tmux continuum plugin"
 	@echo ""

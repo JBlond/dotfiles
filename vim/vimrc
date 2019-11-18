@@ -37,7 +37,7 @@ set backspace=indent,eol,start               " make backspace behave properly in
 
 syntax on                                    " syntax highlighting on
 set bg=dark                                  " Dark Background
-colorscheme monokai                          " my colorscheme
+colorscheme hybrid_reverse                   " my colorscheme
 
 set ignorecase                               " search case-insensitive
 set smartcase                                " Automatically switch search to case-sensitive when search query contains an uppercase letter.

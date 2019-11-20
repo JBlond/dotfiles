@@ -1,47 +1,13 @@
 [include]
 	path = ~/dotfiles/git/aliases.ini
 	path = ~/dotfiles/git/color.ini
-
-[core]
-	autocrlf = input
-	editor = vim
-	filemode = false
-	fscache = true
-	pager = ~/dotfiles/git/diff-so-fancy | less --tabs=4 -RFX
-	preloadindex = true
-	trustctime = false
-
-[diff]
-	# tells Git to detect renames. If set to any boolean value, it will enable basic rename detection.
-	# If set to "copies" or "copy", it will detect copies, as well.
-	renames = copies
-
-[gc]
-	auto = 256
-
-[grep]
-	lineNumber = true
-
-[help]
-	autocorrect = 1
-
-[merge]
-	ff = false
-	tool = vimdiff
-
-[mergetool]
-	keeptemporaries = false
-	keepbackups = false
-	prompt = false
-	trustexitcode = false
-
-[pull]
-	ff = only
-
-[push]
-	default = simple
-	# whenever pushing, also push local tags
-	followTags = true
+	path = ~/dotfiles/git/core.ini
+	path = ~/dotfiles/git/diff.ini
+	path = ~/dotfiles/git/gc.ini
+	path = ~/dotfiles/git/grep.ini
+	path = ~/dotfiles/git/help.ini
+	path = ~/dotfiles/git/merge.ini
+	path = ~/dotfiles/git/remote.ini
 
 [user]
 	useConfigOnly = true

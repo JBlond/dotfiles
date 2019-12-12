@@ -12,7 +12,6 @@ if [[ "$OSTYPE" != "msys" ]]; then
 	cp -r ./config/htop ~/.config/
 	cp -r ./config/mc ~/.config/
 fi
-ln $HOME/dotfiles/home/tmux.conf $HOME/.tmux.conf
 ln $HOME/dotfiles/home/bash_logout $HOME/.bash_logout
 ln $HOME/dotfiles/home/bashrc $HOME/.bashrc
 ln $HOME/dotfiles/git/gitconfig $HOME/.gitconfig
@@ -24,6 +23,9 @@ if [[ "$OSTYPE" == "msys" ]]; then
 	rm -rf $HOME/.config/mintty/config
 	mkdir -p $HOME/.config/mintty/
 	ln $HOME/dotfiles/config/mintty/config $HOME/.config/mintty/config
+	ln $HOME/dotfiles/home/tmux.win.conf $HOME/.tmux.conf
+else
+	ln $HOME/dotfiles/home/tmux.linux.conf $HOME/.tmux.conf
 fi
 
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then

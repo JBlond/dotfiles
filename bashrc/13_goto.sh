@@ -1,5 +1,6 @@
 # shellcheck shell=bash
 # shellcheck disable=SC2039
+# SOURCE: https://github.com/iridakos/goto
 # MIT License
 #
 # Copyright (c) 2018 Lazarus Lazaridis
@@ -111,14 +112,14 @@ USAGE
 # Displays version
 _goto_version()
 {
-  echo "goto version 1.2.3"
+  echo "goto version 2.0.0"
 }
 
 # Expands directory.
 # Helpful for ~, ., .. paths
 _goto_expand_directory()
 {
-  cd "$1" 2>/dev/null && pwd
+  builtin cd "$1" 2>/dev/null && pwd
 }
 
 # Lists registered aliases.
@@ -263,7 +264,7 @@ _goto_directory()
 
   target=$(_goto_resolve_alias "$1") || return 1
 
-  cd "$target" 2> /dev/null || \
+  builtin cd "$target" 2> /dev/null || \
     { _goto_error "Failed to goto '$target'" && return 1; }
 }
 
@@ -438,16 +439,22 @@ _complete_goto_zsh()
   return $ret
 }
 
-# Register the goto completions.
-if [ -n "${BASH_VERSION}" ]; then
-  if ! [[ $(uname -s) =~ Darwin* ]]; then
-    complete -o filenames -F _complete_goto_bash goto
-  else
-    complete -F _complete_goto_bash goto
-  fi
-elif [ -n "${ZSH_VERSION}" ]; then
-  compdef _complete_goto_zsh goto
-else
-  echo "Unsupported shell."
-  exit 1
-fi
+goto_aliases=($(alias | sed -n "s/.*\s\(.*\)='goto'/\1/p"))
+goto_aliases+=("goto")
+
+for i in "${goto_aliases[@]}"
+	do
+		# Register the goto completions.
+	if [ -n "${BASH_VERSION}" ]; then
+	  if ! [[ $(uname -s) =~ Darwin* ]]; then
+	    complete -o filenames -F _complete_goto_bash $i
+	  else
+	    complete -F _complete_goto_bash $i
+	  fi
+	elif [ -n "${ZSH_VERSION}" ]; then
+	  compdef _complete_goto_zsh $i
+	else
+	  echo "Unsupported shell."
+	  exit 1
+	fi
+done

@@ -85,3 +85,15 @@ ssh://user@host:🏠
 
 ![shell4](assets/shell04.png)
 ![shell5](assets/vim-in-tmux.png)
+
+## Vim
+
+Vim has different Syntax highlighting themes. Can be changed using `CTRL` + `Y`
+
+### hybrid reverse
+
+![vim](assets/vim01.png)
+
+### monokai
+
+![vim](assets/vim02.png)

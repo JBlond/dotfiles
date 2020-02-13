@@ -8,4 +8,4 @@ cd dotfiles
 
 ## Linux
 
-On Linux you can also use *make* to install it. Run *make* without any parameter to see all options.
+On Linux you can also use *make* to install it. Run `make` without any parameter to see all options.

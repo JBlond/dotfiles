@@ -11,6 +11,10 @@ and run pacman.
 pacman -S tmux fish
 ```
 
+## install
+
+[install README](install.md)
+
 ## bash
 
 [bash functions](bash.md)
@@ -63,10 +67,6 @@ jblond@linux:~
 ### ssh / remote session
 
 ssh://user@host:🏠
-
-## install
-
-[install README](install.md)
 
 ## Functions
 

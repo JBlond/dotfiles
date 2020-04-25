@@ -3,6 +3,7 @@ alias update='sudo apt update'
 alias list='sudo apt list --upgradable'
 alias upgrade='sudo apt dist-upgrade'
 alias autoremove='sudo apt autoremove'
+alias install='sudo apt install'
 
 alias journalctl='sudo journalctl'
 alias systemctl='sudo systemctl'

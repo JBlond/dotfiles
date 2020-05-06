@@ -11,7 +11,7 @@ and run pacman.
 pacman -S tmux fish
 ```
 
-## install
+## install & update
 
 [install README](install.md)
 

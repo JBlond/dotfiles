@@ -8,7 +8,6 @@
 | new | creates a new folder and does git init in it |
 | pull | stashes not committed or saves changes, the the pull and applies the stash |
 | recent | shows recent activities |
-| stash | stash |
 
 ## shortcuts
 

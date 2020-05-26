@@ -17,7 +17,7 @@ pacman -S tmux fish
 
 ## bash
 
-[bash functions](bash.md)
+**[bash functions](bash.md)**
 
 ```BASH
 jblond@linux:~/dotfiles
@@ -56,9 +56,9 @@ jblond@linux:~
 
 ## git aliases and commands
 
-[git](git.md)
+**[git](git.md)**
 
-[git aliases](git/aliases.ini#L2-L53)
+**[git aliases](git/aliases.ini#L2-L53)**
 
 ![shell1](assets/shell01.png)
 
@@ -81,7 +81,7 @@ ssh://user@host:🏠
 
 ## Tmux
 
-[tmux README](tmux.md) custom shortcuts and other good stuff
+**[tmux README](tmux.md)** custom shortcuts and other good stuff
 
 ![shell4](assets/shell04.png)
 ![shell5](assets/vim-in-tmux.png)

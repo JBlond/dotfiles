@@ -18,51 +18,51 @@ With this tmux config you can use nested sessions.
 
 | tmux key  | Description |
 | ------------- | ------------- |
-| `F1`| new window |
-| `F2` | next window |
-| `F3` | previous window |
-| `F4` | Close window and its panes. The last window closes tmux, too. |
-| `F5` | Reload config |
-| `F6` | Toogle status bar on and off |
-| `F7` | New Session |
-| `F8` | detach |
-| `F9` | Rotate through different pre set layouts |
-| `F11` | Toogle mouse on and off |
-| `F12` | Turn off/on the parent **tmux in nested tmux** or for the use of a program like midnight commander (mc) that uses the F keys itself |
-| `CTRL + B` `\|` | Split window vertical |
-| `CTRL + B` `-` | Split window horizontal |
-| `CTRL + B` `S` | Toggle pane synchronization |
-| `CTRL + B` `!` | Pane to window |
-| `CTRL + B` `Spacebar` | Toggle between pane layouts |
-| `CTRL + B` `r` | Reload config |
-| `CTRL + B` `$` | Rename session |
-| `CTRL + B` `,` | Rename window |
-| `CTRL + B` `z` | Zoom into pane or window / zoom out |
-| `CTRL + B` `PageUp` or `PageDown` | Scrolling |
-| `CTRL + B` `w` | List sessions and windows |
-| `CTRL + B` `d` | Detach from session |
-| `CTRL + B` `&` | Close current window |
-| `CTRL + B` `q` | Number all windows and panes |
-| `CTRL + B` `Crtl + v` | paste |
+| <kbd>F1</kbd> | new window |
+| <kbd>F2</kbd> | next window |
+| <kbd>F3</kbd> | previous window |
+| <kbd>F4</kbd> | Close window and its panes. The last window closes tmux, too. |
+| <kbd>F5</kbd> | Reload config |
+| <kbd>F6</kbd> | Toogle status bar on and off |
+| <kbd>F7</kbd> | New Session |
+| <kbd>F8</kbd> | detach |
+| <kbd>F9</kbd> | Rotate through different pre set layouts |
+| <kbd>F11</kbd> | Toogle mouse on and off |
+| <kbd>F12</kbd> | Turn off/on the parent **tmux in nested tmux** or for the use of a program like midnight commander (mc) that uses the F keys itself |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>\|</kbd> | Split window vertical |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>-</kbd> | Split window horizontal |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>S</kbd> | Toggle pane synchronization |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>!</kbd> | Pane to window |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>Spacebar</kbd> | Toggle between pane layouts |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>r</kbd> | Reload config |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>$</kbd> | Rename session |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>,</kbd> | Rename window |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>z</kbd> | Zoom into pane or window / zoom out |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>PageUp</kbd> or <kbd>PageDown</kbd> | Scrolling |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>w</kbd> | List sessions and windows |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>d</kbd> | Detach from session |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>&</kbd> | Close current window |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>q</kbd> | Number all windows and panes |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>Crtl</kbd> + <kbd>v</kbd> | paste |
 | <kbd>Alt</kbd> + <kbd>0</kbd>-<kbd>9</kbd> | Switch to workspace number 0-9 |
 
 ### Switch panes using Alt-arrow without prefix
 
-- `ALT + ➡️ ⬇️ ⬅️ ⬆️`
+- <kbd>ALT</kbd> + <kbd>➡️</kbd> <kbd>⬇️</kbd> <kbd>⬅️</kbd> <kbd>⬆️</kbd>
 
 ### Use SHIFT plus arrows to navigate between windows
 
-`SHIFT + ⬅️ ➡️`
+<kbd>SHIFT</kbd> + <kbd>⬅️</kbd> <kbd>➡️</kbd>
 
 Included is
 
 - Tmux Plugin Manager
 - Tmux resurrect
 
-Running Tmux for the first time press `CTRL + B` `I` to install the plugins.
+Running Tmux for the first time press <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>I</kbd> to install the plugins.
 
-- `CTRL + B` `CTRL + s` saves the current environment
-- `CTRL + B` `CTRL + r` restores the previous saved environment
+- <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>CTRL</kbd> + <kbd>s</kbd> saves the current environment
+- <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>CTRL</kbd>+ <kbd>r</kbd> restores the previous saved environment
 
 ## Sharing Terminal Sessions Between Two Different Accounts
 
@@ -80,16 +80,16 @@ The decision to work read-only is made when the second user attaches to the sess
 
 ## Split in three equal panes
 
-`CTRL + B` `|`
-`CTRL + B` `|`
-`CTRL + B` `:` `select-layout even-horizontal`
+<kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>|</kbd>
+<kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>|</kbd>
+<kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>:</kbd> `select-layout even-horizontal`
 
 ### or
 
-`CTRL + B` `-`
-`CTRL + B` `-`
-`CTRL + B` `:` `select-layout even-vertical`
+<kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>-</kbd>
+<kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>-</kbd>
+<kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>:</kbd> `select-layout even-vertical`
 
 ##
 
-`CTRL + B` `:` `tmux select-layout tiled`
+<kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>:</kbd> `tmux select-layout tiled`

@@ -44,6 +44,7 @@ With this tmux config you can use nested sessions.
 | `CTRL + B` `&` | Close current window |
 | `CTRL + B` `q` | Number all windows and panes |
 | `CTRL + B` `Crtl + v` | paste |
+| <kbd>Alt</kbd> + <kbd>0</kbd>-<kbd>9</kbd> | Switch to workspace number 0-9 |
 
 ### Switch panes using Alt-arrow without prefix
 

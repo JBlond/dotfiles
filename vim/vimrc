@@ -3,6 +3,8 @@ set nocompatible
 
 source $VIMRUNTIME/mswin.vim
 
+set keymodel-=stopsel                        " vim visual mode arrow keys on Windows, too. A fix for 'behave mswin'
+
 :set hidden                                  " allow buffer
 " set viminfo^=%                             " remember my buffers
 

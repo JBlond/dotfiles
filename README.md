@@ -17,7 +17,7 @@ pacman -S tmux fish
 
 ## bash
 
-**[bash functions](bash.md)**
+**[bash functions README](bash.md)**
 
 ```BASH
 jblond@linux:~/dotfiles

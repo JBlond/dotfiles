@@ -16,6 +16,7 @@ set nobackup                                 " no *~ backup files
 set cursorline                               " Highlight current line
 
 set tabstop=4                                " tabstop length 4
+set softtabstop=4                            "
 set shiftwidth=4                             "
 set autoindent                               " enable autoindent
 set smartindent                              " enable smart indent

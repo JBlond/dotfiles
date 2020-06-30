@@ -80,6 +80,7 @@ ssh://user@host:🏠
 - [git alias](git.md)
 
 ## Tmux
+
 **[tmux README](tmux.md)** custom shortcuts and other good stuff
 
 ![shell4](assets/shell04.png)
@@ -94,7 +95,6 @@ Vim has different Syntax highlighting themes. Can be changed using `CTRL` + `Y`
 ![vim](assets/vim01.png)
 
 ### monokai
-<details><summary>monokai</summary>
-<br>
+
 ![vim](assets/vim02.png)
-</details>
+

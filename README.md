@@ -86,7 +86,7 @@ ssh://user@host:🏠
 ![shell4](assets/shell04.png)
 ![shell5](assets/vim-in-tmux.png)
 
-<details><summary>Vim</summary>
+<details><summary>##Vim</summary>
 <br>
 
 Vim has different Syntax highlighting themes. Can be changed using `CTRL` + `Y`

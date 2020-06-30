@@ -56,7 +56,7 @@ jblond@linux:~
 
 ## git aliases and commands
 
-**[git](git.md)**
+**[git README](git.md)**
 
 **[git aliases](git/aliases.ini#L2-L53)**
 

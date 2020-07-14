@@ -51,7 +51,9 @@ function fish_prompt
   end
 
   echo -n -s $status_indicator
-  if set -q SSH_TTY
+
+  set isssh (who am i) | string match -r '\\([-a-zA-Z0-9\\.]+\\)$'
+  if test -n "$isssh"
     echo $red'ssh://'$cyan(whoami)$green'@'(hostname) $cwd $git_info $normal ' '
   else
     echo $cyan(whoami) $cwd $git_info $normal ' '

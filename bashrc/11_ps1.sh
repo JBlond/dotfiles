@@ -65,7 +65,7 @@ set_prompt () {
 	fi
 
 	# show host name only on remote connection
-	if [[ "$3" = true || "${SSH_CLIENT}" || "${SSH_TTY}" || ${EUID} = 0 ]]; then
+	if [[ "$3" = true || "${SSH_CLIENT}" || "${SSH_TTY}" || ${EUID} = 0 || "$(who am i)" =~ \([-a-zA-Z0-9\.]+\)$ ]]; then
 		PS1+='\[\033[01;32m\]@\h\[\033[00m\]'
 	fi
 	PS1+=':\[\033[01;34m\]$where\[\033[00m\]'

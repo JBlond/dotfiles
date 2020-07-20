@@ -7,5 +7,5 @@ CursorType=underscore
 BellType=0
 ThemeFile=mintty
 BackgroundColour=0,0,0
-Font=Cascadia Code PL
+Font=Lucida Console for Powerline
 Term=xterm-256color

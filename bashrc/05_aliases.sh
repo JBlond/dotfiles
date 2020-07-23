@@ -19,7 +19,5 @@ source ~/dotfiles/bashrc/alias.d/15_iptables.sh
 
 alias ?='man' #haha
 
-alias ble="source ~/dotfiles/ble/ble.sh"
-
 alias bashrc='source ~/.bashrc'
 alias dotfiles='cd ~/dotfiles'

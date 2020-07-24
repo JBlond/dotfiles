@@ -60,5 +60,8 @@ function fish_right_prompt -d 'is all about the right prompt'
     set_color $fish_color_autosuggestion
 
     _cmd_duration
+    echo ' ['
+    date '+%H:%M'
+    echo ']'
     set_color normal
 end

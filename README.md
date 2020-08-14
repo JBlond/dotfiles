@@ -86,6 +86,10 @@ ssh://user@host:🏠
 ![shell4](assets/shell04.png)
 ![shell5](assets/vim-in-tmux.png)
 
+### Powerline theme
+
+![shell6](assets/powerline-theme.png)
+
 ## Vim
 
 Vim has different Syntax highlighting themes. Can be changed using `CTRL` + `Y`

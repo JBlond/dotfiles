@@ -4,16 +4,6 @@
 
 With this tmux config you can use nested sessions.
 
-## Status line indicators
-
-| tmux key  | Description |
-| ------------- | ------------- |
-| 🖰 | external mouse input enabled |
-| [OFF] | prefix and all F-Keys are disabled for tmux |
-| ⌨ | Prefix entered |
-| 🔔 | Bell |
-| 🔍 | Zoom in current pane |
-
 ## keys
 
 | tmux key  | Description |
@@ -90,6 +80,12 @@ The decision to work read-only is made when the second user attaches to the sess
 <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>-</kbd>
 <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>:</kbd> `select-layout even-vertical`
 
-##
-
 <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>:</kbd> `tmux select-layout tiled`
+
+## Powerline Theme
+
+Load the powerline theme, if you have a font installed that supports it.
+
+<kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>+</kbd>
+
+![shell6](assets/powerline-theme.png)

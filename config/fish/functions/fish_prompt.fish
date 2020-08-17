@@ -1,9 +1,9 @@
 function _git_branch_name
-  echo (command cat .git/HEAD | cut -d '/' -f3)
+  echo (command git symbolic-ref HEAD ^/dev/null | sed -e 's|^refs/heads/||')
 end
 
 function _is_git_dirty
-  echo (command git status --porcelain --ignore-submodules -unormal)
+  echo (command git status -s --ignore-submodules=dirty ^/dev/null)
 end
 
 function fish_prompt

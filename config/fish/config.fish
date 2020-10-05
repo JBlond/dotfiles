@@ -107,7 +107,7 @@ alias download="curl -LO "
 
 alias shit="echo 💩"
 alias :D="echo ツ"
-alias dontcare='echo ¯\\_\(ツ\)_/¯'
+alias dontcare='echo ¯\\\_\(ツ\)_/¯'
 alias busy='cat /dev/urandom | hexdump -C | grep "ca fe"'
 alias shangdi="echo 上帝就是愛"
 

@@ -35,8 +35,8 @@ function fish_prompt
   #echo 'branch name is ' + $branch_name
   if [ $branch_name ]
 
-    if test $branch_name = 'master'
-      set -l git_branch "master"
+    if test $branch_name = 'master' or  test $branch_name = 'main'
+      set -l git_branch "main"
       set git_info \n"$normal $cyan(♆ $red$git_branch$cyan)$normal"
     else
       set -l git_branch $branch_name

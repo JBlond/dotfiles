@@ -28,6 +28,6 @@ install:
 	@git submodule update --init --recursive
 
 update:
-	@git pull origin master
+	@git pull origin main
 	@git pull --recurse-submodules
 	@make install

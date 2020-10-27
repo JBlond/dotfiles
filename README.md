@@ -21,24 +21,24 @@ pacman -S tmux fish
 
 ```BASH
 jblond@linux:~/dotfiles
-(master)[▼2] ✓
+(main)[▼2] ✓
 λ
 jblond@linux:~/dotfiles
-(master)[▼2] ✓
+(main)[▼2] ✓
 λ git pull
 jblond@linux:~/dotfiles
-(master) ✓
+(main) ✓
 jblond@linux:~/dotfiles
-(master) 1⬤ 4Ξ 1✗ 1⚡⚡
+(main) 1⬤ 4Ξ 1✗ 1⚡⚡
 λ git commit -a -m "my commit"
 jblond@linux:~/dotfiles
-(master)[▲1] ✓
+(main)[▲1] ✓
 λ git push
 jblond@linux:~/dotfiles
-(master) ✓
+(main) ✓
 λ
 jblond@linux:~/dotfiles
-(master) ✓
+(main) ✓
 λ ..
 jblond@linux:~
 λ

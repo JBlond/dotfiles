@@ -24,4 +24,6 @@ On [Git for Windows SDK](https://github.com/git-for-windows/build-extra/releases
  make continuum     install tmux continuum plugin
 
  make install       run the deploy script
+ 
+ make update        update source with the last version from github
 ```

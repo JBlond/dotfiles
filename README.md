@@ -13,7 +13,15 @@ pacman -S tmux fish
 
 ## install & update
 
-[install README](install.md)
+```bash
+git clone https://github.com/JBlond/dotfiles.git
+cd dotfiles
+./deploy.sh
+```
+
+### use make
+
+[make options](install.md)
 
 ## bash
 

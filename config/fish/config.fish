@@ -55,7 +55,7 @@ alias cd..='cd ..'
 
 alias rmf='rm -rf'
 
-alias path='echo $PATH | tr ":" "\n"'
+alias path='echo -e $PATH \n'
 
 alias gcl="git clone --recurse-submodules"
 alias gcma="git cma"

@@ -79,6 +79,7 @@ alias vagrant="vagrant --color"
 alias vm="vagrant ssh"
 
 alias composer='composer --ansi'
+alias composer2='composer2 --ansi'
 
 alias update='sudo apt update'
 alias list='sudo apt list --upgradable'

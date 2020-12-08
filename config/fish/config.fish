@@ -55,7 +55,7 @@ alias cd..='cd ..'
 
 alias rmf='rm -rf'
 
-alias path='echo $PATH | tr ":" "\n"'
+alias path='echo -e $PATH \n'
 
 alias gcl="git clone --recurse-submodules"
 alias gcma="git cma"
@@ -79,6 +79,7 @@ alias vagrant="vagrant --color"
 alias vm="vagrant ssh"
 
 alias composer='composer --ansi'
+alias composer2='composer2 --ansi'
 
 alias update='sudo apt update'
 alias list='sudo apt list --upgradable'

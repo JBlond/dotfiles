@@ -77,12 +77,13 @@ let g:bufferline_echo = 0
 let g:lightline = {
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'modified', 'gitbranch' ], [ 'bufferline' ]
+    \             [ 'readonly', 'modified', 'gitbranch' ], ['mylineinfo'],[ 'bufferline' ]
     \           ]
     \ },
     \ 'component_function': {
         \   'bufferline': 'MyBufferline',
-        \    'gitbranch': 'gitbranch#name'
+        \    'gitbranch': 'gitbranch#name',
+        \    'mylineinfo': "MyLineinfo",
     \ }
 \ }
 
@@ -103,6 +104,10 @@ function! MyBufferline()
     else
         return b . c . a
 endif
+endfunction
+
+function! MyLineinfo()
+    return 'Lines: ' . line('$')
 endfunction
 
 nn <expr> <C-y> g:colors_name == "monokai" ? ":colo hybrid_reverse\<CR>" : ":colo monokai\<CR>"

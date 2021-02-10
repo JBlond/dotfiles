@@ -47,6 +47,7 @@ abbr lal "ls -a | awk '{print $NF}'"
 abbr dfh 'df -kTh'
 abbr dus 'du -hs * | sort -h'
 abbr dush 'du . -sh'
+abbr "du -hs * | sort -rh"
 
 alias mkdir='mkdir -p'
 

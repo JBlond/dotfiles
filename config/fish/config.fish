@@ -88,8 +88,8 @@ abbr upgrade 'sudo apt dist-upgrade'
 abbr autoremove 'sudo apt autoremove'
 abbr install 'sudo apt install'
 
-alias journalctl='sudo journalctl'
-alias systemctl='sudo systemctl'
+abbr journalctl 'sudo journalctl'
+abbr systemctl 'sudo systemctl'
 abbr sc 'systemctl'
 
 alias grep='grep --color=auto --exclude-dir="node_modules"'

@@ -114,7 +114,7 @@ abbr svim 'sudo vim'
 alias vless='/usr/share/vim/vim8*/macros/less.sh'
 
 # use vim alias to exit shell
-abbr :q "exit"
+alias :q="exit"
 
 abbr ipt 'sudo /sbin/iptables'
 

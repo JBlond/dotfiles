@@ -4,17 +4,10 @@ set -g fish_prompt_pwd_dir_length 30
 set PATH /sbin /usr/local/sbin $HOME/dotfiles/git/bin $PATH
 
 # add composer bins to path if installed
-if test -d $HOME/.composer/vendor/bin
-	set PATH $HOME/.composer/vendor/bin $PATH
-end
 
-if test -d $HOME/.yarn/
-	set PATH $HOME/.yarn/bin $PATH
-end
-
-if test -d $HOME/notes/bin/
-	set PATH $HOME/notes/bin $PATH
-end
+add_path_maybe	$HOME/.composer/vendor/bin $PATH
+add_path_maybe PATH $HOME/.yarn/bin $PATH
+add_path_maybe$HOME/notes/bin $PATH
 
 if test -d $HOME/ranger
 	alias ranger="$HOME/ranger/ranger.py"
@@ -27,7 +20,6 @@ alias pleace="sudo"
 alias please="sudo"
 
 abbr own 'sudo chown -R $USER:$USER'
-
 
 alias ls='ls --color=auto --group-directories-first'
 alias dir='ls --color=auto --format=vertical'

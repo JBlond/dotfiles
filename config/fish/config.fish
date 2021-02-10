@@ -3,7 +3,7 @@ set -g fish_prompt_pwd_dir_length 30
 # path
 set PATH /sbin /usr/local/sbin $HOME/dotfiles/git/bin $PATH
 
-# add composer bins to path if installed
+source ~/dotfiles/config/fish/functions/add_path_maybe.fish
 
 add_path_maybe	$HOME/.composer/vendor/bin $PATH
 add_path_maybe PATH $HOME/.yarn/bin $PATH

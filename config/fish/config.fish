@@ -40,7 +40,7 @@ abbr lla 'ls -lAh'
 abbr la 'ls -A'
 abbr lart 'ls -lhart'
 abbr l 'ls -CF'
-abbr us "ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
+alias us="ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
 abbr lll "stat --format='%a %U %G %s %y %N' *"
 abbr lal "ls -a | awk '{print $NF}'"
 

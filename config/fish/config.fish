@@ -52,7 +52,7 @@ alias mkdir='mkdir -p'
 
 abbr .. 'cd ..'
 abbr cd.. 'cd ..'
-alias -='cd -'
+alias '-'='cd -'
 
 abbr rmf 'rm -rf'
 

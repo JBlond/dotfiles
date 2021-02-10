@@ -29,7 +29,6 @@ alias mkdir='mkdir -p'
 
 alias ..='cd ..'
 alias cd..='cd ..'
-alias -='cd -'
 
 alias rmf='rm -rf'
 

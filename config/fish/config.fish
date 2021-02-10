@@ -26,78 +26,78 @@ alias sudo='sudo '
 alias pleace="sudo"
 alias please="sudo"
 
-alias own='sudo chown -R $USER:$USER'
+abbr own 'sudo chown -R $USER:$USER'
 
 
 alias ls='ls --color=auto --group-directories-first'
 alias dir='ls --color=auto --format=vertical'
 
-alias cls='clear'
+abbr cls 'clear'
 
-alias ös='ls'
-alias ll='ls -lh'
-alias lla='ls -lAh'
-alias la='ls -A'
-alias lart='ls -lhart'
-alias l='ls -CF'
-alias us="ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
-alias lll="stat --format='%a %U %G %s %y %N' *"
-alias lal="ls -a | awk '{print $NF}'"
+abbr ös 'ls'
+abbr ll 'ls -lh'
+abbr lla 'ls -lAh'
+abbr la 'ls -A'
+abbr lart 'ls -lhart'
+abbr l 'ls -CF'
+abbr us "ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
+abbr lll "stat --format='%a %U %G %s %y %N' *"
+abbr lal "ls -a | awk '{print $NF}'"
 
-alias dfh='df -kTh'
-alias dus='du -hs * | sort -h'
-alias dush='du . -sh'
+abbr dfh 'df -kTh'
+abbr dus 'du -hs * | sort -h'
+abbr dush 'du . -sh'
 
 alias mkdir='mkdir -p'
 
-alias ..='cd ..'
-alias cd..='cd ..'
-alias -='cd -'
+abbr .. 'cd ..'
+abbr cd.. 'cd ..'
+abbr - 'cd -'
 
-alias rmf='rm -rf'
+abbr rmf 'rm -rf'
 
 alias path='echo -e $PATH \n'
 
-alias gcl="git clone --recurse-submodules"
-alias gcma="git cma"
-alias gcmap="git cmap"
-alias gd="git diff"
-alias ggc="git gc"
-alias gib="git init --bare"
-alias gl="git lg"
-alias glc="git diff @~..@"
-alias gm="git checkout main"
-alias gp="git pull --progress --no-rebase"
-alias gpn="git pull --no-ff"
-alias gpo="git push origin"
-alias gr="git remote -v"
-alias gst="git status -sb"
-alias gsu="git submodule update --recursive --remote"
+abbr gcl "git clone --recurse-submodules"
+abbr gcma "git cma"
+abbr gcmap "git cmap"
+abbr gd "git diff"
+abbr ggc "git gc"
+abbr gib "git init --bare"
+abbr gl "git lg"
+abbr glc "git diff @~..@"
+abbr gm "git checkout main"
+abbr gp "git pull --progress --no-rebase"
+abbr gpn "git pull --no-ff"
+abbr gpo "git push origin"
+abbr gr "git remote -v"
+abbr gst "git status -sb"
+abbr gsu "git submodule update --recursive --remote"
 
 alias hibernate="rundll32.exe powrprof.dll,SetSuspendState"
 
-alias vagrant="vagrant --color"
-alias vm="vagrant ssh"
+abbr vagrant "vagrant --color"
+abbr vm "vagrant ssh"
 
-alias composer='composer --ansi'
-alias composer2='composer2 --ansi'
+abbr composer 'composer --ansi'
+abbr composer2 'composer2 --ansi'
 
-alias update='sudo apt update'
-alias list='sudo apt list --upgradable'
-alias upgrade='sudo apt dist-upgrade'
-alias autoremove='sudo apt autoremove'
-alias install='sudo apt install'
+abbr update 'sudo apt update'
+abbr list 'sudo apt list --upgradable'
+abbr upgrade 'sudo apt dist-upgrade'
+abbr autoremove 'sudo apt autoremove'
+abbr install 'sudo apt install'
 
 alias journalctl='sudo journalctl'
 alias systemctl='sudo systemctl'
-alias sc='systemctl'
+abbr sc 'systemctl'
 
 alias grep='grep --color=auto --exclude-dir="node_modules"'
 alias fgrep='fgrep --color=auto --exclude-dir="node_modules"'
 alias egrep='egrep --color=auto --exclude-dir="node_modules"'
-alias rns='grep -Rins $1 *'
+abbr rns 'grep -Rins $1 *'
 
-alias download="curl -LO "
+abbr download "curl -LO "
 
 alias shit="echo 💩"
 alias :D="echo ツ"
@@ -109,22 +109,22 @@ alias shangdi="echo 上帝就是愛"
 alias genpasswd='echo `env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c 20`'
 
 alias nano='nano -wcz'
-alias more='less'
-alias svim='sudo vim'
+abbr more 'less'
+abbr svim 'sudo vim'
 alias vless='/usr/share/vim/vim8*/macros/less.sh'
 
 # use vim alias to exit shell
-alias :q="exit"
+abbr :q "exit"
 
-alias ipt='sudo /sbin/iptables'
+abbr ipt 'sudo /sbin/iptables'
 
 # display all rules #
-alias iptlist='sudo /sbin/iptables -L -n -v --line-numbers'
-alias iptlistin='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
-alias iptlistout='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
-alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
-alias iptuseage='sudo iptables -L -nvx | grep -v " 0 DROP"'
-alias firewall=iptlist
+abbr iptlist 'sudo /sbin/iptables -L -n -v --line-numbers'
+abbr iptlistin 'sudo /sbin/iptables -L INPUT -n -v --line-numbers'
+abbr iptlistout 'sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
+abbr iptlistfw 'sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
+abbr iptuseage 'sudo iptables -L -nvx | grep -v " 0 DROP"'
+abbr firewall iptlist
 
 
 set -x LESS_TERMCAP_mb (printf "\u001b[01;31m")

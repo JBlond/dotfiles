@@ -3,11 +3,9 @@ set -g fish_prompt_pwd_dir_length 30
 # path
 set PATH /sbin /usr/local/sbin $HOME/dotfiles/git/bin $PATH
 
-source ~/dotfiles/config/fish/functions/add_path_maybe.fish
-
 add_path_maybe	$HOME/.composer/vendor/bin $PATH
 add_path_maybe PATH $HOME/.yarn/bin $PATH
-add_path_maybe$HOME/notes/bin $PATH
+add_path_maybe $HOME/notes/bin $PATH
 
 if test -d $HOME/ranger
 	alias ranger="$HOME/ranger/ranger.py"

@@ -73,6 +73,8 @@ if bufwinnr(1)
 endif
 
 let g:bufferline_echo = 0
+let g:bufferline_modified = '*'
+let g:bufferline_show_bufnr = 0
 
 let g:lightline = {
     \ 'active': {

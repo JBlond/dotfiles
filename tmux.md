@@ -30,6 +30,7 @@ With this tmux config you can use nested sessions.
 | <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>z</kbd> | Zoom into pane or window / zoom out |
 | <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>PageUp</kbd> or <kbd>PageDown</kbd> | Scrolling |
 | <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>w</kbd> | List sessions and windows |
+| <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>s</kbd> | List sessions |
 | <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>d</kbd> | Detach from session |
 | <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>&</kbd> | Close current window |
 | <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>q</kbd> | Number all windows and panes |

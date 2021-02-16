@@ -6,8 +6,6 @@ help:
 	@echo ""
 	@echo " make cert          stop apache and updte let's encrypt"
 	@echo ""
-	@echo " make continuum     install tmux continuum plugin"
-	@echo ""
 	@echo " make install       run the deploy script"
 	@echo ""
 	@echo " make update        update source with the last version from github"
@@ -19,9 +17,6 @@ backup:
 
 cert:
 	@./update_cert.sh
-
-continuum:
-	@git clone https://github.com/tmux-plugins/tmux-continuum.git ~/.tmux/plugins/tmux-continuum
 
 install:
 	@./deploy.sh

@@ -41,19 +41,9 @@ With this tmux config you can use nested sessions.
 
 - <kbd>ALT</kbd> + <kbd>➡️</kbd> <kbd>⬇️</kbd> <kbd>⬅️</kbd> <kbd>⬆️</kbd>
 
-### Use SHIFT plus arrows to navigate between windows
+### Moving Windows
 
-<kbd>SHIFT</kbd> + <kbd>⬅️</kbd> <kbd>➡️</kbd>
-
-Included is
-
-- Tmux Plugin Manager
-- Tmux resurrect
-
-Running Tmux for the first time press <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>I</kbd> to install the plugins.
-
-- <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>CTRL</kbd> + <kbd>s</kbd> saves the current environment
-- <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>CTRL</kbd>+ <kbd>r</kbd> restores the previous saved environment
+- <kbd>SHITFT</kbd> + <kbd>➡️</kbd> <kbd>⬅️</kbd>
 
 ## Sharing Terminal Sessions Between Two Different Accounts
 

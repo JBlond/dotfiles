@@ -78,6 +78,7 @@ ssh://user@host:🏠
 
 ## Functions
 
+- [fish functions](fish.md)
 - [goto](https://github.com/iridakos/goto)
 - bash completion
 - ssh completion  ssh example *TAB* reads the ~/.ssh/config file for host completion
@@ -109,4 +110,3 @@ Vim has different Syntax highlighting themes. Can be changed using `CTRL` + `Y`
 ### monokai
 
 ![vim](assets/vim02.png)
-

@@ -7,6 +7,3 @@
 [submodule "vim/bundle/vim-gitbranch"]
 	path = vim/bundle/vim-gitbranch
 	url = https://github.com/itchyny/vim-gitbranch.git
-[submodule "vim/bundle/goyo.vim"]
-	path = vim/bundle/goyo.vim
-	url = https://github.com/junegunn/goyo.vim.git

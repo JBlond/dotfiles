@@ -81,9 +81,9 @@ ssh://user@host:🏠
 - [fish functions](fish.md)
 - [goto](https://github.com/iridakos/goto)
 - bash completion
-- ssh completion  ssh example *TAB* reads the ~/.ssh/config file for host completion
+- ssh completion  ssh example <kbd>TAB</kbd> reads the ~/.ssh/config file for host completion
 - [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) fancy diff for git ( and others)
-- docker aliases + ssh into docker / docker exec completion. e.g. dssh example *TAB*
+- [docker aliases + ssh into docker / docker exec completion](bashrc/04_docker.sh). e.g. dssh example <kbd>TAB</kbd>
 - git_functionspart for simplify git.  an = add next git file dn = diff next file
 - git-prompt have a nice prompt inside git repos
 - [git alias](git.md)
@@ -101,7 +101,7 @@ ssh://user@host:🏠
 
 ## Vim
 
-Vim has different Syntax highlighting themes. Can be changed using `CTRL` + `Y`
+Vim has different Syntax highlighting themes. Can be changed using <kbd>CTRL</kbd> + <kbd>Y</kbd>
 
 ### hybrid reverse
 

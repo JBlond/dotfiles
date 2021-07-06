@@ -8,7 +8,7 @@ Using tmux on git for windows download the [Git for Windows SDK](https://github.
 and run pacman.
 
 ```bash
-pacman -S tmux fish
+pacman -S tmux fish make
 ```
 
 ## install & update

@@ -72,7 +72,9 @@ jblond@linux:~
 
 ![shell3](assets/shell03.png)
 
-### ssh / remote session
+![shell4](assets/commit.png)
+
+## ssh / remote session
 
 ssh://user@host:🏠
 

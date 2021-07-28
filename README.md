@@ -101,6 +101,8 @@ ssh://user@host:🏠
 
 ![shell6](assets/powerline-theme.png)
 
+The [power line font](https://github.com/JBlond/dotfiles/raw/main/ttf/Lucida_Console_for_Powerline.ttf) is included in the repo.
+
 ## Vim
 
 Vim has different Syntax highlighting themes. Can be changed using <kbd>CTRL</kbd> + <kbd>Y</kbd>

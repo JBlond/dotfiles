@@ -5,9 +5,14 @@
 | command  | Description |
 | ------------- | ------------- |
 | branch | checkout a branchm. If it doesn't exist, it will be created  |
+| clean | remove all files that are not tracked by git with prompt |
+| fetch | fetch all changes from the remote |
+| git-rename-remote-branch | rename the remote branch |
+| merge | a better merge tool than git merge |
 | new | creates a new folder and does git init in it |
 | pull | stashes not committed or saves changes, the the pull and applies the stash |
 | recent | shows recent activities |
+| stash | stash all changes and not tracked files |
 
 ## shortcuts
 

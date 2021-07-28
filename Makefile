@@ -10,6 +10,9 @@ help:
 	@echo ""
 	@echo " make update        update source with the last version from github"
 	@echo ""
+	@echo "make apt            install fish tmux vim via apt"
+	@echo ""
+	@echo "make pacman         install fish tmux vim via pacman" 
 
 backup:
 	@test -f $(HOME)/.bashrc.ORIGINAL && echo "Backup already exists!" || echo -n ""
@@ -26,3 +29,11 @@ update:
 	@git pull origin main
 	@git pull --recurse-submodules
 	@make install
+
+apt:
+	@echo ""
+	@sudo apt install fish tmux vim
+
+pacman:
+	@echo ""
+	@pacman -S fish tmux vim

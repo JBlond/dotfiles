@@ -17,3 +17,4 @@ source ~/dotfiles/bashrc/11_ps1.sh
 source ~/dotfiles/bashrc/12_lscolors.sh
 source ~/dotfiles/bashrc/13_goto.sh
 # source ~/dotfiles/bashrc/14_tmux_at_login.sh
+source ~/dotfiles/bashrc/15_mysq_ps1.sh

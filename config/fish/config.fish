@@ -129,6 +129,7 @@ funcsave ranger-cd
 # To bind Ctrl-O to ranger-cd, save this in `~/.config/fish/config.fish`:
 bind \co ranger-cd
 
+set -x MYSQL_PS1 "(\u@\h:\d)> "
 
 set -x LESS_TERMCAP_mb (printf "\u001b[01;31m")
 set -x LESS_TERMCAP_md (printf "\u001b[01;31m")

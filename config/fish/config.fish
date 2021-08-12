@@ -47,8 +47,6 @@ abbr cd.. 'cd ..'
 
 abbr rmf 'rm -rf'
 
-alias path='echo -e $PATH \n'
-
 abbr gcl "git clone --recurse-submodules"
 abbr gcma "git cma"
 abbr gcmap "git cmap"

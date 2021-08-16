@@ -34,6 +34,7 @@ set t_vb=                                    " reset the terminal code for the v
 set mouse=a                                  " Enable use of the mouse for all modes
 set pastetoggle=<F11>                        " Use <F11> to toggle between 'paste' and 'nopaste'
 nnoremap <C-L> :nohl<CR><C-L>                " Map <C-L> (redraw screen) to also turn off search highlighting until the next search
+nnoremap <silent> <esc><esc> :nohlsearch<CR> " Clear highlight on pressing <ESC><ESC>
 
 set backspace=indent,eol,start               " make backspace behave properly in insert mode
 

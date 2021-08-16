@@ -47,8 +47,6 @@ abbr cd.. 'cd ..'
 
 abbr rmf 'rm -rf'
 
-alias path='echo -e $PATH \n'
-
 abbr gcl "git clone --recurse-submodules"
 abbr gcma "git cma"
 abbr gcmap "git cmap"
@@ -129,6 +127,7 @@ funcsave ranger-cd
 # To bind Ctrl-O to ranger-cd, save this in `~/.config/fish/config.fish`:
 bind \co ranger-cd
 
+set -x MYSQL_PS1 "(\u@$hostname:\d)> "
 
 set -x LESS_TERMCAP_mb (printf "\u001b[01;31m")
 set -x LESS_TERMCAP_md (printf "\u001b[01;31m")

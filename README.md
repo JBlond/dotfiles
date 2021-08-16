@@ -72,7 +72,9 @@ jblond@linux:~
 
 ![shell3](assets/shell03.png)
 
-### ssh / remote session
+![shell4](assets/commit.png)
+
+## ssh / remote session
 
 ssh://user@host:🏠
 
@@ -99,6 +101,8 @@ ssh://user@host:🏠
 
 ![shell6](assets/powerline-theme.png)
 
+The [power line font](https://github.com/JBlond/dotfiles/raw/main/ttf/Lucida_Console_for_Powerline.ttf) is included in the repo.
+
 ## Vim
 
 Vim has different Syntax highlighting themes. Can be changed using <kbd>CTRL</kbd> + <kbd>Y</kbd>
@@ -110,3 +114,27 @@ Vim has different Syntax highlighting themes. Can be changed using <kbd>CTRL</kb
 ### monokai
 
 ![vim](assets/vim02.png)
+
+## mysql prompt
+
+This changes also the mysql prompt. You will know where you and what DB you are using.
+
+```bash
+mysql -hlocalhost -ujblond -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 3295
+Server version: 10.3.29-MariaDB-0+deb10u1 Debian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(jblond@example.com:(none))> use mysql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+(jblond@example.com:mysql)> quit;
+Bye
+```

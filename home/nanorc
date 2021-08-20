@@ -18,8 +18,3 @@ set linenumbers
 
 set whitespace "»·"
 
-# Text will scroll line-by-line, instead of the usual chunk-by-chunk behavior.
-set smooth
-
-set morespace
-

@@ -1,0 +1,16 @@
+#!/bin/bash
+if [ -z "$1" ] ; then
+	echo "Please specify a file for monitoring"
+fi
+
+tail -f $1 | awk '
+			{matched=0}
+			/INFO:/    {matched=1; print "\033[0;37m" $0 "\033[0m"}   # WHITE
+			/DEBUG:/    {matched=1; print "\033[0;37m" $0 "\033[0m"}   # WHITE
+			/NOTICE:/  {matched=1; print "\033[[1;32m" $0 "\033[0m"}   # Light green
+			/WARNING:/ {matched=1; print "\033[1;31m" $0 "\033[0m"}   # Purple
+			/ERROR:/   {matched=1; print "\033[0;31m" $0 "\033[0m"}   # RED
+			/CRITICAL:/   {matched=1; print "\033[0;31m" $0 "\033[0m"}   # RED
+			/ALERT:/   {matched=1; print "\033[0;35m" $0 "\033[0m"}   # PURPLE
+			matched==0            {print "\033[0;33m" $0 "\033[0m"}   # YELLOW
+	'

@@ -2,6 +2,7 @@ set -g fish_prompt_pwd_dir_length 30
 
 add_path_maybe /sbin
 add_path_maybe /usr/local/sbin
+dd_path_maybe $HOME/dotfiles/bin
 add_path_maybe $HOME/dotfiles/git/bin
 add_path_maybe $HOME/.composer/vendor/bin $PATH
 add_path_maybe PATH $HOME/.yarn/bin $PATH

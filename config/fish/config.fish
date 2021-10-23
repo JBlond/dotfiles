@@ -33,7 +33,7 @@ abbr la 'ls -A'
 abbr lart 'ls -lhart'
 abbr l 'ls -CF'
 alias us="ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
-abbr lll "stat --format='%a %U %G %s %y %N' *"
+abbr lll "stat --format='%a %U %G %s %y %N' * | column -t"
 abbr lal "ls -a | awk '{print $NF}'"
 
 abbr dfh 'df -kTh'

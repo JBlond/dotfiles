@@ -26,8 +26,10 @@ function fish_prompt
 
   if test $last_status = 0
       set status_indicator "$green✓ "
+      set exit_code ""
   else
       set status_indicator "$red✗ "
+      set exit_code (set_color -i a52a2a) "[" $last_status "]"
   end
   set -l cwd $blue(prompt_pwd)
 
@@ -56,9 +58,9 @@ function fish_prompt
 
   set isssh (who am i) | string match -r '\\([-a-zA-Z0-9\\.]+\\)$'
   if test -n "$isssh"
-    echo $red'ssh://'$cyan(whoami)$green'@'(hostname) $cwd $git_info $normal ' '
+    echo $red'ssh://'$cyan(whoami)$green'@'(hostname) $cwd $git_info $exit_code $normal ' '
   else
-    echo $cyan(whoami) $cwd $git_info $normal ' '
+    echo $cyan(whoami) $cwd $git_info $exit_code $normal ' '
   end
   # echo # To print an empty line
   # prompt character

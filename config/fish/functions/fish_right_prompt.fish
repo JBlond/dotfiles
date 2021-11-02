@@ -1,54 +1,29 @@
-# You can override some default right prompt options in your config.fish:
-#     set -g theme_date_format "+%a %H:%M"
-
 function _cmd_duration -S -d 'Show command duration'
-    [ "$theme_display_cmd_duration" = "no" ]
-    and return
 
-    [ -z "$CMD_DURATION" -o "$CMD_DURATION" -lt 100 ]
-    and return
-
-    if [ "$CMD_DURATION" -lt 5000 ]
+    if [ "$CMD_DURATION" -lt 500 ]
         echo -ns $CMD_DURATION 'ms'
-    else if [ "$CMD_DURATION" -lt 60000 ]
-       _pretty_ms $CMD_DURATION s
-    else if [ "$CMD_DURATION" -lt 3600000 ]
-        set_color $fish_color_error
-        _pretty_ms $CMD_DURATION m
-    else
-        set_color $fish_color_error
-        _pretty_ms $CMD_DURATION h
+        and return
     end
+
+    humantime $CMD_DURATION
 
     set_color $fish_color_normal
     set_color $fish_color_autosuggestion
 end
 
-function _pretty_ms -S -a ms -a interval -d 'Millisecond formatting for humans'
-    set -l interval_ms
-    set -l scale 1
+# from https://github.com/jorgebucaran/humantime.fish
+function humantime --argument-names ms --description "Turn milliseconds into a human-readable string"
+    set --query ms[1] || return
 
-    switch $interval
-        case s
-            set interval_ms 1000
-        case m
-            set interval_ms 60000
-        case h
-            set interval_ms 3600000
-            set scale 2
-    end
+    set --local secs (math --scale=1 $ms/1000 % 60)
+    set --local mins (math --scale=0 $ms/60000 % 60)
+    set --local hours (math --scale=0 $ms/3600000)
 
-    switch $FISH_VERSION
-        case 2.0.\* 2.1.\* 2.2.\* 2.3.\*
-            # Fish 2.3 and lower doesn't know about the -s argument to math.
-            math "scale=$scale;$ms/$interval_ms" | string replace -r '\\.?0*$' $interval
-        case 2.\*
-            # Fish 2.x always returned a float when given the -s argument.
-            math -s$scale "$ms/$interval_ms" | string replace -r '\\.?0*$' $interval
-        case \*
-            math -s$scale "$ms/$interval_ms"
-            echo -ns $interval
-    end
+    test $hours -gt 0 && set --local --append out $hours"h"
+    test $mins -gt 0 && set --local --append out $mins"m"
+    test $secs -gt 0 && set --local --append out $secs"s"
+
+    set --query out && echo $out || echo $ms"ms"
 end
 
 function fish_right_prompt -d 'is all about the right prompt'

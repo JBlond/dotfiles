@@ -78,6 +78,21 @@ jblond@linux:~
 
 ssh://user@host:🏠
 
+## fast fish prompt
+
+```
+time fish_prompt                                              13ms []15:55
+✓ root@host ~
+λ
+________________________________________________________
+Executed in   13,11 millis    fish           external
+   usr time    7,80 millis    1,37 millis    6,43 millis
+   sys time    5,08 millis    4,12 millis    0,96 millis
+
+✓ root@host ~
+λ                                   
+```
+
 ## Functions
 
 - [fish functions](fish.md)

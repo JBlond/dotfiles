@@ -27,6 +27,10 @@ Mintty -> Options -> Text -> Emojis -> Style -> google
 
 Mintty -> Options -> Text -> Emojis -> Placement -> middle
 
+### mintty with emoji
+
+![shell3](assets/shell-with-emojis.png)
+
 ## install & update
 
 ```bash
@@ -96,7 +100,7 @@ ssh://user@host:🏠
 
 ## fast fish prompt
 
-```
+```bash
 time fish_prompt                                              13ms []15:55
 ✓ root@host ~
 λ
@@ -106,7 +110,7 @@ Executed in   13,11 millis    fish           external
    sys time    5,08 millis    4,12 millis    0,96 millis
 
 ✓ root@host ~
-λ                                   
+λ
 ```
 
 ## Functions

@@ -11,6 +11,22 @@ and run pacman.
 pacman -S tmux fish make
 ```
 
+## emojis in mintty
+
+in C:\Program Files\Git\usr\share\mintty\emojis or C:\git-sdk-64\usr\share\mintty\emojis download
+
+```bash
+mkdir emojis
+cd emojis
+curl https://raw.githubusercontent.com/wiki/mintty/mintty/getemojis
+getemoji -d
+getemoji .
+```
+
+Mintty -> Options -> Text -> Emojis -> Style -> google
+
+Mintty -> Options -> Text -> Emojis -> Placement -> middle
+
 ## install & update
 
 ```bash

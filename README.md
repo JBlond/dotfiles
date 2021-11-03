@@ -136,7 +136,9 @@ Executed in   13,11 millis    fish           external
 
 ![shell6](assets/powerline-theme.png)
 
-Activate with <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>+</kbd> See also [tmux README](tmux.md)
+Activate with <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>+</kbd> 
+
+See also [tmux README](tmux.md)
 
 The [power line font](https://github.com/JBlond/dotfiles/raw/main/ttf/Lucida_Console_for_Powerline.ttf) is included in the repo.
 

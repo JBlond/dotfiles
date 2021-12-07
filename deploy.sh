@@ -23,9 +23,7 @@ if [[ "$OSTYPE" == "msys" ]]; then
 	rm -rf $HOME/.config/mintty/config
 	mkdir -p $HOME/.config/mintty/
 	ln $HOME/dotfiles/config/mintty/config $HOME/.config/mintty/config
-	ln $HOME/dotfiles/home/tmux.win.conf $HOME/.tmux.conf
-else
-	ln $HOME/dotfiles/home/tmux.linux.conf $HOME/.tmux.conf
 fi
+ln $HOME/dotfiles/home/tmux.conf $HOME/.tmux.conf
 
 source ~/.bashrc

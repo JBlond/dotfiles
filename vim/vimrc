@@ -63,9 +63,14 @@ set directory=~/.vim/swaps                   " Local dirs (centralize everything
 
 set undofile                                 " use undo files
 set undodir=~/.vim/swaps                     " use a central directorour
+set undolevels=1000                          " a lot of undo
+
+set history=1000                             " remember more commands and search history
 
 map <C-p> :bprevious<CR>                     " move among buffers with CTRL + p (previous)
 map <C-n> :bnext<CR>                         " move among buffers with CTRL + n (next)
+
+cmap w!! w !sudo tee % >/dev/null            " save with sudo
 
 " short resize with + and -
 if bufwinnr(1)

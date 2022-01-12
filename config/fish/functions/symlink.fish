@@ -1,5 +1,5 @@
 function symlink --argument _from _to
-    if string-empty $from; or string-empty _to
+    if test -z "$from"; or test -z  "$_to"
       echo "symlink: must provide from and to arguments"
       return 1
     end

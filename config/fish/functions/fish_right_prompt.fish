@@ -11,7 +11,7 @@ function _cmd_duration -S -d 'Show command duration'
     set_color $fish_color_autosuggestion
 end
 
-# from https://github.com/jorgebucaran/humantime.fish
+# from https://github.com/jorgebucaran/humantime.fish with days added
 function humantime --argument-names ms --description "Turn milliseconds into a human-readable string"
     set --query ms[1] || return
 

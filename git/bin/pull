@@ -87,7 +87,6 @@ stash=$(git stash --include-untracked)
 
 # Update our remote
 echo "🚀  Fetching from $remote..."
-git fetch $remote || rollback $?
 
 # Pull && update submodules
 git pull --recurse-submodules $remote $remote_branch || rollback $?

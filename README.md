@@ -18,9 +18,9 @@ in C:\Program Files\Git\usr\share\mintty\emojis or C:\git-sdk-64\usr\share\mintt
 ```bash
 mkdir emojis
 cd emojis
-curl https://raw.githubusercontent.com/wiki/mintty/mintty/getemojis
-getemoji -d
-getemoji .
+curl -LO https://raw.githubusercontent.com/wiki/mintty/mintty/getemojis
+./getemojis -d
+./getemojis .
 ```
 
 Mintty -> Options -> Text -> Emojis -> Style -> google
@@ -36,7 +36,7 @@ Mintty -> Options -> Text -> Emojis -> Placement -> middle
 ```bash
 git clone -c core.autocrlf=false https://github.com/JBlond/dotfiles.git
 cd dotfiles
-./deploy.sh
+make update
 ```
 
 ### use make

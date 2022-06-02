@@ -13,6 +13,12 @@ pacman -S tmux fish make
 
 ## emojis in mintty
 
+### Download 
+
+[Download emojis](https://github.com/JBlond/emojis/archive/refs/tags/1.0.0.zip)
+
+### make the emojis yourself
+
 in C:\Program Files\Git\usr\share\mintty\emojis or C:\git-sdk-64\usr\share\mintty\emojis download
 
 ```bash

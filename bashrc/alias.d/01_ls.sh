@@ -2,6 +2,8 @@ if [[ "$OSTYPE" == "FreeBSD" ]]; then
 	alias ls='ls -G'
 elif [[ "$OSTYPE" == "solaris2.11" ]]; then
 	alias ls='ls --color=auto'
+elif [[ "$OSTYPE" == "darwin20" ]]; then
+	alias ls='ls -G'
 else
 	eval "`dircolors -b`"
 	alias ls='ls --color=auto --group-directories-first'

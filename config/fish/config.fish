@@ -17,9 +17,6 @@ end
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
-alias pleace="sudo"
-alias please="sudo"
-
 abbr own 'sudo chown -R $USER:$USER'
 
 alias ls='ls --color=auto --group-directories-first'

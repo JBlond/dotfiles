@@ -4,7 +4,7 @@
 
 - `add_path_maybe <path>` Add a directory to the path variable, but only if it exists
 - `fishy` Print a colored ascii version of the fish logo
-- `fuck` Execute last command with sudo
+- `please` Execute last command with sudo
 - `gh` goto to git repo top folder
 - `goto` A fish shell utility to quickly navigate to aliased directories supporting tab-completion
 - `ranger-cd` change directory with ranger

@@ -1,4 +1,4 @@
-function please --description 'Execute last command with sudo'
-    eval sudo $history[1]
+function please --description 'Execute command with sudo'
+    eval sudo $argv
 	echo " ٩(◕‿◕｡)۶"
 end

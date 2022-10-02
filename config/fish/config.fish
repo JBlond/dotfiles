@@ -96,7 +96,7 @@ alias shangdi="echo 上帝就是愛"
 # make me a password
 alias genpasswd='echo `env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c 20`'
 
-alias nano='nano -wcz'
+alias nano='nano -wc'
 abbr more 'less'
 abbr svim 'sudo vim'
 alias vless='/usr/share/vim/vim8*/macros/less.sh'

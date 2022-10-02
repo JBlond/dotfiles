@@ -1,4 +1,4 @@
-alias nano='nano -wcz'
+alias nano='nano -wc'
 alias more='less'
 alias svim='sudo vim'
 alias vless='/usr/share/vim/vim8*/macros/less.sh'

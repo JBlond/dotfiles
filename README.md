@@ -8,6 +8,10 @@ Using tmux on git for windows download the [Git for Windows SDK](https://github.
 and run pacman.
 
 ```bash
+git clone -c core.autocrlf=false https://github.com/JBlond/dotfiles.git
+cd dotfiles
+make update
+# on windows
 pacman -S tmux fish make
 ```
 
@@ -37,15 +41,7 @@ Mintty -> Options -> Text -> Emojis -> Placement -> middle
 
 ![shell3](assets/shell-with-emojis.png)
 
-## install & update
-
-```bash
-git clone -c core.autocrlf=false https://github.com/JBlond/dotfiles.git
-cd dotfiles
-make update
-```
-
-### use make
+## install and update use make
 
 [make options](install.md)
 

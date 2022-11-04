@@ -11,6 +11,7 @@
 | merge | a better merge tool than git merge |
 | new | creates a new folder and does git init in it |
 | pull | stashes not committed or saves changes, the the pull and applies the stash |
+| push | Send your local branch changes to the remote branch |
 | recent | shows recent activities |
 | stash | stash all changes and not tracked files |
 

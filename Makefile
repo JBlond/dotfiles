@@ -30,6 +30,9 @@ update:
 	@git pull --recurse-submodules
 	@make install
 
+fonts:
+	@./fonts.sh
+
 apt:
 	@echo ""
 	@sudo apt install fish tmux vim

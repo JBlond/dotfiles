@@ -7,6 +7,6 @@ CursorType=underscore
 BellType=0
 ThemeFile=mintty
 BackgroundColour=0,0,0
-Font=Lucida Console for Powerline
+Font=LucidaConsole Nerd Font Mono
 Term=xterm-256color
 Emojis=google

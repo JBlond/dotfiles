@@ -19,8 +19,6 @@ alias sudo='sudo '
 
 abbr own 'sudo chown -R $USER:$USER'
 
-abbr -a !! --position anywhere --function last_history_item --quiet
-
 alias ls='ls --color=auto --group-directories-first'
 alias dir='ls --color=auto --format=vertical'
 

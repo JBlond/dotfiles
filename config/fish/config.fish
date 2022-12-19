@@ -98,6 +98,7 @@ alias genpasswd='echo `env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | 
 
 alias nano='nano -wc'
 abbr more 'less'
+abbr vom 'vim'
 abbr svim 'sudo vim'
 alias vless='/usr/share/vim/vim8*/macros/less.sh'
 

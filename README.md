@@ -32,8 +32,12 @@ mkdir emojis
 cd emojis
 curl -LO https://raw.githubusercontent.com/wiki/mintty/mintty/getemojis
 ./getemojis -d
-./getemojis .
 ```
+
+### OR download
+
+<https://github.com/JBlond/emojis>
+
 #### config
 
 Mintty -> Options -> Text -> Emojis -> Style -> google

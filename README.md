@@ -36,7 +36,8 @@ curl -LO https://raw.githubusercontent.com/wiki/mintty/mintty/getemojis
 
 ### OR download
 
-<https://github.com/JBlond/emojis>
+[JBlond/emojis](https://github.com/JBlond/emojis)
+
 
 #### config
 

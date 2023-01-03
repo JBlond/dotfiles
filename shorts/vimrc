@@ -1,0 +1,65 @@
+set nocompatible
+
+set keymodel-=stopsel                        " vim visual mode arrow keys on Windows, too. A fix for 'behave mswin'
+
+set hidden                                   " allow buffer
+
+set encoding=utf-8                           " always use utf-8
+set ruler                                    " Always show cursor position.
+set nu                                       " Show line numbers on the sidebar.
+set nowrap                                   " no wrapping
+set nobackup                                 " no *~ backup files
+set cursorline                               " Highlight current line
+
+set tabstop=4                                " tabstop length 4
+set softtabstop=4                            "
+set shiftwidth=4                             "
+set autoindent                               " enable autoindent
+set smartindent                              " enable smart indent
+set copyindent                               "
+set shortmess=atI                            " Don't show the intro message when starting vim
+set noshowmode                               " done by plugin https://github.com/itchyny/lightline.vim
+set wildmenu                                 " Enhanced command line completion.
+set ttyfast                                  " more characters will be sent to the screen for redrawing
+set wildmode=list:longest,longest:full       " Complete files like a shell.
+set showcmd                                  " Show partial commands in the last line of the screen
+set laststatus=2                             " Always display the status line, even if only one window is displayed
+set confirm                                  " nicer dialog when closing with unsaved changes
+set visualbell                               " Use visual bell instead of beeping when doing something wrong
+set t_vb=                                    " reset the terminal code for the visual bell.
+set mouse=a                                  " Enable use of the mouse for all modes
+set pastetoggle=<F11>                        " Use <F11> to toggle between 'paste' and 'nopaste'
+nnoremap <C-L> :nohl<CR><C-L>                " Map <C-L> (redraw screen) to also turn off search highlighting until the next search
+nnoremap <silent> <esc><esc> :nohlsearch<CR> " Clear highlight on pressing <ESC><ESC>
+
+set backspace=indent,eol,start               " make backspace behave properly in insert mode
+
+syntax on                                    " syntax highlighting on
+set bg=dark                                  " Dark Background
+
+set ignorecase                               " search case-insensitive
+set smartcase                                " Automatically switch search to case-sensitive when search query contains an uppercase letter.
+set infercase                                "
+set incsearch                                " Highlight matches as you type.
+set hlsearch                                 " Highlight matches.
+set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.git,.sass-cache,*.class,node_modules
+set path+=**                                 " search down into subfolders
+
+set nostartofline
+set showmatch                                " Show matching brackets.
+set matchtime=2                              " How many tenths of a second to blink
+set list                                     " show tab and trail
+set listchars=tab:»»,trail:·,extends:>,precedes:<,eol:↲
+
+" highlight ColorColumn ctermbg=yellow         " Show a line after 80 characters
+" call matchadd('ColorColumn', '\%81v', 100)
+
+
+set undofile                                 " use undo files
+set undolevels=1000                          " a lot of undo
+set history=1000                             " remember more commands and search history
+
+map <C-p> :bprevious<CR>                     " move among buffers with CTRL + p (previous)
+map <C-n> :bnext<CR>                         " move among buffers with CTRL + n (next)
+
+cmap w!! w !sudo tee % >/dev/null            " save with sudo

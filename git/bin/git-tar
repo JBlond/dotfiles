@@ -2,7 +2,7 @@
 
 if [ $# != 2 ]; then
     echo "usage: git-tar <prefix> <tag>";
-    return 1;
+    exit 255;
 fi
 git archive --format=tar --prefix=$1/ $2 | gzip -9 > $1.tar.gz
 

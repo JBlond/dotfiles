@@ -19,9 +19,6 @@ alias sudo='sudo '
 
 abbr own 'sudo chown -R $USER:$USER'
 
-alias ls='ls --color=auto --group-directories-first'
-alias dir='ls --color=auto --format=vertical'
-
 abbr cls 'clear'
 
 abbr ös 'ls'
@@ -30,7 +27,7 @@ abbr lla 'ls -lAh'
 abbr la 'ls -A'
 abbr lart 'ls -lhart'
 abbr l 'ls -CF'
-alias us="ls -la | grep ^- | awk '{print \$9}' | grep ^\\\."
+
 abbr lll "stat --format='%a %U %G %s %y %N' * | column -t"
 abbr lal "ls -a | awk '{print $NF}'"
 
@@ -38,8 +35,6 @@ abbr dfh 'df -kTh'
 abbr dus 'du -hs * | sort -h'
 abbr dush 'du . -sh'
 abbr greedy 'du -hs * | sort -rh'
-
-alias mkdir='mkdir -p'
 
 abbr .. 'cd ..'
 abbr cd.. 'cd ..'
@@ -92,9 +87,6 @@ alias :D="echo ツ"
 alias dontcare='echo ¯\\\_\(ツ\)_/¯'
 alias busy='cat /dev/urandom | hexdump -C | grep "ca fe"'
 alias shangdi="echo 上帝就是愛"
-
-# make me a password
-alias genpasswd='echo `env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c 20`'
 
 alias nano='nano -wc'
 abbr more 'less'

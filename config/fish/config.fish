@@ -93,7 +93,7 @@ abbr more 'less'
 abbr vom 'vim'
 abbr svim 'sudo vim'
 alias vless='/usr/share/vim/vim8*/macros/less.sh'
-
+alias :e="nvim"
 # use vim alias to exit shell
 alias :q="exit"
 

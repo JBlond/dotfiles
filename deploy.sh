@@ -8,6 +8,7 @@ rm -f $HOME/.inputrc
 rm -rf $HOME/.vim
 rm -f $HOME/.tmux.conf
 cp -r ./config/fish ~/.config/
+cp -r ./config/tmux ~/.config/
 if [[ "$OSTYPE" != "msys" ]]; then
 	cp -r ./config/htop ~/.config/
 	cp -r ./config/mc ~/.config/
@@ -24,6 +25,6 @@ if [[ "$OSTYPE" == "msys" ]]; then
 	mkdir -p $HOME/.config/mintty/
 	ln $HOME/dotfiles/config/mintty/config $HOME/.config/mintty/config
 fi
-ln $HOME/dotfiles/home/tmux.conf $HOME/.tmux.conf
+
 
 source ~/.bashrc

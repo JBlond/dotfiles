@@ -51,11 +51,11 @@ Mintty -> Options -> Text -> Emojis -> Placement -> middle
 
 ## install and update use make
 
-[make options](install.md)
+[make options](docs/install.md)
 
 ## bash
 
-**[bash functions README](bash.md)**
+**[bash functions README](docs/bash.md)**
 
 ```BASH
 jblond@linux:~/dotfiles
@@ -94,7 +94,7 @@ jblond@linux:~
 
 ## git aliases and commands
 
-**[git README](git.md)**
+**[git README](docs/git.md)**
 
 **[git aliases](git/aliases.ini#L2-L53)**
 
@@ -125,7 +125,7 @@ Executed in   13,11 millis    fish           external
 
 ## Functions
 
-- [fish functions](fish.md)
+- [fish functions](docs/fish.md)
 - [goto](https://github.com/iridakos/goto)
 - bash completion
 - ssh completion  ssh example <kbd>TAB</kbd> reads the ~/.ssh/config file for host completion
@@ -137,7 +137,7 @@ Executed in   13,11 millis    fish           external
 
 ## Tmux
 
-**[tmux README](tmux.md)** custom shortcuts and other good stuff
+**[tmux README](docs/tmux.md)** custom shortcuts and other good stuff
 
 ![shell4](assets/shell04.png)
 ![shell5](assets/vim-in-tmux.png)
@@ -148,7 +148,7 @@ Executed in   13,11 millis    fish           external
 
 Activate with <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>+</kbd> 
 
-See also [tmux README](tmux.md)
+See also [tmux README](docs/tmux.md)
 
 The [power line font](https://github.com/JBlond/dotfiles/raw/main/ttf/Lucida_Console_for_Powerline.ttf) is included in the repo.
 

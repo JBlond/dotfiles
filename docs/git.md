@@ -45,4 +45,4 @@
 
 ## native aliases
 
-See [git aliases](git/aliases.ini#L2-L53)
+See [git aliases](../git/aliases.ini#L2-L62)

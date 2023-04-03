@@ -1,6 +1,6 @@
 # tmux
 
-![shell4](assets/shell04.png)
+![shell4](../assets/shell04.png)
 
 With this tmux config you can use nested sessions.
 
@@ -79,4 +79,4 @@ Load the powerline theme, if you have a font installed that supports it.
 
 <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>+</kbd>
 
-![shell6](assets/powerline-theme.png)
+![shell6](../assets/powerline-theme.png)

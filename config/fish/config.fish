@@ -62,6 +62,8 @@ alias hibernate="rundll32.exe powrprof.dll,SetSuspendState"
 abbr vagrant "vagrant --color"
 abbr vm "vagrant ssh"
 
+abbr dc "docker-compose"
+
 abbr composer 'composer --ansi'
 abbr composer2 'composer2 --ansi'
 

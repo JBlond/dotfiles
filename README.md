@@ -133,7 +133,7 @@ Executed in   13,11 millis    fish           external
 - [docker aliases + ssh into docker / docker exec completion](bashrc/04_docker.sh). e.g. dssh example <kbd>TAB</kbd>
 - git_functionspart for simplify git.  an = add next git file dn = diff next file
 - git-prompt have a nice prompt inside git repos
-- [git alias](git.md)
+- [git alias](docs/git.md)
 
 ## Tmux
 

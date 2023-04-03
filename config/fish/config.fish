@@ -63,6 +63,7 @@ abbr vagrant "vagrant --color"
 abbr vm "vagrant ssh"
 
 abbr dc "docker-compose"
+abbr dcu "docker-compose pull && docker-compose down && docker-compose up -d"
 
 abbr dssh "docker exec -it"
 

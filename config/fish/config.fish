@@ -64,6 +64,8 @@ abbr vm "vagrant ssh"
 
 abbr dc "docker-compose"
 
+abbr dssh "docker exec -it"
+
 abbr composer 'composer --ansi'
 abbr composer2 'composer2 --ansi'
 

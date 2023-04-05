@@ -1,7 +1,7 @@
-set nocompatible
+set nocompatible                             " Don't be like the old vi
 
 
-source $VIMRUNTIME/mswin.vim
+source $VIMRUNTIME/mswin.vim                 " if available load mswin settings
 
 set keymodel-=stopsel                        " vim visual mode arrow keys on Windows, too. A fix for 'behave mswin'
 
@@ -81,9 +81,9 @@ if bufwinnr(1)
     map - <C-W>-
 endif
 
-let g:bufferline_echo = 0
-let g:bufferline_modified = '*'
-let g:bufferline_show_bufnr = 0
+function! MyLineinfo()
+    return 'Lines: ' . line('$')
+endfunction
 
 let g:lightline = {
     \ 'active': {
@@ -97,6 +97,10 @@ let g:lightline = {
         \    'mylineinfo': "MyLineinfo",
     \ }
 \ }
+
+let g:bufferline_echo = 0
+let g:bufferline_modified = '*'
+let g:bufferline_show_bufnr = 0
 
 function! MyBufferline()
     call bufferline#refresh_status()
@@ -115,10 +119,6 @@ function! MyBufferline()
     else
         return b . c . a
 endif
-endfunction
-
-function! MyLineinfo()
-    return 'Lines: ' . line('$')
 endfunction
 
 nn <expr> <C-y> g:colors_name == "monokai" ? ":colo hybrid_reverse\<CR>" : ":colo monokai\<CR>"

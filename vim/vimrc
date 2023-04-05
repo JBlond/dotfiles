@@ -70,6 +70,9 @@ set history=1000                             " remember more commands and search
 map <C-p> :bprevious<CR>                     " move among buffers with CTRL + p (previous)
 map <C-n> :bnext<CR>                         " move among buffers with CTRL + n (next)
 
+set whichwrap+=<,>,[,]                       " make the left and right arrow keys change line
+                                             " https://vimdoc.sourceforge.net/htmldoc/options.html#%27whichwrap%27
+
 cmap w!! w !sudo tee % >/dev/null            " save with sudo
 
 " short resize with + and -

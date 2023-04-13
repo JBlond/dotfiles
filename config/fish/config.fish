@@ -62,13 +62,13 @@ alias hibernate="rundll32.exe powrprof.dll,SetSuspendState"
 abbr vagrant "vagrant --color"
 abbr vm "vagrant ssh"
 
-abbr dc "docker-compose"
-abbr dcu "docker-compose pull && docker-compose down && docker-compose up -d"
+abbr dc "docker compose"
+abbr dcu "docker compose pull && docker compose down && docker compose up -d"
+abbr docker-compose "docker compose"
 
 abbr dssh "docker exec -it"
 
 abbr composer 'composer --ansi'
-abbr composer2 'composer2 --ansi'
 
 abbr update 'sudo apt update'
 abbr list 'sudo apt list --upgradable'

@@ -130,5 +130,8 @@ let g:netrw_liststyle=3                      " tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
-autocmd BufNewFile,BufRead *.conf set syntax=apache
-autocmd BufNewFile,BufRead composer.lock set syntax=json
+if has("autocmd")
+    autocmd BufNewFile,BufRead *.conf set syntax=apache
+    autocmd BufNewFile,BufRead composer.lock set syntax=json
+    autocmd BufNewFile,BufRead,FileReadPre *.md,*.markdown setlocal filetype=markdown
+endif

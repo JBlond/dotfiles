@@ -80,7 +80,9 @@ set_prompt () {
 		PS1+='`find_git_commit_diff`'
 		PS1+='\[\033[1m\033[33m\]`find_git_dirty`'
 	fi
-
+	if [[ $last_command != 0 ]]; then
+		PS1+="\[\e[01;31m\] [$last_command] "
+	fi
 	PS1+="\[\033[0;31m\]\n${bold}λ${normal}\[\033[0m\] "
 
 	# have pwd in the title on term

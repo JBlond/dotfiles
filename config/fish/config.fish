@@ -117,7 +117,7 @@ bind \co ranger-cd
 
 set -x MYSQL_PS1 "(\u@$hostname:\d)> "
 
-abbr "zfs ls"="zfs list -t snap"
+abbr zfs-ls="zfs list -t snap"
 
 set -x LESS_TERMCAP_mb (printf "\u001b[01;31m")
 set -x LESS_TERMCAP_md (printf "\u001b[01;31m")

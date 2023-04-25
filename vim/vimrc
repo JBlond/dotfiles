@@ -32,9 +32,31 @@ set confirm                                  " nicer dialog when closing with un
 set visualbell                               " Use visual bell instead of beeping when doing something wrong
 set t_vb=                                    " reset the terminal code for the visual bell.
 set mouse=a                                  " Enable use of the mouse for all modes
-set pastetoggle=<F11>                        " Use <F11> to toggle between 'paste' and 'nopaste'
 nnoremap <C-L> :nohl<CR><C-L>                " Map <C-L> (redraw screen) to also turn off search highlighting until the next search
 nnoremap <silent> <esc><esc> :nohlsearch<CR> " Clear highlight on pressing <ESC><ESC>
+
+set pastetoggle=<F10>                        " Use <F10> to toggle between 'paste' and 'nopaste'
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 set backspace=indent,eol,start               " make backspace behave properly in insert mode
 

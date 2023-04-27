@@ -3,7 +3,9 @@ function zfs
         case destory
             set argv[1] destroy
         case ls
-             set argv[1] list -t snapshot
+            set argv[1] list
+            set argv[2] -t
+            set argv[3] snapshot
     end
     command zfs $argv
 end

@@ -107,6 +107,25 @@ function! MyLineinfo()
     return 'Lines: ' . line('$')
 endfunction
 
+function! MyBufferline()
+    call bufferline#refresh_status()
+    let b = g:bufferline_status_info.before
+    let c = g:bufferline_status_info.current
+    let a = g:bufferline_status_info.after
+    let alen = strlen(a)
+    let blen = strlen(b)
+    let clen = strlen(c)
+    let w = winwidth(0) * 4 / 11
+    if w < alen+blen+clen
+        let whalf = (w - strlen(c)) / 2
+        let aa = alen > whalf && blen > whalf ? a[:whalf] : alen + blen < w - clen || alen < whalf ? a : a[:(w - clen - blen)]
+        let bb = alen > whalf && blen > whalf ? b[-(whalf):] : alen + blen < w - clen || blen < whalf ? b : b[-(w - clen - alen):]
+        return (strlen(bb) < strlen(b) ? '...' : '') . bb . c . aa . (strlen(aa) < strlen(a) ? '...' : '')
+    else
+        return b . c . a
+	endif
+endfunction
+
 let g:lightline = {
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
@@ -124,24 +143,6 @@ let g:bufferline_echo = 0
 let g:bufferline_modified = '*'
 let g:bufferline_show_bufnr = 0
 
-function! MyBufferline()
-    call bufferline#refresh_status()
-    let b = g:bufferline_status_info.before
-    let c = g:bufferline_status_info.current
-    let a = g:bufferline_status_info.after
-    let alen = strlen(a)
-    let blen = strlen(b)
-    let clen = strlen(c)
-    let w = winwidth(0) * 4 / 11
-    if w < alen+blen+clen
-        let whalf = (w - strlen(c)) / 2
-        let aa = alen > whalf && blen > whalf ? a[:whalf] : alen + blen < w - clen || alen < whalf ? a : a[:(w - clen - blen)]
-        let bb = alen > whalf && blen > whalf ? b[-(whalf):] : alen + blen < w - clen || blen < whalf ? b : b[-(w - clen - alen):]
-        return (strlen(bb) < strlen(b) ? '...' : '') . bb . c . aa . (strlen(aa) < strlen(a) ? '...' : '')
-    else
-        return b . c . a
-endif
-endfunction
 
 nn <expr> <C-y> g:colors_name == "monokai" ? ":colo hybrid_reverse\<CR>" : ":colo monokai\<CR>"
 

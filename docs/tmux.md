@@ -1,8 +1,17 @@
 # tmux
 
-![shell4](../assets/shell04.png)
+![shell4](../assets/shell05.png)
 
 With this tmux config you can use nested sessions.
+
+## Powerline Theme
+
+Load the powerline theme, if you have a font installed that supports it.
+
+<kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>+</kbd>
+
+![shell6](../assets/shell06.png)
+
 
 ## keys
 
@@ -72,11 +81,3 @@ The decision to work read-only is made when the second user attaches to the sess
 <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>:</kbd> `select-layout even-vertical`
 
 <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>:</kbd> `tmux select-layout tiled`
-
-## Powerline Theme
-
-Load the powerline theme, if you have a font installed that supports it.
-
-<kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>+</kbd>
-
-![shell6](../assets/powerline-theme.png)

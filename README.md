@@ -140,13 +140,13 @@ Executed in   13,11 millis    fish           external
 **[tmux README](docs/tmux.md)** custom shortcuts and other good stuff
 
 ![shell4](assets/shell04.png)
-![shell5](assets/vim-in-tmux.png)
+![shell5](assets/vim-in-tmux-1.png)
 
 ### Powerline theme
 
 ![shell6](assets/powerline-theme.png)
 
-Activate with <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>+</kbd> 
+Activate with <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>+</kbd>
 
 See also [tmux README](docs/tmux.md)
 
@@ -160,9 +160,13 @@ Vim has different Syntax highlighting themes. Can be changed using <kbd>CTRL</kb
 
 ![vim](assets/vim01.png)
 
+[vim in tmux hybrid reverse](assets/vim-in-tmux-1.png)
+
 ### monokai
 
 ![vim](assets/vim02.png)
+
+[vim in tmux monokai](assets/vim-in-tmux-2.png)
 
 ## mysql prompt
 

@@ -26,7 +26,7 @@ switch $argv[1]
 		echo 
 	case glow
 		echo 
-	case less more
+	case less more make
 		echo 
 	case lua
 		echo 

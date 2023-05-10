@@ -21,10 +21,10 @@ backup:
 	@test ! -f $(HOME)/.bashrc || cp $(HOME)/.bashrc $(HOME)/.bashrc.ORIGINAL
 
 cert:
-	@./update_cert.sh
+	@./scripts/update_cert.sh
 
 install:
-	@./deploy.sh
+	@./scripts/deploy.sh
 	@git submodule update --init --recursive
 
 update:
@@ -33,7 +33,7 @@ update:
 	@make install
 
 fonts:
-	@./fonts.sh
+	@./scripts/fonts.sh
 
 apt:
 	@echo ""

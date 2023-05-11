@@ -25,6 +25,8 @@ make fonts
 
 ### OR make the emojis yourself
 
+<details><summary>make the emojis yourself</summary><br>
+
 in C:\Program Files\Git\usr\share\mintty\emojis or C:\git-sdk-64\usr\share\mintty\emojis download
 
 ```bash
@@ -33,6 +35,8 @@ cd emojis
 curl -LO https://raw.githubusercontent.com/wiki/mintty/mintty/getemojis
 ./getemojis -d
 ```
+
+</details>
 
 ### OR download
 

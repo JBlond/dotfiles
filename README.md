@@ -150,7 +150,7 @@ Activate with <kbd>CTRL</kbd> + <kbd>B</kbd> <kbd>+</kbd>
 
 See also [tmux README](docs/tmux.md)
 
-The [power line font](https://github.com/JBlond/dotfiles/raw/main/ttf/Lucida_Console_for_Powerline.ttf) is included in the repo.
+The [power line font](https://github.com/JBlond/dotfiles/raw/main/assets/ttf/Lucida_Console_NerdFont_Complete_Mono.ttf) is included in the repo.
 
 ## Vim
 

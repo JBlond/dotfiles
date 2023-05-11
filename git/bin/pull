@@ -93,5 +93,5 @@ git pull --recurse-submodules --jobs=10 $remote $remote_branch || rollback $?
 
 unstash
 
-echo "🦄  Done"
+echo "🏁  Done"
 exit 0

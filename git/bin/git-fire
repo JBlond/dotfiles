@@ -2,7 +2,7 @@
 
 # modified version of https://github.com/qw3rtman/git-fire
 # Setup.
-VERSION="0.2.4"
+VERSION="1.0.0"
 BRANCH_PREFIX="fire-"
 
 version() {
@@ -40,7 +40,7 @@ fire() {
 	git add -A
 
 	if [ -z "$1" ]; then
-		message="Fire! Branch $(current_branch)."
+		message="🔥 Fire! Branch $(current_branch)."
 	else
 		message="$*"
 	fi
@@ -57,7 +57,7 @@ fire() {
 		done
 	fi
 
-	printf "\n\nLeave building!\n"
+	printf "\n\n🔥 Leave building! 🔥\n"
 }
 
 delete_fire_branches() {
@@ -68,14 +68,14 @@ delete_fire_branches() {
 			if  [[ $branch == remotes/$remote/$BRANCH_PREFIX* ]] ;
 			then
 				branch_without_remote_in_name="${branch/remotes\/$remote\//}"
-				echo "deleting remote " $remote $branch_without_remote_in_name
+				echo "⚰️ deleting remote " $remote $branch_without_remote_in_name
 				git push --delete $remote $branch_without_remote_in_name
 			fi
 		done
 
 		if  [[ $branch == $BRANCH_PREFIX* ]] ;
 		then
-			echo "deleting local branch: $branch"
+			echo "⚰️ deleting local branch: $branch"
 			git branch -D $branch
 		fi
 	done

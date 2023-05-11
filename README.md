@@ -23,7 +23,7 @@ pacman -S tmux fish make
 make fonts
 ```
 
-### OR make the emojis yourself
+### OR
 
 <details><summary>make the emojis yourself</summary><br>
 
@@ -38,10 +38,11 @@ curl -LO https://raw.githubusercontent.com/wiki/mintty/mintty/getemojis
 
 </details>
 
-### OR download
+<details><summary>download</summary><br>
 
 [JBlond/emojis](https://github.com/JBlond/emojis)
 
+</details>
 
 #### config
 

@@ -1,0 +1,115 @@
+#!/bin/bash
+if [[ "$1" == "alert" ]]; then
+    echo "🚨"
+fi
+if [[ "$1" == "" ]]; then
+    echo "😋"
+fi
+if [[ "$1" == "tonge" ]]; then
+    echo "😜"
+fi
+if [[ "$1" == "flex" ]]; then
+    echo "💪"
+fi
+if [[ "$1" == "angry" ]]; then
+    echo "🤬"
+fi
+if [[ "$1" == "dead" ]]; then
+    echo "☠️"
+fi
+if [[ "$1" == "ghost" ]]; then
+    echo "👻"
+fi
+if [[ "$1" == "shit" ]]; then
+    echo "💩"
+fi
+if [[ "$1" == "nosee" ]]; then
+    echo "🙈"
+fi
+if [[ "$1" == "nohear" ]]; then
+    echo "🙉"
+fi
+if [[ "$1" == "nospeak" ]]; then
+    echo "🙊"
+fi
+if [[ "$1" == "eyes" ]]; then
+    echo "👀"
+fi
+if [[ "$1" == "eye" ]]; then
+    echo "👁️"
+fi
+if [[ "$1" == "brain" ]]; then
+    echo "🧠"
+fi
+if [[ "$1" == "argh" ]]; then
+    echo "💢"
+fi
+if [[ "$1" == "zzz" ]]; then
+    echo "💤"
+fi
+if [[ "$1" == "wait" ]]; then
+    echo "⏳"
+fi
+if [[ "$1" == "explode" ]]; then
+    echo "💥"
+fi
+if [[ "$1" == "crown" ]]; then
+    echo "👑"
+fi
+if [[ "$1" == "chili" ]]; then
+    echo "🌶️"
+fi
+if [[ "$1" == "steak" ]]; then
+    echo "🥩"
+fi
+if [[ "$1" == "bacon" ]]; then
+    echo "🥓"
+fi
+if [[ "$1" == "burger" ]]; then
+    echo "🍔"
+fi
+if [[ "$1" == "fries" ]]; then
+    echo "🍟"
+fi
+if [[ "$1" == "pizza" ]]; then
+    echo "🍕"
+fi
+if [[ "$1" == "beer" ]]; then
+    echo "🍺"
+fi
+if [[ "$1" == "gate" ]]; then
+    echo "⛩️"
+fi
+if [[ "$1" == "hot" ]]; then
+    echo "♨️"
+fi
+if [[ "$1" == "fire" ]]; then
+    echo "🔥"
+fi
+if [[ "$1" == "battery" ]]; then
+    echo "🔋"
+fi
+if [[ "$1" == "lock" ]]; then
+    echo "🔒"
+fi
+if [[ "$1" == "unlock" ]]; then
+    echo "🔓"
+fi
+if [[ "$1" == "key" ]]; then
+    echo "🔑"
+fi
+if [[ "$1" == "magnet" ]]; then
+    echo "🧲"
+fi
+if [[ "$1" == "warning" ]]; then
+    echo "⚠️"
+fi
+if [[ "$1" == "nope" ]]; then
+    echo "⛔"
+fi
+if [[ "$1" == "18" ]]; then
+    echo "🔞"
+fi
+if [[ "$1" == "pirate" ]]; then
+    echo "🏴‍☠️"
+fi

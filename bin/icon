@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/usr/bin/env fish
 
 switch $argv[1]
     case ""
@@ -58,7 +57,7 @@ switch $argv[1]
         echo "⛩️"
     case hot
         echo "♨️"
-    case re
+    case fire
         echo "🔥"
     case battery
         echo "🔋"
@@ -78,3 +77,4 @@ switch $argv[1]
         echo "🔞"
     case pirate
         echo "🏴‍☠️"
+end

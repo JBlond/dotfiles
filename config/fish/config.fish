@@ -27,6 +27,7 @@ abbr lla 'ls -lAh'
 abbr la 'ls -A'
 abbr lart 'ls -lhart'
 abbr l 'ls -CF'
+abbr lss 'ls liSAh'
 
 abbr lll "stat --format='%a %U %G %s %y %N' * | column -t"
 abbr lal "ls -a | awk '{print $NF}'"

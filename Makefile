@@ -10,11 +10,11 @@ help:
 	@echo ""
 	@echo " make update        update source with the last version from github"
 	@echo ""
-	@echo "make apt            install fish tmux vim via apt"
+	@echo " make apt            install fish tmux vim via apt"
 	@echo ""
-	@echo "make pacman         install fish tmux vim via pacman"
+	@echo " make pacman         install fish tmux vim via pacman"
 	@echo ""
-	@echo "make fonts          install emojis for fonts"
+	@echo " make fonts          install emojis for fonts"
 
 backup:
 	@test -f $(HOME)/.bashrc.ORIGINAL && echo "Backup already exists!" || echo -n ""

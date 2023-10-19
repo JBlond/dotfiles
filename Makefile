@@ -29,8 +29,8 @@ install:
 
 update:
 	@git pull origin main
-	@git pull --recurse-submodules
 	@make install
+	@git pull --recurse-submodules
 
 fonts:
 	@./scripts/fonts.sh

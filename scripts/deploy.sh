@@ -2,11 +2,11 @@
 rm -f $HOME/.bash_logout
 rm -f $HOME/.bashrc
 rm -f $HOME/.gitconfig
-rm -f $HOME/.nanorc
 rm -f $HOME/.profile
 rm -f $HOME/.inputrc
 rm -rf $HOME/.vim
 rm -f $HOME/.tmux.conf
+rm -rf $HOME/.config/fish
 cp -r ./config/fish ~/.config/
 cp -r ./config/tmux ~/.config/
 if [[ "$OSTYPE" != "msys" ]]; then
@@ -16,7 +16,6 @@ fi
 ln $HOME/dotfiles/home/bash_logout $HOME/.bash_logout
 ln $HOME/dotfiles/home/bashrc $HOME/.bashrc
 ln $HOME/dotfiles/git/gitconfig $HOME/.gitconfig
-ln $HOME/dotfiles/home/nanorc $HOME/.nanorc
 ln $HOME/dotfiles/home/profile $HOME/.profile
 ln $HOME/dotfiles/home/inputrc $HOME/.inputrc
 ln -s $HOME/dotfiles/vim $HOME/.vim
@@ -25,6 +24,5 @@ if [[ "$OSTYPE" == "msys" ]]; then
 	mkdir -p $HOME/.config/mintty/
 	ln $HOME/dotfiles/config/mintty/config $HOME/.config/mintty/config
 fi
-
 
 source ~/.bashrc

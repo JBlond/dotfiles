@@ -41,4 +41,4 @@ apt:
 
 pacman:
 	@echo ""
-	@pacman -S fish tmux vim
+	@pacman -S fish tmux

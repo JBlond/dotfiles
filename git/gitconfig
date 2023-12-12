@@ -1,6 +1,7 @@
 [include]
 	path = ~/dotfiles/git/advice.ini
 	path = ~/dotfiles/git/aliases.ini
+	path = ~/dotfiles/git/blame.ini
 	path = ~/dotfiles/git/color.ini
 	path = ~/dotfiles/git/core.ini
 	path = ~/dotfiles/git/diff.ini

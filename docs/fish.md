@@ -65,5 +65,3 @@
 - `systemctl` sudo systemctl
 - `update` sudo apt update
 - `upgrade` sudo apt dist-upgrade
-- `vagrant` vagrant --color
-- `vm` vagrant ssh

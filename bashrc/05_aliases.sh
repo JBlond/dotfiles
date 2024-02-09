@@ -6,7 +6,6 @@ source ~/dotfiles/bashrc/alias.d/02_git.sh
 source ~/dotfiles/bashrc/alias.d/03_apache.sh
 source ~/dotfiles/bashrc/alias.d/04_custom_ranger.sh
 source ~/dotfiles/bashrc/alias.d/05_tmux.sh
-source ~/dotfiles/bashrc/alias.d/06_vagrant.sh
 source ~/dotfiles/bashrc/alias.d/07_php.sh
 source ~/dotfiles/bashrc/alias.d/08_debian.sh
 source ~/dotfiles/bashrc/alias.d/09_grep.sh

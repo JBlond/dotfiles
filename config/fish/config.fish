@@ -60,9 +60,6 @@ abbr gsu "git submodule update --recursive --remote"
 
 alias hibernate="rundll32.exe powrprof.dll,SetSuspendState"
 
-abbr vagrant "vagrant --color"
-abbr vm "vagrant ssh"
-
 abbr dc "docker compose"
 abbr dcu "docker compose pull && docker compose down && docker compose up -d"
 abbr docker-compose "docker compose"

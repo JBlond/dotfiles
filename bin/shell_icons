@@ -12,7 +12,7 @@ switch $argv[1]
 		echo 
 	case cp duplicate
 		echo 
-	case mv
+	case mv mc
 		echo 
 	case curl http pint lynx wget w3m
 		echo 

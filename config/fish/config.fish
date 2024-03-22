@@ -61,9 +61,11 @@ abbr gsu "git submodule update --recursive --remote"
 alias hibernate="rundll32.exe powrprof.dll,SetSuspendState"
 
 abbr dc "docker compose"
-abbr dcu "docker compose pull && docker compose down && docker compose up -d"
+abbr dcu "docker compose pull && docker compose up -d"
 abbr docker-compose "docker compose"
 abbr dcp "docker compose pull"
+abbr dps "docker compose ps"
+abbr dst "docker stats"
 
 abbr dssh "docker exec -it"
 

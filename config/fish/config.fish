@@ -60,26 +60,13 @@ abbr gsu "git submodule update --recursive --remote"
 
 alias hibernate="rundll32.exe powrprof.dll,SetSuspendState"
 
-abbr dc "docker compose"
-abbr dcu "docker compose pull && docker compose up -d"
 abbr docker-compose "docker compose"
-abbr dcp "docker compose pull"
-abbr dps "docker compose ps"
-abbr dst "docker stats"
-
 abbr dssh "docker exec -it"
 
 abbr composer 'composer --ansi'
 
-abbr update 'sudo apt update'
-abbr list 'sudo apt list --upgradable'
-abbr upgrade 'sudo apt dist-upgrade'
-abbr autoremove 'sudo apt autoremove'
-abbr install 'sudo apt install'
-
 alias journalctl='sudo journalctl'
 alias systemctl='sudo systemctl'
-abbr sc 'systemctl'
 
 alias grep='grep --color=auto --exclude-dir="node_modules"'
 alias fgrep='fgrep --color=auto --exclude-dir="node_modules"'

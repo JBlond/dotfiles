@@ -15,7 +15,6 @@
 
 - `..` cd ..
 - `ös` ls
-- `autoremove` sudo apt autoremove
 - `cd..` cd ..
 - `cls` clear
 - `composer` composer --ansi
@@ -63,5 +62,3 @@
 - `sc` systemctl
 - `svim` sudo svim
 - `systemctl` sudo systemctl
-- `update` sudo apt update
-- `upgrade` sudo apt dist-upgrade

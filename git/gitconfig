@@ -11,3 +11,7 @@
 	path = ~/dotfiles/git/merge.ini
 	path = ~/dotfiles/git/remote.ini
 	path = ~/dotfiles/git/user.ini
+	path = ~/dotfiles/git/safe.ini
+
+[user]
+	useConfigOnly = true

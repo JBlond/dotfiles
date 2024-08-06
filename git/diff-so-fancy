@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-my $VERSION = "1.4.4";
+my $VERSION = "1.4.5";
 
 #################################################################################
 
@@ -28,7 +28,7 @@ my $git_strip_prefix           = git_config_boolean("diff.noprefix","false");
 my $has_stdin                  = has_stdin();
 my $CONTEXT_LINES              = undef; # Number of lines of context diff used
 
-my $ansi_regex = qr/\e\[([0-9]{1,3}(;[0-9]{1,3}){0,10})[mK]/;
+my $ansi_regex       = qr/\e\[([0-9]{0,3}(;[0-9]{1,3}){0,10})[mK]/;
 my $ansi_color_regex = qr/(${ansi_regex})?/;
 my $reset_color      = color("reset");
 my $bold             = color("bold");
@@ -823,18 +823,21 @@ sub set_defaults {
 # Borrowed from: https://www.perturb.org/display/1167_Perl_ANSI_colors.html
 # String format: '115', '165_bold', '10_on_140', 'reset', 'on_173', 'red', 'white_on_blue'
 sub color {
-	my $str = shift();
+	my ($str, $txt) = @_;
+
+	# If we're NOT connected to a an interactive terminal don't do color
+	#if (-t STDOUT == 0) { return ''; }
 
 	# No string sent in, so we just reset
 	if (!length($str) || $str eq 'reset') { return "\e[0m"; }
 
 	# Some predefined colors
-	my %color_map = qw(red 160 blue 21 green 34 yellow 226 orange 214 purple 93 white 15 black 0);
+	my %color_map = qw(red 160 blue 27 green 34 yellow 226 orange 214 purple 93 white 15 black 0);
 	$str =~ s|([A-Za-z]+)|$color_map{$1} // $1|eg;
 
 	# Get foreground/background and any commands
-	my ($fc,$cmd) = $str =~ /(\d+)?_?(\w+)?/g;
-	my ($bc)      = $str =~ /on_?(\d+)/g;
+	my ($fc,$cmd) = $str =~ /^(\d{1,3})?_?(\w+)?$/g;
+	my ($bc)      = $str =~ /on_(\d{1,3})$/g;
 
 	# Some predefined commands
 	my %cmd_map = qw(bold 1 italic 3 underline 4 blink 5 inverse 7);
@@ -844,46 +847,45 @@ sub color {
 	if ($cmd_num)     { $ret .= "\e[${cmd_num}m"; }
 	if (defined($fc)) { $ret .= "\e[38;5;${fc}m"; }
 	if (defined($bc)) { $ret .= "\e[48;5;${bc}m"; }
+	if ($txt)         { $ret .= $txt . "\e[0m";   }
 
 	return $ret;
 }
 
 # Get colors used for various output sections (memoized)
-{
-	my $static_config;
+sub get_config_color {
+	my $str = shift();
 
-	sub get_config_color {
-		my $str = shift();
+	state $static_config;
 
-		my $ret = "";
-		if ($static_config->{$str}) {
-			return $static_config->{$str};
-		}
-
-		#print color(15) . "Shelling out for color: '$str'\n" . color('reset');
-
-		if ($str eq "meta") {
-			# Default ANSI yellow
-			$ret = git_ansi_color(git_config('color.diff.meta')) || color(11);
-		} elsif ($str eq "reset") {
-			$ret = color("reset");
-		} elsif ($str eq "add_line") {
-			# Default ANSI green
-			$ret = git_ansi_color(git_config('color.diff.new')) || color("2_bold");
-		} elsif ($str eq "remove_line") {
-			# Default ANSI red
-			$ret = git_ansi_color(git_config('color.diff.old')) || color("1_bold");
-		} elsif ($str eq "fragment") {
-			$ret = git_ansi_color(git_config('color.diff.frag')) || color("13_bold");
-		} elsif ($str eq "last_function") {
-			$ret = git_ansi_color(git_config('color.diff.func')) || color("146_bold");
-		}
-
-		# Cache (memoize) the entry for later
-		$static_config->{$str} = $ret;
-
-		return $ret;
+	my $ret = "";
+	if ($static_config->{$str}) {
+		return $static_config->{$str};
 	}
+
+	#print color(15) . "Shelling out for color: '$str'\n" . color('reset');
+
+	if ($str eq "meta") {
+		# Default ANSI yellow
+		$ret = git_ansi_color(git_config('color.diff.meta')) || color(11);
+	} elsif ($str eq "reset") {
+		$ret = color("reset");
+	} elsif ($str eq "add_line") {
+		# Default ANSI green
+		$ret = git_ansi_color(git_config('color.diff.new')) || color("2_bold");
+	} elsif ($str eq "remove_line") {
+		# Default ANSI red
+		$ret = git_ansi_color(git_config('color.diff.old')) || color("1_bold");
+	} elsif ($str eq "fragment") {
+		$ret = git_ansi_color(git_config('color.diff.frag')) || color("13_bold");
+	} elsif ($str eq "last_function") {
+		$ret = git_ansi_color(git_config('color.diff.func')) || color("146_bold");
+	}
+
+	# Cache (memoize) the entry for later
+	$static_config->{$str} = $ret;
+
+	return $ret;
 }
 
 # https://www.git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#_colors_in_git
@@ -974,6 +976,7 @@ sub set_ansi_color {
 	}
 }
 
+# Is the string 100% numeric
 sub is_numeric {
 	my $s = shift();
 
@@ -984,6 +987,7 @@ sub is_numeric {
 	return 0;
 }
 
+# Does the string start with ANSI
 sub starts_with_ansi {
 	my $str = shift();
 
@@ -1054,6 +1058,7 @@ sub show_debug_info {
 	print "Operating System: $^O\n";
 }
 
+# Boolean to yes/no string
 sub yes_no {
 	my $val = shift();
 
@@ -1073,6 +1078,7 @@ sub init_diff_highlight_colors {
 	$DiffHighlight::OLD_HIGHLIGHT[1] = git_ansi_color(git_config('color.diff-highlight.oldhighlight')) || $DiffHighlight::OLD_HIGHLIGHT[1];
 }
 
+# Write a line to the debug log which is opened on the fly as-needed
 sub debug_log {
 	my $log_line = shift();
 	my $file     = "/tmp/diff-so-fancy.debug.log";
@@ -1088,12 +1094,16 @@ sub debug_log {
 	return 1;
 }
 
+# Count the number of context lines in the diff
 sub calculate_context_lines {
 	my @lines     = @_;
 	my $count     = 0;
 	my $hunk_line = 0;
 
+	# Count the number of lines between the hunk line and the
+	# first + or - line
 	foreach my $line (@lines) {
+		# Look for the hunk line before we start
 		if ($line =~ /^${ansi_color_regex}(@@@* .+? @@@*)(.*)/) {
 			$hunk_line = $count;
 		} elsif ($hunk_line && $line =~ /^${ansi_color_regex}[+-]/) {

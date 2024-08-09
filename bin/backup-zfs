@@ -119,7 +119,7 @@ dest="$2"
 ###
 ### ssh mode - output snaps from local fs to ssh or read snaps from ssh to local fs
 if $tossh ; then
-	log "sending from local zfs filesystem to SSH server"
+	log "sending from local zfs filesystem to SSH server "
 
 	# make sure src exists
 	if [[ $src =~ : ]] ; then
@@ -185,9 +185,9 @@ elif $fromssh ; then
 
 	# make sure dest exists
 	if [[ $dest =~ : ]] ; then
-		die 1 "$dest must be a local zfs filesystem"
+		die 1 "$dest must be a local zfs filesystem 💩"
 	elif [[ $(ZFS "" list -H -o name "$dest" 2>/dev/null) != $dest ]] ; then
-		die 1 "$dest must be a local zfs filesystem"
+		die 1 "$dest must be a local zfs filesystem 💩"
 	fi
 
 	# split src into components
@@ -230,14 +230,14 @@ srcbase="${srcfs##*/}"
 
 # ensure the destination fs exists before proceeding
 if [[ $(ZFS "$desthost" list -H -o name "$destfs" 2>/dev/null) != $destfs ]] ; then
-	die 1 "destination fs '$destfs' doesn't exist"
+	die 1 "destination fs '$destfs' doesn't exist ☠️"
 fi
 
 ###
 ### create new snapshot on src
 ###
 cur="$srcfs@${tag}_$date"
-ZFS "$srchost" snapshot -r "$cur" || die $? "zfs snapshot failed"
+ZFS "$srchost" snapshot -r "$cur" || die $? "zfs snapshot failed ☠️"
 
 ###
 ### get newest snapshot on dest - it must exist on src
@@ -250,14 +250,14 @@ last="$(ZFS "$desthost" list -d 1 -t snapshot -H -S creation -o name $destfs/$sr
 # 1st time: send full snapshot
 if [[ -z $last ]] ; then
 	log "sending full recursive snapshot from $src to $dest"
-	ZFS "$srchost" send $send_opts --raw -R "$cur" | ZFS "$desthost" receive $recv_opts -Fue "$destfs" || die $? "zfs full send failed"
+	ZFS "$srchost" send $send_opts --raw -R "$cur" | ZFS "$desthost" receive $recv_opts -Fue "$destfs" || die $? "zfs full send failed ☠️"
 # special case: tagged snapshots exist on dest, but src has rotated through all
 elif ! ZFS "$srchost" list $srcfs@$last &>/dev/null ; then
 	die 1 "no incremental path from from $src to $dest"
 # normal case: send incremental
 else
 	log "sending incremental snapshot from $src to $dest (${last#${tag}_}..${cur#*@${tag}_})"
-	ZFS "$srchost" send $send_opts --raw -R -i "$last" "$cur" | ZFS "$desthost" receive $recv_opts -Fue "$destfs" || die $? "zfs incremental send failed"
+	ZFS "$srchost" send $send_opts --raw -R -i "$last" "$cur" | ZFS "$desthost" receive $recv_opts -Fue "$destfs" || die $? "zfs incremental send failed ☠️"
 fi
 
 ###

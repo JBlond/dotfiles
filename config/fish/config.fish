@@ -14,6 +14,8 @@ if test -d $HOME/ranger
 	alias ranger="$HOME/ranger/ranger.py"
 end
 
+alias cursor='echo -ne "\e[3 q"'
+
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 

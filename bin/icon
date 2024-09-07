@@ -13,6 +13,8 @@ switch $argv[1]
         echo "🤬"
     case dead skull
         echo "☠️"
+    case kill
+         echo "💀"
     case ghost
         echo "👻"
     case shit poo

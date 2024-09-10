@@ -1,6 +1,3 @@
-set -g status-bg black
-set -g status-fg white
-
 #left
 set -g status-left "#[fg=black,bg=colour214] ❐ #S #[fg=colour214,bg=black,nobold,noitalics,nounderscore]"
 

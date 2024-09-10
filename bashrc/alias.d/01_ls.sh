@@ -32,6 +32,7 @@ alias dush='du . -sh'
 alias mkdir='mkdir -p'
 
 alias ..='cd ..'
+alias ...='cd ../..'
 alias cd..='cd ..'
 
 alias rmf='rm -rf'

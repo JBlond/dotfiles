@@ -13,6 +13,7 @@ cd dotfiles
 make update
 # on windows
 pacman -S tmux fish make
+winget install BurntSushi.ripgrep.MSVC
 ```
 
 ## emojis in mintty

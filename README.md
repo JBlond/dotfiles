@@ -141,6 +141,10 @@ Executed in   13,11 millis    fish           external
 - git-prompt have a nice prompt inside git repos
 - [git alias](docs/git.md)
 
+### Fish complete
+
+for better completion run `fish_update_completions`
+
 ## Tmux
 
 **[tmux README](docs/tmux.md)** custom shortcuts and other good stuff

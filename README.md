@@ -178,6 +178,10 @@ Vim has different Syntax highlighting themes. Can be changed using <kbd>CTRL</kb
 
 [vim in tmux monokai](assets/vim-in-tmux-2.png)
 
+## nvim / neovim
+
+My neovim config is another repo [JBlond/nvim](https://github.com/JBlond/nvim)
+
 ## mysql prompt
 
 This changes also the mysql prompt. You will know where you and what DB you are using.

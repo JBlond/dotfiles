@@ -66,6 +66,9 @@ alias hibernate="rundll32.exe powrprof.dll,SetSuspendState"
 
 abbr docker-compose "docker compose"
 abbr dssh "docker exec -it"
+abbr dcu "docker compose up -d"
+abbr dcd "docker compose down"
+abbd dcl "docker compose logs -f"
 
 abbr composer 'composer --ansi'
 

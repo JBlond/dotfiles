@@ -69,7 +69,7 @@ abbr dssh "docker exec -it"
 abbr dcu "docker compose up -d"
 abbr dcd "docker compose down"
 abbr dcl "docker compose logs -f"
-abbr dps "docker ps --format \"table {{ .Names }}\""
+abbr dps "docker ps --format \"table {{ .Names }}\" -a"
 abbr dsp "docker system prune -a"
 
 abbr composer 'composer --ansi'

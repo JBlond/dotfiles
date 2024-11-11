@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #Ensure we have the quantity specified on the CLI
 if [ -z "$3" ]; then ARG_ERR=ERR; fi

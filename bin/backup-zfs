@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # backup-zfs: use zfs send/recv to push/pull snapshots
 prog="$(basename "$0")"
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 rm -f $HOME/.bash_logout
 rm -f $HOME/.bashrc
 rm -f $HOME/.gitconfig

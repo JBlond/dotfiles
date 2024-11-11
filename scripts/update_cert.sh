@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # repo  https://github.com/certbot/certbot
 sudo /opt/apache2/bin/httpd -k stop
 sudo certbot renew --agree-tos

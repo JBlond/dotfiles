@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Usage: branch [branchname]
 # Usage: branch [-D] [-d] [branchname]

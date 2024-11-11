@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 function git_clean_untracked_safely {
     TO_REMOVE=`git clean -f -d -n`;
     if [[ -n "$TO_REMOVE" ]]; then

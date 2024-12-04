@@ -5,17 +5,14 @@ On [Git for Windows SDK](https://github.com/git-for-windows/build-extra/releases
 `pacman -S make`
 
 ## make options
+
 ```bash
- make backup        take a backup of the original .bashrc
-                    (it is saved as .bashrc.ORIGINAL)
-                    you should run this once in the begining
-                    otherwise you may overwrite the backup
-
- make cert          stop apache and updte let's encrypt
-
- make continuum     install tmux continuum plugin
-
- make install       run the deploy script
- 
- make update        update source with the last version from github
+help                           Shows this list
+backup                         take a backup of the original .bashrc (it is saved as .bashrc.ORIGINAL)
+cert                           stop apache and updte let's encrypt
+install                        run the deploy script
+update                         update source with the last version from github and deploy it.
+fonts                          install emojis for fonts
+apt                            install fish tmux vim via apt
+pacman                         install fish tmux vim via pacman
 ```

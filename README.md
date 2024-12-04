@@ -13,8 +13,9 @@ cd dotfiles
 make update
 # on windows
 pacman -S tmux fish make
-winget install BurntSushi.ripgrep.MSVC
 ```
+
+[RipGREP](https://github.com/BurntSushi/ripgrep/releases)
 
 ## emojis in mintty
 

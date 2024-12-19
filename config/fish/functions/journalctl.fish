@@ -1,4 +1,3 @@
 function journalctl --description 'alias journalctl=sudo journalctl'
-  sudo journalctl $argv
-        
+	sudo journalctl $argv
 end

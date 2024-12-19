@@ -1,4 +1,3 @@
 function nano --description 'alias nano=nano -wc'
- command nano -wc $argv
-        
+	command nano -wc $argv
 end

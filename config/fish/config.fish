@@ -16,6 +16,15 @@ bind \co ranger-cd
 
 set -x MYSQL_PS1 "(\u@$hostname:\d)> "
 
+if type -q most
+    set -gx PAGER most
+    set -gx MANPAGER most
+else if type -q less
+    set -gx PAGER less
+    # don’t clear the screen after quitting a manual page
+    set -gx MANPAGER 'less -X'
+end
+
 set -x LESS_TERMCAP_mb (printf "\u001b[01;31m")
 set -x LESS_TERMCAP_md (printf "\u001b[01;31m")
 set -x LESS_TERMCAP_me (printf "\u001b[0m")

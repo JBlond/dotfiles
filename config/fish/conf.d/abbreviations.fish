@@ -64,3 +64,6 @@ abbr iptlistfw 'sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
 abbr iptuseage 'sudo iptables -L -nvx | grep -v " 0 DROP"'
 abbr firewall iptlist
 abbr ipt 'sudo /sbin/iptables'
+
+abbr journalctl 'sudo journalctl'
+abbr systemctl 'sudo systemctl'

@@ -1,3 +1,3 @@
 function dontcare --wraps=echo\ ¯\\\\_\\\(ツ\\\)_/¯ --description alias\ dontcare=echo\ ¯\\\\_\\\(ツ\\\)_/¯
-  echo ¯\\_\(ツ\)_/¯ $argv
+  echo ¯\\_\(ツ\)_/¯
 end

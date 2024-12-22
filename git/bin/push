@@ -32,11 +32,12 @@ if [ $(git ls-remote --heads $remote $remote_branch + | wc -l) == "1" ]; then
   pull=$(git pull --rebase $remote $remote_branch)
 fi
 exit_code=$?
+
 if [ $exit_code != 0 ]; then
   echo -e "${color_error}⚠️ Ouch, pull failed!${color_reset}\n\n$pull"
   exit $exit_code
-elif echo $pull | grep "Everything up-to-date" >/dev/null; then
-  echo "✌️  Git says everything is up-to-date!"
+elif echo $pull | grep "Already up to date" >/dev/null; then
+  echo "⭐ Remote was up to date."
 fi
 
 # Push & save output
@@ -49,7 +50,7 @@ push=$(git push --set-upstream $args 2>&1)
 exit_code=$?
 
 if [ $exit_code != 0 ]; then
-  echo -e "${color_error}Ouch, push failed!${color_reset}\n\n$push"
+  echo -e "${color_error}⚠️ Ouch, push failed!${color_reset}\n\n$push"
   exit $exit_code
 elif echo $push | grep "Everything up-to-date" >/dev/null; then
   echo "✌️  Git says everything is up-to-date!"

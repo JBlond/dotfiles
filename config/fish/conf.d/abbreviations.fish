@@ -20,6 +20,7 @@ abbr dus 'du -hs * | sort -h'
 abbr dush 'du . -sh'
 abbr greedy 'du -hs * | sort -rh'
 
+abbr vf 'cd'
 abbr .. 'cd ..'
 abbr ... 'cd ../..'
 abbr cd.. 'cd ..'

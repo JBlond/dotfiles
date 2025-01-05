@@ -32,7 +32,7 @@ set confirm                                  " nicer dialog when closing with un
 set visualbell                               " Use visual bell instead of beeping when doing something wrong
 set t_vb=                                    " reset the terminal code for the visual bell.
 set mouse=a                                  " Enable use of the mouse for all modes
-set modeline                                 " Enable modeline
+"set modeline                                " Enable modeline
 nnoremap <C-L> :nohl<CR><C-L>                " Map <C-L> (redraw screen) to also turn off search highlighting until the next search
 nnoremap <silent> <esc><esc> :nohlsearch<CR> " Clear highlight on pressing <ESC><ESC>
 

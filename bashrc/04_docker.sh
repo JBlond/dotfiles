@@ -4,8 +4,9 @@ if [ -x "/usr/bin/docker" ]; then
 	alias docker-socket='sudo chmod 777 /var/run/docker.sock'
 	alias docker='sudo docker'
 	alias docker-compose='sudo docker compose'
-	alias docker-decompose="sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) && sudo docker rmi $(sudo docker images -a -q)"
-	
+	# decompose causes issued without sudo permissions!?
+	#alias docker-decompose="sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo docker ps -a -q) && sudo docker rmi $(sudo docker images -a -q)"
+
 	dssh() {
 		sudo docker exec -it $1 bash
 	}

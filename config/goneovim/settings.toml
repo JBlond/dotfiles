@@ -1,0 +1,12 @@
+[Editor]
+IgnoreSaveConfirmationWithCloseButton = false
+StartMaximizedWindow = true
+FontFamily = "LucidaConsole NerdFont Mono"
+FontSize = 16
+Clipboard = true
+
+## Draw built-in indent guide
+## Enabling this setting will have a slight impact on performance.
+# IndentGuide = false
+# IndentGuideIgnoreFtList = ["md"]
+# OptionsToUseGuideWidth = "tabstop"

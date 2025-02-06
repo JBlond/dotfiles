@@ -1,7 +1,7 @@
 [Editor]
 IgnoreSaveConfirmationWithCloseButton = false
 StartMaximizedWindow = true
-FontFamily = "LucidaConsole NerdFont Mono"
+FontFamily = "LucidaConsole Nerd Font Mono"
 FontSize = 16
 Clipboard = true
 

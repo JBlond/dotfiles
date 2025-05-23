@@ -10,6 +10,7 @@ add_path_maybe $HOME/.yarn/bin
 add_path_maybe $HOME/notes/bin
 add_path_maybe /usr/local/go/bin
 add_path_maybe /opt/nvim-linux-x86_64/bin
+add_path_maybe /snap/bin
 
 # To bind Ctrl-O to ranger-cd, save this in `~/.config/fish/config.fish`:
 bind \co ranger-cd

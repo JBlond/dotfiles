@@ -154,8 +154,6 @@ execute pathogen#infect()
 filetype plugin indent on
 
 let g:netrw_liststyle=3                      " tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 if has("autocmd")
     autocmd BufNewFile,BufRead *.conf set syntax=apache

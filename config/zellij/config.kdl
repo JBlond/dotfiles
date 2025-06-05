@@ -112,8 +112,9 @@ keybinds clear-defaults=true {
         bind "F1" { NewTab; SwitchToMode "Normal"; }
         bind "F2" { GoToNextTab; SwitchToMode "Normal"; }
         bind "F3" { GoToPreviousTab; SwitchToMode "Normal"; }
-        bind "F4" { Quit; }
+        bind "F4" { CloseTab; }
         bind "F8" { Detach; }
+        bind "F11" { ToggleMouseMode; }
         bind "F12" { SwitchToMode "locked"; }
     }
 

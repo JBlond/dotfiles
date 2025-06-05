@@ -109,9 +109,9 @@ keybinds clear-defaults=true {
     shared_except "locked" {
         // Enter tmux mode
         bind "Ctrl b" { SwitchToMode "Tmux"; }
-        bind "F1" { NewTab; SwitchToMode "Normal"; }
-        bind "F2" { GoToNextTab; SwitchToMode "Normal"; }
-        bind "F3" { GoToPreviousTab; SwitchToMode "Normal"; }
+        bind "F1" { NewTab; }
+        bind "F2" { GoToNextTab; }
+        bind "F3" { GoToPreviousTab; }
         bind "F4" { Quit; }
         bind "F8" { Detach; }
         bind "F12" { SwitchToMode "locked"; }

@@ -112,7 +112,7 @@ keybinds clear-defaults=true {
         bind "F1" { NewTab; SwitchToMode "Normal"; }
         bind "F2" { GoToNextTab; SwitchToMode "Normal"; }
         bind "F3" { GoToPreviousTab; SwitchToMode "Normal"; }
-        //bind "F4" { kill-all-sessions; }
+        bind "F4" { Quit; }
         bind "F8" { Detach; }
         bind "F12" { SwitchToMode "locked"; }
     }

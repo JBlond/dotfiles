@@ -17,4 +17,4 @@ bind "set mark-symlinked-directories on"
 export TERM=screen-256color
 
 # see time stamps in bash history
-export HISTTIMEFORMAT="%d/%m/%y %T "
+export HISTTIMEFORMAT="%y%-%m-%d %T "

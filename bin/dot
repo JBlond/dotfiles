@@ -2,6 +2,10 @@
 switch $argv[1]
     case ""
         echo "🚨 No argument"
+        echo ""
+        echo " update"
+        echo " fonts"
+        echo " nvim"
     case update
         cd ~/dotfiles/
         make update

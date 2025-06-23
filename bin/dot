@@ -1,0 +1,18 @@
+#!/usr/bin/env fish
+switch $argv[1]
+    case ""
+        echo "🚨 No argument"
+    case update
+        cd ~/dotfiles/
+        make update
+    case fonts
+        cd ~/dotfiles/
+        make fonts
+    case nvim
+        switch (uname)
+            case Linux
+                git clone https://github.com/JBlond/nvim.git ~/.config/nvim
+            case '*'
+                git clone -c core.autocrlf=false https://github.com/JBlond/nvim.git ~/AppData/Local/nvim
+        end
+end

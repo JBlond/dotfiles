@@ -6,7 +6,8 @@ switch $argv[1]
         echo " update"
         echo " fonts"
         echo " nvim"
-    case update
+        echo ""
+        case update
         cd ~/dotfiles/
         make update
     case fonts

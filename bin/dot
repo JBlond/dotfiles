@@ -11,8 +11,14 @@ switch $argv[1]
     case nvim
         switch (uname)
             case Linux
-                git clone https://github.com/JBlond/nvim.git ~/.config/nvim
+                if ! test -d ~/.config/nvim
+                    git clone https://github.com/JBlond/nvim.git ~/.config/nvim
+                end
+                cd ~/.config/nvim
+                bash install-nvim.sh
             case '*'
-                git clone -c core.autocrlf=false https://github.com/JBlond/nvim.git ~/AppData/Local/nvim
+                if ! test -d ~/AppData/Local/nvim
+                    git clone -c core.autocrlf=false https://github.com/JBlond/nvim.git ~/AppData/Local/nvim
+                end
         end
 end

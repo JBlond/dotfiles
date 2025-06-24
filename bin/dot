@@ -6,6 +6,7 @@ switch $argv[1]
         echo " update"
         echo " fonts"
         echo " nvim"
+        echo " diff"
         echo ""
         case update
         cd ~/dotfiles/
@@ -26,4 +27,7 @@ switch $argv[1]
                     git clone -c core.autocrlf=false https://github.com/JBlond/nvim.git ~/AppData/Local/nvim
                 end
         end
+    case diff
+        cd ~/dotfiles/
+        git diff -uw
 end

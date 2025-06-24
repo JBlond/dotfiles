@@ -1,0 +1,9 @@
+#!/bin/sh
+git config commit.gpgsign true
+git config gpg.format ssh
+git config gpg.ssh.allowedSignersFile "~/.ssh/allowed_signers"
+git config tag.forceSignAnnotated true
+git config tag.gpgsign true
+git config user.email leet31337@web.de
+git config user.name JBlond
+git config user.signingkey ~/.ssh/github_sign.pub

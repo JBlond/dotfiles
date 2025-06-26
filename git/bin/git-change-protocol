@@ -3,6 +3,12 @@
 # Get current remote URL
 currentURL=$(git config --get remote.origin.url)
 
+# Exit early if no remote URL is set
+if [[ -z "$currentURL" ]]; then
+    echo "No remote.origin.url is set. Nothing to do."
+    exit 0
+fi
+
 # Detect SSH format (e.g. git@github.com:user/repo.git)
 if [[ "$currentURL" == git@*:* ]]; then
     # Extract host and path

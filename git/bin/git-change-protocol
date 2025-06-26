@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Get current remote URL
+currentURL=$(git config --get remote.origin.url)
+
+# Check if the URL is in SSH format (e.g. git@github.com:user/repo.git)
+if echo "$currentURL" | grep -P '^git@' >/dev/null; then
+    # Convert SSH to HTTPS
+    newURL=$(echo "$currentURL" | sed -r 's#git@([^:]+):(.+?)(\.git)?$#https://\1/\2.git#')
+    direction="SSH ➝ HTTPS"
+# Check if the URL is in HTTPS format (e.g. https://github.com/user/repo.git)
+elif echo "$currentURL" | grep -P '^https?://' >/dev/null; then
+    # Convert HTTPS to SSH
+    newURL=$(echo "$currentURL" | sed -r 's#https?://([^/]+)/(.+?)(\.git)?$#git@\1:\2.git#')
+    direction="HTTPS ➝ SSH"
+else
+    echo "The current remote URL format is not recognized: $currentURL"
+    exit 1
+fi
+
+# Prompt user to confirm the change
+echo "Current URL: $currentURL"
+echo "Target format: $direction"
+echo "New URL: $newURL"
+echo -n "Do you want to apply this change? (y/n): "
+read response
+
+if [[ "$response" == "y" ]]; then 
+    git remote set-url origin "$newURL"
+    echo "Git remote updated."
+else 
+    echo "Git remote unchanged."
+fi

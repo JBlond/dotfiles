@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Get current remote URL
+currentURL=$(git config --get remote.origin.url)
+
+# Check if it's in SSH format
+if echo "$currentURL" | grep -P '^git@' >/dev/null; then
+    # Convert SSH to HTTPS (with or without .git at the end)
+    newURL=$(echo "$currentURL" | sed -r 's#git@([^:]+):(.+?)(\.git)?$#https://\1/\2.git#')
+else
+    echo "The current remote URL doesn't appear to be in SSH format: $currentURL"
+    exit 1
+fi
+
+echo "Use this new URL? (y/n): $newURL"
+read response
+if [[ "$response" == "y" ]]; then
+    git remote set-url origin "$newURL"
+    echo "Git remote updated."
+else
+    echo "Git remote unchanged."
+fi

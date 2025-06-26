@@ -3,31 +3,51 @@
 # Get current remote URL
 currentURL=$(git config --get remote.origin.url)
 
-# Check if the URL is in SSH format (e.g. git@github.com:user/repo.git)
-if echo "$currentURL" | grep -P '^git@' >/dev/null; then
-    # Convert SSH to HTTPS
-    newURL=$(echo "$currentURL" | sed -r 's#git@([^:]+):(.+?)(\.git)?$#https://\1/\2.git#')
+# Detect SSH format (e.g. git@github.com:user/repo.git)
+if [[ "$currentURL" == git@*:* ]]; then
+    # Extract host and path
+    host="${currentURL#git@}"
+    host="${host%%:*}"
+    path="${currentURL#*:}"
+    # Remove trailing .git if present
+    path="${path%.git}"
+
+    newURL="https://$host/$path"
+    # Preserve .git if it was present
+    [[ "$currentURL" == *.git ]] && newURL+=".git"
+
     direction="SSH ➝ HTTPS"
-# Check if the URL is in HTTPS format (e.g. https://github.com/user/repo.git)
-elif echo "$currentURL" | grep -P '^https?://' >/dev/null; then
-    # Convert HTTPS to SSH
-    newURL=$(echo "$currentURL" | sed -r 's#https?://([^/]+)/(.+?)(\.git)?$#git@\1:\2.git#')
+
+# Detect HTTPS format (e.g. https://github.com/user/repo.git)
+elif [[ "$currentURL" == http*://*/* ]]; then
+    # Strip protocol
+    tmp="${currentURL#http://}"
+    tmp="${tmp#https://}"
+    host="${tmp%%/*}"
+    path="${tmp#*/}"
+    # Remove trailing .git if present
+    path="${path%.git}"
+
+    newURL="git@$host:$path"
+    # Preserve .git if it was present
+    [[ "$currentURL" == *.git ]] && newURL+=".git"
+
     direction="HTTPS ➝ SSH"
+
 else
     echo "The current remote URL format is not recognized: $currentURL"
     exit 1
 fi
 
-# Prompt user to confirm the change
+# Confirm and apply
 echo "Current URL: $currentURL"
 echo "Target format: $direction"
 echo "New URL: $newURL"
-echo -n "Do you want to apply this change? (y/n): "
-read response
+read -p "Do you want to apply this change? (y/n): " response
 
-if [[ "$response" == "y" ]]; then 
+if [[ "$response" == "y" ]]; then
     git remote set-url origin "$newURL"
     echo "Git remote updated."
-else 
+else
     echo "Git remote unchanged."
 fi

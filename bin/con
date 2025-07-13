@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+HOST_ALIAS="$1"
+shift
+
+# Hole alle relevanten Konfigurationsparameter aus ssh -G
+SSH_CONFIG=$(ssh -G "$HOST_ALIAS")
+
+HOSTNAME=$(echo "$SSH_CONFIG" | awk '/^hostname / {print $2}')
+PORT=$(echo "$SSH_CONFIG" | awk '/^port / {print $2}')
+USER=$(echo "$SSH_CONFIG" | awk '/^user / {print $2}')
+IDENTITY_FILE=$(echo "$SSH_CONFIG" | awk '/^identityfile / {print $2; exit}')
+
+# Link-local check
+if [[ "$HOSTNAME" =~ ^fe80::.* ]]; then
+  IFACE="${SSH_IFACE:-$(ip -6 route | awk '/fe80::/ {print $5; exit}')}"
+
+  if [ -z "$IFACE" ]; then
+    echo "❌ Kein gültiges Interface gefunden!"
+    exit 1
+  fi
+
+  HOSTNAME="${HOSTNAME}%${IFACE}"
+fi
+
+# Baue ssh-Befehl mit allen Optionen zusammen
+exec ssh \
+  -p "$PORT" \
+  -i "$IDENTITY_FILE" \
+  "$USER@$HOSTNAME" \
+  "$@"
+

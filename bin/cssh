@@ -1,28 +1,50 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
+# 1) Alias aus erstem Argument
 HOST_ALIAS="$1"
 shift
 
-# Hole alle relevanten Konfigurationsparameter aus ssh -G
+# 2) Alle SSH-Parameter aus ssh -G holen
 SSH_CONFIG=$(ssh -G "$HOST_ALIAS")
 
-HOSTNAME=$(echo "$SSH_CONFIG" | awk '/^hostname / {print $2}')
-PORT=$(echo "$SSH_CONFIG" | awk '/^port / {print $2}')
-USER=$(echo "$SSH_CONFIG" | awk '/^user / {print $2}')
-IDENTITY_FILE=$(echo "$SSH_CONFIG" | awk '/^identityfile / {print $2; exit}')
+HOSTNAME=$(printf '%s\n' "$SSH_CONFIG" | awk '/^hostname / {print $2}')
+PORT=$(printf '%s\n' "$SSH_CONFIG" | awk '/^port /     {print $2}')
+USER=$(printf '%s\n' "$SSH_CONFIG" | awk '/^user /     {print $2}')
+IDENTITY_FILE=$(printf '%s\n' "$SSH_CONFIG" | awk '/^identityfile / {print $2; exit}')
 
-# Link-local check
-if [[ "$HOSTNAME" =~ ^fe80::.* ]]; then
-  IFACE="${SSH_IFACE:-$(ip -6 route | awk '/fe80::/ {print $5; exit}')}"
+# 3) Prüfen, ob Link-Local-IPv6 vorliegt
+if [[ "$HOSTNAME" =~ ^fe80:: ]]; then
+  # a) Manuelle Interface-Override via Umgebungsvariable?
+  if [[ -n "${SSH_IFACE:-}" ]]; then
+    IFACE="$SSH_IFACE"
+  else
+    # b) Robuste Erkennung: Nimmt das Interface aus der Zeile vor "inet6 fe80::"
+    IFACE=$(
+      ip -6 addr show scope link | \
+      awk '
+        /^[0-9]+: / {
+          iface=$2
+          sub(":", "", iface)
+        }
+        /inet6 fe80::/ {
+          print iface
+          exit
+        }
+      '
+    )
+  fi
 
-  if [ -z "$IFACE" ]; then
-    echo "❌ Kein gültiges Interface gefunden!"
+  if [[ -z "$IFACE" ]]; then
+    echo "❌ Kein Link-Local-Interface gefunden!" >&2
     exit 1
   fi
 
+  # 4) Zone-Index anhängen
   HOSTNAME="${HOSTNAME}%${IFACE}"
 fi
 
-# Baue ssh-Befehl mit allen Optionen zusammen
+# 5) SSH aufrufen – übernimmt Port, IdentityFile und User
 exec ssh \
   -p "$PORT" \
   -i "$IDENTITY_FILE" \

@@ -27,6 +27,7 @@ abbr cd.. 'cd ..'
 
 abbr rmf 'rm -rf'
 
+abbr gut 'git'
 abbr gcl "git clone --recurse-submodules"
 abbr gcma "git cma"
 abbr gcmap "git cmap"

@@ -26,6 +26,10 @@ else if type -q less
     set -gx MANPAGER 'less -X'
 end
 
+if test "$TERM_PROGRAM" = "ghostty"
+    set -x TERM xterm-256color
+end
+
 set -x LESS_TERMCAP_mb (printf "\u001b[01;31m")
 set -x LESS_TERMCAP_md (printf "\u001b[01;31m")
 set -x LESS_TERMCAP_me (printf "\u001b[0m")

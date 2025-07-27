@@ -7,6 +7,7 @@ switch $argv[1]
         echo " fonts"
         echo " nvim"
         echo " diff"
+        echo " cert"
         echo ""
         case update
         cd ~/dotfiles/
@@ -36,4 +37,7 @@ switch $argv[1]
     case diff
         cd ~/dotfiles/
         git diff -uw
+    case cert
+        cd ~/dotfiles/
+        make cert
 end

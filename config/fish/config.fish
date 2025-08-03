@@ -26,6 +26,10 @@ else if type -q less
     set -gx MANPAGER 'less -X'
 end
 
+if type -q eza
+     alias ls eza
+end
+
 if test "$TERM_PROGRAM" = "ghostty"
     set -x TERM xterm-256color
 end

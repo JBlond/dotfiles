@@ -6,6 +6,19 @@ function _is_git_dirty
 	echo (command git status -s --ignore-submodules=dirty 2>/dev/null)
 end
 
+function _is_ssh_session
+	if set -q SSH_CONNECTION; or set -q SSH_CLIENT; or set -q SSH_TTY
+		return 0
+	end
+
+	set tty_name (tty)
+	if string match -r '^/dev/pts/' $tty_name
+		return 0
+	end
+
+	return 1
+end
+
 function fish_prompt
 	set -l last_status $status
 	set -l cyan (set_color -o cyan)
@@ -16,20 +29,20 @@ function fish_prompt
 	set -l normal (set_color normal)
 
 	if not set -q __fish_prompt_char
-				switch (id -u)
-						case 0
-								set __fish_prompt_char '⚡⚡ '
-						case '*'
-						set __fish_prompt_char 'λ '
-				end
+		switch (id -u)
+			case 0
+				set __fish_prompt_char '⚡⚡ '
+			case '*'
+				set __fish_prompt_char 'λ '
 		end
+	end
 
 	if test $last_status = 0
-			set status_indicator "$green✓ "
-			set exit_code ""
+		set status_indicator "$green✓ "
+		set exit_code ""
 	else
-			set status_indicator "$red✗ "
-			set exit_code (set_color -i a52a2a) "[" $last_status "]"
+		set status_indicator "$red✗ "
+		set exit_code (set_color -i a52a2a) "[" $last_status "]"
 	end
 	set -l cwd $blue(prompt_pwd)
 
@@ -56,8 +69,7 @@ function fish_prompt
 
 	echo -n -s $status_indicator
 
-	set isssh (who am i) | string match -r '\\([-a-zA-Z0-9\\.]+\\)$'
-	if test -n "$isssh"
+	if _is_ssh_session
 		echo $red'ssh://'$cyan(whoami)$green'@'(hostname) $cwd $git_info $exit_code $normal ' '
 	else
 		echo $cyan(whoami) $cwd $git_info $exit_code $normal ' '

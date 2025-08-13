@@ -20,6 +20,25 @@ __vcs_name() {
 	fi
 }
 
+is_ssh_session() {
+	if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ]; then
+		return 0
+	fi
+
+	# check for tmux and ssh
+	if [ -n "$TMUX" ]; then
+		local parent=$(ps -o ppid= -p $$)
+		local grandparent=$(ps -o ppid= -p $parent)
+		local ancestor_cmd=$(ps -o cmd= -p $grandparent)
+		if echo "$ancestor_cmd" | grep -q 'ssh'; then
+			return 0
+		fi
+	fi
+
+	return 1
+}
+
+
 set_prompt () {
 	local last_command=$?  # Must come first!
 	PS1=""
@@ -53,7 +72,7 @@ set_prompt () {
 	where="${where/$home/🏠}"
 
 	# show that this is a ssh session
-	if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+	if is_ssh_session; then
 		PS1+='\[\033[1;31m\]ssh://'
 	fi
 

@@ -54,6 +54,7 @@ abbr dcp "docker compose pull"
 abbr dcl "docker compose logs -f"
 abbr dps "docker ps --format \"table {{ .Names }}\" -a"
 abbr dsp "docker system prune -a"
+abbr dil "docker image ls"
 
 abbr composer 'composer --ansi'
 

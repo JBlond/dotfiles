@@ -29,7 +29,15 @@ else if type -q less
 end
 
 if type -q eza
-     alias ls eza
+    alias ls eza
+    alias l='ls -la --icons'
+    alias la='ls -la'
+    alias lsd='ls -D'
+    alias lnew='l -snew'
+    alias lnewr='l -snew -r'
+    alias lanew='la -snew'
+    alias lanewr='la -snew -r'
+    alias tree='eza -T --icons'
 end
 
 set -x LESS_TERMCAP_mb (printf "\u001b[01;31m")

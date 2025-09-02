@@ -77,7 +77,7 @@ function fish_prompt
 
 	echo -n -s $status_indicator
 
-	if _is_ssh_session
+	if set _is_ssh_session
 		echo $red'ssh://'$cyan(whoami)$green'@'(hostname) $cwd $git_info $exit_code $normal ' '
 	else
 		echo $cyan(whoami) $cwd $git_info $exit_code $normal ' '

@@ -7,7 +7,7 @@ function _is_git_dirty
 end
 
 function _is_ssh_session
-	# Prüfe auf klassische SSH-Umgebungsvariablen
+	# chek for the classic SSH-ENV
 	if set -q SSH_CONNECTION; or set -q SSH_CLIENT; or set -q SSH_TTY
 		return 0
 	end
@@ -15,17 +15,15 @@ function _is_ssh_session
 	if string match -r '^/dev/pts/' $tty_name
 		return 0
 	end
-	# Prüfe auf tmux mit SSH: Wenn tmux läuft, prüfe, ob die übergeordnete Shell SSH war
-	if set -q TMUX
-		# Versuche, die ursprüngliche SSH-Verbindung über die Umgebungsvariablen zu finden
+	# check for tmux with SSH: if tmux run, check if the parent shell runs with SSH
+	if set -q tmux
+		# try to dind the orgin SSH-connection over ENV
 		if string match -q '*ssh*' (ps -o cmd= -p (ps -o ppid= -p (ps -o ppid= -p (status pid))))
 			return 0
 		end
 	end
-
 	return 1
 end
-
 
 function fish_prompt
 	set -l last_status $status
@@ -77,7 +75,7 @@ function fish_prompt
 
 	echo -n -s $status_indicator
 
-	if set _is_ssh_session
+	if _is_ssh_session
 		echo $red'ssh://'$cyan(whoami)$green'@'(hostname) $cwd $git_info $exit_code $normal ' '
 	else
 		echo $cyan(whoami) $cwd $git_info $exit_code $normal ' '

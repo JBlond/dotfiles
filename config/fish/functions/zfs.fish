@@ -1,6 +1,7 @@
 function zfs
-	if not type -q zfs
-		echo "Fehler: ZFS ist auf diesem System nicht installiert." >&2
+	set real_zfs (command -v zfs)
+	if test -z "$real_zfs"
+		echo "Fehler: ZFS is not installed on this system" >&2
 		return 1
 	end
 	switch $argv[1]

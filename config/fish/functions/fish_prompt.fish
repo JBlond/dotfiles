@@ -11,10 +11,6 @@ function _is_ssh_session
 	if set -q SSH_CONNECTION; or set -q SSH_CLIENT; or set -q SSH_TTY
 		return 0
 	end
-	set tty_name (tty)
-	if string match -r '^/dev/pts/' $tty_name
-		return 0
-	end
 	# check for tmux with SSH: if tmux run, check if the parent shell runs with SSH
 	if set -q tmux
 		# try to dind the orgin SSH-connection over ENV

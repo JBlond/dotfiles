@@ -17,6 +17,17 @@ pacman -S tmux fish make
 
 [RipGREP](https://github.com/BurntSushi/ripgrep/releases)
 
+## READMES
+
+- My neovim config is another repo [JBlond/nvim](https://github.com/JBlond/nvim)
+- [bash functions README](docs/bash.md)
+- [fish functions](docs/fish.md)
+- [install and update: make options](docs/install.md)
+- [git README](docs/git.md)
+- [git aliases](git/aliases.ini#L2-L53)
+- [git create empty branch](docs/git-create-empty-branch.md)
+- [tmux README](docs/tmux.md)
+
 ## emojis in mintty
 
 ### make script
@@ -56,13 +67,7 @@ Mintty -> Options -> Text -> Emojis -> Placement -> middle
 
 ![shell3](assets/shell-with-emojis.png)
 
-## install and update use make
-
-[make options](docs/install.md)
-
 ## bash
-
-**[bash functions README](docs/bash.md)**
 
 ```BASH
 jblond@linux:~/dotfiles
@@ -101,9 +106,6 @@ jblond@linux:~
 
 ## git aliases and commands
 
-**[git README](docs/git.md)**
-
-**[git aliases](git/aliases.ini#L2-L53)**
 
 ![shell1](assets/shell01.png)
 
@@ -178,10 +180,6 @@ Vim has different Syntax highlighting themes. Can be changed using <kbd>CTRL</kb
 ![vim](assets/vim02.png)
 
 [vim in tmux monokai](assets/vim-in-tmux-2.png)
-
-## nvim / neovim
-
-My neovim config is another repo [JBlond/nvim](https://github.com/JBlond/nvim)
 
 ## mysql prompt
 

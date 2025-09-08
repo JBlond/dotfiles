@@ -13,7 +13,6 @@ if [[ "$OSTYPE" != "msys" ]]; then
 	cp -r ./config/htop ~/.config/
 	cp -r ./config/mc ~/.config/
 	cp -r ./config/nano ~/.config/
-	cp -r ./config/zellij ~/.config/
 fi
 ln $HOME/dotfiles/home/bash_logout $HOME/.bash_logout
 ln $HOME/dotfiles/home/bashrc $HOME/.bashrc

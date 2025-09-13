@@ -1,3 +1,4 @@
+icursor-style = underline
 theme = deep
 font-thicken = true
 window-colorspace = display-p3

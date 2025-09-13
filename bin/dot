@@ -9,9 +9,11 @@ switch $argv[1]
         echo " diff"
         echo " cert"
         echo ""
-        case update
+    case update
         cd ~/dotfiles/
+        git stash
         make update
+        git stash pop
     case fonts
         cd ~/dotfiles/
         make fonts

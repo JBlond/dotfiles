@@ -9,7 +9,12 @@ abbr ll 'ls -lh'
 abbr lla 'ls -lAh'
 abbr la 'ls -A'
 abbr lart 'ls -lhart'
-abbr l 'ls -CF'
+if command -q exa
+    abbr l 'exa -F'
+    abbr all 'exa -bghHliS'
+else
+    abbr l 'ls -CF'
+end
 abbr lss 'ls -liSAh'
 abbr l1 'ls -1'
 

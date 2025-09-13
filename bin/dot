@@ -23,8 +23,10 @@ switch $argv[1]
                 if ! test -d ~/.config/nvim
                     git clone https://github.com/JBlond/nvim.git ~/.config/nvim
                 else
-                	cd ~/.config/nvim
-                	git pull
+                    cd ~/.config/nvim
+                    git stash
+                    git pull
+                    git stash pop
                 end
                 cd ~/.config/nvim
                 bash install-nvim.sh
@@ -32,8 +34,10 @@ switch $argv[1]
                 if ! test -d ~/AppData/Local/nvim
                     git clone -c core.autocrlf=false https://github.com/JBlond/nvim.git ~/AppData/Local/nvim
                 else
-                	cd ~/AppData/Local/nvim
-                	git pull
+                    cd ~/AppData/Local/nvim
+                    git stash
+                    git pull
+                    git stash pop
                 end
         end
     case diff

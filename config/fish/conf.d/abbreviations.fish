@@ -50,6 +50,7 @@ if command -sq git
     abbr gr "git remote -v"
     abbr gst "git status -sb"
     abbr gsu "git submodule update --recursive --remote"
+    abbr gitst "git status -sb"
 end
 
 if command -sq docker

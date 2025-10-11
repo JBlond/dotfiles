@@ -11,6 +11,9 @@ cp -r ./config/fish ~/.config/
 cp -r ./config/tmux ~/.config/
 if [[ "$OSTYPE" != "msys" ]]; then
 	cp -r ./config/htop ~/.config/
+    if command -v zfs >/dev/null 2>&1; then
+        cp ./config/htop/htoprc ~/.config/htop/htoprc
+    fi
 	cp -r ./config/mc ~/.config/
 	cp -r ./config/nano ~/.config/
 	cp -r ./config/ghostty ~/.config/

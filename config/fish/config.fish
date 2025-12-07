@@ -56,7 +56,6 @@ if test -f /usr/share/cachyos-fish-config/config.fish
 	source /usr/share/cachyos-fish-config/config.fish
 end
 
-set -Ux fish_color_autosuggestion "555\x1ebrblack"
 set -Ux fish_color_cancel "\x2dr"
 set -Ux fish_color_command "005fd7"
 set -Ux fish_color_comment "990000"

@@ -3,7 +3,7 @@
 ##help: Shows this list
 .PHONY: help
 help:
-	@grep -E '\#\#[a-zA-Z\.\-]+:.*$$' $(MAKEFILE_LIST) \
+	@grep -E '##[a-zA-Z\.\-]+:.*$$' $(MAKEFILE_LIST) \
 		| tr -d '##' \
 		| awk 'BEGIN {FS = ": "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' \
 

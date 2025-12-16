@@ -13,7 +13,7 @@ if [[ "$OSTYPE" != "msys" ]]; then
     cp -r ./config/htop ~/.config/
     if command -v zfs >/dev/null 2>&1; then
         echo "ZFS detected"
-        cp ./config/htop/htoprc ~/.config/htop/htoprc
+        cp ./config/htop/htoprc-zfs ~/.config/htop/htoprc
     fi
     cp -r ./config/mc ~/.config/
     cp -r ./config/nano ~/.config/

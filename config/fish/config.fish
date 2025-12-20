@@ -57,4 +57,3 @@ if test -f /usr/share/cachyos-fish-config/config.fish
 	source /usr/share/cachyos-fish-config/config.fish
 end
 
-fish_colors

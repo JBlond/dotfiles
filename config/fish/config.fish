@@ -56,5 +56,3 @@ set -Ux LS_COLORS 'rs=0:di=01;34:ln=01;36:mh=00;36:pi=40;33:so=01;35:do=01;35:bd
 if test -f /usr/share/cachyos-fish-config/config.fish
 	source /usr/share/cachyos-fish-config/config.fish
 end
-
-fish_colors

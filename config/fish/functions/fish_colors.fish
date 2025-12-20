@@ -1,4 +1,4 @@
-function fish_colors
+function fish_colors --on-event fish_prompt
     set -g fish_color_autosuggestion 555 --background=brblack
     set -g fish_color_cancel -r
     set -g fish_color_command 005fd7

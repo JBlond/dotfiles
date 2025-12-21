@@ -34,7 +34,7 @@ function fish_right_prompt -d 'is all about the right prompt'
 		set _left_arrow_glyph '<'
 	end
 
-	set_color $fish_color_autosuggestion
+	set_color $fish_color_normal
 
 	_cmd_duration
 	echo ' ['

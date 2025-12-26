@@ -24,7 +24,8 @@ abbr lal "ls -a | awk '{print $NF}'"
 abbr dfh 'df -kTh'
 abbr dus 'du -hs * | sort -h'
 abbr dush 'du . -sh'
-abbr greedy 'du -hs * | sort -rh'
+#abbr greedy 'du -hs * | sort -rh'
+abbr greedy 'find . -mindepth 1 -maxdepth 1 -print0 | xargs -0 du -hs | sort -rh'
 
 abbr vf 'cd'
 abbr .. 'cd ..'

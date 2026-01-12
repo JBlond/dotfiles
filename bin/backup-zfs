@@ -238,10 +238,25 @@ resume_token="$(
 )"
 
 if [[ -n "$resume_token" && "$resume_token" != "-" ]]; then
-	log "resuming interrupted zfs send/receive operation for $destfs/$srcbase"
-	ZFS "$srchost" send -t "$resume_token" | ZFS "$desthost" receive "$recv_opts" -Fue "$destfs" \
-		|| die $? "resume failed"
-	exit
+	log "found resume token for $destfs/$srcbase"
+
+	# test if dataset existists
+	if ! ZFS "$desthost" list "$destfs/$srcbase" >/dev/null 2>&1 ; then
+		die 1 "resume token exists but dataset $destfs/$srcbase does not exist"
+	fi
+
+	# test token is valid
+	if ! ZFS "$srchost" send -nvt "$resume_token" >/dev/null 2>&1 ; then
+		die 1 "resume token is invalid or incompatible with current source dataset"
+	fi
+
+	log "resuming interrupted zfs send/receive operation"
+	if ZFS "$srchost" send -t "$resume_token" | ZFS "$desthost" receive "$recv_opts" -Fue "$destfs" ; then
+		log "resume completed successfully"
+		exit
+	else
+		die 1 "resume failed"
+	fi
 fi
 
 ###

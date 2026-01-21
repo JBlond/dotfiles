@@ -2,6 +2,8 @@ set -g fish_prompt_pwd_dir_length 30
 set -g fish_emoji_width 2
 
 set -x TERM tmux-256color
+set -Ux LANG de_DE.UTF-8
+set -Ux LC_ALL de_DE.UTF-8
 
 add_path_maybe /sbin
 add_path_maybe /usr/local/sbin

@@ -7,14 +7,17 @@ shopt -s autocd
 # This will help correct your typos.
 shopt -s cdspell
 
-# Perform file completion in a case insensitive fashion
-bind "set completion-ignore-case on"
-
-# Immediately add a trailing slash when autocompleting symlinks to directories
-bind "set mark-symlinked-directories on"
-
 # for vim in tmux
 export TERM=screen-256color
 
 # see time stamps in bash history
 export HISTTIMEFORMAT="%y%-%m-%d %T "
+
+# Only in interaktive Shells set bind 
+[[ $- == *i* ]] || return
+
+# Perform file completion in a case insensitive fashion
+bind "set completion-ignore-case on"
+
+# Immediately add a trailing slash when autocompleting symlinks to directories
+bind "set mark-symlinked-directories on"

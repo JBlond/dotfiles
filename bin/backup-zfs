@@ -62,47 +62,6 @@ ZFS() {
 	fi
 }
 
-run_ssh_command() {
-	cmd="${SSH_ORIGINAL_COMMAND%% *}"   # first wird
-	arg="${SSH_ORIGINAL_COMMAND#* }"	# rest
-
-	lastfile="$dest/.last"
-
-	case "$cmd" in
-		zfslast)
-			if [[ "$SSH_ORIGINAL_COMMAND" == "zfslast" ]]; then
-				exec cat "$lastfile"
-			else
-				exec sh -c "echo '$arg' > '$lastfile'"
-			fi
-			;;
-
-		zfswrite)
-			file="$dest/$arg"
-			exec sh -c "cat > '$file'"
-			;;
-
-		zfsget)
-			file="$arg"
-			exec sh -c "cat '$file'"
-			;;
-
-		zfsfind)
-			exec find "$dest" -name "*.zfssnap" -o -name "*.zfssnap.gpg"
-			;;
-
-		rm)
-			file="$dest/$arg"
-			exec rm -f "$file"
-			;;
-
-		*)
-			echo "Command not allowed: $SSH_ORIGINAL_COMMAND" >&2
-			exit 1
-			;;
-	esac
-}
-
 ###
 ### defaults
 ###
@@ -119,11 +78,6 @@ recv_opts=""
 gpgid=""
 desthost=""
 srchost=""
-
-if [[ -n "${SSH_ORIGINAL_COMMAND:-}" ]]; then
-	run_ssh_command
-	exit
-fi
 
 ###
 ### parse options

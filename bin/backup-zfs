@@ -50,7 +50,7 @@ ZFS() {
 	shift
 	if [[ -n $host ]] ; then
 		log "remote ($host): zfs $@"
-		ssh -C -p "$port" "$host" zfs "$@"
+		ssh -p "$port" "$host" zfs "$@"
 	else
 		log "local: zfs $@"
 		zfs "$@"

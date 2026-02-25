@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
 # backup-zfs: use zfs send/recv to push/pull snapshots
 prog="$(basename "$0")"
 
@@ -52,10 +54,10 @@ ZFS() {
 	host="$1"
 	shift
 	if [[ -n $host ]] ; then
-		log "remote ($host): zfs $*"
-		ssh -C -p "$port" "$host" zfs "$*"
+		log "remote ($host): zfs $@"
+		ssh -C -p "$port" "$host" zfs "$@"
 	else
-		log "local: zfs $*"
+		log "local: zfs $@"
 		zfs "$@"
 	fi
 }
@@ -123,6 +125,7 @@ dest="$2"
 if $tossh ; then
 	log "sending from local zfs filesystem to SSH server "
 
+	srchost=""
 	# make sure src exists
 	if [[ $src =~ : ]] ; then
 		die 1 "$src must be a local zfs filesystem"
@@ -246,8 +249,9 @@ if [[ -n "$resume_token" && "$resume_token" != "-" ]]; then
 	fi
 
 	# test token is valid
+	log "validating resume token"
 	if ! ZFS "$srchost" send -nvt "$resume_token" >/dev/null 2>&1 ; then
-		die 1 "resume token is invalid or incompatible with current source dataset"
+		die 1 "resume token invalid"
 	fi
 
 	log "resuming interrupted zfs send/receive operation"

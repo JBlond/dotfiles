@@ -143,7 +143,7 @@ if [[ -n "$resume_token" && "$resume_token" != "-" ]]; then
 	fi
 
 	log "resuming interrupted zfs send/receive operation"
-	if ZFS "$srchost" send -t "$resume_token" | ZFS "$desthost" receive "$recv_opts" -Fue "$destfs" ; then
+	if ZFS "$srchost" send -t "$resume_token" | ZFS "$desthost" receive $recv_opts -F -u -e "$destfs" ; then
 		log "resume completed successfully"
 		exit
 	else
@@ -174,14 +174,14 @@ last="$(
 # 1st time: send full snapshot
 if [[ -z $last ]] ; then
 	log "sending full recursive snapshot from $src to $dest"
-	ZFS "$srchost" send "$send_opts" --raw -R "$cur" | ZFS "$desthost" receive "$recv_opts" -Fue "$destfs" || die $? "zfs full send failed ☠️"
+	ZFS "$srchost" send "$send_opts" --raw -R "$cur" | ZFS "$desthost" receive $recv_opts -F -u -e "$destfs" || die $? "zfs full send failed ☠️"
 # special case: tagged snapshots exist on dest, but src has rotated through all
 elif ! ZFS "$srchost" list "$srcfs"@"$last" &>/dev/null ; then
 	die 1 "no incremental path from from $src to $dest"
 # normal case: send incremental
 else
 	log "sending incremental snapshot from $src to $dest (${last#"${tag}"_}..${cur#*@"${tag}"_})"
-	ZFS "$srchost" send "$send_opts" --raw -R -I "$last" "$cur" | ZFS "$desthost" receive "$recv_opts" -Fue "$destfs" || die $? "zfs incremental send failed"
+	ZFS "$srchost" send "$send_opts" --raw -R -I "$last" "$cur" | ZFS "$desthost" receive $recv_opts -F -u -e "$destfs" || die $? "zfs incremental send failed"
 fi
 
 ###

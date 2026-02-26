@@ -191,4 +191,5 @@ for snap in $(ZFS "$srchost" list -d 1 -t snapshot -H -S creation -o name "$srcf
 		| grep -F "@${tag}_" | cut -f2 -d@ | tail -n+$((keep+1)) ) ;
 do
 	ZFS "$srchost" destroy -r "$srcfs"@"$snap"
+	log "destroying old snapshot srchost : $snap"
 done

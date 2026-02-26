@@ -133,7 +133,9 @@ dest="$2"
 srcfs="${src#*:}"
 destfs="${dest#*:}"
 
-# iff there is a colon, discard everything after it to get the host
+# if there is a colon, discard everything after it to get the host
+srchost=""
+desthost=""
 [[ $src =~ : ]] && srchost="${src%:*}"
 [[ $dest =~ : ]] && desthost="${dest%:*}"
 

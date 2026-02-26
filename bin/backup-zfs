@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+set -euo pipefail
+exec 9>/var/lock/backup-zfs.lock
+flock -n 9 || die 1 "another instance already running"
+IFS=$'\n\t'
 # backup-zfs: use zfs send/recv to push/pull snapshots
 prog="$(basename "$0")"
 
@@ -17,6 +21,22 @@ usage() {
 	  -t tag       tag to use for naming snapshots (default: backup-zfs)
 	  -k keep      number of snapshots to keep on src (default: 5)
 	  -d dateopts  options for date(1) - used to name the snapshots (default: +%F_%T)
+
+	  # Local mode: Backup tank/system to backup/tank/system
+	  backup-zfs tank/system backup/tank
+
+	  # Pull mode: Backup tank/system on tankhost to localhost
+	  backup-zfs tankhost:tank/system backup/tank
+
+	  # Push mode: Backup tank/system on localhost to backuphost
+	  backup-zfs tank/system backuphost:backup/tank
+
+	  # Double remote mode: Backup tank/system on tankhost to backuphost
+	  backup-zfs tankhost:tank/system backuphost:backup/tank
+
+	  # In this mode, your client will establish two separate SSH sessions,
+	  # connect them with a pipe, and pull data from one while pushing to the
+	  # other. No data will be stored locally.
 	EOF
 	exit "$1"
 }
@@ -24,12 +44,12 @@ usage() {
 # log to syslog; if verbose or on a tty, also to stdout
 # usage: log msg
 log() {
-    logger -t "$prog" -- "$@"
-    if ! $quiet && { [[ -t 1 ]] || $verbose; }; then
-        echo "$@" >&2
-    fi
+	ts="$(date '+%F %T')"
+	logger -t "$prog" -- "$@"
+	if ! $quiet && { [[ -t 1 ]] || $verbose; }; then
+		echo "[$ts] $@" >&2
+	fi
 }
-
 # exit with a code & message
 # usage: die $exitcode msg
 die() {
@@ -50,7 +70,10 @@ ZFS() {
 	shift
 	if [[ -n $host ]] ; then
 		log "remote ($host): zfs $@"
-		ssh -p "$port" "$host" zfs "$@"
+		ssh -o BatchMode=yes \
+			-o ConnectTimeout=10 \
+			-o ServerAliveInterval=30 \
+			-p "$port" "$host" zfs "$@"
 	else
 		log "local: zfs $@"
 		zfs "$@"

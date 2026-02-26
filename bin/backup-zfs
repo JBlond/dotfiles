@@ -24,10 +24,10 @@ usage() {
 # log to syslog; if verbose or on a tty, also to stdout
 # usage: log msg
 log() {
-	logger -t "$prog" -- "$@"
-	if ! $quiet && [[ -t 1 ]] || $verbose ; then
-		echo "$@" >&2
-	fi
+    logger -t "$prog" -- "$@"
+    if ! $quiet && { [[ -t 1 ]] || $verbose; }; then
+        echo "$@" >&2
+    fi
 }
 
 # exit with a code & message

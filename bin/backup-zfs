@@ -69,12 +69,15 @@ die() {
 ZFS() {
 	host="$1"
 	shift
+
+	local cmd=(zfs "$@")
+
 	if [[ -n $host ]] ; then
-		log "remote ($host): zfs $*"
-		ssh -C -p "$port" "$host" zfs "$@"
+		log "remote ($host): ${cmd[*]}"
+		ssh -C -p "$port" "$host" "${cmd[@]}"
 	else
-		log "local: zfs $*"
-		zfs "$@"
+		log "local: ${cmd[*]}"
+		"${cmd[@]}"
 	fi
 }
 

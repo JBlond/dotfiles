@@ -72,11 +72,15 @@ ZFS() {
 
 	local cmd=(zfs "$@")
 
+	# join arguments safely with space for logging only
+	local logline
+	logline="$(printf '%s ' "${cmd[@]}")"
+
 	if [[ -n $host ]] ; then
-		log "remote ($host): ${cmd[*]}"
-		ssh -C -p "$port" "$host" "${cmd[@]}"
+		log "remote ($host): ${logline% }"
+ 		ssh -C -p "$port" "$host" "${cmd[@]}"
 	else
-		log "local: ${cmd[*]}"
+		log "local: ${logline% }"
 		"${cmd[@]}"
 	fi
 }

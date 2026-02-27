@@ -186,7 +186,8 @@ if [[ -z $last ]] ; then
 	# clean target if old snapshots exists
 	if ZFS "$desthost" list -H -o name "$destfs/$srcbase" &>/dev/null ; then
 		log "cleaning up old snapshots on $destfs/$srcbase before full send"
-		ZFS "$desthost" destroy -r "$destfs/$srcbase" || die $? "failed to destroy old snapshots on $destfs/$srcbase ☠️"
+		ZFS "$desthost" list -H -t snapshot -o name "$destfs/$srcbase" 2>/dev/null | \
+			grep "@${tag}_" | xargs -r ZFS "$desthost" destroy -r || die $? "failed to destroy old snapshots on $destfs/$srcbase ☠️"
 	fi
 
 	ZFS "$srchost" send "$send_opts" --raw -R "$cur" | ZFS "$desthost" receive $recv_flags "$destfs/$srcbase" || die $? "zfs full send failed ☠️"

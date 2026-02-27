@@ -50,13 +50,14 @@ log() {
 		echo "[$ts] $@" >&2
 	fi
 }
+
 # exit with a code & message
 # usage: die $exitcode msg
 die() {
 	code="$1"
 	shift
 	if [[ $code -ne 0 ]] ; then
-		verbose=true log "FATAL: $@"
+		verbose=true log "FATAL: $*"
 	else
 		log "$@"
 	fi
@@ -69,13 +70,10 @@ ZFS() {
 	host="$1"
 	shift
 	if [[ -n $host ]] ; then
-		log "remote ($host): zfs $@"
-		ssh -o BatchMode=yes \
-			-o ConnectTimeout=10 \
-			-o ServerAliveInterval=30 \
-			-p "$port" "$host" zfs "$@"
+		log "remote ($host): zfs $*"
+		ssh -C -p "$port" "$host" zfs "$*"
 	else
-		log "local: zfs $@"
+		log "local: zfs $*"
 		zfs "$@"
 	fi
 }

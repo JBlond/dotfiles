@@ -171,33 +171,35 @@ last="$(
 ###
 ### send & receive
 ###
-# 1st time: send full snapshot
+### send & receive
+recv_flags="$recv_opts -F"  # -F force overwrite
+
+# test, if Dataset exists and is mmouted  → then set -u -e
+if ZFS "$desthost" list -H "$destfs/$srcbase" &>/dev/null ; then
+    recv_flags="$recv_flags -u -e"
+fi
+
+# Full Send (no common Snapshot)
 if [[ -z $last ]] ; then
 	log "FULL SEND: $cur"
 
-	# clean target if snapshots are missing
+	# clean target if old snapshots exists
 	if ZFS "$desthost" list -H -o name "$destfs/$srcbase" &>/dev/null ; then
 		log "cleaning up old snapshots on $destfs/$srcbase before full send"
-		ZFS "$desthost" destroy -r "$destfs/$srcbase" || die $? "failed to destroy old snapshots on $destfs/$srcbase"
+		ZFS "$desthost" destroy -r "$destfs/$srcbase" || die $? "failed to destroy old snapshots on $destfs/$srcbase ☠️"
 	fi
 
-	recv_flags="$recv_opts -F"
-	# wenn Dataset existiert und gemountet ist, füge -u -e hinzu
-	if ZFS "$desthost" list -H "$destfs" &>/dev/null ; then
-		recv_flags="$recv_flags -u -e"
-	fi
+	ZFS "$srchost" send "$send_opts" --raw -R "$cur" | ZFS "$desthost" receive $recv_flags "$destfs/$srcbase" || die $? "zfs full send failed ☠️"
 
-	ZFS "$srchost" send "$send_opts" --raw -R "$cur" | ZFS "$desthost" receive $recv_flags "$destfs" || die $? "zfs full send failed ☠️"
-
-# special case: tagged snapshots exist on dest, but src has rotated through all
+# no incremental
 elif ! ZFS "$srchost" list "$srcfs@$last" &>/dev/null ; then
-	die 1 "no incremental path from $src to $dest ☠️"
+    die 1 "no incremental path from $src to $dest ☠️"
 
-# normal case: send incremental
+# Normal Incremental-Send
 else
-	log "sending incremental snapshot from $src to $dest (${last#"${tag}"_}..${cur#*@"${tag}"_})"
-	ZFS "$srchost" send "$send_opts" --raw -R -I "$last" "$cur" | \
-		ZFS "$desthost" receive "$recv_opts" -F -u -e "$destfs" || die $? "zfs incremental send failed"
+    log "sending incremental snapshot from $src to $dest (${last#"${tag}"_}..${cur#*@"${tag}"_})"
+    ZFS "$srchost" send "$send_opts" --raw -R -I "$last" "$cur" | \
+        ZFS "$desthost" receive $recv_flags "$destfs/$srcbase" || die $? "zfs incremental send failed"
 fi
 
 ###

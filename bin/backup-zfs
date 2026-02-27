@@ -181,7 +181,13 @@ if [[ -z $last ]] ; then
 		ZFS "$desthost" destroy -r "$destfs/$srcbase" || die $? "failed to destroy old snapshots on $destfs/$srcbase"
 	fi
 
-	ZFS "$srchost" send "$send_opts" --raw -R "$cur" | ZFS "$desthost" receive "$recv_opts" -F -u -e "$destfs" || die $? "zfs full send failed ☠️"
+	recv_flags="$recv_opts -F"
+	# wenn Dataset existiert und gemountet ist, füge -u -e hinzu
+	if ZFS "$desthost" list -H "$destfs" &>/dev/null ; then
+		recv_flags="$recv_flags -u -e"
+	fi
+
+	ZFS "$srchost" send "$send_opts" --raw -R "$cur" | ZFS "$desthost" receive $recv_flags "$destfs" || die $? "zfs full send failed ☠️"
 
 # special case: tagged snapshots exist on dest, but src has rotated through all
 elif ! ZFS "$srchost" list "$srcfs@$last" &>/dev/null ; then

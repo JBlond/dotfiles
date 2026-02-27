@@ -71,7 +71,7 @@ ZFS() {
 	shift
 	if [[ -n $host ]] ; then
 		log "remote ($host): zfs $*"
-		ssh -C -p "$port" "$host" zfs "$*"
+		ssh -C -p "$port" "$host" zfs "$@"
 	else
 		log "local: zfs $*"
 		zfs "$@"
@@ -200,7 +200,8 @@ if [[ -z $last ]] ; then
 	ZFS "$srchost" send "$send_opts" --raw -R "$cur" | ZFS "$desthost" receive $recv_opts -F -u -e "$destfs" || die $? "zfs full send failed ☠️"
 # special case: tagged snapshots exist on dest, but src has rotated through all
 elif ! ZFS "$srchost" list "$srcfs"@"$last" &>/dev/null ; then
-	die 1 "no incremental path from from $src to $dest"
+	log "no incremental path found 💩 - falling back to full send"
+	last=""
 # normal case: send incremental
 else
 	log "sending incremental snapshot from $src to $dest (${last#"${tag}"_}..${cur#*@"${tag}"_})"

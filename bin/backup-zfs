@@ -2,11 +2,6 @@
 # backup-zfs: use zfs send/recv to push/pull snapshots
 prog="$(basename "$0")"
 
-if [[ $# -lt 2 ]]; then
-    usage 1
-fi
-
-
 usage() {
 	cat >&2 <<-EOF
 	usage: $prog [-hvq] [-t tag] [-k keep] [-d dateopts] src dest
@@ -25,6 +20,10 @@ usage() {
 	EOF
 	exit "$1"
 }
+
+if [[ $# -lt 2 ]]; then
+    usage 1
+fi
 
 # log to syslog; if verbose or on a tty, also to stdout
 # usage: log msg

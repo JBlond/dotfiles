@@ -216,6 +216,16 @@ if [[ -z $last ]] ; then
 
 	ZFS "$srchost" send "$send_opts" --raw -R "$cur" | ZFS "$desthost" receive $recv_flags "$destfs" || die $? "zfs full send failed ☠️"
 
+	if $verbose; then
+		log "verifying consistency with zfs diff"
+		if ! ZFS "" diff "$srcfs@$cur" "$destfs@$cur" >/dev/null 2>&1; then
+			log "WARNING: source and destination differ!"
+			ZFS "" diff "$srcfs@$cur" "$destfs@$cur" >&2
+		else
+			log "source and destination are consistent"
+		fi
+	fi
+
 # no incremental
 elif ! ZFS "$srchost" list "$srcfs@$last" &>/dev/null ; then
     die 1 "no incremental path from $src to $dest ☠️"
@@ -224,6 +234,15 @@ elif ! ZFS "$srchost" list "$srcfs@$last" &>/dev/null ; then
 else
     log "sending incremental snapshot from $src to $dest (${last#"${tag}"_}..${cur#*@"${tag}"_})"
     ZFS "$srchost" send "$send_opts" --raw -R -I "$last" "$cur" | ZFS "$desthost" receive $recv_flags "$destfs" || die $? "zfs incremental send failed ☠️"
+	if $verbose; then
+		log "verifying consistency with zfs diff"
+		if ! ZFS "" diff "$srcfs@$cur" "$destfs@$cur" >/dev/null 2>&1; then
+			log "WARNING: source and destination differ!"
+			ZFS "" diff "$srcfs@$cur" "$destfs@$cur" >&2
+		else
+			log "source and destination are consistent"
+		fi
+	fi
 fi
 
 ###

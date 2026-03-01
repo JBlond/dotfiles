@@ -53,14 +53,23 @@ die() {
 ZFS() {
 	host="$1"
 	shift
-	if [[ -n $host ]] ; then
-		log "remote ($host): zfs $@"
+
+	if [[ -n $host ]]; then
+		$verbose && echo "→ remote ($host): zfs $*" >&2
 		ssh -C -p "$port" "$host" zfs "$@"
+		rc=$?
 	else
-		log "local: zfs $@"
+		$verbose && echo "→ local: zfs $*" >&2
 		zfs "$@"
+		rc=$?
 	fi
+
+	if [[ $rc -ne 0 ]]; then
+		$verbose && echo "  ↳ exit code: $rc" >&2
+	fi
+	return $rc
 }
+
 
 ###
 ### defaults
@@ -133,6 +142,16 @@ fi
 resume_token="$(
 	ZFS "$desthost" get -H -o value receive_resume_token "$destfs/$srcbase" 2>/dev/null | tr -d '[:space:]'
 )"
+
+# Resume-Token prüfen und ggf. löschen
+if [[ -n "$resume_token" && "$resume_token" != "-" ]]; then
+	if ! ZFS "$srchost" send -nvt "$resume_token" >/dev/null 2>&1 ; then
+		log "invalid resume token on destination – deleting"
+		ZFS "$desthost" inherit receive_resume_token "$destfs"
+		resume_token=""
+	fi
+fi
+
 
 if [[ -n "$resume_token" && "$resume_token" != "-" ]]; then
 	log "found resume token for $destfs/$srcbase"

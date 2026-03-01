@@ -48,6 +48,25 @@ die() {
 	exit "$code"
 }
 
+verify_consistency() {
+	local srcfs="$1"
+	local destfs="$2"
+	local cur="$3"
+	local cur_snap="${cur##*@}"
+
+	if $verbose; then
+		log "verifying consistency with zfs diff"
+
+		if ! ZFS "" diff "$srcfs@$cur_snap" "$destfs@$cur_snap" >/dev/null 2>&1; then
+			log "WARNING: source and destination differ!"
+			ZFS "" diff "$srcfs@$cur_snap" "$destfs@$cur_snap" >&2
+		else
+			log "source and destination are consistent"
+		fi
+	fi
+}
+
+
 # run zfs(1) command either locally or via ssh
 # usage: ZFS "$host" command args...
 ZFS() {
@@ -215,16 +234,7 @@ if [[ -z $last ]] ; then
 	fi
 
 	ZFS "$srchost" send "$send_opts" --raw -R "$cur" | ZFS "$desthost" receive $recv_flags "$destfs" || die $? "zfs full send failed ☠️"
-
-	if $verbose; then
-		log "verifying consistency with zfs diff"
-		if ! ZFS "" diff "$srcfs@$cur" "$destfs@$cur" >/dev/null 2>&1; then
-			log "WARNING: source and destination differ!"
-			ZFS "" diff "$srcfs@$cur" "$destfs@$cur" >&2
-		else
-			log "source and destination are consistent"
-		fi
-	fi
+	iverify_consistency "$srcfs" "$destfs" "$cur"
 
 # no incremental
 elif ! ZFS "$srchost" list "$srcfs@$last" &>/dev/null ; then
@@ -234,15 +244,7 @@ elif ! ZFS "$srchost" list "$srcfs@$last" &>/dev/null ; then
 else
     log "sending incremental snapshot from $src to $dest (${last#"${tag}"_}..${cur#*@"${tag}"_})"
     ZFS "$srchost" send "$send_opts" --raw -R -I "$last" "$cur" | ZFS "$desthost" receive $recv_flags "$destfs" || die $? "zfs incremental send failed ☠️"
-	if $verbose; then
-		log "verifying consistency with zfs diff"
-		if ! ZFS "" diff "$srcfs@$cur" "$destfs@$cur" >/dev/null 2>&1; then
-			log "WARNING: source and destination differ!"
-			ZFS "" diff "$srcfs@$cur" "$destfs@$cur" >&2
-		else
-			log "source and destination are consistent"
-		fi
-	fi
+	verify_consistency "$srcfs" "$destfs" "$cur"
 fi
 
 ###

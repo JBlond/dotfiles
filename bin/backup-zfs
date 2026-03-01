@@ -2,6 +2,11 @@
 # backup-zfs: use zfs send/recv to push/pull snapshots
 prog="$(basename "$0")"
 
+if [[ $# -lt 2 ]]; then
+    usage 1
+fi
+
+
 usage() {
 	cat >&2 <<-EOF
 	usage: $prog [-hvq] [-t tag] [-k keep] [-d dateopts] src dest

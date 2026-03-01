@@ -195,7 +195,7 @@ if [[ -z $last ]] ; then
 			grep "@${tag}_" | xargs -r ZFS "$desthost" destroy -r || die $? "failed to destroy old snapshots on $destfs/$srcbase ☠️"
 	fi
 
-	ZFS "$srchost" send "$send_opts" --raw -R "$cur" | ZFS "$desthost" receive $recv_flags "$destfs/$srcbase" || die $? "zfs full send failed ☠️"
+	ZFS "$srchost" send "$send_opts" --raw -R "$cur" | ZFS "$desthost" receive $recv_flags "$destfs" || die $? "zfs full send failed ☠️"
 
 # no incremental
 elif ! ZFS "$srchost" list "$srcfs@$last" &>/dev/null ; then
@@ -204,8 +204,7 @@ elif ! ZFS "$srchost" list "$srcfs@$last" &>/dev/null ; then
 # Normal Incremental-Send
 else
     log "sending incremental snapshot from $src to $dest (${last#"${tag}"_}..${cur#*@"${tag}"_})"
-    ZFS "$srchost" send "$send_opts" --raw -R -I "$last" "$cur" | \
-        ZFS "$desthost" receive $recv_flags "$destfs/$srcbase" || die $? "zfs incremental send failed"
+    ZFS "$srchost" send "$send_opts" --raw -R -I "$last" "$cur" | ZFS "$desthost" receive $recv_flags "$destfs" || die $? "zfs incremental send failed ☠️"
 fi
 
 ###

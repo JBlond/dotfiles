@@ -220,8 +220,7 @@ fi
 ###
 ### clean up old snapshots
 ###
-for snap in $(ZFS "$srchost" list -d 1 -t snapshot -H -S creation -o name "$srcfs" \
-		| grep -F "@${tag}_" | cut -f2 -d@ | tail -n+$((keep+1)) ) ;
+for snap in $(ZFS "$srchost" list -d 1 -t snapshot -H -S creation -o name "$srcfs" | grep -F "@${tag}_" | cut -f2 -d@ | tail -n+$((keep+1)) ) ;
 do
 	ZFS "$srchost" destroy -r "$srcfs"@"$snap"
 done
@@ -229,8 +228,7 @@ done
 ###
 ### clean up old snapshots on destination (symmetrisch)
 ###
-for snap in $(ZFS "$desthost" list -d 1 -t snapshot -H -S creation -o name "$destfs" \
-        | grep -F "@${tag}_" | cut -f2 -d@ | tail -n+$((keep+1)) ) ;
+for snap in $(ZFS "$desthost" list -d 1 -t snapshot -H -S creation -o name "$destfs" | grep -F "@${tag}_" | cut -f2 -d@ | tail -n+$((keep+1)) ) ;
 do
-    ZFS "$desthost" destroy -r "$destfs@$snap"
+	ZFS "$desthost" destroy -r "$destfs@$snap"
 done

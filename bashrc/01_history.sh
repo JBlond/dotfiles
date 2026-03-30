@@ -1,7 +1,6 @@
 # don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE="clear:ls:history:[bf]g:exit:date:* --help"
 
 # When the shell exits, append to the history file instead of overwriting it
 shopt -s histappend

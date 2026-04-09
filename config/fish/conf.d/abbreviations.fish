@@ -4,6 +4,8 @@ abbr own 'sudo chown -R $USER:$USER'
 
 abbr cls 'clear'
 
+abbr exut 'exit'
+
 abbr ös 'ls'
 abbr ll 'ls -lh'
 abbr lla 'ls -lAh'

@@ -68,6 +68,7 @@ if command -sq docker
     abbr dsp "docker system prune -a"
     abbr dil "docker image ls"
     abbr dsd "docker system df"
+    abbr dvl "docker volume list"
 end
 
 if command -sq composer

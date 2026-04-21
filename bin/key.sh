@@ -19,9 +19,6 @@ USAGE() {
     echo "
 SSH Key Installer $VERSION
 
-Usage:
-  bash <(curl -fsSL git.io/key.sh) [options...] <arg>
-
 Options:
   -o	Overwrite mode, this option is valid at the top
   -g	Get the public key from GitHub, the arguments is the GitHub ID

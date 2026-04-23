@@ -31,6 +31,17 @@ else if type -q less
     set -gx MANPAGER 'less -X'
 end
 
+if string match -q "mintty" $TERM_PROGRAM
+    function nvim
+        command nvim $argv
+        set exit_code $status
+
+        printf '\e[3 q'
+
+        return $exit_code
+    end
+end
+
 if type -q eza
     alias ls eza
     alias l='ls -la --icons'

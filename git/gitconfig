@@ -21,4 +21,4 @@
 	path = ~/notes/git.ini
 
 [include]
-	path = ~/.gitconfig.machine
+	path = ~/.machine.gitconfig

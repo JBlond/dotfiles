@@ -19,3 +19,6 @@
 
 [includeIf "gitdir:~/notes/"]
 	path = ~/notes/git.ini
+
+[include]
+	path = ~/.gitconfig.machine

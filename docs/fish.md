@@ -37,7 +37,7 @@
 - `gpn` git pull --no-ff
 - `gpo` git push origin
 - `gr` git remote -v
-- `greedy` du -hs * | sort -rh
+- `greedy` find . -mindepth 1 -maxdepth 1 -print0 | xargs -0 du -hs | sort -rh
 - `gst` git status -sb
 - `gsu` git submodule update --recursive --remote
 - `install` sudo apt install

@@ -1,4 +1,4 @@
-function ':e' --description 'Alias :e to nvim or vim'
+function :e
     if type -q nvim
         command nvim $argv
     else

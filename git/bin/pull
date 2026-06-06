@@ -77,7 +77,12 @@ reset_dir() {
 	return 1
 }
 
-branch=$(git branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/') || exit $?
+branch=$(git branch --show-current) || exit $?
+if [ -z "$branch" ]; then
+  echo "❌  You're not on a branch (detached HEAD). Check out a branch first." >&2
+  exit 1
+fi
+
 default_remote="origin"
 remote=$(git config "branch.${branch}.remote" || echo "$default_remote")
 remote_branch=$( (git config "branch.${branch}.merge" || echo "refs/heads/$branch") | cut -d/ -f3- )

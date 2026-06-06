@@ -55,7 +55,7 @@ if [ "$delete" ]; then
 	else
 		echo "💀	Removing local branch..."
 	fi
-	git branch $delete $branch
+	git branch $delete $branch || exit $?
 	exit 0
 fi
 

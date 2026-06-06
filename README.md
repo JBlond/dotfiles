@@ -4,6 +4,15 @@
 
 I use my dotfiles on bash and fish shell from git for windows, debian bash and fish , ubuntu bash and fish. Works on OSX bash, too.
 
+## Features
+
+- Fast Git-aware shell prompt
+- Bash and Fish configuration
+- Docker aliases and completion helpers
+- tmux setup and themes
+- SSH and Git productivity shortcuts
+- Windows + Linux friendly
+
 Using tmux on git for windows download the [Git for Windows SDK](https://github.com/git-for-windows/build-extra/releases/latest)
 and run pacman.
 

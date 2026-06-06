@@ -31,6 +31,14 @@ else if type -q less
     set -gx MANPAGER 'less -X'
 end
 
+function :e
+    if type -q nvim
+        command nvim $argv
+    else
+        command vim $argv
+    end
+end
+
 if string match -q "mintty" $TERM_PROGRAM
     function nvim
         command nvim $argv

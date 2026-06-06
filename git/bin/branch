@@ -37,7 +37,7 @@ fi
 
 # Switch to the previous branch
 if [ "$branch" == "-" ]; then
-	git checkout -
+	git switch -
 	exit 0
 fi
 
@@ -83,7 +83,7 @@ fi
 # If local exists already, switch to it
 if [ -n "$local_branch_exists" ] && [ ! "$local_branch_exists" == '' ]; then
 	echo "👓	Switching to existing local branch..."
-	git checkout $branch
+	git switch $branch
 
 	# Track remote branch if not already
 	if [ -n "$remote_branch_exists" ] && [ ! "$remote_branch_exists" == '' ]; then
@@ -100,12 +100,12 @@ if [ -n "$local_branch_exists" ] && [ ! "$local_branch_exists" == '' ]; then
 # If remote exists, create a local branch that tracks the remote
 elif [ -n "$remote_branch_exists" ] && [ ! "$remote_branch_exists" == '' ]; then
 	echo "📡	Tracking existing remote branch '$remote_branch_exists'..."
-	git checkout -b $branch --track $remote/$branch
+	git switch -c "$branch" --track "$remote/$branch"
 
 # Otherwise create a new local branch
 else
 	echo "✏️	Creating new local branch..."
-	git checkout -b $branch --no-track
+	git switch -c "$branch"
 fi
 
 exit 0

@@ -24,17 +24,16 @@ tracking=$(git branch -vv | egrep "^\*" | awk '{ print $4 '})
 echo "tracking=$tracking"
 if [[ ! "$tracking" =~ "$remote" ]]; then
   echo "⚒  Local-only branch, rebasing $branch onto $current_branch first..."
-  git checkout $branch
+  git switch $branch
   git rebase $current_branch || exit 1
 else
   echo "📡  This branch exists remotely, not rebasing"
 fi
 
 echo "✂️  Merge $branch into $current_branch"
-git checkout $current_branch
+git switch $current_branch
 git merge $branch || exit 1
 
 echo
 echo "🦄  Done"
 exit 0
-

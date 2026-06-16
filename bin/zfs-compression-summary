@@ -1,64 +1,59 @@
 #!/bin/bash
 MIN=$((1024*1024))
-printf "%-40s %10s %10s %10s %6s\n" "DATASET" "USED" "LOGICAL" "SAVED" "SAVED%"
+printf "%-40s %10s %10s %10s %6s %12s\n" "DATASET" "USED" "LOGICAL" "SAVED" "SAVED%" "COMPRESSION"
 
 zfs list -H -o name | while read -r ds; do
   used_s=$(zfs get -H -o value used "$ds" 2>/dev/null) || used_s=""
   logical_s=$(zfs get -H -o value logicalused "$ds" 2>/dev/null) || logical_s=""
+  comp_s=$(zfs get -H -o value compression "$ds" 2>/dev/null) || comp_s="unknown"
+
   [ -z "$used_s" ] || [ -z "$logical_s" ] && continue
   [ "$used_s" = "-" ] || [ "$logical_s" = "-" ] && continue
 
   to_bytes() {
-    v="$1"
+    v="$1" 
     v="$(printf '%s' "$v" | tr -d '[:space:]')"
-    # if already pure digits
-    if printf '%s' "$v" | grep -Eq '^[0-9]+$'; then
-      echo "$v"; return
+    if printf '%s' "$v" | grep -Eq '^[0-9]+$'; then 
+        echo "$v"; return; 
     fi
-    # match number and optional unit
     if ! printf '%s' "$v" | grep -Eq '^[0-9]+(\.[0-9]+)?[KMGTP]i?$'; then
-      # try strip non-digits as fallback
-      printf '%s' "$(printf '%s' "$v" | sed -E 's/[^0-9]//g')"
-      return
+      printf '%s' "$(printf '%s' "$v" | sed -E 's/[^0-9]//g')"; return
     fi
     num=$(printf '%s' "$v" | sed -E 's/([0-9]+(\.[0-9]+)?)[KMGTP]i?$/\1/i')
     unit=$(printf '%s' "$v" | sed -E 's/^[0-9]+(\.[0-9]+)?([KMGTP]i?)?$/\2/i' | tr '[:upper:]' '[:lower:]')
     scale=1
-    case "$unit" in
-      k) scale=1024;;
-      m) scale=$((1024**2));;
-      g) scale=$((1024**3));;
-      t) scale=$((1024**4));;
-      p) scale=$((1024**5));;
-      '') scale=1;;
+    case "$unit" in 
+        k) scale=1024;; 
+        m) scale=$((1024**2));; 
+        g) scale=$((1024**3));; 
+        t) scale=$((1024**4));; 
+        p) scale=$((1024**5));; 
+        '') scale=1;; 
     esac
-    # multiply using awk to support decimals
-    bytes=$(awk -v n="$num" -v s="$scale" 'BEGIN{ printf "%.0f", n*s }')
-    printf '%s' "$bytes"
+    awk -v n="$num" -v s="$scale" 'BEGIN{ printf "%.0f", n*s }'
   }
 
   used_b=$(to_bytes "$used_s")
   logical_b=$(to_bytes "$logical_s")
-  # validate
   printf '%s\n' "$used_b" | grep -Eq '^[0-9]+$' || continue
   printf '%s\n' "$logical_b" | grep -Eq '^[0-9]+$' || continue
   [ "$logical_b" -ge "$MIN" ] || continue
 
-  if [ "$logical_b" -le "$used_b" ]; then
-    saved_b=0; pct="N/A"
-  else
-    saved_b=$((logical_b-used_b))
-    pct=$((saved_b*100/logical_b))"%"
+  if [ "$logical_b" -le "$used_b" ]; then 
+      saved_b=0; pct="N/A"; 
+  else 
+      saved_b=$((logical_b-used_b)); 
+      pct=$((saved_b*100/logical_b))"%"; 
   fi
 
   human() {
     b=$1
     for u in B Ki Mi Gi Ti Pi; do
-      if [ "$b" -lt 1024 ]; then
-        printf "%s%s" "$b" "$u"; return
+      if [ "$b" -lt 1024 ]; then 
+          printf "%s%s" "$b" "$u"; 
+          return; 
       fi
-      rem=$((b % 1024))
-      b=$((b / 1024))
+      b=$((b/1024))
     done
     printf "%sPi" "$b"
   }
@@ -67,5 +62,5 @@ zfs list -H -o name | while read -r ds; do
   logical_h=$(human "$logical_b")
   saved_h=$(human "$saved_b")
 
-  printf "%-40s %10s %10s %10s %6s\n" "$ds" "$used_h" "$logical_h" "$saved_h" "$pct"
+  printf "%-40s %10s %10s %10s %6s %12s\n" "$ds" "$used_h" "$logical_h" "$saved_h" "$pct" "$comp_s"
 done

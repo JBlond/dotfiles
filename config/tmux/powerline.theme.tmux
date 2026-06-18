@@ -2,7 +2,7 @@
 set -g status-left "#[fg=black,bg=colour214] ❐ #S #[fg=colour214,bg=black,nobold,noitalics,nounderscore]"
 
 # right
-PASS_ICON="#(if [ \"$(tmux display -p '#{client_key_table}')\" = off ]; then printf ' ⇄'; fi)"
+PASS_ICON="#(if [ \"$(tmux display -p '#{client_key_table}')\" = off ]; then printf '⌥⇄⌥'; fi)"
 set -g status-right "#[fg=colour214,bg=black,nobold,noitalics,nounderscore]#[fg=black,bg=colour214]#{?client_prefix,<Prefix> ,}$wg_is_mouse_off $PASS_ICON #[fg=brightwhite,bg=colour238] %Y-%m-%d %H:%M "
 
 #### Windows ####

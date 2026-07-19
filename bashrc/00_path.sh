@@ -18,4 +18,12 @@ if [ -d "$HOME/notes/bin" ]; then
 	PATH="$HOME/notes/bin:$PATH"
 fi
 
+if [ -d "/opt/nvim-linux-arm64/bin" ]; then
+	PATH="/opt/nvim-linux-arm64/bin:$PATH"
+fi
+
+if [ -d "/opt/nvim-linux-x86_64/bin" ]; then
+	PATH="/opt/nvim-linux-x86_64/bin:$PATH"
+fi
+
 complete -d cd

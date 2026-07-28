@@ -78,8 +78,8 @@ keep=5
 verbose=false
 quiet=false
 port=22
-send_opts=""
-recv_opts=""
+send_opts="-v"
+recv_opts="-v"
 
 ###
 ### parse options

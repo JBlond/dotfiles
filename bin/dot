@@ -8,6 +8,7 @@ switch $argv[1]
         echo " nvim"
         echo " diff"
         echo " cert"
+        echo " pveclean"
         echo ""
     case update
         cd ~/dotfiles/
@@ -46,4 +47,8 @@ switch $argv[1]
     case cert
         cd ~/dotfiles/
         make cert
+    case pveclean
+        cd ~
+        curl -o pvekclean.sh https://raw.githubusercontent.com/jordanhillis/pvekclean/master/pvekclean.sh
+        chmod +x pvekclean.sh
 end

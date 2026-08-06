@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+# zfs-diff.sh
+#
+# Beispiele:
+#   zfs-diff.sh tank
+#   zfs-diff.sh tank backup-zfs_2026-08-06_01:00:01
+
+set -euo pipefail
+
+POOL="${1:-}"
+SNAP="${2:-}"
+
+if [[ -z "$POOL" ]]; then
+    echo "Usage: $0 <pool> [snapshot]"
+    exit 1
+fi
+
+select_snapshot() {
+
+    mapfile -t SNAPS < <(
+        zfs list -Hp -r -t snapshot -o name,used -S creation "$POOL" |
+        awk '
+        $2 > 0 {
+            split($1,a,"@")
+            if (!(a[2] in seen)) {
+                seen[a[2]]=1
+                print a[2]
+            }
+        }' |
+        head -10
+    )
+
+    if [[ ${#SNAPS[@]} -eq 0 ]]; then
+        echo "Keine Snapshots mit Änderungen gefunden."
+        exit 1
+    fi
+
+    echo
+    echo "Letzte 10 Snapshots mit Änderungen:"
+    echo
+
+    select SNAP in "${SNAPS[@]}"; do
+        [[ -n "${SNAP:-}" ]] && break
+        echo "Ungültige Auswahl."
+    done
+
+    echo
+    echo "Gewählt: $SNAP"
+    echo
+}
+
+show_diff() {
+
+    zfs list -H -o name -r "$POOL" | while read -r DS; do
+
+        zfs list -H -t snapshot "${DS}@${SNAP}" >/dev/null 2>&1 || continue
+
+        USED=$(zfs get -Hp -o value used "${DS}@${SNAP}" 2>/dev/null)
+
+        (( USED > 0 )) || continue
+
+        echo "=================================================================="
+        echo "[DATASET] $DS"
+        echo "[SNAPSHOT] $SNAP"
+        echo "[USED] $USED Bytes"
+        echo "=================================================================="
+
+        zfs diff "${DS}@${SNAP}"
+
+        echo
+    done
+}
+
+[[ -z "$SNAP" ]] && select_snapshot
+
+show_diff

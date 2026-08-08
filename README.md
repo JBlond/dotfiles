@@ -113,6 +113,10 @@ jblond@linux:~
 - [▲n] = n steps ahead of remote
 - [▼n] = n steps behind remote
 
+## git config
+
+updates will override `~/.gitconfig`. To keep your settings create `~/.machine.gitconfig`. It is included in the config and will override any setting.
+
 ## git aliases and commands
 
 

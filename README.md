@@ -26,6 +26,16 @@ pacman -S tmux fish make
 
 [RipGREP](https://github.com/BurntSushi/ripgrep/releases)
 
+## dot
+
+once installed and reload the config you can use the `dot` command.
+
+- `dot update` update to the newest version of this repo. It will stash your changes, updates and re-applies it later.
+- `dot diff` view the changes you made to the config.
+- `dot fonts` install the 'needed' emojis for mintty on windows.
+- `dot nvim` install neovim / nvim on your machine with batteries included.
+- `dot pveclean` install Proxmox kernel cleaning script.
+
 ## READMES
 
 - My neovim config is another repo [JBlond/nvim](https://github.com/JBlond/nvim)
@@ -118,7 +128,6 @@ jblond@linux:~
 updates will override `~/.gitconfig`. To keep your settings create `~/.machine.gitconfig`. It is included in the config and will override any setting.
 
 ## git aliases and commands
-
 
 ![shell1](assets/shell01.png)
 

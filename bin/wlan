@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Show WiFi networks summary by SSID and band
+# Show WLAN networks summary by SSID and band
 
 # Trigger a fresh WiFi scan
-echo "Scanning WiFi networks..."
+echo "Scanning WLAN networks..."
 nmcli device wifi list --rescan yes
 sleep 2
 

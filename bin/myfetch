@@ -1,0 +1,732 @@
+#!/bin/sh
+ostype="$(uname)"
+version=1.0.0
+font=nerd
+distrotype=none
+osi=""
+ki=""
+ri="󰍛"
+pi="󰏔"
+ui="󰅶"
+if command -v getprop 1>/dev/null; then
+	distrotype=android
+fi
+kernel="$(echo $(uname -r) | cut -d'-' -f1-1)"
+case $ostype in
+*"Linux"*)
+	if [ $distrotype = android ]; then
+		host="$(hostname)"
+		USER="$(whoami)"
+		os="Android $(getprop ro.build.version.release)"
+		case $font in
+		phosphor) osi="" ;;
+		emoji) osi="🤖" ;;
+		*) osi="󰀲" ;;
+		esac
+	else
+		host="$(cat /proc/sys/kernel/hostname)"
+		. /etc/os-release
+		if [ -f /bedrock/etc/bedrock-release ]; then
+			os="$(brl version)"
+		else
+			os="${PRETTY_NAME}"
+            case $(echo $ID | sed 's/ .*//') in
+            debian) osi="" ;;
+            arch) osi="󰣇" ;;
+            endeavouros) osi="" ;;
+            fedora) osi="" ;;
+            gentoo) osi="" ;;
+            rhel) osi="" ;;
+            slackware) osi="" ;;
+            void) osi="" ;;
+            alpine) osi="" ;;
+            nixos) osi="󱄅" ;;
+            artix) osi="" ;;
+            exherbo) osi="󰆚" ;;
+            mageia) osi="" ;;
+            manjaro) osi="" ;;
+            opensuse) osi="" ;;
+            solus) osi="" ;;
+            ubuntu) osi="" ;;
+            linuxmint) osi="󰣭" ;;
+            trisquel) osi="" ;;
+            puppy) osi="" ;;
+            coreos) osi="" ;;
+            mx) osi="" ;;
+            vanilla) osi="" ;;
+            pop_os) osi="" ;;
+            raspbian) osi="" ;;
+            deepin) osi="" ;;
+            almalinux) osi="" ;;
+            garuda) osi="" ;;
+            centos) osi="" ;;
+            rocky) osi="" ;;
+            esac
+		fi
+	fi
+	shell=$(basename "$SHELL")
+	;;
+*"Darwin"*)
+	host="$(hostname -f | sed -e 's/^[^.]*\.//')"
+	mac_product="$(/usr/libexec/PlistBuddy -c "Print:ProductName" /System/Library/CoreServices/SystemVersion.plist)"
+	mac_version="$(/usr/libexec/PlistBuddy -c "Print:ProductVersion" /System/Library/CoreServices/SystemVersion.plist)"
+	os="${mac_product} ${mac_version}"
+	case $font in
+	nerd) osi="" ;;
+	phosphor) osi="" ;;
+	cozette) osi="" ;;
+	emoji) osi="🍎" ;;
+	esac
+	;;
+*"FreeBSD"*)
+	host="$(hostname)"
+	distrotype=bsd
+	os="FreeBSD $(freebsd-version | sed 's/-.*//')"
+	case $font in
+	nerd) osi="" ;;
+	phosphor) osi="" ;;
+	cozette) osi="" ;;
+	emoji) osi="😈" ;;
+	esac
+	;;
+*"OpenBSD"*)
+	host="$(hostname)"
+	distrotype=bsd
+	os="OpenBSD $(uname -r)"
+	case $font in
+	nerd) osi="" ;;
+	phosphor) osi="" ;;
+	cozette) osi="⌘" ;;
+	emoji) osi="🐡" ;;
+	esac
+	;;
+*"NetBSD"*)
+	host="$(hostname)"
+	distrotype=netbsd
+	os="NetBSD $(uname -r)"
+	case $font in
+	nerd) osi="󰉀" ;;
+	phosphor) osi="" ;;
+	cozette) osi="" ;;
+	emoji) osi="🚩" ;;
+	esac
+	;;
+*)
+	os="Unix-like"
+	host="host"
+	;;
+esac
+MANAGER=$(command -v nix-env pkg flatpak yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge birb yay paru pacstall cpm pmm opkg eopkg getprop 2>/dev/null)
+manager=$(basename "$MANAGER")
+if [ $distrotype = netbsd ]; then
+	manager="pkg_info-netbsd"
+fi
+case $manager in
+cpm) packages="$(cpm C)" ;;
+flatpak) packages="$(flatpak list --app | wc -l)" ;;
+brew) packages="$(printf '%s\n' "$(brew --cellar)/"* | wc -l)" ;;
+port) packages="$(($(port installed | wc -l) - 1))" ;;
+dpkg-query) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)" ;;
+rpm) packages="$(rpm -qa --last | wc -l)" ;;
+yum) packages="$(yum list installed | wc -l)" ;;
+dnf) packages="$(dnf list installed | wc -l)" ;;
+zypper) packages="$(zypper se | wc -l)" ;;
+pacman) packages="$(pacman -Q | wc -l)" ;;
+yay) packages="$(yay -Q | wc -l)" ;;
+paru) packages="$(paru -Q | wc -l)" ;;
+pacstall) packages="$(pacstall -L | wc -l)" ;;
+kiss) packages="$(kiss list | wc -l)" ;;
+emerge) packages="$(qlist -I | wc -l)" ;;
+pkg) packages="$(pkg info | wc -l | tr -d ' ')" ;;
+cave) packages="$(cave show installed-slots | wc -l)" ;;
+xbps-query) packages="$(xbps-query -l | wc -l)" ;;
+nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)" ;;
+apk) packages="$(apk list --installed | wc -l)" ;;
+pmm) packages="$(/bedrock/libexec/pmm pacman pmm -Q 2>/dev/null | wc -l)" ;;
+opkg) packages="$(opkg list-installed | wc -l)" ;;
+eopkg) packages="$(eopkg li | wc -l)" ;;
+/usr/sbin/slackpkg) packages="$(ls /var/log/packages | wc -l)" ;;
+bulge) packages="$(bulge list | wc -l)" ;;
+birb) packages="$(birb --list-installed | wc -l)" ;;
+pkg_info)
+	packages="$(pkg_info -A | wc -l)"
+	manager="pkg"
+	;;
+pkg_info-netbsd)
+	packages="$(pkg_info -a | wc -l)"
+	manager="pkg"
+	;;
+*)
+	if [ $distrotype = android ]; then
+		packages="$(pkg list-installed | wc -l)"
+		manager="pkg"
+	else
+		packages="$(ls /usr/bin | wc -l)"
+		manager="bin"
+	fi
+	;;
+esac
+
+packages="${packages#"${packages%%[![:space:]]*}"}"
+manager=$(echo $manager | sed "s/-query//; s/\/usr\/.*\///")
+if [ $distrotype = android ]; then
+	uptime="$(echo $(uptime -p) | cut -c 4-)"
+elif [ $distrotype = bsd ] || [ $distrotype = netbsd ]; then
+	uptime="$(uptime | sed -e 's/.* up //; s/, [0-9]* user.*//')"
+else
+	case $ostype in
+	*"Linux"*)
+		IFS=. read -r s _ </proc/uptime
+		;;
+	*)
+		s=$(sysctl -n kern.boottime)
+		s=${s#*=}
+		s=${s%,*}
+		s=$(($(date +%s) - s))
+		;;
+	esac
+	d="$((s / 60 / 60 / 24))"
+	h="$((s / 60 / 60 % 24))"
+	m="$((s / 60 % 60))"
+	# Plurals
+	[ "$d" -gt 1 ] && dp=s
+	[ "$h" -gt 1 ] && hp=s
+	[ "$m" -gt 1 ] && mp=s
+	[ "$s" -gt 1 ] && sp=s
+	# Hide empty fields.
+	[ "$d" = 0 ] && d=
+	[ "$h" = 0 ] && h=
+	[ "$m" = 0 ] && m=
+	[ "$m" != "" ] && s=
+	# Make the output of uptime smaller.
+	[ "$d" ] && uptime="$d day$dp, "
+	[ "$h" ] && uptime="$uptime$h hour$hp, "
+	[ "$m" ] && uptime="$uptime$m min$mp"
+	[ "$s" ] && uptime="$uptime$s sec$sp"
+	uptime=${uptime%, }
+fi
+
+case $ostype in
+*"Linux"*)
+	while IFS=':k ' read -r key val _; do
+		case $key in
+		MemTotal)
+			mem_used=$((mem_used + val))
+			mem_full=$val
+			;;
+		Shmem) mem_used=$((mem_used + val)) ;;
+		MemFree | Buffers | Cached | SReclaimable) mem_used=$((mem_used - val)) ;;
+		esac
+	done </proc/meminfo
+	mem_used=$((mem_used / 1024))
+	mem_full=$((mem_full / 1024))
+	;;
+*"Darwin"*)
+	mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
+	while IFS=:. read -r key val; do
+		case $key in
+		*' wired'* | *' active'* | *' occupied'*)
+			mem_used=$((mem_used + ${val:-0}))
+			;;
+		esac
+	done <<-EOF
+		$(vm_stat)
+	EOF
+
+	mem_used=$((mem_used * 4 / 1024))
+	;;
+*"BSD"*)
+	mem_full=$(($(sysctl -n hw.physmem) / 1024 / 1024))
+	if [ $distrotype = netbsd ]; then
+		mem_free=$(($(vmstat | awk 'NR==3 {print $4}') / 1024))
+	else
+		mem_free=$(($(sysctl -n vm.stats.vm.v_free_count) * $(sysctl -n vm.stats.vm.v_page_size) / 1024 / 1024))
+	fi
+	mem_used=$((mem_full - mem_free))
+	;;
+*)
+	mem_full=1
+	mem_used=0
+	;;
+esac
+memstat="${mem_used}/${mem_full} MiB"
+if command -v expr 1>/dev/null; then
+	mempercent="($(expr $(expr ${mem_used} \* 100 / ${mem_full}))%)"
+fi
+
+bold='[1m'
+black='[30m'
+red='[31m'
+green='[32m'
+yellow='[33m'
+blue='[34m'
+magenta='[35m'
+cyan='[36m'
+white='[37m'
+grey='[90m'
+light_black='[90m'
+light_red='[91m'
+light_green='[92m'
+light_yellow='[93m'
+light_blue='[94m'
+light_magenta='[95m'
+light_cyan='[96m'
+light_white='[97m'
+reset='[0m'
+
+
+lc="${reset}${bold}${magenta}" # labels
+nc="${reset}${bold}${yellow}"  # user
+hn="${reset}${bold}${blue}"    # hostname
+ic="${reset}${green}"          # info
+c0="${reset}${grey}"           # first color
+c1="${reset}${white}"          # second color
+c2="${reset}${yellow}"         # third color
+
+
+FONT=""
+initials=""
+color=0
+CI="███"
+distroprint=0
+btw=0
+
+while getopts "i:c:C:adfvh" opt; do
+    case ${opt} in
+        i) 
+            initials="${OPTARG^^}"
+            ;;
+        d)
+            distroprint=1
+            initials="distro"
+            ;;
+        f)
+            FONT="OUTLINE"
+            ;;
+        c)  
+            color="$OPTARG"
+            ;;
+        C)
+            CI="$OPTARG"
+            ;;
+        a)
+            btw=1
+            ;;
+        v)
+            echo "myfetch $version"
+            exit 0
+            ;;
+        h) 
+            echo
+            echo "Usage: myfetch [-i initials] [-d] [-f] [-c 8|16] [-C string] [-v] [-h]"
+            echo
+            echo "  -i    Set custom Ascii initials (two letters)"
+            echo "  -d    Show Distro"
+            echo "  -f    Sets Ascii Font to Frame"
+            echo "  -c    Sets Color Pallete"
+            echo "  -C    Sets Color Pallete Icon"
+            echo "  -v    Show version"
+            echo "  -h    Show help"
+            echo
+            echo "Made By Eli F."
+            exit 0
+            ;;
+        *) 
+            echo "Invalid option"
+            exit 1
+            ;;
+    esac
+done
+
+if [ "$distroprint" -eq 1 ]; then
+    first="distro"
+    second=""
+else
+    first="${initials:0:1}"
+    second="${initials:1:1}"
+fi
+
+declare -A ascii_letters
+if [ "$distroprint" -eq 1 ]; then
+    case $(echo $ID | sed 's/ .*//') in
+        arch)
+            ascii_letters['distro_row1']="     /\      "
+            ascii_letters['distro_row2']="    /  \     "
+            ascii_letters['distro_row3']="   /    \    "
+            ascii_letters['distro_row4']="  /  ..  \   "
+            ascii_letters['distro_row5']=" /  |  |  \  "
+            ascii_letters['distro_row6']="/_-\"    \"-_\ "
+        ;;
+        *)
+            ascii_letters['distro_row1']="    ___    "
+            ascii_letters['distro_row2']="   (o o)   "
+            ascii_letters['distro_row3']="  /  V  \  "
+            ascii_letters['distro_row6']=" /|     |\ "
+            ascii_letters['distro_row4']="  (  _  )  "
+            ascii_letters['distro_row5']="   ^^ ^^   "
+        ;;  
+    esac
+fi
+
+
+EIGHT=""
+SIXTEEN=""
+
+if [ "$color" -eq 8 ]; then
+    EIGHT="${red}${CI}${green}${CI}${yellow}${CI}${blue}${CI}${magenta}${CI}${cyan}${CI}${white}${CI}"
+elif [ "$color" -eq 16 ]; then
+
+    EIGHT="${red}${CI}${green}${CI}${yellow}${CI}${blue}${CI}${magenta}${CI}${cyan}${CI}${white}${CI}"
+    SIXTEEN="${light_red}${CI}${light_green}${CI}${light_yellow}${CI}${light_blue}${CI}${light_magenta}${CI}${light_cyan}${CI}${light_white}${CI}"
+fi
+
+if [ "$FONT" = "OUTLINE" ]; then
+    ascii_letters['A_row1']="    /\     "
+    ascii_letters['A_row2']="   /  \    "
+    ascii_letters['A_row3']="  / /\ \   "
+    ascii_letters['A_row4']=" / ____ \  "
+    ascii_letters['A_row5']="/_/    \_\ "
+    ascii_letters['A_row6']="           "
+    ascii_letters['B_row1']=" ____  "
+    ascii_letters['B_row2']="|  _ \ "
+    ascii_letters['B_row3']="| |_) |"
+    ascii_letters['B_row4']="|  _ < "
+    ascii_letters['B_row5']="| |_) |"
+    ascii_letters['B_row6']="|____/ "
+    ascii_letters['C_row1']="  _____ "
+    ascii_letters['C_row2']=" / ____|"
+    ascii_letters['C_row3']="| |     "
+    ascii_letters['C_row4']="| |     "
+    ascii_letters['C_row5']="| |____ "
+    ascii_letters['C_row6']=" \_____|"
+    ascii_letters['D_row1']=" _____  "
+    ascii_letters['D_row2']="|  __ \ "
+    ascii_letters['D_row3']="| |  | |"
+    ascii_letters['D_row4']="| |  | |"
+    ascii_letters['D_row5']="| |  | |"
+    ascii_letters['D_row6']="|_____/ "
+    ascii_letters['E_row1']=" ______ "
+    ascii_letters['E_row2']="|  ____|"
+    ascii_letters['E_row3']="| |__   "
+    ascii_letters['E_row4']="|  __|  "
+    ascii_letters['E_row5']="| |____ "
+    ascii_letters['E_row6']="|______|"
+    ascii_letters['F_row1']=" ______ "
+    ascii_letters['F_row2']="|  ____|"
+    ascii_letters['F_row3']="| |__   "
+    ascii_letters['F_row4']="|  __|  "
+    ascii_letters['F_row5']="| |     "
+    ascii_letters['F_row6']="|_|     "
+    ascii_letters['G_row1']="  _____ "
+    ascii_letters['G_row2']=" / ____|"
+    ascii_letters['G_row3']="| |  __ "
+    ascii_letters['G_row4']="| | |_ |"
+    ascii_letters['G_row5']="| |__| |"
+    ascii_letters['G_row6']=" \_____|"
+    ascii_letters['H_row1']=" _    _ "
+    ascii_letters['H_row2']="| |  | |"
+    ascii_letters['H_row3']="| |__| |"
+    ascii_letters['H_row4']="|  __  |"
+    ascii_letters['H_row5']="| |  | |"
+    ascii_letters['H_row6']="|_|  |_|"
+    ascii_letters['I_row1']=" _____ "
+    ascii_letters['I_row2']="|_   _|"
+    ascii_letters['I_row3']="  | |  "
+    ascii_letters['I_row4']="  | |  "
+    ascii_letters['I_row5']=" _| |_ "
+    ascii_letters['I_row6']="|_____|"
+    ascii_letters['J_row1']="      _ "
+    ascii_letters['J_row2']="     | |"
+    ascii_letters['J_row3']="     | |"
+    ascii_letters['J_row4']=" _   | |"
+    ascii_letters['J_row5']="| |__| |"
+    ascii_letters['J_row6']=" \____/ "
+    ascii_letters['K_row1']=" _  __"
+    ascii_letters['K_row2']="| |/ / "
+    ascii_letters['K_row3']="|   /  "
+    ascii_letters['K_row4']="|  |   "
+    ascii_letters['K_row5']="|   \  "
+    ascii_letters['K_row6']="|_|\_\ "
+    ascii_letters['L_row1']=" _      "
+    ascii_letters['L_row2']="| |     "
+    ascii_letters['L_row3']="| |     "
+    ascii_letters['L_row4']="| |     "
+    ascii_letters['L_row5']="| |____ "
+    ascii_letters['L_row6']="|______|"
+    ascii_letters['M_row1']=" __  __ "
+    ascii_letters['M_row2']="|  \/  |"
+    ascii_letters['M_row3']="| \  / |"
+    ascii_letters['M_row4']="| |\/| |"
+    ascii_letters['M_row5']="| |  | |"
+    ascii_letters['M_row6']="|_|  |_|"
+    ascii_letters['N_row1']=" _   _ "
+    ascii_letters['N_row2']="| \ | |"
+    ascii_letters['N_row3']="|  \| |"
+    ascii_letters['N_row4']="|     |"
+    ascii_letters['N_row5']="| |\  |"
+    ascii_letters['N_row6']="|_| \_|"
+    ascii_letters['O_row1']="  ____  "
+    ascii_letters['O_row2']=" / __ \ "
+    ascii_letters['O_row3']="| |  | |"
+    ascii_letters['O_row4']="| |  | |"
+    ascii_letters['O_row5']="| |__| |"
+    ascii_letters['O_row6']=" \____/ "
+    ascii_letters['P_row1']=" _____  "
+    ascii_letters['P_row2']="|  __ \ "
+    ascii_letters['P_row3']="| |__) |"
+    ascii_letters['P_row4']="|  ___/ "
+    ascii_letters['P_row5']="| |     "
+    ascii_letters['P_row6']="|_|     "
+    ascii_letters['Q_row1']="  ____    "
+    ascii_letters['Q_row2']=" / __ \   "
+    ascii_letters['Q_row3']="| |  | |  "
+    ascii_letters['Q_row4']="| |  | |  "
+    ascii_letters['Q_row5']="| |_\| |  "
+    ascii_letters['Q_row6']=" \____\_\ "
+    ascii_letters['R_row1']=" _____   "
+    ascii_letters['R_row2']="|  __ \  "
+    ascii_letters['R_row3']="| |__) | "
+    ascii_letters['R_row4']="|  _  /  "
+    ascii_letters['R_row5']="| | \ \  "
+    ascii_letters['R_row6']="|_|  \_\ "
+    ascii_letters['S_row1']="  _____ "
+    ascii_letters['S_row2']=" / ____|"
+    ascii_letters['S_row3']="| (___  "
+    ascii_letters['S_row4']=" \___ \ "
+    ascii_letters['S_row5']=" ____) |"
+    ascii_letters['S_row6']="|_____/ "
+    ascii_letters['T_row1']=" _______ "
+    ascii_letters['T_row2']="|__   __|"
+    ascii_letters['T_row3']="   | |   "
+    ascii_letters['T_row4']="   | |   "
+    ascii_letters['T_row5']="   | |   "
+    ascii_letters['T_row6']="   |_|   "
+    ascii_letters['U_row1']=" _    _ "
+    ascii_letters['U_row2']="| |  | |"
+    ascii_letters['U_row3']="| |  | |"
+    ascii_letters['U_row4']="| |  | |"
+    ascii_letters['U_row5']="| |__| |"
+    ascii_letters['U_row6']=" \____/ "
+    ascii_letters['V_row1']="__      __"
+    ascii_letters['V_row2']="\ \    / /"
+    ascii_letters['V_row3']=" \ \  / / "
+    ascii_letters['V_row4']="  \ \/ /  "
+    ascii_letters['V_row5']="   \  /   "
+    ascii_letters['V_row6']="    \/    "
+    ascii_letters['W_row1']="__          __"
+    ascii_letters['W_row2']="\ \        / /"
+    ascii_letters['W_row3']=" \ \  /\  / / "
+    ascii_letters['W_row4']="  \ \/  \/ /  "
+    ascii_letters['W_row5']="   \  /\  /   "
+    ascii_letters['W_row6']="    \/  \/    "
+    ascii_letters['X_row1']="__   __ "
+    ascii_letters['X_row2']="\ \ / / "
+    ascii_letters['X_row3']=" \ V /  "
+    ascii_letters['X_row4']="  | |   "
+    ascii_letters['X_row5']=" /   \  "
+    ascii_letters['X_row6']="/_/ \_\ "
+    ascii_letters['Y_row1']="__     __"
+    ascii_letters['Y_row2']="\ \   / /"
+    ascii_letters['Y_row3']=" \ \_/ / "
+    ascii_letters['Y_row4']="  \   /  "
+    ascii_letters['Y_row5']="   | |   "
+    ascii_letters['Y_row6']="   |_|   "
+    ascii_letters['Z_row1']=" ______"
+    ascii_letters['Z_row2']="|___  /"
+    ascii_letters['Z_row3']="   / / "
+    ascii_letters['Z_row4']="  / /  "
+    ascii_letters['Z_row5']=" / /__ "
+    ascii_letters['Z_row6']="/_____|"
+else
+    ascii_letters[A_row1]=" █████╗  "
+    ascii_letters[A_row2]="██╔══██╗ "
+    ascii_letters[A_row3]="██║  ██║ "
+    ascii_letters[A_row4]="███████║ "
+    ascii_letters[A_row5]="██╔══██║ "
+    ascii_letters[A_row6]="╚═╝  ╚═╝ "
+    ascii_letters[B_row1]="██████╗  "
+    ascii_letters[B_row2]="██╔══██╗ "
+    ascii_letters[B_row3]="██████╔╝ "
+    ascii_letters[B_row4]="██╔══██╗ "
+    ascii_letters[B_row5]="██████╔╝ "
+    ascii_letters[B_row6]="╚═════╝  "
+    ascii_letters[C_row1]=" ██████╗ "
+    ascii_letters[C_row2]="██╔════╝ "
+    ascii_letters[C_row3]="██║      "
+    ascii_letters[C_row4]="██║      "
+    ascii_letters[C_row5]="╚██████╗ "
+    ascii_letters[C_row6]=" ╚═════╝ "
+    ascii_letters[D_row1]="██████╗  "
+    ascii_letters[D_row2]="██╔══██╗ "
+    ascii_letters[D_row3]="██║  ██║ "
+    ascii_letters[D_row4]="██║  ██║ "
+    ascii_letters[D_row5]="██████╔╝ "
+    ascii_letters[D_row6]="╚═════╝  "
+    ascii_letters[E_row1]="███████╗ "
+    ascii_letters[E_row2]="██╔════╝ "
+    ascii_letters[E_row3]="█████╗   "
+    ascii_letters[E_row4]="██╔══╝   "
+    ascii_letters[E_row5]="███████╗ "
+    ascii_letters[E_row6]="╚══════╝ "
+    ascii_letters[F_row1]="███████╗ "
+    ascii_letters[F_row2]="██╔════╝ "
+    ascii_letters[F_row3]="█████╗   "
+    ascii_letters[F_row4]="██╔══╝   "
+    ascii_letters[F_row5]="██║      "
+    ascii_letters[F_row6]="╚═╝      "
+    ascii_letters[G_row1]=" ██████╗ "
+    ascii_letters[G_row2]="██╔════╝ "
+    ascii_letters[G_row3]="██║  ███╗"
+    ascii_letters[G_row4]="██║   ██║"
+    ascii_letters[G_row5]="╚██████╔╝"
+    ascii_letters[G_row6]=" ╚═════╝ "
+    ascii_letters[H_row1]="██╗  ██╗ "
+    ascii_letters[H_row2]="██║  ██║ "
+    ascii_letters[H_row3]="███████║ "
+    ascii_letters[H_row4]="██╔══██║ "
+    ascii_letters[H_row5]="██║  ██║ "
+    ascii_letters[H_row6]="╚═╝  ╚═╝ "
+    ascii_letters[I_row1]="████████╗"
+    ascii_letters[I_row2]="╚══██╔══╝"
+    ascii_letters[I_row3]="   ██║   "
+    ascii_letters[I_row4]="   ██║   "
+    ascii_letters[I_row5]="████████╗"
+    ascii_letters[I_row6]=" ╚══════╝"
+    ascii_letters[J_row1]="     ██╗ "
+    ascii_letters[J_row2]="     ██║ "
+    ascii_letters[J_row3]="     ██║ "
+    ascii_letters[J_row4]="██   ██║ "
+    ascii_letters[J_row5]="╚█████╔╝ "
+    ascii_letters[J_row6]=" ╚════╝  "
+    ascii_letters[K_row1]="██╗  ██╗ "
+    ascii_letters[K_row2]="██║ ██╔╝ "
+    ascii_letters[K_row3]="█████╔╝  "
+    ascii_letters[K_row4]="██╔═██╗  "
+    ascii_letters[K_row5]="██║  ██╗ "
+    ascii_letters[K_row6]="╚═╝  ╚═╝ "
+    ascii_letters[L_row1]="██╗      "
+    ascii_letters[L_row2]="██║      "
+    ascii_letters[L_row3]="██║      "
+    ascii_letters[L_row4]="██║      "
+    ascii_letters[L_row5]="███████╗ "
+    ascii_letters[L_row6]="╚══════╝ "
+    ascii_letters[M_row1]="███╗   ███╗"
+    ascii_letters[M_row2]="████╗ ████║"
+    ascii_letters[M_row3]="██╔████╔██║"
+    ascii_letters[M_row4]="██║╚██╔╝██║"
+    ascii_letters[M_row5]="██║ ╚═╝ ██║"
+    ascii_letters[M_row6]="╚═╝     ╚═╝"
+    ascii_letters[N_row1]="███╗   ██╗"
+    ascii_letters[N_row2]="████╗  ██║"
+    ascii_letters[N_row3]="██╔██╗ ██║"
+    ascii_letters[N_row4]="██║╚██╗██║"
+    ascii_letters[N_row5]="██║ ╚████║"
+    ascii_letters[N_row6]="╚═╝  ╚═══╝"
+    ascii_letters[O_row1]=" ██████╗ "
+    ascii_letters[O_row2]="██╔═══██╗"
+    ascii_letters[O_row3]="██║   ██║"
+    ascii_letters[O_row4]="██║   ██║"
+    ascii_letters[O_row5]="╚██████╔╝"
+    ascii_letters[O_row6]=" ╚═════╝ "
+    ascii_letters[P_row1]="██████╗  "
+    ascii_letters[P_row2]="██╔══██╗ "
+    ascii_letters[P_row3]="██████╔╝ "
+    ascii_letters[P_row4]="██╔═══╝  "
+    ascii_letters[P_row5]="██║      "
+    ascii_letters[P_row6]="╚═╝      "
+    ascii_letters[Q_row1]=" ██████╗  "
+    ascii_letters[Q_row2]="██╔═══██╗ "
+    ascii_letters[Q_row3]="██║   ██║ "
+    ascii_letters[Q_row4]="██║   ██║ "
+    ascii_letters[Q_row5]="╚██████╔╝ "
+    ascii_letters[Q_row6]=" ╚═══██╝  "
+    ascii_letters[R_row1]="██████╗  "
+    ascii_letters[R_row2]="██╔══██╗ "
+    ascii_letters[R_row3]="██████╔╝ "
+    ascii_letters[R_row4]="██╔══██╗ "
+    ascii_letters[R_row5]="██║  ██║ "
+    ascii_letters[R_row6]="╚═╝  ╚═╝ "
+    ascii_letters[S_row1]="██████╗  "
+    ascii_letters[S_row2]="██╔════╝ "
+    ascii_letters[S_row3]="╚█████╗  "
+    ascii_letters[S_row4]=" ╚═══██╗ "
+    ascii_letters[S_row5]="██████╔╝ "
+    ascii_letters[S_row6]="╚═════╝  "
+    ascii_letters[T_row1]="████████╗"
+    ascii_letters[T_row2]="╚══██╔══╝"
+    ascii_letters[T_row3]="   ██║   "
+    ascii_letters[T_row4]="   ██║   "
+    ascii_letters[T_row5]="   ██║   "
+    ascii_letters[T_row6]="   ╚═╝   "
+    ascii_letters[U_row1]="██╗   ██╗"
+    ascii_letters[U_row2]="██║   ██║"
+    ascii_letters[U_row3]="██║   ██║"
+    ascii_letters[U_row4]="██║   ██║"
+    ascii_letters[U_row5]="╚██████╔╝"
+    ascii_letters[U_row6]=" ╚═════╝ "
+    ascii_letters[V_row1]="██╗   ██╗"
+    ascii_letters[V_row2]="██║   ██║"
+    ascii_letters[V_row3]="██║   ██║"
+    ascii_letters[V_row4]="╚██╗ ██╔╝"
+    ascii_letters[V_row5]=" ╚████╔╝ "
+    ascii_letters[V_row6]="  ╚═══╝  "
+    ascii_letters[W_row1]="██╗    ██╗"
+    ascii_letters[W_row2]="██║    ██║"
+    ascii_letters[W_row3]="██║ █╗ ██║"
+    ascii_letters[W_row4]="██║███╗██║"
+    ascii_letters[W_row5]="╚███╔███╔╝"
+    ascii_letters[W_row6]=" ╚══╝╚══╝ "
+    ascii_letters[X_row1]="██╗  ██╗"
+    ascii_letters[X_row2]="╚██╗██╔╝"
+    ascii_letters[X_row3]=" ╚███╔╝ "
+    ascii_letters[X_row4]=" ██╔██╗ "
+    ascii_letters[X_row5]="██╔╝ ██╗"
+    ascii_letters[X_row6]="╚═╝  ╚═╝"
+    ascii_letters[Y_row1]="██╗   ██╗"
+    ascii_letters[Y_row2]="╚██╗ ██╔╝"
+    ascii_letters[Y_row3]=" ╚████╔╝ "
+    ascii_letters[Y_row4]="  ╚██╔╝  "
+    ascii_letters[Y_row5]="   ██║   "
+    ascii_letters[Y_row6]="   ╚═╝   "
+    ascii_letters[Z_row1]="███████╗"
+    ascii_letters[Z_row2]="╚══███╔╝"
+    ascii_letters[Z_row3]="  ███╔╝ "
+    ascii_letters[Z_row4]=" ███╔╝  "
+    ascii_letters[Z_row5]="███████╗"
+    ascii_letters[Z_row6]="╚══════╝"
+fi
+
+
+if [ "$btw" -eq 1 ]; then
+    cat <<EOF
+${red} __        __  __     ______     ______        ______     ______     ______     __  __        ______     ______   __     __   
+/\ \      /\ \/\ \   /\  ___\   /\  ___\      /\  __ \   /\  == \   /\  ___\   /\ \_\ \      /\  == \   /\__  _\ /\ \  _ \ \  
+\ \ \     \ \ \_\ \  \ \___  \  \ \  __\      \ \  __ \  \ \  __<   \ \ \____  \ \  __ \     \ \  __<   \/_/\ \/ \ \ \/ ".\ \ 
+ \ \_\     \ \_____\  \/\_____\  \ \_____\     \ \_\ \_\  \ \_\ \_\  \ \_____\  \ \_\ \_\     \ \_____\    \ \_\  \ \__/". \_\\
+  \/_/      \/_____/   \/_____/   \/_____/      \/_/\/_/   \/_/ /_/   \/_____/   \/_/\/_/      \/_____/     \/_/   \/_/   \/_/
+
+EOF
+fi
+
+cat <<EOF
+${c2}${ascii_letters[${first}_row1]} ${ascii_letters[${second}_row1]} ${nc}${USER}${red}@${reset}${hn}${host}${reset}
+${c2}${ascii_letters[${first}_row2]} ${ascii_letters[${second}_row2]} ${lc}${osi}  ${ic}${os}${reset}
+${c2}${ascii_letters[${first}_row3]} ${ascii_letters[${second}_row3]} ${lc}${ki}  ${ic}${kernel}${reset}
+${c2}${ascii_letters[${first}_row4]} ${ascii_letters[${second}_row4]} ${lc}${ri}  ${ic}${RAM}${memstat} ${mempercent}
+${c2}${ascii_letters[${first}_row5]} ${ascii_letters[${second}_row5]} ${lc}${pi}  ${ic}${packages} (${manager})${reset}
+${c2}${ascii_letters[${first}_row6]} ${ascii_letters[${second}_row6]} ${lc}${ui}  ${ic}${uptime}${reset}
+EOF
+
+if [[ -n "${EIGHT}" ]]; then
+  cat <<EOF
+
+  ${EIGHT}
+EOF
+fi
+
+if [[ -n "${SIXTEEN}" ]]; then
+  cat <<EOF
+  ${SIXTEEN}
+EOF
+fi
+

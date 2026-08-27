@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 ostype="$(uname)"
 version=1.0.0
 font=nerd

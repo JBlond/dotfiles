@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ $# -gt 1 ]]; then
+    echo "Verwendung: $0 [YYYY-MM-DD]" >&2
+    exit 1
+fi
+
+if [[ $# -eq 1 ]]; then
+    datum="$1"
+else
+    datum="$(date +%F)"
+fi
+
+# Datum prüfen
+if ! date -d "$datum" >/dev/null 2>&1 || \
+   [[ "$(date -d "$datum" +%F)" != "$datum" ]]; then
+    echo "Ungültiges Datum: $datum" >&2
+    echo "Erwartetes Format: YYYY-MM-DD" >&2
+    exit 1
+fi
+
+jahr="$(date -d "$datum" +%Y)"
+tag_im_jahr="$(date -d "$datum" +%j)"
+
+# Anzahl der Tage im angegebenen Jahr ermitteln
+tage_im_jahr="$(date -d "$jahr-12-31" +%j)"
+
+# Stardate berechnen
+# Beispiel: Jahr 2364 beginnt ungefähr bei Stardate 41000
+basis=$(( (10#$jahr - 2323) * 1000 ))
+fortschritt=$(( (10#$tag_im_jahr - 1) * 1000 / 10#$tage_im_jahr ))
+
+stardate=$(( basis + fortschritt ))
+
+printf 'Datum:    %s\n' "$datum"
+printf 'Stardate: %d.%03d\n' "$stardate" "$fortschritt"

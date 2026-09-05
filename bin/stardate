@@ -15,8 +15,69 @@ set -euo pipefail
 # Alle Zeitangaben werden als UTC behandelt.
 # ------------------------------------------------------------
 
+programm="$(basename "$0")"
+
+# ------------------------------------------------------------
+# Hilfe
+# ------------------------------------------------------------
+
+zeige_hilfe() {
+    cat <<EOF
+$programm - Star Trek Stardate Calculator
+
+Berechnet eine TNG/DS9/Voyager-Stardate aus einem UTC-Datum
+und einer UTC-Uhrzeit.
+
+Verwendung:
+  $programm
+  $programm "YYYY-MM-DD"
+  $programm "YYYY-MM-DD HH:MM:SS"
+  $programm --help
+  $programm -h
+
+Optionen:
+  -h, --help    Diese Hilfe anzeigen
+
+Ohne Argument:
+  Verwendet das aktuelle Datum und die aktuelle Uhrzeit in UTC.
+
+Beispiele:
+  $programm
+  $programm "2364-01-01"
+  $programm "2364-01-01 12:00:00"
+
+Stardate-Modell:
+  2364-01-01 00:00:00 UTC = 41000.0000
+  1000 Stardate-Einheiten entsprechen ungefähr einem Jahr.
+
+Die Berechnung berücksichtigt die tatsächliche Länge des
+Kalenderjahres einschließlich Schaltjahren.
+
+Hinweis:
+  Dies ist eine möglichst kanonnahe Rekonstruktion des für
+  TNG, DS9 und Voyager verwendeten Stardate-Systems.
+  Die Serien definieren keine vollständig eindeutige Formel
+  für die Umrechnung zwischen Erdzeit und Stardate.
+
+Alle Eingabezeiten werden als UTC interpretiert.
+EOF
+}
+
+# ------------------------------------------------------------
+# Argumente
+# ------------------------------------------------------------
+
+case "${1:-}" in
+    -h|--help)
+        zeige_hilfe
+        exit 0
+        ;;
+esac
+
 if [[ $# -gt 1 ]]; then
-    echo "Verwendung: $0 [YYYY-MM-DD[ HH:MM:SS]]" >&2
+    echo "Fehler: Zu viele Argumente." >&2
+    echo >&2
+    zeige_hilfe >&2
     exit 1
 fi
 

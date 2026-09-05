@@ -177,11 +177,7 @@ stardate_zu_datum() {
     # --------------------------------------------------------
 
     local vergangen
-    vergangen=$(
-        (
-            anteil * jahreslaenge + 5000000
-        ) / 10000000
-    )
+    vergangen=$(( (anteil * jahreslaenge + 5000000) / 10000000 ))
 
     # --------------------------------------------------------
     # Datum/Zeit erzeugen

@@ -3,37 +3,91 @@
 set -euo pipefail
 
 if [[ $# -gt 1 ]]; then
-    echo "Verwendung: $0 [YYYY-MM-DD]" >&2
+    echo "Verwendung: $0 [YYYY-MM-DD [HH:MM:SS]]" >&2
     exit 1
 fi
 
 if [[ $# -eq 1 ]]; then
     datum="$1"
 else
-    datum="$(date +%F)"
+    datum="$(date '+%F %T')"
 fi
 
-# Datum prüfen
-if ! date -d "$datum" >/dev/null 2>&1 || \
-   [[ "$(date -d "$datum" +%F)" != "$datum" ]]; then
-    echo "Ungültiges Datum: $datum" >&2
-    echo "Erwartetes Format: YYYY-MM-DD" >&2
+# ------------------------------------------------------------
+# Datum/Zeit prüfen
+# ------------------------------------------------------------
+
+if ! zeitpunkt="$(date -d "$datum" '+%s' 2>/dev/null)"; then
+    echo "Ungültiges Datum/Zeit: $datum" >&2
+    echo "Erwartetes Format: YYYY-MM-DD HH:MM:SS" >&2
     exit 1
 fi
 
-jahr="$(date -d "$datum" +%Y)"
-tag_im_jahr="$(date -d "$datum" +%j)"
+# Normalisierte Darstellung erzeugen.
+normalisiert="$(date -d "@$zeitpunkt" '+%F %T')"
 
-# Anzahl der Tage im angegebenen Jahr ermitteln
-tage_im_jahr="$(date -d "$jahr-12-31" +%j)"
+# ------------------------------------------------------------
+# Jahr bestimmen
+# ------------------------------------------------------------
 
-# TNG/DS9/Voyager-Näherung:
-# 1000 Stardate-Einheiten ≈ 1 Jahr
-# Jahr 2364 beginnt bei ungefähr Stardate 41000.
-basis=$(( (10#$jahr - 2323) * 1000 ))
+jahr="$(date -d "@$zeitpunkt" '+%Y')"
+jahr_num=$((10#$jahr))
 
-# Fortschritt innerhalb des Jahres: 0..999
-fortschritt=$(( (10#$tag_im_jahr - 1) * 1000 / 10#$tage_im_jahr ))
+# ------------------------------------------------------------
+# Jahresgrenzen bestimmen
+# ------------------------------------------------------------
 
-printf 'Datum:    %s\n' "$datum"
-printf 'Stardate: %d.%03d\n' "$basis" "$fortschritt"
+jahresbeginn="$(date -d "$jahr-01-01 00:00:00" '+%s')"
+
+naechstes_jahr=$((jahr_num + 1))
+
+jahresende="$(date -d "$naechstes_jahr-01-01 00:00:00" '+%s')"
+
+# ------------------------------------------------------------
+# Zeit innerhalb des Jahres
+# ------------------------------------------------------------
+
+jahreslaenge=$((jahresende - jahresbeginn))
+
+vergangen=$((zeitpunkt - jahresbeginn))
+
+# ------------------------------------------------------------
+# Stardate berechnen
+#
+# TNG / DS9 / Voyager
+#
+# 2364-01-01 00:00:00 -> 41000.0000
+#
+# 1000 Stardate-Einheiten pro Kalenderjahr.
+#
+# Wir berechnen auf 4 Nachkommastellen.
+# Daher:
+#
+# 1000 * 10000 = 10.000.000
+#
+# Stardate-Einheiten pro Jahr.
+# ------------------------------------------------------------
+
+basis=$((41000 + (jahr_num - 2364) * 1000))
+
+zaehler=$((vergangen * 10000000))
+
+# Rundung auf 4 Nachkommastellen
+zaehler=$((zaehler + jahreslaenge / 2))
+
+fortschritt=$((zaehler / jahreslaenge))
+
+# ------------------------------------------------------------
+# Ganze Stardate und Nachkommastellen trennen
+# ------------------------------------------------------------
+
+stardate_ganz=$((basis + fortschritt / 10000))
+
+stardate_dezimal=$((fortschritt % 10000))
+
+# ------------------------------------------------------------
+# Ausgabe
+# ------------------------------------------------------------
+
+printf 'Datum:    %s\n' "$normalisiert"
+printf 'Stardate: %d.%04d\n' "$stardate_ganz" "$stardate_dezimal"

@@ -27,12 +27,13 @@ tag_im_jahr="$(date -d "$datum" +%j)"
 # Anzahl der Tage im angegebenen Jahr ermitteln
 tage_im_jahr="$(date -d "$jahr-12-31" +%j)"
 
-# Stardate berechnen
-# Beispiel: Jahr 2364 beginnt ungefähr bei Stardate 41000
+# TNG/DS9/Voyager-Näherung:
+# 1000 Stardate-Einheiten ≈ 1 Jahr
+# Jahr 2364 beginnt bei ungefähr Stardate 41000.
 basis=$(( (10#$jahr - 2323) * 1000 ))
+
+# Fortschritt innerhalb des Jahres: 0..999
 fortschritt=$(( (10#$tag_im_jahr - 1) * 1000 / 10#$tage_im_jahr ))
 
-stardate=$(( basis + fortschritt ))
-
 printf 'Datum:    %s\n' "$datum"
-printf 'Stardate: %d.%03d\n' "$stardate" "$fortschritt"
+printf 'Stardate: %d.%03d\n' "$basis" "$fortschritt"

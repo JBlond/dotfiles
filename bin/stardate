@@ -26,16 +26,21 @@ zeige_hilfe() {
 $programm - Star Trek Stardate Calculator
 
 Berechnet eine TNG/DS9/Voyager-Stardate aus einem UTC-Datum
-und einer UTC-Uhrzeit.
+und wandelt eine Stardate wieder zurück in UTC-Datum und Uhrzeit.
 
 Verwendung:
   $programm
   $programm "YYYY-MM-DD"
   $programm "YYYY-MM-DD HH:MM:SS"
+  $programm --reverse "STARDATE"
+  $programm -r "STARDATE"
   $programm --help
   $programm -h
 
 Optionen:
+  -r, --reverse STARDATE
+                Stardate in UTC-Datum und Uhrzeit zurückrechnen
+
   -h, --help    Diese Hilfe anzeigen
 
 Ohne Argument:
@@ -45,10 +50,13 @@ Beispiele:
   $programm
   $programm "2364-01-01"
   $programm "2364-01-01 12:00:00"
+  $programm --reverse "41000.0000"
+  $programm --reverse "41000.5000"
+  $programm -r "45000.2500"
 
 Stardate-Modell:
   2364-01-01 00:00:00 UTC = 41000.0000
-  1000 Stardate-Einheiten entsprechen ungefähr einem Jahr.
+  1000 Stardate-Einheiten entsprechen einem Kalenderjahr.
 
 Die Berechnung berücksichtigt die tatsächliche Länge des
 Kalenderjahres einschließlich Schaltjahren.
@@ -64,14 +72,157 @@ EOF
 }
 
 # ------------------------------------------------------------
+# Reverse-Funktion
+# ------------------------------------------------------------
+
+stardate_zu_datum() {
+
+    local eingabe="$1"
+
+    # Stardate prüfen:
+    # Ganze Zahl + optional 1-4 Nachkommastellen
+    if [[ ! "$eingabe" =~ ^([0-9]+)(\.([0-9]{1,4}))?$ ]]; then
+        echo "Ungültige Stardate: $eingabe" >&2
+        echo "Erwartetes Format: STARDATE, z. B. 41000.0000" >&2
+        exit 1
+    fi
+
+    local stardate_ganz="${BASH_REMATCH[1]}"
+    local dezimal="${BASH_REMATCH[3]:-0}"
+
+    # Auf exakt vier Nachkommastellen erweitern
+    printf -v dezimal '%-4s' "$dezimal"
+    dezimal="${dezimal// /0}"
+
+    # Stardate als Integer mit 4 Nachkommastellen.
+    #
+    # Beispiel:
+    #   41000.0000 -> 410000000
+    #   41000.5000 -> 410005000
+    #
+    local stardate_einheiten
+    stardate_einheiten=$((10#$stardate_ganz * 10000 + 10#$dezimal))
+
+    # --------------------------------------------------------
+    # Basis-Stardate:
+    #
+    # 2364-01-01 = 41000.0000
+    #
+    # Pro Jahr = 1000.0000
+    # --------------------------------------------------------
+
+    local basis_einheiten=410000000
+    local differenz=$((stardate_einheiten - basis_einheiten))
+
+    # --------------------------------------------------------
+    # Negativen Bereich korrekt behandeln
+    #
+    # Wir bestimmen zunächst das ungefähre Kalenderjahr.
+    # --------------------------------------------------------
+
+    local jahr
+
+    if (( differenz >= 0 )); then
+        jahr=$((2364 + differenz / 10000000))
+    else
+        # Bash rundet Ganzzahldivision gegen 0.
+        # Deshalb für negative Werte explizit abrunden.
+        jahr=$((2364 + (differenz - 9999999) / 10000000))
+    fi
+
+    # --------------------------------------------------------
+    # Jahresbeginn
+    # --------------------------------------------------------
+
+    local jahresbeginn
+    jahresbeginn="$(
+        TZ=UTC date \
+            -d "$jahr-01-01 00:00:00 UTC" \
+            '+%s'
+    )"
+
+    local naechstes_jahr=$((jahr + 1))
+
+    local jahresende
+    jahresende="$(
+        TZ=UTC date \
+            -d "$naechstes_jahr-01-01 00:00:00 UTC" \
+            '+%s'
+    )"
+
+    local jahreslaenge=$((jahresende - jahresbeginn))
+
+    # --------------------------------------------------------
+    # Stardate-Anteil innerhalb des Jahres
+    #
+    # 10.000.000 Einheiten = 1000 Stardate-Einheiten
+    #
+    # Also:
+    #
+    #   Stardate-Anteil / 10.000.000
+    #       =
+    #   Anteil des Kalenderjahres
+    # --------------------------------------------------------
+
+    local jahr_stardate_start
+    jahr_stardate_start=$((410000000 + (jahr - 2364) * 10000000))
+
+    local anteil
+    anteil=$((stardate_einheiten - jahr_stardate_start))
+
+    # --------------------------------------------------------
+    # Anteil des Jahres -> Sekunden
+    #
+    # Rundung auf die nächste Sekunde.
+    # --------------------------------------------------------
+
+    local vergangen
+    vergangen=$(
+        (
+            anteil * jahreslaenge + 5000000
+        ) / 10000000
+    )
+
+    # --------------------------------------------------------
+    # Datum/Zeit erzeugen
+    # --------------------------------------------------------
+
+    local zeitpunkt=$((jahresbeginn + vergangen))
+
+    local datum
+    datum="$(TZ=UTC date -d "@$zeitpunkt" '+%Y-%m-%d %H:%M:%S')"
+
+    printf 'Stardate:    %s.%s\n' \
+        "$stardate_ganz" \
+        "$dezimal"
+
+    printf 'Datum (UTC): %s\n' "$datum"
+}
+
+# ------------------------------------------------------------
 # Argumente
 # ------------------------------------------------------------
 
 case "${1:-}" in
+
     -h|--help)
         zeige_hilfe
         exit 0
         ;;
+
+    -r|--reverse)
+
+        if [[ $# -ne 2 ]]; then
+            echo "Fehler: --reverse benötigt genau eine Stardate." >&2
+            echo >&2
+            zeige_hilfe >&2
+            exit 1
+        fi
+
+        stardate_zu_datum "$2"
+        exit 0
+        ;;
+
 esac
 
 if [[ $# -gt 1 ]]; then
@@ -115,7 +266,11 @@ jahr_num=$((10#$jahr))
 # Jahresgrenzen bestimmen
 # ------------------------------------------------------------
 
-jahresbeginn="$(TZ=UTC date -d "$jahr-01-01 00:00:00 UTC" '+%s')"
+jahresbeginn="$(
+    TZ=UTC date \
+        -d "$jahr-01-01 00:00:00 UTC" \
+        '+%s'
+)"
 
 naechstes_jahr=$((jahr_num + 1))
 
@@ -168,6 +323,7 @@ stardate_dezimal=$((fortschritt % 10000))
 # ------------------------------------------------------------
 
 printf 'Datum (UTC): %s\n' "$normalisiert"
+
 printf 'Stardate:    %d.%04d\n' \
     "$stardate_ganz" \
     "$stardate_dezimal"

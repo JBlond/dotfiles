@@ -2,77 +2,95 @@
 
 set -euo pipefail
 
+# ------------------------------------------------------------
+# Star Trek Stardate Calculator
+#
+# TNG / DS9 / Voyager
+#
+# Referenz:
+#   2364-01-01 00:00:00 UTC = Stardate 41000.0000
+#
+# Die Stardate steigt um 1000 Einheiten pro Kalenderjahr.
+#
+# Alle Zeitangaben werden als UTC behandelt.
+# ------------------------------------------------------------
+
 if [[ $# -gt 1 ]]; then
-    echo "Verwendung: $0 [YYYY-MM-DD [HH:MM:SS]]" >&2
+    echo "Verwendung: $0 [YYYY-MM-DD[ HH:MM:SS]]" >&2
     exit 1
 fi
+
+# ------------------------------------------------------------
+# Eingabe
+# ------------------------------------------------------------
 
 if [[ $# -eq 1 ]]; then
-    datum="$1"
+    eingabe="$1"
 else
-    datum="$(date '+%F %T')"
+    eingabe="$(TZ=UTC date '+%Y-%m-%d %H:%M:%S')"
 fi
 
 # ------------------------------------------------------------
-# Datum/Zeit prüfen
+# Datum/Zeit prüfen und in Unix-Zeit umwandeln
 # ------------------------------------------------------------
 
-if ! zeitpunkt="$(date -d "$datum" '+%s' 2>/dev/null)"; then
-    echo "Ungültiges Datum/Zeit: $datum" >&2
-    echo "Erwartetes Format: YYYY-MM-DD HH:MM:SS" >&2
+if ! zeitpunkt="$(TZ=UTC date -d "$eingabe" '+%s' 2>/dev/null)"; then
+    echo "Ungültiges Datum/Zeit: $eingabe" >&2
+    echo "Erwartetes Format: YYYY-MM-DD oder YYYY-MM-DD HH:MM:SS" >&2
     exit 1
 fi
 
-# Normalisierte Darstellung erzeugen.
-normalisiert="$(date -d "@$zeitpunkt" '+%F %T')"
+# Normalisierte UTC-Darstellung
+normalisiert="$(TZ=UTC date -d "@$zeitpunkt" '+%Y-%m-%d %H:%M:%S')"
 
 # ------------------------------------------------------------
 # Jahr bestimmen
 # ------------------------------------------------------------
 
-jahr="$(date -d "@$zeitpunkt" '+%Y')"
+jahr="$(TZ=UTC date -d "@$zeitpunkt" '+%Y')"
 jahr_num=$((10#$jahr))
 
 # ------------------------------------------------------------
 # Jahresgrenzen bestimmen
 # ------------------------------------------------------------
 
-jahresbeginn="$(date -d "$jahr-01-01 00:00:00" '+%s')"
+jahresbeginn="$(TZ=UTC date -d "$jahr-01-01 00:00:00 UTC" '+%s')"
 
 naechstes_jahr=$((jahr_num + 1))
 
-jahresende="$(date -d "$naechstes_jahr-01-01 00:00:00" '+%s')"
+jahresende="$(
+    TZ=UTC date \
+        -d "$naechstes_jahr-01-01 00:00:00 UTC" \
+        '+%s'
+)"
 
 # ------------------------------------------------------------
 # Zeit innerhalb des Jahres
 # ------------------------------------------------------------
 
 jahreslaenge=$((jahresende - jahresbeginn))
-
 vergangen=$((zeitpunkt - jahresbeginn))
 
 # ------------------------------------------------------------
 # Stardate berechnen
 #
-# TNG / DS9 / Voyager
+# 2364-01-01 00:00:00 UTC
+#     = 41000.0000
 #
-# 2364-01-01 00:00:00 -> 41000.0000
-#
-# 1000 Stardate-Einheiten pro Kalenderjahr.
+# 1000 Stardate-Einheiten pro Jahr.
 #
 # Wir berechnen auf 4 Nachkommastellen.
-# Daher:
-#
-# 1000 * 10000 = 10.000.000
-#
-# Stardate-Einheiten pro Jahr.
 # ------------------------------------------------------------
 
 basis=$((41000 + (jahr_num - 2364) * 1000))
 
+# 1000 Stardate-Einheiten
+# × 10000 für vier Nachkommastellen
+# = 10.000.000 Einheiten pro Jahr
+
 zaehler=$((vergangen * 10000000))
 
-# Rundung auf 4 Nachkommastellen
+# Auf die vierte Nachkommastelle runden
 zaehler=$((zaehler + jahreslaenge / 2))
 
 fortschritt=$((zaehler / jahreslaenge))
@@ -82,12 +100,13 @@ fortschritt=$((zaehler / jahreslaenge))
 # ------------------------------------------------------------
 
 stardate_ganz=$((basis + fortschritt / 10000))
-
 stardate_dezimal=$((fortschritt % 10000))
 
 # ------------------------------------------------------------
 # Ausgabe
 # ------------------------------------------------------------
 
-printf 'Datum:    %s\n' "$normalisiert"
-printf 'Stardate: %d.%04d\n' "$stardate_ganz" "$stardate_dezimal"
+printf 'Datum (UTC): %s\n' "$normalisiert"
+printf 'Stardate:    %d.%04d\n' \
+    "$stardate_ganz" \
+    "$stardate_dezimal"

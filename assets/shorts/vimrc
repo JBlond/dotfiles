@@ -1,8 +1,8 @@
-set nocompatible
+set nocompatible                             " no dot use old mode
 
 set keymodel-=stopsel                        " vim visual mode arrow keys on Windows, too. A fix for 'behave mswin'
 
-set hidden                                   " allow buffer
+set hidden                                   " allow buffers
 
 set encoding=utf-8                           " always use utf-8
 set ruler                                    " Always show cursor position.
@@ -16,7 +16,7 @@ set softtabstop=4                            "
 set shiftwidth=4                             "
 set autoindent                               " enable autoindent
 set smartindent                              " enable smart indent
-set copyindent                               "
+set copyindent                               " keep indent with copy
 set shortmess=atI                            " Don't show the intro message when starting vim
 set noshowmode                               " done by plugin https://github.com/itchyny/lightline.vim
 set wildmenu                                 " Enhanced command line completion.

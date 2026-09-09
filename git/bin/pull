@@ -1,10 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/bash
 #
 # Usage: pull
 #
 # Pulls remote changes using rebase & tries to rebundle,
 # safely stashing and re-applying your local changes, if any
 #
+
+# Abort if this isn't a git repository
+git rev-parse --is-inside-work-tree >/dev/null || exit $?
 
 # Colors
 color_error="$(tput sgr 0 1)$(tput setaf 1)"
@@ -14,30 +17,10 @@ color_reset="$(tput sgr0)"
 current_dir="$(pwd)"
 base_dir=$(git rev-parse --show-cdup)
 
-# Pop any stashed changes
-unstash() {
-	if [[ ! "$stash" =~ "No local changes to save" ]]; then
-		echo
-		echo "🍯  Popping stash..."
-		git stash pop
-	fi
-}
-
-# Pop any stashed changes and exit
-rollback() {
-	echo
-	echo "${color_error}Something went wrong, rolling back${color_reset}"
-	unstash
-	exit $1
-}
-
 # Test whether a command exists
 # $1 - cmd to test
 cmd_exists() {
-	if which $1 >/dev/null 2>&1; then
-		return 0
-	fi
-	return 1
+	command -v "$1" >/dev/null 2>&1
 }
 
 # Test whether a file exists
@@ -53,8 +36,8 @@ file_exists() {
 # $1 - filename
 change_dir() {
 	file=$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep "$1")
-	if [[ -a "./$base_dir$file" ]]; then
-		cd $(dirname "./$base_dir$file")
+	if [[ -e "./$base_dir$file" ]]; then
+		cd "$(dirname "./$base_dir$file")" || return 1
 		return 0
 	fi
 	return 1
@@ -62,41 +45,39 @@ change_dir() {
 
 # Go back to
 reset_dir() {
-	cd "$current_dir"
+	cd "$current_dir" || return 1
 }
 
-# Test wether a file has changed
+# Test whether a file has changed since the pre-pull HEAD.
 # $1 - filename
-	has_changed() {
-	# store changed files for install check (
-	# ORIG_HEAD is last value of HEAD before pull
+has_changed() {
+	# ORIG_HEAD is the value of HEAD before the pull.
 	changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD 2>/dev/null)"
-	if $(echo "$changed_files" | grep --quiet "$1"); then
-		return 0
-	fi
-	return 1
+	echo "$changed_files" | grep --quiet "$1"
 }
 
 branch=$(git branch --show-current) || exit $?
 if [ -z "$branch" ]; then
-  echo "❌  You're not on a branch (detached HEAD). Check out a branch first." >&2
+  echo "${color_error}❌  You're not on a branch (detached HEAD). Check out a branch first.${color_reset}" >&2
   exit 1
 fi
 
 default_remote="origin"
 remote=$(git config "branch.${branch}.remote" || echo "$default_remote")
-remote_branch=$( (git config "branch.${branch}.merge" || echo "refs/heads/$branch") | cut -d/ -f3- )
+remote_branch=$( (git config "branch.${branch}.merge" || echo "refs/heads/$branch") | cut -d/ -f3-)
 
-# Stash any local changes, including untracked files
-stash=$(git stash --include-untracked)
-
-# Update our remote
+# Fetch all branches (and prune stale ones) so remote-tracking refs
+# stay complete — `git pull <remote> <branch>` alone only updates the
+# one ref you name. Skip submodules here; the recursive pull below owns
+# submodule updates, so recursing now just double-fetches them.
 echo "🚀  Fetching from $remote..."
+git fetch --prune --no-recurse-submodules --jobs=10 "$remote" || exit $?
 
-# Pull && update submodules
-git pull --recurse-submodules --jobs=10 $remote $remote_branch || rollback $?
-
-unstash
+# --autostash lets git shelve and restore local changes itself. It beats a
+# manual stash/pop around the pull: when a rebase stops on a conflict git
+# holds the changes back until `git rebase --continue`, instead of popping
+# them into a half-rebased tree. Note it does not stash untracked files.
+git pull --rebase --autostash --recurse-submodules --jobs=10 $remote $remote_branch || exit $?
 
 echo "🏁  Done"
 exit 0

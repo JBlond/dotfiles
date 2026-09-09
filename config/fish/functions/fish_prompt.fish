@@ -21,6 +21,25 @@ function _is_ssh_session
 	return 1
 end
 
+function _git_state
+    set -l gitdir (git rev-parse --git-dir 2>/dev/null)
+
+    if test -f $gitdir/MERGE_HEAD
+        echo "MERGE"
+        return
+    end
+
+    if test -f $gitdir/REBASE_HEAD
+        echo "REBASE"
+        return
+    end
+
+    if test -f $gitdir/CHERRY_PICK_HEAD
+        echo "PICK"
+        return
+    end
+end
+
 function fish_prompt
 	set -l last_status $status
 	set -l cyan (set_color -o cyan)
@@ -49,6 +68,7 @@ function fish_prompt
 	set -l cwd $blue(prompt_pwd)
 
 	set -l branch_name (_git_branch_name)
+	set -l git_state (_git_state)
 	#echo 'branch name is ' + $branch_name
 	if [ $branch_name ]
 
@@ -61,6 +81,10 @@ function fish_prompt
 		else
 			set -l git_branch $branch_name
 			set git_info \n"$normal $cyan(♆ $git_branch)$normal"
+		end
+		
+		if test -n "$git_state"
+			set git_info "$git_info $yellow[$git_state]"
 		end
 
 		if [ (_is_git_dirty) ]

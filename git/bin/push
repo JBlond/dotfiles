@@ -14,39 +14,44 @@ git rev-parse --is-inside-work-tree >/dev/null || exit $?
 # Get parent branch
 # https://stackoverflow.com/a/17843908/1973105
 function get_parent() {
-  git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//'
+  git show-branch | grep -F '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//'
 }
 
 # Colors
 color_error="$(tput sgr 0 1)$(tput setaf 1)"
 color_reset="$(tput sgr0)"
 
-branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/') || exit $?
+# TODO DRY this b/w pull and push
+branch=$(git branch --show-current) || exit $?
+if [ -z "$branch" ]; then
+	echo "${color_error}❌  You're not on a branch (detached HEAD). Check out a branch first.${color_reset}" >&2
+	exit 1
+fi
 default_remote="origin"
 remote=$(git config "branch.${branch}.remote" || echo "$default_remote")
-remote_branch=$( (git config "branch.${branch}.merge" || echo "refs/heads/$branch") | cut -d/ -f3- )
+remote_branch=$( (git config "branch.${branch}.merge" || echo "refs/heads/$branch") | cut -d/ -f3-)
 
 # pull with rebase before push
 if [ $(git ls-remote --heads $remote $remote_branch + | wc -l) == "1" ]; then
-  echo "🧲 Pull changes from remote before pushing the changes."
-  pull=$(git pull --rebase $remote $remote_branch)
+	echo "🧲 Pull changes from remote before pushing the changes."
+	pull=$(git pull --rebase $remote $remote_branch)
 fi
 exit_code=$?
 
 if [ $exit_code != 0 ]; then
-  echo -e "${color_error}⚠️ Ouch, pull failed!${color_reset}\n\n$pull"
-  exit $exit_code
+	echo -e "${color_error}⚠️ Ouch, pull failed!${color_reset}\n\n$pull"
+	exit $exit_code
 elif echo $pull | grep "Already up to date" >/dev/null; then
-  echo "⭐ Remote was up to date."
+	echo "⭐ Remote was up to date."
 fi
 
 # Push & save output
-if [ -z $* ]; then
-  args="$remote $remote_branch"
+if [ $# -eq 0 ]; then
+  args=("$remote" "$remote_branch")
 else
-  args="$*"
+  args=("$@")
 fi
-push=$(git push --set-upstream $args 2>&1)
+push=$(git push --set-upstream "${args[@]}" 2>&1)
 exit_code=$?
 
 if [ $exit_code != 0 ]; then
@@ -60,14 +65,8 @@ fi
 # Parse relevant commit refs and let user know what we did
 # 1st-time push to new branch gets special treatment
 if echo $push | grep "\[new branch\]" >/dev/null; then
-  parent=$(get_parent)
-  if [ -z "$parent" ]; then
-    parent="main"
-  fi
-  refs="$parent...$branch"
   echo "🚀  Pushed a new branch '$branch' remotely"
 else
-  refs=$(echo $push | awk '{ print $3}' | sed 's/\.\./\.\.\./')
   echo "🚀  Pushed:"
   echo "$push"
 fi

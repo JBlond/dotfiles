@@ -84,7 +84,7 @@ function fish_prompt
 		end
 		
 		if test -n "$git_state"
-			set git_info "$git_info $yellow[$git_state]"
+			set git_info "$git_info $yellow($git_state)$normal"
 		end
 
 		if [ (_is_git_dirty) ]

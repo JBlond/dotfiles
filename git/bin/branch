@@ -7,30 +7,122 @@
 #
 # Switch to an existing branch, create a new local-only branch or delete a local or remote branch.
 # Adds remote tracking if a remote branch with the same name exists,
-# in any remote, preferring the "origin" master if there are duplicates.
+# in any remote, preferring the "origin" remote if there are duplicates.
 #
 # Executing without arguments prints all local & remote branches
 #
 
+# Abort if this isn't a git repository
+git rev-parse --is-inside-work-tree >/dev/null || exit $?
+
 remote="origin"
 branch=$1
 delete=
+branches=()
 
+# Colors
+color_bold="$(tput bold)"
+color_dim="$(tput dim)"
+color_reset="$(tput sgr0)"
+
+# If deleting, stash the flag and collect all remaining args as branches to delete
 if [ "$1" == "-d" ] || [ "$1" == "-D" ]; then
 	delete=$1
-	branch=$2
+	shift
+	branches=("$@")
+	branch=$1
 fi
 
-if [ -z $branch ]; then
-	echo -e "\nSwitch to or create a new branch:"
-	echo -e "	$(basename $0) [name]"
-	echo -e "\nSwitch to the previous branch:"
-	echo -e "	$(basename $0) -"
-	echo -e "\nDelete branch:"
-	echo -e "	$(basename $0) [-D] [-d] <name>"
-	echo -e "\nCurrent branches: "
-	branches="git branch -a -vv"
-	$branches
+# Strip remote prefix (e.g. "origin/foo" → "foo") for autocomplete convenience
+_remotes=$(git remote 2>/dev/null)
+for _r in $_remotes; do
+	if [[ "$branch" == "$_r/"* ]]; then
+		branch="${branch#"$_r/"}"
+		break
+	fi
+done
+for i in "${!branches[@]}"; do
+	for _r in $_remotes; do
+		if [[ "${branches[$i]}" == "$_r/"* ]]; then
+			branches[$i]="${branches[$i]#"$_r/"}"
+			break
+		fi
+	done
+done
+
+# Show help
+if [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
+	cmd=$(basename $0)
+	echo
+	echo "  Usage:"
+	echo "    ${cmd}                  List local branches"
+	echo "    ${cmd} [name]           Switch to or create a branch"
+	echo "    ${cmd} -                Switch to previous branch"
+	echo "    ${cmd} -d|-D <name>...  Delete one or more branches"
+	echo "    ${cmd} -r               List remote branches"
+	echo
+	echo "  Automatically tracks a matching remote branch if one exists."
+	echo
+	exit 0
+fi
+
+# If no branch specified (or -r), list branches
+if [ -z "$branch" ] || [ "$branch" = "-r" ]; then
+	echo
+	# Color scheme (matches git branch -vvv defaults)
+	esc_green="$(tput setaf 2)"
+	esc_yellow="$(tput setaf 3)"
+	esc_cyan="$(tput setaf 6)"
+	esc_magenta="$(tput setaf 5)"
+
+	# Use unit separator (0x1f) as delimiter — tabs get collapsed by bash read
+	sep=$'\x1f'
+
+	if [ "$1" == "-r" ]; then
+		echo "  ${color_dim}Remote branches:${color_reset}"
+		data=$(git branch -r --sort=-committerdate \
+			--format="%(refname:short)${sep}%(objectname:short)${sep}%(subject)${sep}%(committerdate:relative)")
+		name_w=0
+		while IFS="$sep" read -r name _ _ _; do
+			(( ${#name} > name_w )) && name_w=${#name}
+		done <<< "$data"
+		while IFS="$sep" read -r name hash subject date; do
+			printf "    %-${name_w}s ${esc_yellow}%s${color_reset} %s  ${esc_magenta}%s${color_reset}\n" \
+				"$name" "$hash" "$subject" "$date"
+		done <<< "$data"
+	else
+		echo "  ${color_dim}Local branches:${color_reset}"
+		data=$(git branch --sort=-committerdate \
+			--format="%(HEAD)${sep}%(refname:short)${sep}%(objectname:short)${sep}%(upstream:short)${sep}%(upstream:track)${sep}%(subject)${sep}%(committerdate:relative)")
+		name_w=0
+		while IFS="$sep" read -r _ name _ _ _ _ _; do
+			(( ${#name} > name_w )) && name_w=${#name}
+		done <<< "$data"
+		while IFS="$sep" read -r head name hash upstream track subject date; do
+			if [ "$head" == "*" ]; then
+				prefix="*"
+				name_fmt="${esc_green}${color_bold}$(printf "%-${name_w}s" "$name")${color_reset}"
+			else
+				prefix=" "
+				name_fmt="$(printf "%-${name_w}s" "$name")"
+			fi
+			# Merge upstream and track info into one bracket like git branch -vvv
+			if [ -n "$upstream" ]; then
+				# %(upstream:track) gives e.g. "[ahead 1]" or "[ahead 1, behind 2]" — strip its brackets
+				track_inner="${track#\[}"
+				track_inner="${track_inner%\]}"
+				if [ -n "$track_inner" ]; then
+					tracking=" ${esc_cyan}[${upstream}: ${track_inner}]${color_reset}"
+				else
+					tracking=" ${esc_cyan}[${upstream}]${color_reset}"
+				fi
+			else
+				tracking=""
+			fi
+			printf "%s %s ${esc_yellow}%s${color_reset}%s %s  ${esc_magenta}%s${color_reset}\n" \
+			"$prefix" "$name_fmt" "$hash" "$tracking" "$subject" "$date"
+		done <<< "$data"
+	fi
 	echo
 	exit 0
 fi
@@ -41,30 +133,37 @@ if [ "$branch" == "-" ]; then
 	exit 0
 fi
 
-local_branch_exists=$(git branch --no-color | egrep " $branch\$")
-remote_branch_exists=$(git branch -r --no-color | egrep " $remote/$branch\$")
-remotes=( $(git remote) )
-remotes_with_branch=()
-origin_has_branch=
-
-# Delete branch
+# Delete branch(es)
 if [ "$delete" ]; then
-	if [ "$remote_branch_exists" ]; then
-		echo "💀	Removing remote branch..."
-		git push --delete $remote $branch
-	else
-		echo "💀	Removing local branch..."
+	if [ ${#branches[@]} -eq 0 ]; then
+		echo "Usage: $(basename $0) $delete <name>..." >&2
+		exit 1
 	fi
-	git branch $delete $branch || exit $?
+	if [ ${#branches[@]} -gt 1 ]; then
+		echo "💀  Removing local branches..."
+	else
+		echo "💀  Removing local branch..."
+	fi
+	git branch "$delete" "${branches[@]}" || exit $?
 	exit 0
 fi
 
-for remote in "${remotes[@]}";
-do
-	remote_branch_exists=$(git branch -r --no-color | egrep " $remote/$branch\$")
-	if [ "$remote_branch_exists" ] ; then
-		remotes_with_branch=("${remotes_with_branch[@]}" "$remote")
-		if [ "$remote" = "origin" ] ; then
+# Otherwise we're either switching to an existing branch or creating a branch
+local_branch_exists=
+git show-ref --verify --quiet "refs/heads/$branch" && local_branch_exists=1
+
+remote_branch_exists=
+remotes=()
+while IFS= read -r line; do
+	remotes+=("$line")
+done < <(git remote)
+remotes_with_branch=()
+origin_has_branch=
+
+for remote in "${remotes[@]}"; do
+	if git show-ref --verify --quiet "refs/remotes/$remote/$branch"; then
+		remotes_with_branch+=("$remote")
+		if [ "$remote" = "origin" ]; then
 			origin_has_branch=1
 		fi
 	fi
@@ -80,21 +179,18 @@ if [ ${#remotes_with_branch[@]} -gt 0 ]; then
 	remote_branch_exists="$remote/$branch"
 fi
 
-# If local exists already, switch to it
-if [ -n "$local_branch_exists" ] && [ ! "$local_branch_exists" == '' ]; then
+# If local branch exists already, switch to it
+if [ -n "$local_branch_exists" ]; then
 	echo "👓	Switching to existing local branch..."
-	git switch $branch
+	git switch "$branch"
 
 	# Track remote branch if not already
-	if [ -n "$remote_branch_exists" ] && [ ! "$remote_branch_exists" == '' ]; then
-		tracking=$(git branch -vv | grep "*" | awk '{ print $4 '})
-		# echo "Remote branch exists. Local branch is tracking: $tracking"
-		if [[ ! "$tracking" =~ "$remote" ]]; then
-			echo "⚒️	Your local branch is not tracking the corresponding remote branch, fixing..."
-			git branch --set-upstream-to $branch $remote/$branch
+	if [ -n "$remote_branch_exists" ]; then
+		tracking=$(git rev-parse --abbrev-ref --symbolic-full-name "$branch@{upstream}" 2>/dev/null)
+		if [[ "$tracking" != "$remote"/* ]]; then
+			echo "⚒️  Your local branch is not tracking the corresponding remote branch, fixing..."
+			git branch --set-upstream-to="$remote/$branch" "$branch"
 		fi
-	# else
-	#	 echo "Remote branch does not exist, not doing anything"
 	fi
 
 # If remote exists, create a local branch that tracks the remote

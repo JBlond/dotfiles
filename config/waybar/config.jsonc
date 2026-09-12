@@ -1,0 +1,122 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    "spacing": 8,
+
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-center": [
+        "hyprland/window"
+    ],
+
+    "modules-right": [
+        "network",
+        "bluetooth",
+        "pulseaudio",
+        "backlight",
+        "disk",
+        "battery",
+        "memory",
+        "cpu",
+        "clock"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "active": "●",
+            "default": "○"
+        },
+        "persistent-workspaces": {
+            "*": 9
+        },
+        "on-click": "activate"
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 60
+    },
+
+    "bluetooth": {
+        "format-off": "󰂲 aus",
+        "format-disabled": "󰂲 deaktiviert",
+        "format-on": " an",
+        "format-connected": " {num_connections}",
+        "format-no-controller": "󰂲 kein Adapter",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} verbunden",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+                 "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+                 "on-click": "blueman-manager"
+    },
+
+    "network": {
+        "format-wifi": "󰖩  {essid}",
+        "format-ethernet": "󰈀  {ipaddr}",
+        "format-disconnected": "󰖪  offline",
+        "tooltip-format": "{ifname}: {ipaddr}",
+        "on-click": "nm-connection-editor",
+        "on-click-right": "kitty -e nmtui"
+    },
+    "memory": {
+        "interval": 5,
+                "format": "Mem {}%"
+    },
+    "cpu": {
+        "interval": 5,
+        "format": "CPU {usage:2}%"
+    },
+
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "󰝟  muted",
+        "format-icons": {
+            "default": [
+                "󰕿",
+                "󰖀",
+                "󰕾"
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "battery": {
+        "bat": "BAT0",
+        "format": "{icon}  {capacity}%",
+        "format-charging": "󰂄  {capacity}%",
+        "format-icons": [
+            "󰂎",
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂"
+        ]
+    },
+    "backlight": {
+        "device": "amdgpu_bl0",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "brightnessctl set 2%+",
+        "on-scroll-down": "brightnessctl set 2%-"
+    },
+    
+    "disk": {
+        "interval": 5,
+        "format": "Disk {percentage_used:2}%",
+        "path": "/"
+    },
+
+    "clock": {
+        "format": "{:%H:%M  |  %d.%m.%Y}",
+        "tooltip-format": "<big>{:%A}</big>\n{calendar}"
+    }
+}

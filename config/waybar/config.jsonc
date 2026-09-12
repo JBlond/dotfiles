@@ -5,7 +5,8 @@
     "spacing": 8,
 
     "modules-left": [
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "wlr/taskbar"
     ],
 
     "modules-center": [
@@ -24,15 +25,20 @@
         "temperature",
         "clock"
     ],
+    "wlr/taskbar": {
+        "format": "{icon} {title:.17}",
+        "icon-size": 28,
+        "spacing": 3,
+        "on-click-middle": "close",
+        "tooltip-format": "{title}",
+        "ignore-list": [],
+        "on-click": "activate"
+    },
 
     "hyprland/workspaces": {
         "format": "{icon}",
-        "format-icons": {
-            "active": "●",
-            "default": "○"
-        },
         "persistent-workspaces": {
-            "*": 9
+            "*": 5
         },
         "on-click": "activate"
     },

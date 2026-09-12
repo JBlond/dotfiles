@@ -228,6 +228,14 @@ hl.bind("ALT + SHIFT + TAB", hl.dsp.layout("cycleprev"))
 hl.bind(mainMod .. " + L", function()
     hl.exec_cmd("hyprlock")
 end)
+
+hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd(
+    "grim -g \"$(slurp)\" - | wl-copy"
+))
+
+hl.bind("PRINT", hl.dsp.exec_cmd(
+    "grim ~/Bilder/Bildschirmfotos/shot-$(date +%Y-%m-%d_%H-%M-%S).png"
+))
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())

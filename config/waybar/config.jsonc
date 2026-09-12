@@ -21,6 +21,7 @@
         "battery",
         "memory",
         "cpu",
+        "temperature",
         "clock"
     ],
 
@@ -41,6 +42,11 @@
         "max-length": 60
     },
 
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon6/temp1_input",
+        "critical-threshold": 90,
+        "format": " {temperatureC}°C"
+    },
     "bluetooth": {
         "format-off": "󰂲 aus",
         "format-disabled": "󰂲 deaktiviert",

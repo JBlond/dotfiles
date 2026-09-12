@@ -52,7 +52,8 @@ window#waybar {
 #disk,
 #backlight,
 #memory,
-#bluetooth {
+#bluetooth,
+#temperature {
     padding: 4px 12px;
     margin-left: 5px;
     border-radius: 10px;

@@ -17,7 +17,9 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("waybar")
     hl.exec_cmd("hyprpaper -c ~/.config/hypr/hyprpaper.conf")
     hl.exec_cmd("mako")
-    hl.exec_cmd("hypridle")
+    hl.exec_cmd("pgrep hypridle || hypridle")
+    hl.autostart("wl-paste --type text --watch cliphist store")
+    hl.autostart("wl-paste --type image --watch cliphist store")
 end)
 
 ---- ENVIRONMENT VARIABLES ----

@@ -349,6 +349,15 @@ hl.window_rule({
     no_focus = true,
 })
 
+hl.window_rule({
+    name = "float-dialogs",
+    match = {
+        title = "^(Open|Save|Choose|Select).*",
+    },
+
+    float = true,
+})
+
 -- Hyprland-run windowrule
 hl.window_rule({
     name  = "move-hyprland-run",

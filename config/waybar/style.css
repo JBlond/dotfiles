@@ -51,7 +51,8 @@ window#waybar {
 #cpu,
 #disk,
 #backlight,
-#memory {
+#memory,
+#bluetooth {
     padding: 4px 12px;
     margin-left: 5px;
     border-radius: 10px;

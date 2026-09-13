@@ -1,0 +1,40 @@
+/* Hintergrund des gesamten Overlays */
+window {
+    background-color: rgba(12, 12, 12, 0.85);
+}
+
+/* Allgemeine Button-Formatierung */
+button {
+    color: #ffffff;
+    background-color: #1e1e2e;
+    border: 2px solid #313244;
+    border-radius: 12px;
+    margin: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+}
+
+/* Effekte beim Drüberfahren mit der Maus */
+button:hover {
+    background-color: #89b4fa;
+    color: #11111b;
+    border-color: #b4befe;
+}
+
+/* Spezifische Icons für die einzelnen Buttons zuweisen */
+#lock {
+    background-image: image(url("/usr/share/wlogout/icons/lock.png"));
+}
+
+#logout {
+    background-image: image(url("/usr/share/wlogout/icons/logout.png"));
+}
+
+#shutdown {
+    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"));
+}
+
+#reboot {
+    background-image: image(url("/usr/share/wlogout/icons/reboot.png"));
+}

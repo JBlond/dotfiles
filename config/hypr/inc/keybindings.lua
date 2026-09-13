@@ -10,7 +10,7 @@ local menu        = "hyprlauncher"
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
-hl.bind("ALT + TAB", hl.dsp.layout("cyclenext"))
+hl.bind("ALT + TAB", hl.dsp.focus({ last = true }))
 hl.bind(mainMod .. " + TAB", hl.dsp.layout("cyclenext"))
 hl.bind("ALT + SHIFT + TAB", hl.dsp.layout("cycleprev"))
 hl.bind(mainMod .. " + L", function()

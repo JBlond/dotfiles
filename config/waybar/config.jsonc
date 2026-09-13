@@ -26,7 +26,7 @@
         "clock"
     ],
     "wlr/taskbar": {
-        "format": "{icon} {title:.10}",
+        "format": "{icon}",
         "icon-size": 28,
         "spacing": 3,
         "on-click-middle": "close",
@@ -38,7 +38,7 @@
     "hyprland/workspaces": {
         "format": "{icon}",
         "persistent-workspaces": {
-            "*": 5
+            "*": 4
         },
         "on-click": "activate"
     },

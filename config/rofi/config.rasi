@@ -1,6 +1,6 @@
 configuration {
 	/*---------- General setting ----------*/
-	modi: "drun,run,filebrowser";
+	modi: "window,drun,ssh,run,filebrowser";
 	case-sensitive: false;
 	cycle: true;
 	filter: "";
@@ -9,6 +9,7 @@ configuration {
 	show-icons: true;
 	icon-theme: "Reversal-dark";
 	steal-focus: false;
+    terminal: "ghostty";
 
 	/*---------- Matching setting ----------*/
 	matching: "normal";

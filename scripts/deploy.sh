@@ -7,14 +7,16 @@ rm -f $HOME/.inputrc
 rm -rf $HOME/.vim
 rm -f $HOME/.tmux.conf
 rm -rf $HOME/.config/fish
-rm -rf $HOME/.config/hypr
-rm -rf $HOME/.config/waybar
 cp -r ./config/fish ~/.config/
-cp -r ./config/hypr ~/.config/
-cp -r ./config/waybar ~/.config/
 cp -r ./config/tmux ~/.config/
 if [[ "$OSTYPE" != "msys" ]]; then
+    rm -rf $HOME/.config/hypr
+    rm -rf $HOME/.config/waybar
+    rm -rf $HOME/.config/wlogout
     cp -r ./config/htop ~/.config/
+    cp -r ./config/hypr ~/.config/
+    cp -r ./config/waybar ~/.config/
+    cp -r ./config/wlogout ~/.config/
     if command -v zfs >/dev/null 2>&1; then
         echo "ZFS detected"
         cp ./config/htop/htoprc-zfs ~/.config/htop/htoprc

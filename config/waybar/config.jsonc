@@ -26,7 +26,7 @@
         "clock"
     ],
     "wlr/taskbar": {
-        "format": "{icon} {title:.17}",
+        "format": "{icon} {title:.10}",
         "icon-size": 28,
         "spacing": 3,
         "on-click-middle": "close",
@@ -55,7 +55,7 @@
     },
     "bluetooth": {
         "format-off": "󰂲 aus",
-        "format-disabled": "󰂲 deaktiviert",
+        "format-disabled": "󰂲 deak",
         "format-on": " an",
         "format-connected": " {num_connections}",
         "format-no-controller": "󰂲 kein Adapter",
@@ -123,12 +123,12 @@
     
     "disk": {
         "interval": 5,
-        "format": "Disk {percentage_used:2}%",
+        "format": "🖴 {percentage_used:2}%",
         "path": "/"
     },
 
     "clock": {
-        "format": "{:%H:%M  |  %d.%m.%Y}",
+        "format": "{:%H:%M %d.%m.%Y}",
         "tooltip-format": "<big>{:%A}</big>\n{calendar}"
     }
 }

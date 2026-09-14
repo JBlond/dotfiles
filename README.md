@@ -8,7 +8,7 @@ I use my dotfiles on bash and fish shell from git for windows, debian bash and f
 
 - Fast Git-aware shell prompt
 - Bash and Fish configuration
-- hyprland, waybar, and rofi configuration
+- hyprland, waybar, and rofi configuration -> [README](config/hypr/README.md)
 - Docker aliases and completion helpers
 - tmux setup and themes
 - SSH and Git productivity shortcuts

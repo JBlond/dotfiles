@@ -66,7 +66,7 @@ if command -sq docker
     abbr dcl "docker compose logs -f"
     abbr ddf "docker system df"
     abbr dps "docker ps --format \"table {{ .Names }}\" -a"
-    abbr dsp "docker system prune -a"
+    abbr dsp "docker system prune -a && docker buildx prune -a --force"
     abbr dil "docker image ls"
     abbr dsd "docker system df"
     abbr dvl "docker volume list"

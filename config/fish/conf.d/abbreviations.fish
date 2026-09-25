@@ -27,7 +27,11 @@ abbr dfh 'df -kTh'
 abbr dus 'du -hs * | sort -h'
 abbr dush 'du . -sh'
 #abbr greedy 'du -hs * | sort -rh'
-abbr greedy 'find . -mindepth 1 -maxdepth 1 -print0 | xargs -0 du -hs | sort -rh'
+if command -q fd
+    abbr greedy 'find . -mindepth 1 -maxdepth 1 -print0 | xargs -0 du -hs | sort -rh'
+else
+    abbr greedy 'fd --hidden --no-ignore --max-depth 1 --print0 '^' | xargs -0 -r du -hs | sort -rh'
+end
 
 abbr vf 'cd'
 abbr .. 'cd ..'

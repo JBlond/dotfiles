@@ -14,9 +14,15 @@ if [[ "$OSTYPE" != "msys" ]]; then
     rm -rf $HOME/.config/waybar
     rm -rf $HOME/.config/wlogout
     cp -r ./config/htop ~/.config/
-    cp -r ./config/hypr ~/.config/
-    cp -r ./config/waybar ~/.config/
-    cp -r ./config/wlogout ~/.config/
+    if command -v hyprland >/dev/null 2>&1; then
+        cp -r ./config/hypr ~/.config/
+        cp -r ./config/waybar ~/.config/
+        cp -r ./config/wlogout ~/.config/
+    else
+        rm -rf ~/.config/hypr
+        rm -rf ~/.config/waybar
+        rm -rf ~/.config/wlogout
+    fi
     if command -v zfs >/dev/null 2>&1; then
         echo "ZFS detected"
         cp ./config/htop/htoprc-zfs ~/.config/htop/htoprc

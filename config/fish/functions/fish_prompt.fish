@@ -11,6 +11,59 @@ function _git_branch_name -a gitdir
     end
 end
 
+# Commit-Hash von HEAD ermitteln, ohne git zu starten
+function _git_head_hash -a gitdir head
+    if string match -rq '^[0-9a-f]{40,64}$' -- $head
+        echo $head
+        return 0
+    end
+    string match -rq '^ref: (?<ref>.+)$' -- $head
+    or return 1
+
+    set -l dirs $gitdir
+    if test -f $gitdir/commondir # Worktrees
+        read -l c <$gitdir/commondir
+        set -a dirs $gitdir/$c
+    end
+
+    for d in $dirs
+        if test -f $d/$ref
+            read -l h <$d/$ref
+            and echo $h
+            and return 0
+        end
+    end
+    for d in $dirs
+        test -f $d/packed-refs
+        or continue
+        string match -rq '^(?<h>[0-9a-f]{40,64}) '(string escape --style=regex -- $ref)'$' <$d/packed-refs
+        and echo $h
+        and return 0
+    end
+    return 1
+end
+
+# Tag auf dem aktuellen Commit, gecacht pro Commit-Hash.
+# git describe läuft nur, wenn sich der Commit ändert.
+function _git_tag_name -a gitdir
+    read -l head <$gitdir/HEAD 2>/dev/null
+    or return
+    set -l hash (_git_head_hash $gitdir $head)
+    or return
+    if test "$hash" != "$__prompt_tag_key"
+        set -g __prompt_tag_key $hash
+        set -g __prompt_tag_val (command git describe --tags --exact-match $hash 2>/dev/null | head -n1)
+    end
+    echo $__prompt_tag_val
+end
+
+# Cache leeren, wenn sich Tags ändern könnten
+function _prompt_tag_cache_reset --on-event fish_postexec
+    if string match -qr '^git\s+(tag|fetch|pull|clone)' -- $argv
+        set -e __prompt_tag_key
+    end
+end
+
 function _is_git_dirty
     set -l flags --porcelain --ignore-submodules=dirty
     test "$__prompt_git_untracked" = 0; and set flags $flags -uno
@@ -78,10 +131,12 @@ function fish_prompt
     set -l cwd $blue(prompt_pwd)
     set -l branch_name
     set -l git_state
+    set -l tag
     set -l gitdir (command git rev-parse --git-dir 2>/dev/null)
     if test -n "$gitdir"
         set branch_name (_git_branch_name $gitdir)
         set git_state (_git_state $gitdir)
+        set tag (_git_tag_name $gitdir)
     end
 
     if test -n "$branch_name"
@@ -98,6 +153,10 @@ function fish_prompt
 
         if test -n "$git_state"
             set git_info "$git_info $yellow($git_state)$normal"
+        end
+
+        if test -n "$tag"
+            set git_info "$git_info $yellow(tag: $tag)$normal"
         end
 
         if _is_git_dirty

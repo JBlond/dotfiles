@@ -1,109 +1,119 @@
-function _git_branch_name
-	echo (command git name-rev --name-only HEAD 2>/dev/null | sed -e 's|^refs/heads/||')
+function _git_branch_name -a gitdir
+    read -l head <$gitdir/HEAD 2>/dev/null
+    or return
+    if string match -rq '^ref: refs/heads/(?<b>.+)$' -- $head
+        echo $b
+    else if string match -rq '^ref: (?<r>.+)$' -- $head
+        echo $r
+    else
+        # detached HEAD: short Hash
+        string sub -l 8 -- $head
+    end
 end
 
 function _is_git_dirty
-	echo (command git status -s --ignore-submodules=dirty 2>/dev/null)
+    set -l flags --porcelain --ignore-submodules=dirty
+    test "$__prompt_git_untracked" = 0; and set flags $flags -uno
+    command git status $flags 2>/dev/null | head -n1 | string length -q
 end
 
 function _is_ssh_session
-	# chek for the classic SSH-ENV
-	if set -q SSH_CONNECTION; or set -q SSH_CLIENT; or set -q SSH_TTY
-		return 0
-	end
-	# check for tmux with SSH: if tmux run, check if the parent shell runs with SSH
-	if set -q tmux
-		# try to dind the orgin SSH-connection over ENV
-		if string match -q '*ssh*' (ps -o cmd= -p (ps -o ppid= -p (ps -o ppid= -p (status pid))))
-			return 0
-		end
-	end
-	return 1
+    # check for the classic SSH-ENV
+    if set -q SSH_CONNECTION; or set -q SSH_CLIENT; or set -q SSH_TTY
+        return 0
+    end
+    # check for tmux with SSH: if tmux run, check if the parent shell runs with SSH
+    if set -q tmux
+        if string match -q '*ssh*' (ps -o cmd= -p (ps -o ppid= -p (ps -o ppid= -p (status pid))))
+            return 0
+        end
+    end
+    return 1
 end
 
-function _git_state
-    set -l gitdir (git rev-parse --git-dir 2>/dev/null)
-
+function _git_state -a gitdir
     if test -f $gitdir/MERGE_HEAD
         echo "MERGE"
-        return
-    end
-
-    if test -f $gitdir/REBASE_HEAD
+    else if test -f $gitdir/REBASE_HEAD
         echo "REBASE"
-        return
-    end
-
-    if test -f $gitdir/CHERRY_PICK_HEAD
+    else if test -f $gitdir/CHERRY_PICK_HEAD
         echo "PICK"
-        return
     end
 end
 
 function fish_prompt
-	set -l last_status $status
-	set -l cyan (set_color -o cyan)
-	set -l yellow (set_color -o yellow)
-	set -l red (set_color -o red)
-	set -l blue (set_color -o blue)
-	set -l green (set_color -o green)
-	set -l normal (set_color normal)
+    set -l last_status $status
+    set -l cyan (set_color -o cyan)
+    set -l yellow (set_color -o yellow)
+    set -l red (set_color -o red)
+    set -l blue (set_color -o blue)
+    set -l green (set_color -o green)
+    set -l normal (set_color normal)
 
-	if not set -q __fish_prompt_char
-		switch (id -u)
-			case 0
-				set __fish_prompt_char '⚡⚡ '
-			case '*'
-				set __fish_prompt_char 'λ '
-		end
-	end
+    if not set -q __prompt_static_ready
+        set -q USER; and set -g __prompt_user $USER; or set -g __prompt_user (whoami)
+        if _is_ssh_session
+            set -g __prompt_is_ssh 1
+        else
+            set -g __prompt_is_ssh 0
+        end
+        if not set -q __fish_prompt_char
+            if test (id -u) = 0
+                set -g __fish_prompt_char '⚡⚡ '
+            else
+                set -g __fish_prompt_char 'λ '
+            end
+        end
+        set -g __prompt_static_ready 1
+    end
 
-	if test $last_status = 0
-		set status_indicator "$green✓ "
-		set exit_code ""
-	else
-		set status_indicator "$red✗ "
-		set exit_code (set_color -i a52a2a) "[" $last_status "]"
-	end
-	set -l cwd $blue(prompt_pwd)
+    if test $last_status = 0
+        set status_indicator "$green✓ "
+        set exit_code ""
+    else
+        set status_indicator "$red✗ "
+        set exit_code (set_color -i a52a2a) "[" $last_status "]"
+    end
 
-	set -l branch_name (_git_branch_name)
-	set -l git_state (_git_state)
-	#echo 'branch name is ' + $branch_name
-	if [ $branch_name ]
+    set -l cwd $blue(prompt_pwd)
+    set -l branch_name
+    set -l git_state
+    set -l gitdir (command git rev-parse --git-dir 2>/dev/null)
+    if test -n "$gitdir"
+        set branch_name (_git_branch_name $gitdir)
+        set git_state (_git_state $gitdir)
+    end
 
-		if test $branch_name = 'master'
-			set -l git_branch "master"
-			set git_info \n"$normal $cyan(♆ $red$git_branch$cyan)$normal"
-		else if test $branch_name = 'main'
-			set -l git_branch "main"
-			set git_info \n"$normal $cyan(♆ $red$git_branch$cyan)$normal"
-		else
-			set -l git_branch $branch_name
-			set git_info \n"$normal $cyan(♆ $git_branch)$normal"
-		end
-		
-		if test -n "$git_state"
-			set git_info "$git_info $yellow($git_state)$normal"
-		end
+    if test -n "$branch_name"
+        if test $branch_name = 'master'
+            set -l git_branch "master"
+            set git_info \n"$normal $cyan(♆ $red$git_branch$cyan)$normal"
+        else if test $branch_name = 'main'
+            set -l git_branch "main"
+            set git_info \n"$normal $cyan(♆ $red$git_branch$cyan)$normal"
+        else
+            set -l git_branch $branch_name
+            set git_info \n"$normal $cyan(♆ $git_branch)$normal"
+        end
 
-		if [ (_is_git_dirty) ]
-			set -l dirty "$yellow ✗"
-			set git_info "$git_info$dirty"
-		end
-	end
+        if test -n "$git_state"
+            set git_info "$git_info $yellow($git_state)$normal"
+        end
 
-	echo -n -s $status_indicator
+        if _is_git_dirty
+            set -l dirty "$yellow ✗"
+            set git_info "$git_info$dirty"
+        end
+    end
 
-	if _is_ssh_session
-		echo $red'ssh://'$cyan(whoami)$green'@'(hostname) $cwd $git_info $exit_code $normal ' '
-	else
-		echo $cyan(whoami) $cwd $git_info $exit_code $normal ' '
-	end
-	# echo # To print an empty line
-	# prompt character
-	set_color ff0000
-	echo -n $__fish_prompt_char
-	set_color normal
+    echo -n -s $status_indicator
 
+    if test $__prompt_is_ssh = 1
+        echo $red'ssh://'$cyan$__prompt_user$green'@'$hostname $cwd $git_info $exit_code $normal ' '
+    else
+        echo $cyan$__prompt_user $cwd $git_info $exit_code $normal ' '
+    end
+    set_color ff0000
+    echo -n $__fish_prompt_char
+    set_color normal
 end

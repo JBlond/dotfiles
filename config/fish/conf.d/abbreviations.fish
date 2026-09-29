@@ -10,14 +10,21 @@ abbr ös 'ls'
 abbr ll 'ls -lh'
 abbr lla 'ls -lAh'
 abbr la 'ls -A'
-abbr lart 'ls -lhart'
-if command -q exa
+if command -q eza
+    abbr l 'eza -F'
+    abbr all 'eza -bghHliS'
+    abbr lart 'eza -la -snew'
+    abbr lss 'eza -liAh -ssize -r'
+else if command -q exa
     abbr l 'exa -F'
     abbr all 'exa -bghHliS'
+    abbr lart 'ls -lhart'
+    abbr lss 'ls -liSAh'
 else
     abbr l 'ls -CF'
+    abbr lart 'ls -lhart'
+    abbr lss 'ls -liSAh'
 end
-abbr lss 'ls -liSAh'
 abbr l1 'ls -1'
 
 abbr lll "stat --format='%a %U %G %s %y %N' * | column -t"

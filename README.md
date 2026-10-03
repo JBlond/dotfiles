@@ -10,7 +10,7 @@ I use my dotfiles on bash and fish shell from git for windows, debian bash and f
 - Bash and Fish configuration
 - hyprland, waybar, and rofi configuration -> [README](config/hypr/README.md)
 - Docker aliases and completion helpers
-- tmux setup and themes
+- tmux setup and themes -> [TMUX README](docs/tmux.md)
 - SSH and Git productivity shortcuts
 - Windows + Linux friendly
 
@@ -143,13 +143,13 @@ ssh://user@host:🏠
 ## fast fish prompt
 
 ```bash
-time fish_prompt                                              13ms []15:55
+time fish_prompt                                              5ms [12:30]
 ✓ root@host ~
 λ
 ________________________________________________________
-Executed in   13,11 millis    fish           external
-   usr time    7,80 millis    1,37 millis    6,43 millis
-   sys time    5,08 millis    4,12 millis    0,96 millis
+Executed in    7.98 millis    fish           external
+   usr time    2.51 millis    0.10 millis    2.42 millis
+   sys time    7.29 millis    3.11 millis    4.18 millis
 
 ✓ root@host ~
 λ

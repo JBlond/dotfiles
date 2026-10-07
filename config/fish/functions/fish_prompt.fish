@@ -1,6 +1,7 @@
 function _git_branch_name -a gitdir
-    read -l head <$gitdir/HEAD 2>/dev/null
-    or return
+    test -f $gitdir/HEAD; or return
+    set -l head (command git symbolic-ref -q --short HEAD 2>/dev/null;
+    or command git rev-parse HEAD 2>/dev/null)
     if string match -rq '^ref: refs/heads/(?<b>.+)$' -- $head
         echo $b
     else if string match -rq '^ref: (?<r>.+)$' -- $head
@@ -11,7 +12,6 @@ function _git_branch_name -a gitdir
     end
 end
 
-# Commit-Hash von HEAD ermitteln, ohne git zu starten
 function _git_head_hash -a gitdir head
     if string match -rq '^[0-9a-f]{40,64}$' -- $head
         echo $head
@@ -20,7 +20,11 @@ function _git_head_hash -a gitdir head
     string match -rq '^ref: (?<ref>.+)$' -- $head
     or return 1
 
+    command git rev-parse HEAD 2>/dev/null
+    and return 0
+
     set -l dirs $gitdir
+
     if test -f $gitdir/commondir # Worktrees
         read -l c <$gitdir/commondir
         set -a dirs $gitdir/$c
@@ -33,21 +37,22 @@ function _git_head_hash -a gitdir head
             and return 0
         end
     end
+
     for d in $dirs
         test -f $d/packed-refs
         or continue
-        string match -rq '^(?<h>[0-9a-f]{40,64}) '(string escape --style=regex -- $ref)'$' <$d/packed-refs
+        cat $d/packed-refs 2>/dev/null | string match -rq '^(?<h>[0-9a-f]{40,64}) '(string escape --style=regex -- $ref)'$'
         and echo $h
         and return 0
     end
+
     return 1
 end
 
-# Tag auf dem aktuellen Commit, gecacht pro Commit-Hash.
-# git describe läuft nur, wenn sich der Commit ändert.
 function _git_tag_name -a gitdir
-    read -l head <$gitdir/HEAD 2>/dev/null
-    or return
+    test -f $gitdir/HEAD; or return
+    set -l head (command git symbolic-ref HEAD 2>/dev/null;
+    or command git rev-parse HEAD 2>/dev/null)
     set -l hash (_git_head_hash $gitdir $head)
     or return
     if test "$hash" != "$__prompt_tag_key"

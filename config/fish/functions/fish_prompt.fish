@@ -1,7 +1,8 @@
 function _git_branch_name -a gitdir
-    test -f $gitdir/HEAD; or return
-    set -l head (command git symbolic-ref -q --short HEAD 2>/dev/null;
-    or command git rev-parse HEAD 2>/dev/null)
+    set -l head_file "$gitdir/HEAD"
+    test -f "$head_file"; or return 1
+    set -l head (command cat "$head_file" 2>/dev/null)
+    or return 1
     if string match -rq '^ref: refs/heads/(?<b>.+)$' -- $head
         echo $b
     else if string match -rq '^ref: (?<r>.+)$' -- $head

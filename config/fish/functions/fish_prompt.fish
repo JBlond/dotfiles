@@ -51,14 +51,12 @@ function _git_head_hash -a gitdir head
 end
 
 function _git_tag_name -a gitdir
-    test -f $gitdir/HEAD; or return
-    set -l head (command git symbolic-ref HEAD 2>/dev/null;
-    or command git rev-parse HEAD 2>/dev/null)
-    set -l hash (_git_head_hash $gitdir $head)
+    test -f "$gitdir/HEAD"; or return
+    set -l hash (command git rev-parse HEAD 2>/dev/null)
     or return
     if test "$hash" != "$__prompt_tag_key"
         set -g __prompt_tag_key $hash
-        set -g __prompt_tag_val (command git describe --tags --exact-match $hash 2>/dev/null | head -n1)
+        set -g __prompt_tag_val (command git describe --tags --exact-match $hash 2>/dev/null | head -n 1)
     end
     echo $__prompt_tag_val
 end

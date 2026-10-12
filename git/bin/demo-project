@@ -1,0 +1,294 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+PROJECT_NAME="${1:-demo-project}"
+COMMITS="${2:-50}"
+
+GIT_USER_NAME="Demo Developer"
+GIT_USER_EMAIL="demo.developer@example.com"
+
+FEATURES=(
+    "authentication"
+    "reporting"
+    "logging"
+    "notifications"
+    "api-client"
+    "dashboard"
+)
+
+BUGS=(
+    "null reference"
+    "session timeout"
+    "memory leak"
+    "csv parser"
+    "exception handling"
+    "configuration loader"
+)
+
+MAJOR=1
+MINOR=0
+PATCH=0
+
+mkdir -p "$PROJECT_NAME"
+cd "$PROJECT_NAME"
+
+git init
+
+# Lokale Git-Identität nur für dieses Repository
+git config user.name "$GIT_USER_NAME"
+git config user.email "$GIT_USER_EMAIL"
+
+create_structure() {
+    mkdir -p src tests docs config
+
+    cat > README.md <<EOF
+# Demo Project
+
+Automatically generated demo repository.
+EOF
+
+    cat > CHANGELOG.md <<EOF
+# Changelog
+
+All notable changes to this project are documented in this file.
+
+## v1.0.0
+
+- Initial project structure
+EOF
+
+    cat > src/app.py <<EOF
+#!/usr/bin/env python3
+
+def main():
+    print("Demo application")
+
+if __name__ == "__main__":
+    main()
+EOF
+
+    cat > src/config.py <<EOF
+APP_NAME = "DemoApp"
+VERSION = "1.0.0"
+EOF
+
+    cat > tests/test_app.py <<EOF
+def test_startup():
+    assert True
+EOF
+
+    cat > docs/architecture.md <<EOF
+# Architecture
+
+Initial architecture document.
+EOF
+
+    cat > config/settings.json <<EOF
+{
+  "environment": "development",
+  "timeout": 30,
+  "featureFlag": false
+}
+EOF
+}
+
+generate_content() {
+    local file="$1"
+    local random_id
+
+    random_id=$RANDOM
+
+    case "$file" in
+
+        "src/app.py")
+            cat >> "$file" <<EOF
+
+def feature_${random_id}():
+    return "${random_id}"
+EOF
+            ;;
+
+        "src/config.py")
+            cat >> "$file" <<EOF
+
+FEATURE_${random_id} = True
+EOF
+            ;;
+
+        "tests/test_app.py")
+            cat >> "$file" <<EOF
+
+def test_feature_${random_id}():
+    assert True
+EOF
+            ;;
+
+        "docs/architecture.md")
+            cat >> "$file" <<EOF
+
+## Component ${random_id}
+
+Added component description and design notes.
+EOF
+            ;;
+
+        "config/settings.json")
+            cat > "$file" <<EOF
+{
+  "environment": "development",
+  "build": "${random_id}",
+  "timeout": $((RANDOM % 300 + 10)),
+  "featureFlag": true
+}
+EOF
+            ;;
+    esac
+}
+
+initial_commit() {
+    git add .
+    git commit -m "Initial project structure"
+
+    git tag -a "v1.0.0" -m "Initial release v1.0.0"
+
+    echo "Created tag v1.0.0"
+}
+
+increment_version() {
+    PATCH=$((PATCH + 1))
+
+    if (( PATCH > 9 ))
+    then
+        PATCH=0
+        MINOR=$((MINOR + 1))
+    fi
+
+    if (( MINOR > 9 ))
+    then
+        MINOR=0
+        MAJOR=$((MAJOR + 1))
+    fi
+}
+
+update_changelog() {
+    local tag="$1"
+    local previous_tag="$2"
+    local changes
+
+    changes=$(
+        git log \
+            --no-merges \
+            --format="- %s" \
+            -n 10 \
+            "${previous_tag}..HEAD"
+    )
+
+    {
+        echo
+        echo "## $tag"
+        echo
+
+        if [[ -n "$changes" ]]
+        then
+            echo "$changes"
+        else
+            echo "- Maintenance update"
+        fi
+    } >> CHANGELOG.md
+}
+
+create_tag() {
+    local previous_tag
+    local tag
+
+    previous_tag=$(git describe --tags --abbrev=0)
+
+    increment_version
+
+    tag="v${MAJOR}.${MINOR}.${PATCH}"
+
+    update_changelog "$tag" "$previous_tag"
+
+    git add CHANGELOG.md
+    git commit -m "Update CHANGELOG for $tag"
+
+    git tag -a "$tag" -m "Release $tag"
+
+    echo "Created tag $tag"
+}
+
+commit_feature() {
+    local feature
+
+    feature="${FEATURES[$((RANDOM % ${#FEATURES[@]}))]}"
+
+    generate_content src/app.py
+
+    git add src/app.py
+    git commit -m "Add $feature support"
+}
+
+commit_bugfix() {
+    local bug
+
+    bug="${BUGS[$((RANDOM % ${#BUGS[@]}))]}"
+
+    generate_content src/app.py
+
+    git add src/app.py
+    git commit -m "Fix $bug"
+}
+
+commit_test() {
+    generate_content tests/test_app.py
+
+    git add tests/test_app.py
+    git commit -m "Add unit tests"
+}
+
+commit_docs() {
+    generate_content docs/architecture.md
+
+    git add docs/architecture.md
+    git commit -m "Update architecture documentation"
+}
+
+commit_config() {
+    generate_content config/settings.json
+
+    git add config/settings.json
+    git commit -m "Update application configuration"
+}
+
+create_structure
+initial_commit
+
+for ((i = 1; i <= COMMITS; i++))
+do
+    case $((RANDOM % 5)) in
+        0) commit_feature ;;
+        1) commit_bugfix ;;
+        2) commit_test ;;
+        3) commit_docs ;;
+        4) commit_config ;;
+    esac
+
+    # Exakt nach jeweils zehn Entwicklungs-Commits ein Release
+    if (( i % 10 == 0 ))
+    then
+        create_tag
+    fi
+done
+
+echo
+echo "Repository created:"
+echo "Path       : $(pwd)"
+echo "Commits    : $(git rev-list --count HEAD)"
+echo "Tags       : $(git tag | wc -l)"
+echo "Author     : $(git config user.name) <$(git config user.email)>"
+echo "Latest tag : $(git describe --tags --abbrev=0)"
+
+echo
+echo "Release history:"
+git tag --sort=version:refname

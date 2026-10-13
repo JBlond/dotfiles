@@ -76,7 +76,7 @@ if command -sq docker
     abbr dcp "docker compose pull"
     abbr dcl "docker compose logs -f"
     abbr ddf "docker system df"
-    abbr dps "docker ps --format \"table {{ .Names }}\" -a"
+    abbr dps "docker ps --format \"table {{ .Names }}\" -a | sort"
     abbr dsp "docker system prune -a"
     abbr dil "docker image ls"
     abbr dsd "docker system df"

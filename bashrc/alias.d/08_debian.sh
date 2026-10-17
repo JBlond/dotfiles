@@ -5,9 +5,6 @@ alias upgrade='sudo apt dist-upgrade'
 alias autoremove='sudo apt autoremove'
 alias install='sudo apt install'
 
-alias journalctl='sudo journalctl'
-alias systemctl='sudo systemctl'
-alias sc='systemctl'
 
 # Get and display the distribution type. (original base first)
 if [ -f /etc/os-release -a -r /etc/os-release ]; then

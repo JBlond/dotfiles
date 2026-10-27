@@ -1,59 +1,58 @@
-#!/usr/bin/env fish
-# Translates program names to icons, so we an use them in our tmux config.
+#!/bin/sh
+# Translates program names to icons, so we can use them in our tmux config.
 # Based on https://github.com/caarlos0/icons
-switch $argv[1]
-	case ack fd find fzf grep rg
-		echo 
-	case atop htop top
-		echo 
-	case bash fish zsh
-		echo 
-	case bat cat
-		echo 
-	case cp duplicate
-		echo 
-	case mv mc
-		echo 
-	case curl http pint lynx wget w3m
-		echo 
-	case docker docker-compose
-		echo 
-	case exa lf ls nnn ranger
-		echo פּ
-	case gh
-		echo 
-	case git
-		echo 
-	case glow
-		echo 
-	case less more make
-		echo 
-	case lua
-		echo 
-	case man
-		echo 
-	case node npm yarn
-		echo 
-	case nvim vim vi
-		echo 
-	case python pip
-		echo 
-	case rm
-		echo 﫧
-	case rsync
-		echo 
-	case scp ssh
-		echo 
-	case sleep
-		echo 
-	case spin
-		echo 
-	case sudo
-		echo 
-	case tail
-		echo 
-	case tmux
-		echo ﬿
-	case youtube-dl
-		echo 
-end
+
+case "$1" in
+    ack|fd|find|fzf|grep|rg)
+        echo "" ;;
+    atop|htop|top)
+        echo "" ;;
+    bash|fish|zsh)
+        echo "" ;;
+    bat|cat)
+        echo "" ;;
+    cp|duplicate)
+        echo "" ;;
+    mv|mc)
+        echo "" ;;
+    curl|http|pint|lynx|wget|w3m)
+        echo "" ;;
+    docker|docker-compose)
+        echo "" ;;
+    exa|lf|ls|nnn|ranger)
+        echo "פּ" ;;
+    gh)
+        echo "" ;;
+    git)
+        echo "" ;;
+    glow)
+        echo "" ;;
+    less|more|make)
+        echo "" ;;
+    lua)
+        echo "" ;;
+    man)
+        echo "" ;;
+    node|npm|yarn)
+        echo "" ;;
+    nvim|vim|vi)
+        echo "" ;;
+    python|pip)
+        echo "" ;;
+    rm)
+        echo "﫧" ;;
+    rsync)
+        echo "" ;;
+    scp|ssh)
+        echo "" ;;
+    sleep)
+        echo "" ;;
+    spin|tail)
+        echo "" ;;
+    sudo)
+        echo "" ;;
+    tmux)
+        echo "﬿" ;;
+    youtube-dl)
+        echo "" ;;
+esac

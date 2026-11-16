@@ -5,7 +5,7 @@
 case "$1" in
     ack|fd|find|fzf|grep|rg)
         echo "" ;;
-    atop|htop|top)
+    atop|btop|htop|top)
         echo "" ;;
     bash|fish|zsh)
         echo "" ;;
